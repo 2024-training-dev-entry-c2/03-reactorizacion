@@ -21,7 +21,6 @@ public class Habitacion {
     }
 
 
-
     public String getTipo() {
         return tipo;
     }
