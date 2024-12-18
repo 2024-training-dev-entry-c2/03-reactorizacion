@@ -118,34 +118,6 @@ public class Main {
         selectedAccommodation.put("finalPrice", finalPrice);
     }
 
-    public static void calculateSunnyDayPrice(Map<String, Object> selectedAccommodation, String startDate, int adultsQuantity, int childrenQuantity) {
-
-        int pricePerson = (int) selectedAccommodation.get("pricePerson");
-        int totalBasePrice = pricePerson * (adultsQuantity + childrenQuantity);
-
-        LocalDate start = LocalDate.parse(startDate);
-
-        double discountOrIncrease = 0.0;
-        String adjustmentType = "None";
-
-        if (start.getDayOfMonth() >= 5 && start.getDayOfMonth() <= 10) {
-            discountOrIncrease = -0.08 * totalBasePrice;
-            adjustmentType = "8% de descuento";
-        } else if (start.getDayOfMonth() >= 10 && start.getDayOfMonth() <= 15) {
-            discountOrIncrease = 0.10 * totalBasePrice;
-            adjustmentType = "10% de incremento";
-        } else if (start.getDayOfMonth() > 25) {
-            discountOrIncrease = 0.15 * totalBasePrice;
-            adjustmentType = "15% de incremento";
-        }
-
-        double finalPrice = totalBasePrice + discountOrIncrease;
-
-        selectedAccommodation.put("basePrice", totalBasePrice);
-        selectedAccommodation.put("adjustmentType", adjustmentType);
-        selectedAccommodation.put("adjustmentValue", discountOrIncrease);
-        selectedAccommodation.put("finalPrice", finalPrice);
-    }
 
     public static int[] getAvailableRooms(String name , String startDate, String endDate, int[] rooms){
         int[] availableRooms = rooms.clone();

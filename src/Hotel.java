@@ -4,10 +4,24 @@ import java.util.ArrayList;
 
 public class Hotel extends Accommodation {
     private ArrayList<RoomModel> roomModels;
+    private Integer roomModelIndex;
     private PriceDetail priceDetail= new PriceDetail();
     private SunnyDay sunnyDay;
 
+    public Hotel(String name, String city, Float rating, ArrayList<RoomModel> roomModels, Integer roomModelIndex, PriceDetail priceDetail) {
+        super(name, city, rating);
+        this.roomModels = roomModels;
+        this.roomModelIndex = roomModelIndex;
+        this.priceDetail = priceDetail;
+    }
 
+    public Hotel(String name, String city, Float rating, ArrayList<RoomModel> roomModels, Integer roomModelIndex, PriceDetail priceDetail, SunnyDay sunnyDay) {
+        super(name, city, rating);
+        this.roomModels = roomModels;
+        this.roomModelIndex = roomModelIndex;
+        this.priceDetail = priceDetail;
+        this.sunnyDay = sunnyDay;
+    }
 
     @Override
     public void calculateStayPrice(Booking booking) {
@@ -21,26 +35,28 @@ public class Hotel extends Accommodation {
         else{
             end = booking.getEnd();
             Integer nights = start - end;
-            totalBasePrice = this.roomModels.get(0).getPricePerNight() * booking.getRoomQuantity() * nights;
+            totalBasePrice = this.roomModels.get(this.roomModelIndex).getPricePerNight() * booking.getRoomQuantity() * nights;
         }
         priceDetail.calculatePrice(totalBasePrice, start, end);
     }
 
 
     @Override
-    public String showAccommodation(String startDate, String endDate, int roomQuantity) {
-        PriceDetail priceDetail = calculateStayPrice(startDate, endDate, roomQuantity);
+    public String showAccommodation(Booking booking) {
+        String message = "";
+        calculateStayPrice(booking);
+        if(booking.getType().equals("Sunny Day") && sunnyDay != null){
+            message = "Calificación: " + this.getRating() + '\n' + sunnyDay.toString();
+        }
+        else{
+            message = "Calificación: " + this.getRating() + '\n' +
+                    "Precio por noche: " + this.roomModels.get(this.roomModelIndex).getPricePerNight() + '\n';
+        }
 
-        return "Calificación: " + this.getRating() + '\n' +
-                "Precio por noche: " + this.pricePerNight[0] + '\n'+ priceDetail.showPriceDetail();
-
+        return message + priceDetail.toString();
     }
 
-    public int[] getRooms() {
-        return rooms;
-    }
-
-    public int[] getPricePerNight() {
-        return pricePerNight;
+    public void setRoomModelIndex(Integer roomModelIndex) {
+        this.roomModelIndex = roomModelIndex;
     }
 }
