@@ -1,13 +1,12 @@
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class Farm extends Accommodation implements ISunnyDay{
+public class Farm extends Accommodation {
     private Double pricePerNight;
     private String description;
     private Integer roomQuantity;
     private PriceDetail priceDetail= new PriceDetail();
-
-    private SunnyDay sunnyDay= null ;
+    private SunnyDay sunnyDay;
 
     public Farm(String name, String city, Float rating, Double pricePerNight, String description, Integer roomQuantity, PriceDetail priceDetail) {
         super(name, city, rating);
@@ -27,57 +26,35 @@ public class Farm extends Accommodation implements ISunnyDay{
     }
 
     @Override
-    public void calculateStayPrice(Integer start, Integer end, Integer roomQuantity, Boolean isSunnyDay) {
-        if(isSunnyDay && this.sunnyDay !== null){
-
+    public void calculateStayPrice(Booking booking) {
+        Double totalBasePrice;
+        Integer start = booking.getStart();
+        Integer end;
+        if(booking.getType().equals("Sunny Day") && this.sunnyDay != null){
+            end =  booking.getStart();
+            totalBasePrice = this.sunnyDay.getPricePerson() * (booking.getAdultsQuantity() + booking.getChildrenQuantity());
         }
         else{
-            Integer nights = end - start;
-            Double totalBasePrice = this.pricePerNight * nights;
+            end = booking.getEnd();
+            Integer nights = start - end;
+            totalBasePrice = this.pricePerNight * nights;
         }
-        priceDetail.calculatePrice(totalBasePrice, start,end);
+        priceDetail.calculatePrice(totalBasePrice, start, end);
     }
 
     @Override
-    public String showAccommodation(Integer start, Integer end, Integer roomQuantity,Boolean isSunnyDay) {
-        calculateStayPrice(start, end, roomQuantity, isSunnyDay);
-        return "Características: " + this.description + '\n' +
-                "Calificación: " + this.getRating() + '\n' +
-                "Precio por noche: " + this.pricePerNight + '\n'+ priceDetail.toString();
-    }
-
-    @Override
-    public PriceDetail calculateSunnyDayPrice(String startDate, int adultsQuantity, int childrenQuantity) {
-        int totalBasePrice = this.pricePerson * (adultsQuantity + childrenQuantity);
-        LocalDate start = LocalDate.parse(startDate);
-
-        double discountOrIncrease = 0.0;
-        String adjustmentType = "None";
-
-        if (start.getDayOfMonth() >= 5 && start.getDayOfMonth() <= 10) {
-            discountOrIncrease = -0.08 * totalBasePrice;
-            adjustmentType = "8% de descuento";
-        } else if (start.getDayOfMonth() >= 10 && start.getDayOfMonth() <= 15) {
-            discountOrIncrease = 0.10 * totalBasePrice;
-            adjustmentType = "10% de incremento";
-        } else if (start.getDayOfMonth() > 25) {
-            discountOrIncrease = 0.15 * totalBasePrice;
-            adjustmentType = "15% de incremento";
+    public String showAccommodation(Booking booking) {
+        String message = "";
+        calculateStayPrice(booking);
+        if(booking.getType().equals("Sunny Day") && sunnyDay != null){
+            message = "Calificación: " + this.getRating() + '\n' + sunnyDay.toString();
         }
-
-        double finalPrice = totalBasePrice + discountOrIncrease;
-
-        return new PriceDetail(totalBasePrice,adjustmentType,discountOrIncrease,finalPrice);
-    }
-
-    @Override
-    public String showSunnyDayAccommodation(String startDate, int adultsQuantity, int childrenQuantity) {
-        PriceDetail priceDetail = calculateSunnyDayPrice(startDate, adultsQuantity, childrenQuantity);
-
-        return "Actividades: " + this.activities + '\n' +
-                "Incluye almuerzo: " + (this.includesLunch ? "sí" : "no") + '\n' +
-                "Calificación: " + this.getRating() + '\n' +
-                "Precio por persona: " + this.pricePerson + '\n'+ priceDetail.showPriceDetail();
+        else{
+            message = "Características: " + this.description + '\n' +
+                    "Calificación: " + this.getRating() + '\n' +
+                    "Precio por noche: " + this.pricePerNight + '\n';
+        }
+        return message + priceDetail.toString();
     }
 
     public int getRoomQuantity() {

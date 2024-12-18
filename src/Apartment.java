@@ -13,15 +13,15 @@ public class Apartment extends Accommodation {
     }
 
     @Override
-    public void calculateStayPrice(Integer start, Integer end, Integer roomQuantity, Boolean isSunnyDay) {
-        Integer nights = end - start;
+    public void calculateStayPrice(Booking booking) {
+        Integer nights = booking.getEnd() - booking.getStart();
         Double totalBasePrice = this.pricePerNight * nights;
-        priceDetail.calculatePrice(totalBasePrice, start,end);
+        priceDetail.calculatePrice(totalBasePrice,booking.getStart(),booking.getEnd());
     }
 
     @Override
-    public String showAccommodation(Integer start, Integer end, Integer roomQuantity , Boolean isSunnyDay) {
-        calculateStayPrice(start, end, roomQuantity, false);
+    public String showAccommodation(Booking booking) {
+        calculateStayPrice(booking);
         return "Características: " + this.description + '\n' +
                 "Calificación: " + this.getRating() + '\n' +
                 "Precio por noche: " + this.pricePerNight + '\n'+ priceDetail.toString();

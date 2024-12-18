@@ -11,9 +11,9 @@ public abstract class Accommodation {
         this.rating = rating;
     }
 
-    public abstract void calculateStayPrice(Integer start, Integer end, Integer roomQuantity, Boolean isSunnyDay);
+    public abstract void calculateStayPrice(Booking booking);
 
-    public abstract String showAccommodation(Integer start, Integer end, Integer roomQuantity, Boolean isSunnyDay);
+    public abstract String showAccommodation(Booking booking);
 
     public String getName() {
         return name;

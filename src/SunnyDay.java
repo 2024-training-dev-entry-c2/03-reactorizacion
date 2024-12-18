@@ -24,4 +24,8 @@ public class SunnyDay {
                 "Incluye almuerzo: " + (this.includesLunch ? "sí" : "no") + '\n' +
                 "Precio por persona: " + this.pricePerson + '\n';
     }
+
+    public Double getPricePerson() {
+        return pricePerson;
+    }
 }
