@@ -4,10 +4,12 @@ import java.util.Scanner;
 
 public class BookingSystem {
     private final AlojamientoVisualizacion alojamientoService;
+    private final ReservaVisualizacion reservaService;
     private final Menu menuService;
     public BookingSystem() {
         alojamientoService = new AlojamientoVisualizacion();
-        menuService = new Menu(alojamientoService);
+        reservaService = new ReservaVisualizacion();
+        menuService = new Menu(alojamientoService,reservaService);
         alojamientoService.inicializarDatos();
     }
 

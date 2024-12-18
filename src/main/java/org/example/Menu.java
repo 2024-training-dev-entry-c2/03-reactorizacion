@@ -1,13 +1,17 @@
 package org.example;
 
+import java.time.LocalDate;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
     private final AlojamientoVisualizacion alojamientos;
+    private final ReservaVisualizacion reservas;
 
-    public Menu(AlojamientoVisualizacion alojamientos) {
+    public Menu(AlojamientoVisualizacion alojamientos, ReservaVisualizacion reservas) {
         this.alojamientos = alojamientos;
+        this.reservas = reservas;
     }
 
     public void procesarReserva(Scanner scanner) {
@@ -22,6 +26,14 @@ public class Menu {
         String ciudad = ciudades.get(ciudadIndex);
         String tipo = tipos.get(tipoIndex);
         List<Alojamientos> filtrados = alojamientos.filtrar(ciudad, tipo);
+
+        LocalDate fechaInicio = obtenerEntradaValidaFecha(scanner, "Ingrese el día de inicio del hospedaje: ");
+        LocalDate fechaFin = obtenerEntradaValidaFecha(scanner, "Ingrese el día de finalización del hospedaje: ");
+        Integer cantidadAdultos = obtenerEntradaValida(scanner, "Ingrese la cantidad de adultos: ");
+        Integer cantidadNinos = obtenerEntradaValida(scanner, "Ingrese la cantidad de niños: ");
+        Integer cantidadHabitaciones = obtenerEntradaValida(scanner, "Ingrese la cantidad de habitaciones: ");
+
+
         int alojamientoIndex = seleccionarOpcion(scanner, "Selecciona un alojamiento:", filtrados.stream().map(Alojamientos::getNombre).toList());
         if (alojamientoIndex == -1) return;
 
@@ -29,7 +41,6 @@ public class Menu {
     }
 
     public void gestionReserva(Scanner scanner) {
-
 
     }
 
@@ -82,5 +93,38 @@ public class Menu {
         }
     }
 
+    public int obtenerEntradaValida(Scanner scanner, String mensaje) {
+        int opcion;
+        while (true) {
+            System.out.print(mensaje);
+            try {
+                opcion = scanner.nextInt();
+                if (opcion >= 0) {
+                    return opcion;
+                }
+                System.out.println("La cantidad no puede ser negativa.");
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada no válida. Por favor, ingrese un número.");
+                scanner.next();
+            }
+        }
+    }
+
+    public LocalDate obtenerEntradaValidaFecha(Scanner scanner, String mensaje) {
+        LocalDate opcion;
+        while (true) {
+            System.out.print(mensaje);
+            try {
+                opcion = LocalDate.ofEpochDay(scanner.nextInt());
+                if (opcion != null) {
+                    return opcion;
+                }
+                System.out.println("La cantidad no puede ser negativa.");
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada no válida. Por favor, ingrese un número.");
+                scanner.next();
+            }
+        }
+    }
 
 }
