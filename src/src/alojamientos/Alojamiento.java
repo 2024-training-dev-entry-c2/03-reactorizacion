@@ -6,6 +6,6 @@ public abstract class Alojamiento {
     String ciudad;
     Float calificacion;
     String descripcioon;
-    
+    //cambio
 
 }
