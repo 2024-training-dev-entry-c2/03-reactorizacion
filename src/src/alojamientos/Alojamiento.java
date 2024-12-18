@@ -2,23 +2,22 @@ package alojamientos;
 
 import habitaciones.Habitacion;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public abstract class Alojamiento {
 
-    String nombre;
-    String ciudad;
-    Double calificacion;
-    String descripcion;
-    Integer maximoAdultos;
-    Integer maximoNinos;
-    ArrayList <Habitacion> habitaciones;
+    protected String nombre;
+    protected String ciudad;
+    protected Double calificacion;
+    protected String descripcion;
+    protected Integer maximoAdultos;
+    protected Integer maximoNinos;
+    protected ArrayList <Habitacion> habitaciones;
 
 
     public abstract Double calcularPrecioBase();
     public abstract void mostrarInformacion();
-    public abstract Boolean estaDisponible(); //para verificar si está disponible por las fechas y la habitacion
+    public abstract Boolean estaDisponible(); //para verificar si está disponible por las fechas y la habitacion, para apartamento
 
     public void mostrarDetallesHabitaciones(){}
     public Double calcularPrecioTotal(){
@@ -82,5 +81,8 @@ public abstract class Alojamiento {
 
     public void setHabitaciones(ArrayList<Habitacion> habitaciones) {
         this.habitaciones = habitaciones;
+    }
+
+    public static interface IDiaDeSol {
     }
 }
