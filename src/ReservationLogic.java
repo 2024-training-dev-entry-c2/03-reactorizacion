@@ -92,7 +92,6 @@ public class ReservationLogic {
         };
 
 
-
         double[] ratings = {3.4, 4.3, 4.4, 4.0, 4.2, 3.4};
 
         int[] prices = {125, 180, 320, 115, 120, 100};
@@ -105,10 +104,10 @@ public class ReservationLogic {
             availableLodgings[i] = new Lodging(names[index], locations[index], types[index],
                     ratings[index], prices[index], availableRooms[index],
                     roomDescriptions[index]) {
-                @Override
-                public double calculateFinalPrice(int days) {
-                    return getPrice() * days;
-                }
+//                @Override
+//                public double calculateFinalPrice(int days) {
+//                    return getPrice() * days;
+//                }
             };
         }
     }
@@ -192,7 +191,7 @@ public class ReservationLogic {
         for (int i = 0; i < availableLodgings.size(); i++) {
             Lodging lodging = availableLodgings.get(i);
             double basePrice = lodging.getPrice();
-            double finalPrice = lodging.calculateFinalPrice(totalDays);
+
 
             System.out.println((i + 1) + ". " + "----------------------------------------+");
             System.out.println(" | Nombre: " + lodging.getName());
@@ -200,7 +199,7 @@ public class ReservationLogic {
             System.out.println(" | " + "Ciudad: " + ". " + city);
             System.out.println(" | " + "Rating: " + lodging.getRating());
             System.out.println(" | " + "Precio por estadia: " + basePrice);
-            System.out.println(" | " + "Precio final: " + finalPrice);
+//            System.out.println(" | " + "Precio final: " + finalPrice);
             System.out.println(" +------------------------------------------+");
 
         }
