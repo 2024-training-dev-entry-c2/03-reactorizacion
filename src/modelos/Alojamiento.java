@@ -8,10 +8,10 @@ public class Alojamiento {
     protected String ciudadDestino;
     protected Integer maxAdultos;
     protected Integer maxNinos;
-    protected Float calificacion;
+    protected Double calificacion;
     protected ArrayList<Habitacion> habitacion;
 
-    public Alojamiento(String nombreAlojamiento, String ciudadDestino, Integer maxAdultos, Float calificacion, Integer maxNinos, ArrayList<Habitacion> habitacion) {
+    public Alojamiento(String nombreAlojamiento, String ciudadDestino, Integer maxAdultos, Integer maxNinos, Double calificacion, ArrayList<Habitacion> habitacion) {
         this.nombreAlojamiento = nombreAlojamiento;
         this.ciudadDestino = ciudadDestino;
         this.maxAdultos = maxAdultos;
@@ -56,11 +56,11 @@ public class Alojamiento {
         this.maxAdultos = maxAdultos;
     }
 
-    public Float getCalificacion() {
+    public Double getCalificacion() {
         return calificacion;
     }
 
-    public void setCalificacion(Float calificacion) {
+    public void setCalificacion(Double calificacion) {
         this.calificacion = calificacion;
     }
 

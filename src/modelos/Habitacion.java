@@ -4,10 +4,10 @@ public class Habitacion {
 
     private String tiposDeHabitaciones;
     private String caracteristicasHabitaciones;
-    private Float precioPorNochePorTipoHabitacion;
+    private Double precioPorNochePorTipoHabitacion;
     private Integer habitacionesDisponibles;
 
-    public Habitacion(String tiposDeHabitaciones, String caracteristicasHabitaciones, Float precioPorNochePorTipoHabitacion, Integer habitacionesDisponibles) {
+    public Habitacion(String tiposDeHabitaciones, String caracteristicasHabitaciones, Double precioPorNochePorTipoHabitacion, Integer habitacionesDisponibles) {
         this.tiposDeHabitaciones = tiposDeHabitaciones;
         this.caracteristicasHabitaciones = caracteristicasHabitaciones;
         this.precioPorNochePorTipoHabitacion = precioPorNochePorTipoHabitacion;
@@ -39,11 +39,11 @@ public class Habitacion {
         this.caracteristicasHabitaciones = caracteristicasHabitaciones;
     }
 
-    public Float getPrecioPorNochePorTipoHabitacion() {
+    public Double getPrecioPorNochePorTipoHabitacion() {
         return precioPorNochePorTipoHabitacion;
     }
 
-    public void setPrecioPorNochePorTipoHabitacion(Float precioPorNochePorTipoHabitacion) {
+    public void setPrecioPorNochePorTipoHabitacion(Double precioPorNochePorTipoHabitacion) {
         this.precioPorNochePorTipoHabitacion = precioPorNochePorTipoHabitacion;
     }
 

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Finca extends Alojamiento implements IDiaDeSol{
     private DiaDeSolData diaDeSol;
 
-    public Finca(String nombreAlojamiento, String ciudadDestino, Integer maxAdultos, Float calificacion, Integer maxNinos, ArrayList<Habitacion> habitacion, DiaDeSolData diaDeSol) {
-        super(nombreAlojamiento, ciudadDestino, maxAdultos, calificacion, maxNinos, habitacion);
+    public Finca(String nombreAlojamiento, String ciudadDestino, Integer maxAdultos, Integer maxNinos, Double calificacion, ArrayList<Habitacion> habitacion, DiaDeSolData diaDeSol) {
+        super(nombreAlojamiento, ciudadDestino, maxAdultos, maxNinos, calificacion, habitacion);
         this.diaDeSol = diaDeSol;
     }
 

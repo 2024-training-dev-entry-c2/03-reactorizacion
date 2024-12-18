@@ -7,8 +7,8 @@ public class Apartamento extends Alojamiento{
     private Integer numeroPiso;
     private String numeroApartamento;
 
-    public Apartamento(String nombreAlojamiento, String ciudadDestino, Integer maxAdultos, Float calificacion, Integer maxNinos, ArrayList<Habitacion> habitacion, Integer numeroPiso, String numeroApartamento) {
-        super(nombreAlojamiento, ciudadDestino, maxAdultos, calificacion, maxNinos, habitacion);
+    public Apartamento(String nombreAlojamiento, String ciudadDestino, Integer maxAdultos, Integer maxNinos, Double calificacion, ArrayList<Habitacion> habitacion, Integer numeroPiso, String numeroApartamento) {
+        super(nombreAlojamiento, ciudadDestino, maxAdultos, maxNinos, calificacion, habitacion);
         this.numeroPiso = numeroPiso;
         this.numeroApartamento = numeroApartamento;
     }

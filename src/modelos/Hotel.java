@@ -6,8 +6,8 @@ public class Hotel extends Alojamiento implements IDiaDeSol{
     private DiaDeSolData diaDeSol;
     private boolean servicioHabitacion;
 
-    public Hotel(String nombreAlojamiento, String ciudadDestino, Integer maxAdultos, Float calificacion, Integer maxNinos, ArrayList<Habitacion> habitacion, DiaDeSolData diaDeSol, boolean servicioHabitacion) {
-        super(nombreAlojamiento, ciudadDestino, maxAdultos, calificacion, maxNinos, habitacion);
+    public Hotel(String nombreAlojamiento, String ciudadDestino, Integer maxAdultos, Integer maxNinos, Double calificacion, ArrayList<Habitacion> habitacion, DiaDeSolData diaDeSol, boolean servicioHabitacion) {
+        super(nombreAlojamiento, ciudadDestino, maxAdultos, maxNinos, calificacion, habitacion);
         this.diaDeSol = diaDeSol;
         this.servicioHabitacion = servicioHabitacion;
     }

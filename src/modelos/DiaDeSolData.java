@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class DiaDeSolData {
     private String actividades;
-    private ArrayList<String> extras;
+    private String extras;
 
-    public DiaDeSolData(String actividades, ArrayList<String> extras) {
+    public DiaDeSolData(String actividades, String extras) {
         this.actividades = actividades;
         this.extras = extras;
     }
@@ -23,11 +23,11 @@ public class DiaDeSolData {
         this.actividades = actividades;
     }
 
-    public ArrayList<String> getExtras() {
+    public String getExtras() {
         return extras;
     }
 
-    public void setExtras(ArrayList<String> extras) {
+    public void setExtras(String extras) {
         this.extras = extras;
     }
 }

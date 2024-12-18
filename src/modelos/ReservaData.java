@@ -2,7 +2,7 @@ package modelos;
 
 import java.time.LocalDate;
 
-public class ReservaData <T> {
+public class ReservaData <T extends Alojamiento> {
 
     private T alojamientos;
     private ClienteData cliente;
