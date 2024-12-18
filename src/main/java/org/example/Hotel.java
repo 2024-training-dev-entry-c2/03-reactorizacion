@@ -1,4 +1,5 @@
 package org.example;
 
-public class Hotel {
+public class Hotel  extends Alojamientos{
+
 }

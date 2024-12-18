@@ -4,15 +4,16 @@ public class Habitacion {
     private String tipo;
     private String descripcion;
     private double precio;
-    private Integer disponibles;
-    private Integer capacidad;
 
-    public Habitacion(String tipo, String descripcion, double precio, Integer disponibles, Integer capacidad) {
+    private Integer disponibles;
+    private Integer capacidadMaxPersonas;
+
+    public Habitacion(String tipo, String descripcion, double precio, Integer disponibles, Integer capacidadMaxPersonas) {
         this.tipo = tipo;
         this.descripcion = descripcion;
         this.precio = precio;
         this.disponibles = disponibles;
-        this.capacidad = capacidad;
+        this.capacidadMaxPersonas = capacidadMaxPersonas;
     }
 
     public Habitacion() {
@@ -50,11 +51,11 @@ public class Habitacion {
         this.disponibles = disponibles;
     }
 
-    public Integer getCapacidad() {
-        return capacidad;
+    public Integer getcapacidadMaxPersonas() {
+        return capacidadMaxPersonas;
     }
 
-    public void setCapacidad(Integer capacidad) {
-        this.capacidad = capacidad;
+    public void setcapacidadMaxPersonas(Integer capacidadMaxPersonas) {
+        this.capacidadMaxPersonas = capacidadMaxPersonas;
     }
 }
