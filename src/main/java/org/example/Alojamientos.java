@@ -7,6 +7,15 @@ public abstract class Alojamientos {
     private String ciudad;
     private String tipo;
     private double calificacion;
+    private List<Habitacion> habitacion;
+
+    public Alojamientos(String nombre, String ciudad, String tipo, double calificacion, List<Habitacion> habitacion) {
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+        this.tipo = tipo;
+        this.calificacion = calificacion;
+        this.habitacion = habitacion;
+    }
 
     public Alojamientos(String nombre, String ciudad, String tipo, double calificacion) {
         this.nombre = nombre;
@@ -58,5 +67,13 @@ public abstract class Alojamientos {
 
     public void setCalificacion(double calificacion) {
         this.calificacion = calificacion;
+    }
+
+    public List<Habitacion> getHabitacion() {
+        return habitacion;
+    }
+
+    public void setHabitacion(List<Habitacion> habitacion) {
+        this.habitacion = habitacion;
     }
 }
