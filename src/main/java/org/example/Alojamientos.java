@@ -7,14 +7,14 @@ public abstract class Alojamientos {
     private String ciudad;
     private String tipo;
     private double calificacion;
-    private List<Habitacion> habitacion;
+    private List<Habitacion> habitaciones;
 
     public Alojamientos(String nombre, String ciudad, String tipo, double calificacion, List<Habitacion> habitacion) {
         this.nombre = nombre;
         this.ciudad = ciudad;
         this.tipo = tipo;
         this.calificacion = calificacion;
-        this.habitacion = habitacion;
+        this.habitaciones = habitacion;
     }
 
     public Alojamientos(String nombre, String ciudad, String tipo, double calificacion) {
@@ -24,15 +24,7 @@ public abstract class Alojamientos {
         this.calificacion = calificacion;
     }
 
-    public void mostrarAlojamiento() {
-        System.out.println(getCiudad() + ":" + getTipo());
-        System.out.println("-----------------------------------------------------------");
-        System.out.println("Ciudad Seleccionada: " + getCiudad());
-        System.out.println("Nombre: " + getNombre());
-//        System.out.println("Precio: " + getHabitaciones().get(0).getPrecio());
-        System.out.println("Calificación: " + getCalificacion() + "⭐");
-
-    }
+    abstract public void mostrarAlojamiento() ;
 
     public Alojamientos() {
     }
@@ -69,11 +61,11 @@ public abstract class Alojamientos {
         this.calificacion = calificacion;
     }
 
-    public List<Habitacion> getHabitacion() {
-        return habitacion;
+    public List<Habitacion> getHabitaciones() {
+        return habitaciones;
     }
 
-    public void setHabitacion(List<Habitacion> habitacion) {
-        this.habitacion = habitacion;
+    public void setHabitaciones(List<Habitacion> habitaciones) {
+        this.habitaciones = habitaciones;
     }
 }

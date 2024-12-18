@@ -4,6 +4,11 @@ public class DiaSol {
     private double precio;
     private String actividades;
 
+    public DiaSol(double precio, String actividades) {
+        this.precio = precio;
+        this.actividades = actividades;
+    }
+
     public String getActividades() {
         return actividades;
     }

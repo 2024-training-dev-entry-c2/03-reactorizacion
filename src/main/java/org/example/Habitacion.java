@@ -4,9 +4,10 @@ public class Habitacion {
     private String tipo;
     private String descripcion;
     private double precio;
-
     private Integer disponibles;
     private Integer capacidadMaxPersonas;
+
+    //disponibilidad?
 
     public Habitacion(String tipo, String descripcion, double precio, Integer disponibles, Integer capacidadMaxPersonas) {
         this.tipo = tipo;
@@ -18,6 +19,8 @@ public class Habitacion {
 
     public Habitacion() {
     }
+
+
 
     public String getTipo() {
         return tipo;
