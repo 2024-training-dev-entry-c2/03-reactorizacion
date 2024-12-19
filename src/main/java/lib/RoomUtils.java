@@ -2,15 +2,19 @@ package lib;
 
 import Models.Room;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class RoomUtils {
 
-    public static double getSimplestRoomPrice(List<Room> rooms) {
+    public static Room getSimplestRoom(List<Room> rooms) {
         return rooms.stream()
-                .mapToDouble(Room::getBasePrice)
-                .min()
-                .orElse(0.0)
-                ;
+                .filter(RoomUtils::isAvailable)
+                .min(Comparator.comparingDouble(Room::getBasePrice))
+                .orElse(null);
+    }
+
+    private static boolean isAvailable(Room room) {
+        return room.getAmountRooms()>=1;
     }
 }

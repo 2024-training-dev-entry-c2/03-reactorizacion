@@ -6,17 +6,19 @@ import java.util.Set;
 public class Room {
     private String description;
     private String roomType;
-    private float basePrice;
+    private double basePrice;
     private int capacityMinors;
     private int capacityAdults;
+    private int amountRooms;
     private Set<LocalDate> availability;
 
-    public Room(String description, String roomType, float basePrice, int capacityMinors, int capacityAdults, Set<LocalDate> availability) {
+    public Room(String description, String roomType, double basePrice, int capacityMinors, int capacityAdults, int amountRooms, Set<LocalDate> availability) {
         this.description = description;
         this.roomType = roomType;
         this.basePrice = basePrice;
         this.capacityMinors = capacityMinors;
         this.capacityAdults = capacityAdults;
+        this.amountRooms = amountRooms;
         this.availability = availability;
     }
 
@@ -26,17 +28,6 @@ public class Room {
         System.out.println("Precio Base: $" + basePrice);
         System.out.println("Capacidad para Menores: " + capacityMinors);
         System.out.println("Capacidad para Adultos: " + capacityAdults);
-    }
-
-    public void obtenerDisponibilidad() {
-        if (availability.isEmpty()) {
-            System.out.println("No hay fechas disponibles.");
-        } else {
-            System.out.println("Fechas disponibles:");
-            for (LocalDate date : availability) {
-                System.out.println(date);
-            }
-        }
     }
 
     public boolean isAvailableOn(LocalDate date) {
@@ -53,7 +44,7 @@ public class Room {
     }
 
 
-    public float getBasePrice() {
+    public double getBasePrice() {
         return basePrice;
     }
 
@@ -66,11 +57,30 @@ public class Room {
         return capacityAdults;
     }
 
-    public Set<LocalDate> getAvailability() {
-        return availability;
+    public int getAmountRooms() {
+        return amountRooms;
+    }
+
+    public void setAmountRooms(int amountRooms) {
+        this.amountRooms = amountRooms;
+    }
+
+    public boolean getAvailability() {
+        return amountRooms>  0;
     }
 
     public void setAvailability(Set<LocalDate> availability) {
         this.availability = availability;
+    }
+
+    @Override
+    public String toString() {
+        return "Habitación{" +
+                "descripción='" + description + '\'' +
+                ", tipo='" + roomType + '\'' +
+                ", precio base=" + basePrice +
+                ", capacidad menores=" + capacityMinors +
+                ", capacidad mayores=" + capacityAdults +
+                '}';
     }
 }
