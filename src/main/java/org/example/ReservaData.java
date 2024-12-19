@@ -2,14 +2,14 @@
 
     import java.time.LocalDate;
 
-    public class ReservaData <T>{
+    public class ReservaData {
         private Cliente cliente;
         private LocalDate fechaIngreso;
         private LocalDate fechaSalida;
         private Habitacion habitacion;
-        private T alojamiento;
+        private Alojamientos alojamiento;
 
-        public ReservaData(Cliente cliente, LocalDate fechaIngreso, LocalDate fechaSalida, Habitacion habitacion, T alojamiento) {
+        public ReservaData(Cliente cliente, LocalDate fechaIngreso, LocalDate fechaSalida, Habitacion habitacion, Alojamientos alojamiento) {
             this.cliente = cliente;
             this.fechaIngreso = fechaIngreso;
             this.fechaSalida = fechaSalida;
@@ -48,11 +48,11 @@
             this.fechaSalida = fechaSalida;
         }
 
-        public T getAlojamiento() {
+        public Alojamientos getAlojamiento() {
             return alojamiento;
         }
 
-        public void setAlojamiento(T alojamiento) {
+        public void setAlojamiento(Alojamientos alojamiento) {
             this.alojamiento = alojamiento;
         }
 

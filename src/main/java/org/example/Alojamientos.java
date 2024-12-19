@@ -53,11 +53,11 @@ public abstract class Alojamientos {
         this.tipo = tipo;
     }
 
-    public double getCalificacion() {
+    public Double getCalificacion() {
         return calificacion;
     }
 
-    public void setCalificacion(double calificacion) {
+    public void setCalificacion(Double calificacion) {
         this.calificacion = calificacion;
     }
 
