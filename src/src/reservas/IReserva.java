@@ -2,9 +2,9 @@ package reservas;
 
 public interface IReserva {
 
-    public void agregarReserva();
-    public void eliminarReserva();
-    public void actualizarReserva();
-    public void mostrarReserva();
+    public void agregarReserva(ReservaData reserva);
+    public void eliminarReserva(ReservaData reserva);
+    public void actualizarReserva(ReservaData reserva);
+    public void mostrarReserva(ReservaData reserva);
 
 }
