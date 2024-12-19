@@ -12,6 +12,6 @@ public interface IAccommodationService {
     Accommodation findAccommodationByName(String name);
     Room findRoomByType(Accommodation accommodation, String roomType);
     List<Room> searchAvailableRooms(String hotelName, LocalDate startDate, LocalDate endDate, int adults, int children, int requiredRooms);;
-    boolean isRoomAvailable(Room room, LocalDate startDate, LocalDate endDate, int adults, int children, int requiredRooms);
+    Boolean isRoomAvailable(Room room, LocalDate startDate, LocalDate endDate, int adults, int children, int requiredRooms);
 }
 

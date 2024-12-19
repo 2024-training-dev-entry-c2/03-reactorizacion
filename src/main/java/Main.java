@@ -12,7 +12,7 @@ public class Main {
     private static final BookingServices bookingServices = new BookingServices();
 
     public static void main(String[] args) {
-        boolean running = true;
+        Boolean running = true;
 
         while (running) {
             printMenu();
@@ -41,7 +41,7 @@ public class Main {
         return scanner.nextInt();
     }
 
-    private static boolean handleMenuOption(int choice) {
+    private static Boolean handleMenuOption(int choice) {
         MenuOptionEnum option = getMenuOption(choice);
 
         if (option != null) {

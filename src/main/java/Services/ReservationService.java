@@ -63,7 +63,7 @@ public class ReservationService implements IReservationService {
         }
     }
 
-    private boolean authenticateClient(Reservation reservation, Scanner scanner) {
+    private Boolean authenticateClient(Reservation reservation, Scanner scanner) {
         String email = reservation.getClient().getEmail();
         LocalDate birthDate = reservation.getClient().getBirthDate();
 

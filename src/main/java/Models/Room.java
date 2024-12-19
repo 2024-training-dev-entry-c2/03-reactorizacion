@@ -24,7 +24,7 @@ public class Room {
 
     }
 
-    public boolean isAvailable() {
+    public Boolean isAvailable() {
         return amountRooms>  0;
     }
 

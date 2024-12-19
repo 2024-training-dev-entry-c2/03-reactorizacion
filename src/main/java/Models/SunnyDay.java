@@ -4,10 +4,10 @@ import java.util.List;
 
 public class SunnyDay extends Accommodation {
 
-    private boolean includesLunch;
-    private boolean includesSnack;
+    private Boolean includesLunch;
+    private Boolean includesSnack;
 
-    public SunnyDay(String city, String accommodationType, List<Room> rooms , List<Reservation> reservations, Float rating, String name, boolean includesLunch, boolean includesSnack) {
+    public SunnyDay(String city, String accommodationType, List<Room> rooms , List<Reservation> reservations, Float rating, String name, Boolean includesLunch, Boolean includesSnack) {
         super(city, accommodationType, rooms, rating, name, reservations);
         this.includesLunch = includesLunch;
         this.includesSnack = includesSnack;

@@ -69,7 +69,7 @@ public class AccommodationService implements IAccommodationService {
     }
 
     @Override
-    public boolean isRoomAvailable(Room room, LocalDate startDate, LocalDate endDate, int adults, int children, int requiredRooms) {
+    public Boolean isRoomAvailable(Room room, LocalDate startDate, LocalDate endDate, int adults, int children, int requiredRooms) {
         return room.isAvailable() &&
                 room.getCapacityAdults() >= adults &&
                 room.getCapacityMinors() >= children &&
@@ -77,7 +77,7 @@ public class AccommodationService implements IAccommodationService {
                 isRoomAvailableForDates(room, startDate, endDate);
     }
 
-    private boolean isRoomAvailableForDates(Room room, LocalDate startDate, LocalDate endDate) {
+    private Boolean isRoomAvailableForDates(Room room, LocalDate startDate, LocalDate endDate) {
         return true;
     }
 

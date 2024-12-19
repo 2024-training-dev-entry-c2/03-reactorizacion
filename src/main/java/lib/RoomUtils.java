@@ -14,7 +14,7 @@ public class RoomUtils {
                 .orElse(null);
     }
 
-    private static boolean isAvailable(Room room) {
+    private static Boolean isAvailable(Room room) {
         return room.getAmountRooms()>=1;
     }
 }
