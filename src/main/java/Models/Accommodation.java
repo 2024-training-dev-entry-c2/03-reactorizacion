@@ -24,16 +24,6 @@ public abstract class Accommodation {
         this.name = name;
     }
 
-    public Reservation getReservationByClient(String email, LocalDate birthDate) {
-        for (Reservation reservation : reservations) {
-            if (reservation.getClient().getEmail().equals(email) &&
-                    reservation.getClient().getBirthDate().equals(birthDate)) {
-                return reservation;
-            }
-        }
-        return null;
-    }
-
     public Room calculateBasePrice() {
         return getSimplestRoom(rooms);
     }
@@ -63,13 +53,6 @@ public abstract class Accommodation {
         }
 
         return totalPrice;
-    }
-
-    public void eliminarReserva(Reservation reserva) {
-        if (!reservations.contains(reserva)) {
-            throw new IllegalArgumentException("La reserva no existe.");
-        }
-        reservations.remove(reserva);
     }
 
 
@@ -103,7 +86,4 @@ public abstract class Accommodation {
 
     public abstract void showInformation();
 
-    public void updateReservations() {
-        reservations.removeIf(reservation -> reservation.getEndDate().isBefore(LocalDate.now()));
-    }
 }

@@ -10,7 +10,6 @@ public class Room {
     private Integer capacityMinors;
     private Integer capacityAdults;
     private Integer amountRooms;
-    private Set<LocalDate> availability;
 
     public Room(String description, String roomType, Double basePrice, Integer capacityMinors, Integer capacityAdults, Integer amountRooms, Set<LocalDate> availability) {
         this.description = description;
@@ -19,15 +18,14 @@ public class Room {
         this.capacityMinors = capacityMinors;
         this.capacityAdults = capacityAdults;
         this.amountRooms = amountRooms;
-        this.availability = availability;
+    }
+
+    public Room(){
+
     }
 
     public boolean isAvailable() {
         return amountRooms>  0;
-    }
-
-    public boolean isAvailableOn(LocalDate date) {
-        return availability.contains(date);
     }
 
     public String getDescription() {
@@ -41,7 +39,6 @@ public class Room {
     public Double getBasePrice() {
         return basePrice;
     }
-
 
     public Integer getCapacityMinors() {
         return capacityMinors;
@@ -57,10 +54,6 @@ public class Room {
 
     public void setAmountRooms(Integer amountRooms) {
         this.amountRooms = amountRooms;
-    }
-
-    public void setAvailability(Set<LocalDate> availability) {
-        this.availability = availability;
     }
 
     @Override

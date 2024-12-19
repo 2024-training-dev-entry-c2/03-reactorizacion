@@ -4,8 +4,6 @@ import java.util.List;
 
 public class Land extends Accommodation {
 
-    private boolean hasFarmAnimals;
-    private String outdoorActivities;
 
     public Land(String city, String accommodationType, List<Room> rooms,List<Reservation>reservations, Float rating, String name) {
         super(city, accommodationType, rooms, rating, name, reservations);

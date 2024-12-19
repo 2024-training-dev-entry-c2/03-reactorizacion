@@ -1,7 +1,6 @@
 package Models;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class Reservation<T> {
 
@@ -11,25 +10,20 @@ public class Reservation<T> {
     private Room room;
     private LocalDate startDate;
     private LocalDate endDate;
-    private LocalTime checkInTime;
 
-    public Reservation(Client client, T accommodation, Integer numberOfRooms, Room room, LocalDate startDate, LocalDate endDate, LocalTime checkInTime) {
+
+    public Reservation(Client client, T accommodation, Integer numberOfRooms, Room room, LocalDate startDate, LocalDate endDate) {
         this.client = client;
         this.accommodation = accommodation;
         this.numberOfRooms = numberOfRooms;
         this.room = room;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.checkInTime = checkInTime;
-    }
-    public boolean remove(Reservation reservation) {
-        return true;
     }
 
     public Client getClient() {
         return client;
     }
-
 
     public T getAccommodation() {
         return accommodation;
@@ -54,6 +48,4 @@ public class Reservation<T> {
     public LocalDate getEndDate() {
         return endDate;
     }
-
-
 }

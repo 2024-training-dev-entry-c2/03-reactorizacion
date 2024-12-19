@@ -1,11 +1,6 @@
 package Models;
 
-import java.time.LocalDate;
 import java.util.List;
-
-import static lib.DateUtils.isLastFiveDaysOfMonth;
-import static lib.DateUtils.isWithinDayRange;
-import static lib.RoomUtils.getSimplestRoom;
 
 public class SunnyDay extends Accommodation {
 
@@ -26,21 +21,5 @@ public class SunnyDay extends Accommodation {
         System.out.println("Calificación: " + getRating() + " estrellas");
         System.out.println("Incluye Almuerzo: " + (includesLunch ? "Sí" : "No"));
         System.out.println("Incluye Refrigerio: " + (includesSnack ? "Sí" : "No"));
-    }
-
-    public Double calculateTotalPrice(LocalDate day) {
-        Double totalPrice = calculateBasePrice().getBasePrice();
-
-        if (isLastFiveDaysOfMonth(day)) {
-            Double discountOrIncrease = totalPrice * 0.15; // 15% increase
-            totalPrice += discountOrIncrease;
-        } else if (isWithinDayRange(day, 10, 15)) {
-            Double discountOrIncrease = totalPrice * 0.10; // 10% increase
-            totalPrice += discountOrIncrease;
-        } else if (isWithinDayRange(day, 5, 10)) {
-            Double discountOrIncrease = totalPrice * 0.08; // 8% discount
-            totalPrice -= discountOrIncrease;
-        }
-        return totalPrice;
     }
 }
