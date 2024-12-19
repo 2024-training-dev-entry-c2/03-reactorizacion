@@ -51,11 +51,11 @@ public abstract class Alojamiento {
         Float precioTotal = calcularPrecioTotal(precioBase, fechaInicio, fechaFin);
         Float ajustePrecio = calcularAjustePrecio(fechaInicio, fechaFin);
 
-        mostrarPrecios(precioPorNoche, precioBase, precioTotal, ajustePrecio);
+        calcularPrecios(precioPorNoche, precioBase, precioTotal, ajustePrecio);
         System.out.println("+---------------------------------------------+");
     }
 
-    private void mostrarPrecios(Float precioPorNoche, Float precioBase, Float precioTotal, Float ajustePrecio) {
+    private void calcularPrecios(Float precioPorNoche, Float precioBase, Float precioTotal, Float ajustePrecio) {
         System.out.println("Precio por noche: $" + precioPorNoche);
         System.out.println("Precio base: $" + precioBase);
 
@@ -76,8 +76,16 @@ public abstract class Alojamiento {
     }
 
     public Float calcularAjustePrecio(LocalDate fechaInicio, LocalDate fechaFin){
-        boolean[] aplicaDescuento = new boolean[]{false,false,false};
-        long diasEstadia = ChronoUnit.DAYS.between(fechaInicio, fechaFin.plusDays(1));
+        long diasEstadia =  ChronoUnit.DAYS.between(fechaInicio, fechaFin.plusDays(1));
+        Boolean[] aplicaDescuento = aplicaDescuento(fechaInicio, (int) diasEstadia);
+
+        return (aplicaDescuento[0] ? -0.08f : 0) +
+                (aplicaDescuento[1] ? 0.10f : 0) +
+                (aplicaDescuento[2] ? 0.15f : 0);
+    }
+
+    private Boolean[] aplicaDescuento(LocalDate fechaInicio, int diasEstadia){
+        Boolean[] aplicaDescuento = new Boolean[]{false,false,false};
 
         for(int i = 0; i < diasEstadia; i++){
             LocalDate fechaActual = fechaInicio.plusDays(i);
@@ -85,10 +93,7 @@ public abstract class Alojamiento {
             if(!aplicaDescuento[1] && fechaActual.getDayOfMonth() > 10 && fechaActual.getDayOfMonth() <= 15) aplicaDescuento[1] = true;
             if(!aplicaDescuento[2] && fechaActual.getDayOfMonth() > fechaActual.lengthOfMonth() - 5) aplicaDescuento[2] = true;
         }
-
-        return (aplicaDescuento[0] ? -0.08f : 0) +
-                (aplicaDescuento[1] ? 0.10f : 0) +
-                (aplicaDescuento[2] ? 0.15f : 0);
+        return  aplicaDescuento;
     }
 
     //Getters y Setters

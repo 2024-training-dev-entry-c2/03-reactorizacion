@@ -13,10 +13,8 @@ public class FiltroDeHabitacion {
     public List<Habitacion> confirmarAlojamiento(List<Alojamiento> alojamientos, String nombreAlojamiento, LocalDate fechaInicio, LocalDate fechaFin, List<ReservaData> reservas){
             for(Alojamiento alojamiento : alojamientos){
                 if(alojamiento.getNombre().equalsIgnoreCase(nombreAlojamiento) && (alojamiento.getCategoria().equalsIgnoreCase("Hotel"))){
-                    return confirmarHabitaciones(alojamiento, fechaInicio, fechaFin, reservas);
-                }else if(alojamiento.getNombre().equalsIgnoreCase(nombreAlojamiento)){
                     alojamiento.mostrarInformacion();
-                    break;
+                    return confirmarHabitaciones(alojamiento, fechaInicio, fechaFin, reservas);
                 }
             }
         return null;

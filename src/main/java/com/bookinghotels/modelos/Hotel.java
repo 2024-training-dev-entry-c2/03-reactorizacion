@@ -46,10 +46,7 @@ public class Hotel extends Alojamiento implements IDiaDeSol{
 
     @Override
     public boolean tieneDiaDeSol() {
-        if(diaDeSol != null){
-            return true;
-        }
-        return false;
+        return diaDeSol != null;
     }
 
     @Override
