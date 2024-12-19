@@ -4,8 +4,6 @@ import lib.MenuOptionEnum;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static Services.BookingServices.searchAccommodation;
-import static Services.BookingServices.searchAndConfirmRoom;
 import static lib.MenuOptionEnum.getMenuOption;
 
 public class Main {
@@ -48,12 +46,10 @@ public class Main {
 
         if (option != null) {
             switch (option) {
-                case SEARCH_ACCOMMODATION -> searchAccommodation(scanner);
-                case SEARCH_ROOMS -> searchAndConfirmRoom();
+                case SEARCH_ACCOMMODATION -> bookingServices.searchAccommodation();
+                case SEARCH_ROOMS -> bookingServices.searchAndConfirmRoom(scanner);
                 case RESERVE -> bookingServices.confirmReservation();
-                case MODIFY_RESERVATION -> {
-                    System.out.println("Funcionalidad de modificar reserva no implementada aún.");
-                }
+//                case MODIFY_RESERVATION -> bookingServices.modifyAccommodation(scanner);
                 case EXIT -> {
                     System.out.println("Saliendo del sistema. ¡Gracias por usar el sistema de reservas!");
                     return false;
