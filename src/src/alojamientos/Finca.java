@@ -28,6 +28,8 @@ public class Finca extends Alojamiento implements IDiaDeSol{
         this.tipo="finca";
     }
 
+    public Finca() {
+    }
 
     @Override
     public void mostrarInformacion(int numHabitaciones, int diaInicio, int diaFinalizacion) {
@@ -41,10 +43,6 @@ public class Finca extends Alojamiento implements IDiaDeSol{
         System.out.println("-------------------");
     }
 
-    @Override
-    public Boolean estaDisponible() {
-        return true;
-    }
 
     @Override
     public Boolean tieneDiaDeSol() {
@@ -60,14 +58,6 @@ public class Finca extends Alojamiento implements IDiaDeSol{
             System.out.println("Incluye: "+ diaDeSol.getExtras());
             System.out.println("precio por servicio de dia de sol"+ diaDeSol.getPrecio());
         }
-    }
-
-    public DiaDeSolData getDiaDeSol() {
-        return diaDeSol;
-    }
-
-    public void setDiaDeSol(DiaDeSolData diaDeSol) {
-        this.diaDeSol = diaDeSol;
     }
 
 }

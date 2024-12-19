@@ -38,17 +38,17 @@ public class Main {
         Apartamento apartamento2 = new Apartamento("apartamento moderno", "cartagena", 4.8, "Moderno apartamento en el centro", 5, "502");
         Apartamento apartamento3 = new Apartamento("apartamento familiar", "santa marta", 4.3, "Ideal para familias, cerca del metro", 2, "201");
 
-        ArrayList<Habitacion> habitacionesHotel = crearHabitaciones("Hotel");
+        ArrayList<Habitacion> habitacionesHotel = crearHabitaciones();
         hotel1.setHabitaciones(habitacionesHotel);
         hotel2.setHabitaciones(habitacionesHotel);
         hotel3.setHabitaciones(habitacionesHotel);
 
-        ArrayList<Habitacion> habitacionesFinca = crearHabitaciones("Finca");
+        ArrayList<Habitacion> habitacionesFinca = crearHabitaciones();
         finca1.setHabitaciones(habitacionesFinca);
         finca2.setHabitaciones(habitacionesFinca);
         finca3.setHabitaciones(habitacionesFinca);
 
-        ArrayList<Habitacion> habitacionesApartamento = crearHabitaciones("Apartamento");
+        ArrayList<Habitacion> habitacionesApartamento = crearHabitaciones();
         apartamento1.setHabitaciones(habitacionesApartamento);
         apartamento2.setHabitaciones(habitacionesApartamento);
         apartamento3.setHabitaciones(habitacionesApartamento);
@@ -65,7 +65,7 @@ public class Main {
     }
 
 
-    public static ArrayList<Habitacion> crearHabitaciones(String tipoAlojamiento) {
+    public static ArrayList<Habitacion> crearHabitaciones() {
         ArrayList<Habitacion> habitaciones = new ArrayList<>();
 
         habitaciones.add(new Habitacion("estandar", "Habitación básica con baño privado", 2, 10, 100000.0));
@@ -158,7 +158,7 @@ public class Main {
 
         System.out.println("-------------------");
 
-        filtroAlojamiento.buscarAlojamientos(ciudad, tipoAlojamiento, mesInicio, diaInicio, mesfinalizacion, diaFinalizacion, cantAdultos, cantNinos,numHabitaciones,alojamientos);
+        filtroAlojamiento.buscarAlojamientos(ciudad, tipoAlojamiento, diaInicio, diaFinalizacion,numHabitaciones,alojamientos);
     }
 
     public static void formularioConfirmacionHabitaciones() {
@@ -195,7 +195,7 @@ public class Main {
         int numHabitaciones = scanner.nextInt();
         scanner.nextLine();
 
-       filtroHabitacion.confirmarHabitaciones(nombreHotel, mesInicio, diaInicio, mesfinalizacion, diaFinalizacion, cantAdultos, cantNinos, numHabitaciones,alojamientos);
+       filtroHabitacion.confirmarHabitaciones(nombreHotel, numHabitaciones, alojamientos);
 
     }
 
@@ -255,15 +255,11 @@ public class Main {
 
     public static void actualizarReserva() {
         Scanner scanner = new Scanner(System.in);
-
         System.out.print("Ingrese su email: ");
         String email = scanner.nextLine();
-
         System.out.print("Ingrese su fecha de nacimiento: ");
         String fechaNacimiento = scanner.nextLine();
-
         reserva.mostrarReserva(email,fechaNacimiento);
-
         System.out.print("Quiere un cambio de habitacion[0] o de alojamiento[1]: ");
         int cambioReserva = scanner.nextInt();
         scanner.nextLine();
@@ -272,17 +268,8 @@ public class Main {
             reserva.eliminarReserva(reserva.getReservas().get(reserva.getIndice()));
             formularioReserva();
         }else if(cambioReserva==0){
-
+            filtroReservas.acomodarReserva(reserva.getReservas().get(reserva.getIndice()));
         }
-
-        //filtroReservas.modificarReserva();
-
-
-//        ClienteData cliente = new ClienteData(nombre,apellido,fechaNacimiento,telefono,email, nacionalidad);
-//        Alojamiento AlojamientoTemporal = reserva.encontrarReserva(email,fechaNacimiento);
-//        ReservaData reservaData = new ReservaData(AlojamientoTemporal,cliente,fechaInicio,fechaFin,horaLlegada,alojamientos.get(0).getHabitaciones().get(0),cantidadHabitaciones);
-//        reserva.agregarReserva(reservaData);
-
 
     }
 

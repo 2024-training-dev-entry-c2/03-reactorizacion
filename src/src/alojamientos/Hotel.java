@@ -45,9 +45,7 @@ public class Hotel extends Alojamiento implements IDiaDeSol{
         System.out.println("-------------------");
     }
 
-    @Override
-    public Boolean estaDisponible() {
-        return true;
+    public Hotel() {
     }
 
     @Override
@@ -70,20 +68,9 @@ public class Hotel extends Alojamiento implements IDiaDeSol{
         }
     }
 
-
-    public DiaDeSolData getDiaDeSol() {
-        return diaDeSol;
-    }
-
-    public void setDiaDeSol(DiaDeSolData diaDeSol) {
-        this.diaDeSol = diaDeSol;
-    }
-
     public Boolean getServicioHabitacion() {
         return servicioHabitacion;
     }
 
-    public void setServicioHabitacion(Boolean servicioHabitacion) {
-        this.servicioHabitacion = servicioHabitacion;
-    }
+
 }

@@ -20,6 +20,8 @@ public class Apartamento extends Alojamiento{
         this.tipo="apartamento";
     }
 
+    public Apartamento() {
+    }
 
     @Override
     public void mostrarInformacion(int numHabitaciones, int diaInicio, int diaFinalizacion) {
@@ -32,24 +34,5 @@ public class Apartamento extends Alojamiento{
         System.out.println("-------------------");
     }
 
-    @Override
-    public Boolean estaDisponible() {
-        return true;
-    }
 
-    public Integer getPiso() {
-        return piso;
-    }
-
-    public void setPiso(Integer piso) {
-        this.piso = piso;
-    }
-
-    public String getNumeroApartamento() {
-        return numeroApartamento;
-    }
-
-    public void setNumeroApartamento(String numeroApartamento) {
-        this.numeroApartamento = numeroApartamento;
-    }
 }

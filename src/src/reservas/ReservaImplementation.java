@@ -26,13 +26,6 @@ public class ReservaImplementation implements IReserva {
     }
 
     @Override
-    public void actualizarReserva(ReservaData reserva) {
-//        if(encontrarReserva(reserva)){
-//            this.reservas.set(this.indice,reserva);
-//        }
-    }
-
-    @Override
     public void mostrarReserva(String correo, String fechaNacimiento) {
         if(encontrarReserva(correo,fechaNacimiento)){
             System.out.println("****Reserva Encontrada****");
@@ -59,16 +52,6 @@ public class ReservaImplementation implements IReserva {
         }
         return false;
     }
-
-//    public Alojamiento encontrarReserva(String correo, String fechaNacimiento){
-//        for (int i = 0; i < this.reservas.size(); i++) {
-//            if (reservas.get(i).getCliente().getCorreo().equals(correo) && reservas.get(i).getCliente().getFechaNacimiento().equals(fechaNacimiento)) {
-//                this.indice=i;
-//                return reservas.get(i).getAlojamiento();
-//            }
-//        }
-//        return null;
-//    }
 
     public Integer getIndice() {
         return indice;

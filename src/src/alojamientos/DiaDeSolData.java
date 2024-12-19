@@ -14,27 +14,19 @@ public class DiaDeSolData {
         this.precio = precio;
     }
 
-    public String getActividades() {
-        return actividades;
+    public DiaDeSolData() {
     }
 
-    public void setActividades(String actividades) {
-        this.actividades = actividades;
+    public String getActividades() {
+        return actividades;
     }
 
     public String getExtras() {
         return extras;
     }
 
-    public void setExtras(String extras) {
-        this.extras = extras;
-    }
-
     public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Double precio) {
-        this.precio = precio;
-    }
 }

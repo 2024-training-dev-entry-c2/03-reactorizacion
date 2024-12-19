@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class FiltroAlojamiento {
 
 
-    public void buscarAlojamientos(String ciudad, String tipoAlojamiento, int mesInicio, int diaInicio, int mesFinalizacion, int diaFinalizacion, int cantAdultos, int cantNinos, int numHabitaciones, ArrayList<Alojamiento> alojamientos) {
+    public void buscarAlojamientos(String ciudad, String tipoAlojamiento, int diaInicio, int diaFinalizacion , int numHabitaciones, ArrayList<Alojamiento> alojamientos) {
         for (Alojamiento alojamiento : alojamientos) {
             if (alojamiento.getCiudad().equalsIgnoreCase(ciudad) && validarTipoAlojamiento(alojamiento, tipoAlojamiento)) {
                 if (esAlojamientoConDiaDeSol(tipoAlojamiento, alojamiento)) {

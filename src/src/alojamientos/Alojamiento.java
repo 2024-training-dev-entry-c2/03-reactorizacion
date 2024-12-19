@@ -14,16 +14,9 @@ public abstract class Alojamiento {
     protected String tipo;
 
 
-//    public abstract Double calcularPrecioBase(int cantHabitaciones);
-    public abstract void mostrarInformacion(int numHabitaciones,int diaInicio,int diaFinalizacion);
-    public abstract Boolean estaDisponible(); //para verificar si está disponible por las fechas y la habitacion, para apartamento
 
-    public void mostrarDetallesHabitaciones(){
-        System.out.println("====HABITACIONES====");
-        for (int i = 0; i < habitaciones.size(); i++) {
-            habitaciones.get(i).mostrarDetalles();
-        }
-    }
+    public abstract void mostrarInformacion(int numHabitaciones,int diaInicio,int diaFinalizacion);
+
 
     public Double calcularPrecioBase(int cantHabitaciones) {
         Double precioBase = obtenerPrecioMenorDeHabitacion() * cantHabitaciones;
@@ -44,7 +37,6 @@ public abstract class Alojamiento {
         return precioAjustado;
     }
 
-
     public Double obtenerPrecioMenorDeHabitacion(){
         double precioMinimo = Double.MAX_VALUE;
         for (int i = 0; i < habitaciones.size(); i++) {
@@ -58,32 +50,8 @@ public abstract class Alojamiento {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public String getCiudad() {
         return ciudad;
-    }
-
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
-    }
-
-    public Double getCalificacion() {
-        return calificacion;
-    }
-
-    public void setCalificacion(Double calificacion) {
-        this.calificacion = calificacion;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     public ArrayList<Habitacion> getHabitaciones() {
