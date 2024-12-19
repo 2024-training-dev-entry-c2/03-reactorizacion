@@ -16,10 +16,6 @@ public class  Apartment extends Lodging{
 
     }
 
-    @Override
-    public void calculateTotalPrice() {
-        super.calculateTotalPrice();
-    }
 
 
 }

@@ -19,7 +19,6 @@ public abstract class Lodging {
 
     public abstract void decorateRoom();
 
-
     public double calculateTotalPrice(int startDay, int finalDay) {
         int totalDays = finalDay - startDay;
         int basePrice = reservationType.getPrice(); // Obtener el precio del enum
@@ -35,8 +34,6 @@ public abstract class Lodging {
 
         return finalPrice;
     }
-
-
 
 
     public String getName() {
@@ -79,9 +76,7 @@ public abstract class Lodging {
         this.rooms = rooms;
     }
 
-    protected void calculateTotalPrice() {
 
-    }
 
 
 }

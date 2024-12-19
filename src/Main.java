@@ -44,13 +44,11 @@ public class Main {
     private static void handleNewReservation() {
         System.out.println("\n=== Nueva Reserva ===");
 
-        // Obtener datos de búsqueda
         System.out.println("Ciudades Disponibles: Medellin, Bogota, Santa Fe, Girardota");
         String city = getStringInput("Ciudad: ");
         System.out.println("Tipos Disponibles: Hotel, Apartamento, Finca, Dia de Sol");
         String type = getStringInput("Tipo de alojamiento: ");
 
-        // Buscar alojamientos disponibles
         List<ReservationEnum> availableAccommodations =
                 reservationSystem.searchAccommodations(city, type);
 
@@ -59,7 +57,6 @@ public class Main {
             return;
         }
 
-        // Mostrar alojamientos disponibles
         System.out.println("\nAlojamientos disponibles:");
         for (ReservationEnum acc : availableAccommodations) {
             System.out.println("\n-----[ Alojamiento en " + acc.getLocation() + " ]-----");
@@ -83,14 +80,13 @@ public class Main {
             return;
         }
 
-        // Mostrar habitaciones disponibles y permitir la selección
+
         System.out.println("\nHabitaciones disponibles en " + selected.getName() + ":");
         List<Room> availableRooms = selected.getRooms();
         for (int i = 0; i < availableRooms.size(); i++) {
             System.out.println((i + 1) + ". " + availableRooms.get(i));
         }
 
-        // Capturar la elección del usuario
         int selectedRoomIndex = getIntInput("Seleccione el número de la habitación: ") - 1;
         if (selectedRoomIndex < 0 || selectedRoomIndex >= availableRooms.size()) {
             System.out.println("Selección de habitación no válida.");
@@ -98,13 +94,11 @@ public class Main {
         }
         Room selectedRoom = availableRooms.get(selectedRoomIndex);
 
-        // Obtener fechas y detalles
         Integer startDay = getIntInput("Día de inicio (1-31): ");
         Integer endDay = getIntInput("Día final (1-31): ");
         Integer totalAdults = getIntInput("Número de adultos: ");
         Integer totalKids = getIntInput("Número de niños: ");
 
-        // Obtener datos del cliente
         System.out.println("\n=== Datos del Cliente ===");
         String name = getStringInput("Nombre: ");
         String lastName = getStringInput("Apellido: ");
@@ -114,12 +108,12 @@ public class Main {
         String arrivalTime = getStringInput("Hora de llegada: ");
         String birthDate = getStringInput("Fecha de nacimiento (DD/MM/AAAA): ");
 
-        // Crear objetos
+
         Client client = new Client(name, lastName, email, nationality, phone, arrivalTime, birthDate);
         ReservationData reservation = new ReservationData(
                 client,
-                selected, // Alojamiento seleccionado
-                selectedRoom, // Habitación seleccionada
+                selected,
+                selectedRoom,
                 startDay,
                 endDay,
                 totalAdults,
@@ -129,7 +123,6 @@ public class Main {
         System.out.println("\nResumen de la reserva:");
         System.out.println("Precio base por día: $" + selected.getPrice());
         System.out.println("Precio total de la estadía: $" + totalPrice);
-        // Crear la reserva
         reservationSystem.createReservation(reservation);
     }
 

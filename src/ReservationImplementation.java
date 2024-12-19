@@ -44,12 +44,65 @@ public class ReservationImplementation implements IReservation {
 
     @Override
     public void updateReservation(String email, String birthDate) {
+   
         if (!reservations.containsKey(email)) {
             System.out.println("No se encontró ninguna reserva para el cliente con email: " + email);
             return;
         }
+        
+        ReservationData currentReservation = reservations.get(email);
+        
+        System.out.println("Reserva actual:");
+        System.out.println("Alojamiento: " + currentReservation.getLodging().getName());
+        System.out.println("Habitación: " + currentReservation.getRoom().getDescription());
+
+   
+        ReservationEnum currentLodging = findLodging(currentReservation.getLodging().getName());
+        
+        System.out.println("\nHabitaciones disponibles:");
+        List<Room> availableRooms = currentLodging.getRooms();
+        if (availableRooms.isEmpty()) {
+            System.out.println("No hay habitaciones disponibles en este alojamiento.");
+            return;
+        }
+
+        for (Integer i = 0; i < availableRooms.size(); i++) {
+            System.out.println((i + 1) + ". " + availableRooms.get(i).getDescription());
+        }
+        
+        System.out.println("\nSeleccione el número de la nueva habitación (0 para cancelar):");
+        Integer selection = scanner.nextInt();
+
+        if (selection == 0) {
+            System.out.println("Actualización cancelada.");
+            return;
+        }
+
+        if (selection < 1 || selection > availableRooms.size()) {
+            System.out.println("Selección inválida.");
+            return;
+        }
+        
+        Room newRoom = availableRooms.get(selection - 1);
+        
+        currentLodging.getRooms().add(currentReservation.getRoom());
+        
+        ReservationData updatedReservation = new ReservationData(
+                currentReservation.getClient(),
+                currentReservation.getLodging(),
+                newRoom,
+                currentReservation.getTotalAdults(),
+                currentReservation.getTotalKids(),
+                currentReservation.getStartDay(),
+                currentReservation.getEndDay()
+        );
+        
+        currentLodging.getRooms().remove(newRoom);
+        reservations.put(email, updatedReservation);
 
         System.out.println("Reserva actualizada exitosamente.");
+        System.out.println("Nueva habitación: " + newRoom.getDescription());
+        System.out.println("Habitación anterior liberada: " + currentReservation.getRoom().getDescription());
     }
 
     @Override

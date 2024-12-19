@@ -9,4 +9,12 @@ public class Hotel extends Lodging{
     public void decorateRoom() {
 
     }
-}
+
+    @Override
+    public void calculateTotalPrice() {
+
+    }
+
+
+    }
+

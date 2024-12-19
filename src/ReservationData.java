@@ -19,22 +19,22 @@ public class ReservationData {
         this.email = client.getEmail();
     }
 
-//    public ReservationData(Client client, ReservationEnum selected, Integer startDay, Integer endDay, Integer totalAdults) {
-//        return;
-//    }
-
     public double calculateTotalPrice() {
-        double basePrice = lodging.getPrice();
-        int totalDays = endDay - startDay;
+        Integer basePrice = lodging.getPrice();
+        Integer totalDays = endDay - startDay;
         double finalPrice = basePrice * totalDays;
+        System.out.println(basePrice + "Precio base");
+        System.out.println(totalDays + "Dias");
 
-        // Aplicar incrementos/descuentos según las fechas
         if (startDay >= 27 && endDay <= 31) {
             finalPrice += finalPrice * 0.15;
+            System.out.println(finalPrice + "Precio final");
         } else if (startDay >= 10 && endDay <= 15) {
             finalPrice += finalPrice * 0.10;
+            System.out.println(finalPrice + "Precio final");
         } else if (startDay >= 5 && endDay <= 10) {
             finalPrice -= finalPrice * 0.08;
+            System.out.println(finalPrice + "Precio final");
         }
 
 
@@ -67,6 +67,10 @@ public class ReservationData {
 
     public Integer getTotalKids() {
         return totalKids;
+    }
+
+    public Room setRoom(Room newRoom) {
+        return room;
     }
 
 

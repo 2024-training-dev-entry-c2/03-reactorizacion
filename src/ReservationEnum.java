@@ -12,11 +12,11 @@ public enum ReservationEnum {
     private final String name;
     private final String location;
     private final String type;
-    private final double rating;
-    private final int price;
+    private final Double rating;
+    private final Integer price;
     private List<Room> rooms;
 
-    ReservationEnum(String name, String location, String type, double rating, int price) {
+    ReservationEnum(String name, String location, String type, Double rating, Integer price) {
         this.name = name;
         this.location = location;
         this.type = type;
@@ -41,7 +41,7 @@ public enum ReservationEnum {
         return rating;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 

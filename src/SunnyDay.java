@@ -7,8 +7,6 @@ public class SunnyDay extends Lodging{
     public SunnyDay(String name, String location, String type, Double rating, String rooms, ReservationEnum reservationType) {
         super(name, location, type, rating, rooms, reservationType);
 
-
-
     }
 
 
