@@ -1,4 +1,5 @@
 import LogicaDeNegocios.FiltroAlojamiento;
+import LogicaDeNegocios.FiltroHabitacion;
 import LogicaDeNegocios.FiltroReservas;
 import alojamientos.*;
 import clientes.ClienteData;
@@ -17,6 +18,7 @@ public class Main {
     static ReservaImplementation reserva = new ReservaImplementation();
     static FiltroReservas filtroReservas = new FiltroReservas();
     static FiltroAlojamiento filtroAlojamiento = new FiltroAlojamiento();
+    static FiltroHabitacion filtroHabitacion = new FiltroHabitacion();
     public static void inicializarDatos() {
 
         DiaDeSolData diaDeSol1 = new DiaDeSolData("Yoga al aire libre, Piscina", "Refrigerio, Almuerzo", 50000.0);
@@ -193,7 +195,7 @@ public class Main {
         int numHabitaciones = scanner.nextInt();
         scanner.nextLine();
 
-        //ConfirmarHabitaciones(nombreHotel, mesInicio, diaInicio, mesfinalizacion, diaFinalizacion, cantAdultos, cantNinos, numHabitaciones);
+       filtroHabitacion.confirmarHabitaciones(nombreHotel, mesInicio, diaInicio, mesfinalizacion, diaFinalizacion, cantAdultos, cantNinos, numHabitaciones,alojamientos);
 
     }
 

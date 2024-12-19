@@ -40,37 +40,4 @@ public class FiltroAlojamiento {
         }
     }
 
-//    public void buscarHoteles(String ciudad, String tipoAlojamiento, int mesInicio, int diaInicio, int mesFinalizacion, int diaFinalizacion, int cantAdultos, int cantNinos, int numHabitaciones, ArrayList<Alojamiento> alojamientos) {
-//        if (!tipoAlojamiento.equalsIgnoreCase("dia de sol")) {
-//            for (Alojamiento alojamiento : alojamientos) {
-//                if (alojamiento.getCiudad().equalsIgnoreCase(ciudad) && alojamiento.getTipo().equalsIgnoreCase(tipoAlojamiento)) {
-//                    for (Habitacion habitacion : alojamiento.getHabitaciones()) {
-//                        if (habitacion.getHabitacionesDisponibles() >= numHabitaciones) {
-//                            alojamiento.mostrarInformacion(numHabitaciones, diaInicio, diaFinalizacion);
-//                            break;
-//                        }
-//                    }
-//                }
-//            }
-//        } else {
-//            buscarDiaDeSol(ciudad, tipoAlojamiento, mesInicio, diaInicio, mesFinalizacion, diaFinalizacion, cantAdultos, cantNinos, numHabitaciones, alojamientos);
-//        }
-//    }
-//
-//    public void buscarDiaDeSol(String ciudad, String tipoAlojamiento, int mesInicio, int diaInicio, int mesFinalizacion, int diaFinalizacion, int cantAdultos, int cantNinos, int numHabitaciones, ArrayList<Alojamiento> alojamientos) {
-//        for (Alojamiento alojamiento : alojamientos) {
-//            if (alojamiento.getCiudad().equalsIgnoreCase(ciudad) && alojamiento instanceof IDiaDeSol) {
-//                IDiaDeSol alojamientoConDiaDeSol = (IDiaDeSol) alojamiento;
-//                if (alojamientoConDiaDeSol.tieneDiaDeSol()) {
-//                    for (Habitacion habitacion : alojamiento.getHabitaciones()) {
-//                        if (habitacion.getHabitacionesDisponibles() >= numHabitaciones) {
-//                            alojamiento.mostrarInformacion(numHabitaciones, diaInicio, diaFinalizacion);
-//                            break;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-
 }
