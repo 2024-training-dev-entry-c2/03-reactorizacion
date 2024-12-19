@@ -19,9 +19,6 @@ public class DiaDeSolData {
         return actividades;
     }
 
-    public void setActividades(String actividades) {
-        this.actividades = actividades;
-    }
 
     public List<String> getExtras() {
         return extras;

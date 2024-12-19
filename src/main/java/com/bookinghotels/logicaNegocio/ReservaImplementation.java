@@ -91,7 +91,4 @@ public class ReservaImplementation implements IReserva {
         return reservasData;
     }
 
-    public void setReservasData(List<ReservaData> reservasData) {
-        this.reservasData = reservasData;
-    }
 }

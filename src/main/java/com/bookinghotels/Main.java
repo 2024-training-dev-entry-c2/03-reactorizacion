@@ -33,7 +33,6 @@ public class Main {
     }
 
     public static void gestionarOpcionBuscarYReservar() {
-        Scanner teclado = new Scanner(System.in);
         FiltroDeAlojamientos filtroDeAlojamientos = new FiltroDeAlojamientos();
         ParametrosBusqueda parametrosBusqueda = formularioBuscarAlojamientos();
 
@@ -43,54 +42,36 @@ public class Main {
         }
 
         if (continuarProceso("¿Deseas hacer una reservación?")) {
-            Map<String, Object> datosAlojamientoReserva = formularioConfirmarAlojamiento(
-                    new FiltroDeHabitacion(),
-                    parametrosBusqueda.getCantHabitaciones(),
-                    parametrosBusqueda.getFechaInicio(), parametrosBusqueda.getFechaFin()
-            );
+            Map<String, Object> datosAlojamientoReserva = formularioConfirmarAlojamiento(new FiltroDeHabitacion(), parametrosBusqueda.getCantHabitaciones(),
+                    parametrosBusqueda.getFechaInicio(), parametrosBusqueda.getFechaFin());
 
             if (continuarProceso("¿Confirmas la selección?")) {
                 Map<String, Object> datosClienteReserva = formularioHacerReserva();
                 crearReserva(datosAlojamientoReserva, datosClienteReserva);
-            } else {
-                System.out.println("\nProceso de reserva cancelado.");
-            }
+            } else { System.out.println("\nProceso de reserva cancelado."); }
         }
-        System.out.println("Serás redirigido(a) al menú principal. Espera un momento...");
     }
 
     public static void gestionarOpcionModificarReserva() {
         System.out.println("\n*-------------------- Modificar Reservación ----------------*");
         Map<String, String> datosAValidar =  formularioValidarDatos();
 
-        try {
-            LocalDate fechaNacimiento = parseFecha(datosAValidar.get("fechaNacimiento"));
-            ReservaData reserva = reservaImplementation.obtenerReserva(datosAValidar.get("correo"), fechaNacimiento);
+        LocalDate fechaNacimiento = parseFecha(datosAValidar.get("fechaNacimiento"));
+        ReservaData reserva = reservaImplementation.obtenerReserva(datosAValidar.get("correo"), fechaNacimiento);
 
-            reservaImplementation.mostrarReserva(datosAValidar.get("correo"), fechaNacimiento);
-            Alojamiento alojamiento = (Alojamiento) reserva.getAlojamiento();
+        reservaImplementation.mostrarReserva(datosAValidar.get("correo"), fechaNacimiento);
+        Alojamiento alojamiento = (Alojamiento) reserva.getAlojamiento();
 
-            Map<String, String> datosActualizar = formularioModificarReserva(alojamiento, reserva.getFechaInicio(), reserva.getFechaFin());
+        Map<String, String> datosActualizar = formularioModificarReserva(alojamiento, reserva.getFechaInicio(), reserva.getFechaFin());
 
-            switch (datosActualizar.get("opcion")) {
-                case "1":
-                    procesarCambioHabitacion(reserva, datosActualizar);
-                    break;
-                case "2":
-                    reservaImplementation.eliminarReserva(reserva);
-                    System.out.println("La reserva ha sido eliminada.");
-                    break;
-                case "3":
-                    System.out.println("Operación cancelada.");
-                    break;
-                default:
-                    System.out.println("Opción no válida.");
-            }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+        if(datosActualizar.get("opcion") == "1"){
+            procesarCambioHabitacion(reserva, datosActualizar);
+        }
+        if(datosActualizar.get("opcion") == "2"){
+            reservaImplementation.eliminarReserva(reserva);
+            System.out.println("La reserva ha sido eliminada.");
         }
 
-        System.out.println("Serás redirigido(a) al menú principal. Espera un momento...");
     }
 
     public static void gestionarOpcionConsultarReserva(){
@@ -114,8 +95,7 @@ public class Main {
             habitacionesSeleccionadas.values().forEach(listaHabitaciones::addAll);
         }
 
-        Alojamiento alojamiento = new FiltroDeAlojamientos()
-                .buscarAlojamientoPorNombre(alojamientos, (String) datosAlojamiento.get("nombreAlojamiento"));
+        Alojamiento alojamiento = new FiltroDeAlojamientos().buscarAlojamientoPorNombre(alojamientos, (String) datosAlojamiento.get("nombreAlojamiento"));
 
         ReservaData reserva = new ReservaData(alojamiento, clienteData, fechaInicio, fechaFin, horaLlegada, listaHabitaciones);
         reservaImplementation.agregarReserva(reserva);

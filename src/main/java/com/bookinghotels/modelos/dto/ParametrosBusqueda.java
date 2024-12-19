@@ -24,7 +24,6 @@ public class ParametrosBusqueda {
 
     //Getters y Setters
 
-
     public String getCategoria() {
         return categoria;
     }
