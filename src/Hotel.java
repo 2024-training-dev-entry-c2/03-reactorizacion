@@ -61,4 +61,8 @@ public class Hotel extends Accommodation {
     public SunnyDay getSunnyDay() {
         return sunnyDay;
     }
+
+    public ArrayList<RoomModel> getRoomModels() {
+        return roomModels;
+    }
 }

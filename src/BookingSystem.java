@@ -106,7 +106,45 @@ public class BookingSystem {
                     String type = setAccommodationFilteringData(scanner);
                     showFilteredAccommodations(scanner, type);
                 }
-
+                case 2 ->{
+                    if(canConfirm){
+                        Hotel hotel = controller.getHotel(newBooking.getAccommodation());
+                        ArrayList<Integer> availableRooms = controller.confirmRooms(hotel, newBooking);
+                        int number = 1;
+                        for( RoomModel model:hotel.getRoomModels()){
+                            System.out.println(number+". "+model.toString());
+                            System.out.println("Habitaciones disponibles: "+availableRooms.get(number-1));
+                            hotel.setRoomModelIndex(number-1);
+                            System.out.println(hotel.showAccommodation(newBooking));
+                            number++;
+                        }
+                        System.out.print("Seleccione una opción: ");
+                        int roomOption = scanner.nextInt();
+                        if(roomOption > 0 && roomOption <= availableRooms.size()){
+                            if(availableRooms.get(roomOption-1) >= newBooking.getRoomQuantity() ){
+                                newBooking.setRoomModel(hotel.getRoomModels().get(roomOption-1));
+                                hotel.setRoomModelIndex(roomOption-1);
+                                hotel.calculateStayPrice(newBooking);
+                                newBooking.setFinalPrice(hotel.getPriceDetail().getFinalPrice());
+                                System.out.println("Precio:"+newBooking.getFinalPrice());
+                                canConfirm = false;
+                                canReserve = true;
+                            }
+                            else{
+                                System.out.println("La cantidad de habitaciones para el tipo elegido es insuficiente.");
+                            }
+                        }
+                        else{
+                            newBooking = null;
+                            canConfirm = false;
+                            System.out.println("Opción inválida. Intente de nuevo.");
+                        }
+                        hotel.setRoomModelIndex(0);
+                    }
+                    else{
+                        System.out.println("No es posible confirmar habitaciones de hotel.");
+                    }
+                }
 
                 case 0 -> {
                     System.out.println("Gracias por usar el sistema. Adiós!");

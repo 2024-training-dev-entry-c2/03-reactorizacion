@@ -50,6 +50,10 @@ public class Booking {
         return roomModel;
     }
 
+    public void setRoomModel(RoomModel roomModel) {
+        this.roomModel = roomModel;
+    }
+
     public String getType() {
         return type;
     }

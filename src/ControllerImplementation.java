@@ -15,20 +15,20 @@ public class ControllerImplementation implements  IController{
 
     public void loadData(){
         ArrayList<RoomModel> roomModels1 = new ArrayList<>(Arrays.asList(
-                new RoomModel("Standard", "Cama doble, baño privado, TV, escritorio, internet básico", 10, 180000.0),
-                new RoomModel("Superior", "Cama king size, baño más grande, adicionales (bata, pantuflas, minibar), vista parcial", 8, 250000.0),
-                new RoomModel("Deluxe", "Cama king size, sala de estar independiente, baño de lujo con jacuzzi, vista panorámica", 5, 350000.0),
-                new RoomModel("Junior Suite", "Combinación de dormitorio y pequeña sala de estar, cama king size, baño completo, sofá cama", 2, 50000.0),
-                new RoomModel("Presidential Suite", "Amplia sala, comedor, cocineta, baño de lujo, servicios personalizados (mayordomo, chef privado)", 1, 1000000.0)
+                new RoomModel("Standard", "Cama doble, baño privado, TV, escritorio, internet básico", 10, 180000.0, 0),
+                new RoomModel("Superior", "Cama king size, baño más grande, adicionales (bata, pantuflas, minibar), vista parcial", 8, 250000.0, 1),
+                new RoomModel("Deluxe", "Cama king size, sala de estar independiente, baño de lujo con jacuzzi, vista panorámica", 5, 350000.0, 2),
+                new RoomModel("Junior Suite", "Combinación de dormitorio y pequeña sala de estar, cama king size, baño completo, sofá cama", 2, 500000.0, 3),
+                new RoomModel("Presidential Suite", "Amplia sala, comedor, cocineta, baño de lujo, servicios personalizados (mayordomo, chef privado)", 1, 1200000.0, 4)
         ));
         Hotel hotel1 = new Hotel("Hotel Estelar", "Manizales", 4.6F, roomModels1,0);
         hotels.add(hotel1);
         ArrayList<RoomModel> roomModels2 = new ArrayList<>(Arrays.asList(
-                new RoomModel("Econónica", "Cama sencilla, baño compartido, TV pequeña, internet básico", 15, 120000.0),
-                new RoomModel("Ejecutiva", "Cama queen size, baño privado, escritorio amplio, internet de alta velocidad", 15, 200000.0),
-                new RoomModel("Familiar", "Dos camas dobles, baño completo, área de estar, TV grande, vista al jardín", 10, 300000.0),
-                new RoomModel("Penthouse", "Cama king size, sala de estar de lujo, comedor privado, jacuzzi, terraza con vista al mar", 3, 700000.0),
-                new RoomModel("Imperial", "Dormitorio principal, sala de estar, comedor, cocineta, servicios VIP (chofer, chef, seguridad)", 1, 1500000.0)
+                new RoomModel("Econónica", "Cama sencilla, baño compartido, TV pequeña, internet básico", 15, 120000.0, 0),
+                new RoomModel("Ejecutiva", "Cama queen size, baño privado, escritorio amplio, internet de alta velocidad", 15, 200000.0, 1),
+                new RoomModel("Familiar", "Dos camas dobles, baño completo, área de estar, TV grande, vista al jardín", 10, 300000.0, 2),
+                new RoomModel("Penthouse", "Cama king size, sala de estar de lujo, comedor privado, jacuzzi, terraza con vista al mar", 3, 700000.0, 3),
+                new RoomModel("Imperial", "Dormitorio principal, sala de estar, comedor, cocineta, servicios VIP (chofer, chef, seguridad)", 1, 1500000.0, 4)
         ));
         ArrayList<String> activities1 = new ArrayList<>(Arrays.asList("Piscina", "Spa", "Yoga"));
         SunnyDay sunnyDay1 = new SunnyDay(90000.0, 30,activities1, true);
@@ -130,44 +130,32 @@ public class ControllerImplementation implements  IController{
         }
         return true;
     }
-/**
-    public int[] getAvailableRooms(String name , String startDate, String endDate, int[] rooms){
-        int[] availableRooms = rooms.clone();
 
-        for (Map<String, Object> booking : bookings){
-            if(booking.get("accommodation").equals(name)){
-                if(dateIntercept(startDate, endDate, (String) booking.get("startDate"), (String) booking.get("endDate"))){
-                    int[] roomQuantity = (int[]) booking.get("roomQuantity");
-                    for (int i = 0; i < availableRooms.length; i++) {
-                        availableRooms[i] -= roomQuantity[i];
-                        if (availableRooms[i] < 0) {
-                            availableRooms[i] = 0;
-                        }
-                    }
+    public Hotel getHotel(String name){
+        for(Hotel hotel : hotels){
+            if(hotel.getName().equals(name)){
+                return hotel;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Integer> confirmRooms(Hotel hotel, Booking newBooking){
+        ArrayList<Integer> availableRooms = new ArrayList<>();
+        for(RoomModel model: hotel.getRoomModels()){
+            availableRooms.add(model.getQuantity());
+        }
+        for (Booking booking : bookings){
+            if(booking.getAccommodation().equals(hotel.getName())){
+                if(dateIntercept(newBooking.getStart(), newBooking.getEnd(), booking.getStart(), booking.getEnd())){
+                    Integer index = booking.getRoomModel().getIndex();
+                    availableRooms.set( index, availableRooms.get(index) - booking.getRoomQuantity() );
                 }
             }
         }
-
         return availableRooms;
     }
-
-    public Map<String, Object> confirmRooms(String name, String startDate, String endDate, int adultsQuantity, int childrenQuantity, int totalRooms){
-        Map<String, Object> rooms = new HashMap<>();
-        for(Accommodation acc : accommodations){
-            if(acc.getName().equals(name)){
-                if (acc instanceof Hotel) {
-                    Hotel hotel = (Hotel) acc; // Cast to Hotel
-                    int[] availableRooms = getAvailableRooms(name, startDate, endDate, hotel.getRooms());
-                    int[] pricePerNight = hotel.getPricePerNight();
-                    rooms.put("availableRooms", availableRooms);
-                    rooms.put("pricePerNight", pricePerNight);
-                    break;
-                }
-            }
-        }
-        return rooms;
-    }
-
+    /**
     public boolean reserve(String firstName, String lastName, String email, String nationality, String phone, String birthDate, String hour){
 
         for(Map<String, String> user : users){
