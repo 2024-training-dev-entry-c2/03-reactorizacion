@@ -23,47 +23,24 @@ public class ClienteData {
         return nombreUsuario;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
-
     public String getApellidoUsuario() {
         return apellidoUsuario;
-    }
-
-    public void setApellidoUsuario(String apellidoUsuario) {
-        this.apellidoUsuario = apellidoUsuario;
     }
 
     public String getCorreoUsuario() {
         return correoUsuario;
     }
 
-    public void setCorreoUsuario(String correoUsuario) {
-        this.correoUsuario = correoUsuario;
-    }
-
     public String getNacionalidadUsuario() {
         return nacionalidadUsuario;
-    }
-
-    public void setNacionalidadUsuario(String nacionalidadUsuario) {
-        this.nacionalidadUsuario = nacionalidadUsuario;
     }
 
     public String getTelefonoUsuario() {
         return telefonoUsuario;
     }
 
-    public void setTelefonoUsuario(String telefonoUsuario) {
-        this.telefonoUsuario = telefonoUsuario;
-    }
-
     public String getNacimientoUsuario() {
         return nacimientoUsuario;
     }
 
-    public void setNacimientoUsuario(String nacimientoUsuario) {
-        this.nacimientoUsuario = nacimientoUsuario;
-    }
 }

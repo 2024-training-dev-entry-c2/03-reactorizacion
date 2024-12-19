@@ -1,7 +1,5 @@
 package modelos;
 
-import java.time.LocalDate;
-
 public interface IReserva {
 
     public void crearReserva(ReservaData reserva);

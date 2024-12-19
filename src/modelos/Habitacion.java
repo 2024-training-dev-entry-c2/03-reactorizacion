@@ -27,24 +27,8 @@ public class Habitacion {
         return tiposDeHabitaciones;
     }
 
-    public void setTiposDeHabitaciones(String tiposDeHabitaciones) {
-        this.tiposDeHabitaciones = tiposDeHabitaciones;
-    }
-
-    public String getCaracteristicasHabitaciones() {
-        return caracteristicasHabitaciones;
-    }
-
-    public void setCaracteristicasHabitaciones(String caracteristicasHabitaciones) {
-        this.caracteristicasHabitaciones = caracteristicasHabitaciones;
-    }
-
     public Double getPrecioPorNochePorTipoHabitacion() {
         return precioPorNochePorTipoHabitacion;
-    }
-
-    public void setPrecioPorNochePorTipoHabitacion(Double precioPorNochePorTipoHabitacion) {
-        this.precioPorNochePorTipoHabitacion = precioPorNochePorTipoHabitacion;
     }
 
     public Integer getHabitacionesDisponibles() {

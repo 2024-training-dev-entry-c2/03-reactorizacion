@@ -109,13 +109,4 @@ static Scanner scanner = new Scanner(System.in);
         }
         return infoReserva.toString();
     }
-
-    // getters and setters
-    public List<ReservaData> getReservaData() {
-        return reservasData;
-    }
-
-    public void setReservaData(List<ReservaData> reservaData) {
-        this.reservasData = reservaData;
-    }
 }

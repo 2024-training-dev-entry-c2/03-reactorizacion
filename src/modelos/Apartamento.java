@@ -48,15 +48,8 @@ public class Apartamento extends Alojamiento{
         return numeroPiso;
     }
 
-    public void setNumeroPiso(Integer numeroPiso) {
-        this.numeroPiso = numeroPiso;
-    }
-
     public String getNumeroApartamento() {
         return numeroApartamento;
     }
 
-    public void setNumeroApartamento(String numeroApartamento) {
-        this.numeroApartamento = numeroApartamento;
-    }
 }

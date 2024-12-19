@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class Hotel extends Alojamiento implements IDiaDeSol{
     private DiaDeSolData diaDeSol;
-    private boolean servicioHabitacion;
+    private Boolean servicioHabitacion;
 
-    public Hotel(String nombreAlojamiento, String ciudadDestino, Integer maxAdultos, Integer maxNinos, Double calificacion, ArrayList<Habitacion> habitacion, DiaDeSolData diaDeSol, boolean servicioHabitacion) {
+    public Hotel(String nombreAlojamiento, String ciudadDestino, Integer maxAdultos, Integer maxNinos, Double calificacion, ArrayList<Habitacion> habitacion, DiaDeSolData diaDeSol, Boolean servicioHabitacion) {
         super(nombreAlojamiento, ciudadDestino, maxAdultos, maxNinos, calificacion, habitacion);
         this.diaDeSol = diaDeSol;
         this.servicioHabitacion = servicioHabitacion;
@@ -68,19 +68,7 @@ public class Hotel extends Alojamiento implements IDiaDeSol{
     }
 
     // getters and setters
-    public DiaDeSolData getDiaDeSol() {
-        return diaDeSol;
-    }
-
-    public void setDiaDeSol(DiaDeSolData diaDeSol) {
-        this.diaDeSol = diaDeSol;
-    }
-
-    public boolean isServicioHabitacion() {
+    public Boolean isServicioHabitacion() {
         return servicioHabitacion;
-    }
-
-    public void setServicioHabitacion(boolean servicioHabitacion) {
-        this.servicioHabitacion = servicioHabitacion;
     }
 }

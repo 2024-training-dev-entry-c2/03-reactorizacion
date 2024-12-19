@@ -28,47 +28,23 @@ public class ReservaData {
         return cliente;
     }
 
-    public void setCliente(ClienteData cliente) {
-        this.cliente = cliente;
-    }
-
     public String getHoraLlegadaUsuario() {
         return horaLlegadaUsuario;
-    }
-
-    public void setHoraLlegadaUsuario(String horaLlegadaUsuario) {
-        this.horaLlegadaUsuario = horaLlegadaUsuario;
     }
 
     public Alojamiento getAlojamiento() {
         return alojamiento;
     }
 
-    public void setAlojamiento(Alojamiento alojamiento) {
-        this.alojamiento = alojamiento;
-    }
-
     public String[] getHabitacionesSeleccionadas() {
         return habitacionesSeleccionadas;
-    }
-
-    public void setHabitacionesSeleccionadas(String[] habitacionesSeleccionadas) {
-        this.habitacionesSeleccionadas = habitacionesSeleccionadas;
     }
 
     public LocalDate getInicioEstadia() {
         return inicioEstadia;
     }
 
-    public void setInicioEstadia(LocalDate inicioEstadia) {
-        this.inicioEstadia = inicioEstadia;
-    }
-
     public LocalDate getFinEstadia() {
         return finEstadia;
-    }
-
-    public void setFinEstadia(LocalDate finEstadia) {
-        this.finEstadia = finEstadia;
     }
 }

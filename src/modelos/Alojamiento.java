@@ -94,47 +94,24 @@ public abstract class Alojamiento {
         return nombreAlojamiento;
     }
 
-    public void setNombreAlojamiento(String nombreAlojamiento) {
-        this.nombreAlojamiento = nombreAlojamiento;
-    }
-
     public String getCiudadDestino() {
         return ciudadDestino;
-    }
-
-    public void setCiudadDestino(String ciudadDestino) {
-        this.ciudadDestino = ciudadDestino;
     }
 
     public Integer getMaxNinos() {
         return maxNinos;
     }
 
-    public void setMaxNinos(Integer maxNinos) {
-        this.maxNinos = maxNinos;
-    }
-
     public Integer getMaxAdultos() {
         return maxAdultos;
-    }
-
-    public void setMaxAdultos(Integer maxAdultos) {
-        this.maxAdultos = maxAdultos;
     }
 
     public Double getCalificacion() {
         return calificacion;
     }
 
-    public void setCalificacion(Double calificacion) {
-        this.calificacion = calificacion;
-    }
-
     public ArrayList<Habitacion> getHabitacion() {
         return habitacion;
     }
 
-    public void setHabitacion(ArrayList<Habitacion> habitacion) {
-        this.habitacion = habitacion;
-    }
 }

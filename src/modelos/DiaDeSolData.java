@@ -1,7 +1,5 @@
 package modelos;
 
-import java.util.ArrayList;
-
 public class DiaDeSolData {
     private String actividades;
     private String extras;
@@ -19,15 +17,7 @@ public class DiaDeSolData {
         return actividades;
     }
 
-    public void setActividades(String actividades) {
-        this.actividades = actividades;
-    }
-
     public String getExtras() {
         return extras;
-    }
-
-    public void setExtras(String extras) {
-        this.extras = extras;
     }
 }
