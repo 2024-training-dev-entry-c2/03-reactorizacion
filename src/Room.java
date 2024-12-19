@@ -1,29 +1,22 @@
-import java.util.List;
-
-public class Room  {
-    private List<roomType> roomType;
-    private Double price;
+public class Room {
     private String description;
-    private Byte totalKids;
-    private Byte totalAdults;
-    private Double basePrice;
+    private String roomType;
 
-    public Room(List<roomType> roomType, Double price, String description, Byte totalKids, Byte totalAdults, Double basePrice) {
-        this.roomType = roomType;
-        this.price = price;
+    public Room(String description, String roomType) {
         this.description = description;
-        this.totalKids = totalKids;
-        this.totalAdults = totalAdults;
-        this.basePrice = basePrice;
+        this.roomType = roomType;
     }
 
-    public void showInformation(){
-
+    public String getDescription() {
+        return description;
     }
 
-    public  void showAvaibility(){
-
+    public String getRoomType() {
+        return roomType;
     }
 
-
+    @Override
+    public String toString() {
+        return String.format("Tipo de Habitación: %s, Descripción: %s", roomType, description);
+    }
 }

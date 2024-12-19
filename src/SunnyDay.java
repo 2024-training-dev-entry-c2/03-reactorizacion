@@ -4,8 +4,8 @@ public class SunnyDay extends Lodging{
     private Boolean hasBreakFast;
     private Boolean hasLunch;
 
-    public SunnyDay(String name, String location, String type, Double rating, String rooms) {
-        super(name, location, type, rating, rooms);
+    public SunnyDay(String name, String location, String type, Double rating, String rooms, ReservationEnum reservationType) {
+        super(name, location, type, rating, rooms, reservationType);
 
 
 

@@ -3,25 +3,40 @@ public abstract class Lodging {
     private String location;
     private String type;
     private double rating;
-    private int availableRooms;
     private String rooms;
+    private ReservationEnum reservationType;
+
 
     public Lodging(String name, String location, String type,
-                   double rating, String rooms) {
+                   Double rating, String rooms, ReservationEnum reservationType) {
         this.name = name;
         this.location = location;
         this.type = type;
         this.rating = rating;
         this.rooms = rooms;
+        this.reservationType = reservationType;
     }
 
     public abstract void decorateRoom();
 
 
-    public void calculateTotalPrice(){
-        System.out.println("Precio final");
+    public double calculateTotalPrice(int startDay, int finalDay) {
+        int totalDays = finalDay - startDay;
+        int basePrice = reservationType.getPrice(); // Obtener el precio del enum
+        double finalPrice = basePrice * totalDays;
 
+        if (startDay >= 27 && finalDay <= 31) {
+            finalPrice += finalPrice * 0.15;
+        } else if (startDay >= 10 && finalDay <= 15) {
+            finalPrice += finalPrice * 0.10;
+        } else if (startDay >= 5 && finalDay <= 10) {
+            finalPrice -= finalPrice * 0.08;
+        }
+
+        return finalPrice;
     }
+
+
 
 
     public String getName() {
@@ -56,14 +71,6 @@ public abstract class Lodging {
         this.rating = rating;
     }
 
-    public int getAvailableRooms() {
-        return availableRooms;
-    }
-
-    public void setAvailableRooms(int availableRooms) {
-        this.availableRooms = availableRooms;
-    }
-
     public String getRooms() {
         return rooms;
     }
@@ -71,4 +78,10 @@ public abstract class Lodging {
     public void setRooms(String rooms) {
         this.rooms = rooms;
     }
+
+    protected void calculateTotalPrice() {
+
+    }
+
+
 }

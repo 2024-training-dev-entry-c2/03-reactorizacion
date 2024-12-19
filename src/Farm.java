@@ -3,8 +3,8 @@ public class Farm extends Lodging{
     private String address;
 
 
-    public Farm(String name, String location, String type, double rating, String rooms, String address) {
-        super(name, location, type, rating, rooms);
+    public Farm(String name, String location, String type, double rating, String rooms, String address, ReservationEnum reservationType) {
+        super(name, location, type, rating, rooms, reservationType);
         this.address = address;
     }
 

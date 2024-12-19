@@ -4,8 +4,8 @@ public class  Apartment extends Lodging{
     private String floorLocation;
 
 
-    public Apartment(String name, String location, String type, double rating, String rooms, String floorLocation, Integer squareMeterSize) {
-        super(name, location, type, rating, rooms);
+    public Apartment(String name, String location, String type, double rating, String rooms, String floorLocation, Integer squareMeterSize,ReservationEnum reservationType) {
+        super(name, location, type, rating, rooms, reservationType);
         this.floorLocation = floorLocation;
         this.squareMeterSize = squareMeterSize;
 
