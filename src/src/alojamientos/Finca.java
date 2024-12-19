@@ -27,6 +27,14 @@ public class Finca extends Alojamiento implements IDiaDeSol{
 
     @Override
     public void mostrarInformacion() {
+        System.out.println("Alojamiento: " + this.nombre);
+        System.out.println("Calificación: " + this.calificacion);
+        //System.out.println("precio: " + calcularPrecioBase(numHabitaciones));
+        //System.out.println("Precio Total: " + calcularDescuentoOAumento(diaInicio,diaFinalizacion));
+        if(tieneDiaDeSol()){
+            this.mostrarInfoDiaDeSol();
+        }
+        System.out.println("-------------------");
     }
 
     @Override
@@ -36,11 +44,7 @@ public class Finca extends Alojamiento implements IDiaDeSol{
 
     @Override
     public Boolean tieneDiaDeSol() {
-        if(diaDeSol!=null){
-            return true;
-        }else{
-            return false;
-        }
+        return diaDeSol != null;
     }
 
     @Override

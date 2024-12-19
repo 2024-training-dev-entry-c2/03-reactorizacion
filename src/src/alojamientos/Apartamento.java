@@ -9,19 +9,15 @@ public class Apartamento extends Alojamiento implements IDiaDeSol{
     private Integer piso;
     private String numeroApartamento;
 
-    public Apartamento(Integer piso, String numeroApartamento) {
-        this.piso = piso;
-        this.numeroApartamento = numeroApartamento;
-    }
-
-    public Apartamento(String nombre, String ciudad, Double calificacion, String descripcion, ArrayList<Habitacion> habitaciones) {
+    public Apartamento(String nombre, String ciudad, Double calificacion, String descripcion, ArrayList<Habitacion> habitaciones,Integer piso, String numeroApartamento) {
         this.nombre=nombre;
         this.ciudad=ciudad;
         this.calificacion=calificacion;
         this.descripcion=descripcion;
         this.habitaciones=habitaciones;
+        this.piso = piso;
+        this.numeroApartamento = numeroApartamento;
     }
-
 
 
     @Override
@@ -31,7 +27,13 @@ public class Apartamento extends Alojamiento implements IDiaDeSol{
 
     @Override
     public void mostrarInformacion() {
-
+        System.out.println("Alojamiento: " + this.nombre);
+        System.out.println("Calificación: " + this.calificacion);
+        System.out.println("Piso: "+ this.piso);
+        System.out.println("numeroApartamento: "+ this.numeroApartamento);
+        //System.out.println("precio: " + calcularPrecioBase(numHabitaciones));
+        //System.out.println("Precio Total: " + calcularDescuentoOAumento(diaInicio,diaFinalizacion));
+        System.out.println("-------------------");
     }
 
     @Override
