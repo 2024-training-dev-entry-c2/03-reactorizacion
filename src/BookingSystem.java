@@ -3,10 +3,8 @@ import java.util.*;
 
 public class BookingSystem {
     private static ControllerImplementation controller = new ControllerImplementation();
-    private static boolean canReserve = false;
-    private static boolean canConfirm = false;
-    private static int bookingIndex = 0;
-    private static int userIndex = 0;
+    private static Boolean canReserve = false;
+    private static Boolean canConfirm = false;
     private static Booking newBooking;
 
 
@@ -120,6 +118,25 @@ public class BookingSystem {
         }
     }
 
+    public static void showRoomOptions(Booking booking, Hotel hotel, ArrayList<Integer> availableRooms){
+        int number = 1;
+        for( RoomModel model:hotel.getRoomModels()){
+            System.out.println(number+". "+model.toString());
+            System.out.println("Habitaciones disponibles: "+availableRooms.get(number-1));
+            hotel.setRoomModelIndex(number-1);
+            System.out.println(hotel.showAccommodation(booking));
+            number++;
+        }
+        hotel.setRoomModelIndex(0);
+    }
+
+    public static void setBooking(Hotel hotel,Integer roomOption, Booking booking){
+        booking.setRoomModel(hotel.getRoomModels().get(roomOption-1));
+        hotel.setRoomModelIndex(roomOption-1);
+        hotel.calculateStayPrice(booking);
+        booking.setFinalPrice(hotel.getPriceDetail().getFinalPrice());
+    }
+
     public static void main(String[] args) {
         controller.loadData();
         Scanner scanner = new Scanner(System.in);
@@ -144,23 +161,12 @@ public class BookingSystem {
                     if(canConfirm){
                         Hotel hotel = controller.getHotel(newBooking.getAccommodation());
                         ArrayList<Integer> availableRooms = controller.confirmRooms(hotel, newBooking);
-                        int number = 1;
-                        for( RoomModel model:hotel.getRoomModels()){
-                            System.out.println(number+". "+model.toString());
-                            System.out.println("Habitaciones disponibles: "+availableRooms.get(number-1));
-                            hotel.setRoomModelIndex(number-1);
-                            System.out.println(hotel.showAccommodation(newBooking));
-                            number++;
-                        }
+                        showRoomOptions(newBooking,hotel,availableRooms);
                         System.out.print("Seleccione una opción: ");
                         int roomOption = scanner.nextInt();
                         if(roomOption > 0 && roomOption <= availableRooms.size()){
                             if(availableRooms.get(roomOption-1) >= newBooking.getRoomQuantity() ){
-                                newBooking.setRoomModel(hotel.getRoomModels().get(roomOption-1));
-                                hotel.setRoomModelIndex(roomOption-1);
-                                hotel.calculateStayPrice(newBooking);
-                                newBooking.setFinalPrice(hotel.getPriceDetail().getFinalPrice());
-                                System.out.println("Precio:"+newBooking.getFinalPrice());
+                                setBooking(hotel,roomOption, newBooking);
                                 canConfirm = false;
                                 canReserve = true;
                             }
@@ -182,7 +188,62 @@ public class BookingSystem {
                 case 3 ->{
                     reserveAccommodation(scanner);
                 }
+                case 4 ->{
+                    System.out.print("Email: ");
+                    String email = scanner.nextLine();
+                    System.out.print("Fecha de nacimiento: ");
+                    String birthDate = scanner.nextLine();
 
+                    ArrayList<Booking> validBookings = controller.validateUser(email,birthDate);
+
+                    if(!validBookings.isEmpty()){
+                        Integer number = 1;
+                        for(Booking booking:validBookings){
+                            System.out.println(number+". "+booking+"\n");
+                            number++;
+                        }
+                        System.out.print("Seleccione una opción: ");
+                        int bookingOption = scanner.nextInt();
+                        Booking selecteBooking = validBookings.get(bookingOption-1);
+
+                        if(selecteBooking.getType().equals("Hotel")){
+                            System.out.println("1. Cambio de alojameinto");
+                            System.out.println("2. Cambio de habitación");
+                        }
+                        else{
+                            System.out.println("1. Cambio de alojamiento");
+                        }
+                        System.out.print("Seleccione una opción: ");
+                        int changeOption = scanner.nextInt();
+                        if(changeOption == 1){
+                            controller.getBookings().remove(selecteBooking);
+                            System.out.print("Escoja un nuevo alojamiento.");
+                        } else if (changeOption == 2) {
+                            Hotel hotel = controller.getHotel(selecteBooking.getAccommodation());
+                            ArrayList<Integer> availableRooms = controller.confirmRooms(hotel, selecteBooking);
+                            showRoomOptions(selecteBooking,hotel,availableRooms);
+                            System.out.println("Tiene habitaciones: "+ selecteBooking.getRoomModel().getTitle());
+
+                            System.out.print("Seleccione otra opción: ");
+                            int roomOption = scanner.nextInt();
+                            if(roomOption > 0 && roomOption <= availableRooms.size()){
+                                if(availableRooms.get(roomOption-1) >= selecteBooking.getRoomQuantity() ){
+                                    setBooking(hotel,roomOption, selecteBooking);
+                                }
+                                else{
+                                    System.out.println("La cantidad de habitaciones para el tipo elegido es insuficiente.");
+                                }
+                            }
+                            else{
+                                System.out.println("Opción inválida. Intente de nuevo.");
+                            }
+                        }
+
+                    }
+                    else {
+                        System.out.println("Usuario inválido");
+                    }
+                }
                 case 0 -> {
                     System.out.println("Gracias por usar el sistema. Adiós!");
                     exit = true;

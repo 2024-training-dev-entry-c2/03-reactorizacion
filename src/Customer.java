@@ -17,6 +17,18 @@ public class Customer {
         this.birthDate = birthDate;
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", phone='" + phone + '\'' +
+                ", birthDate=" + birthDate +
+                '}';
+    }
+
     public Boolean validateCustomer(String email, LocalDate birthDate){
         return email.equals(this.email) && birthDate.equals(this.birthDate);
     }

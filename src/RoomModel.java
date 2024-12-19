@@ -31,4 +31,8 @@ public class RoomModel {
     public Integer getIndex() {
         return index;
     }
+
+    public String getTitle() {
+        return title;
+    }
 }

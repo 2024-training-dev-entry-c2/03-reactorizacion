@@ -9,7 +9,6 @@ public class ControllerImplementation implements  IController{
     private ArrayList<Apartment> apartments = new ArrayList<>();
     private ArrayList<Farm> farms = new ArrayList<>();
     private ArrayList<Booking> bookings = new ArrayList<>();
-    private ArrayList<Customer> customers = new ArrayList<>();
     private ArrayList<Accommodation> selectedAccommodations;
 
 
@@ -47,10 +46,6 @@ public class ControllerImplementation implements  IController{
         apartments.add(apto1);
         Apartment apto2 = new Apartment("Apartamento en Palermo","Manizales", 4.7F, 280000.0,"Cocina, 2 baños, 2 camas dobles",2);
         apartments.add(apto2);
-
-        Booking booking1 = new Booking(2,4,2,2,3,"Farm","Manizales");
-        booking1.setAccommodation("Finca Santa María");
-        bookings.add(booking1);
     }
 
     public void filterAccommodations(Booking booking){
@@ -124,7 +119,7 @@ public class ControllerImplementation implements  IController{
         return true;
     }
 
-    public boolean dateIntercept(Integer start, Integer end, Integer bookingStart, Integer bookingEnd) {
+    public Boolean dateIntercept(Integer start, Integer end, Integer bookingStart, Integer bookingEnd) {
         if (start > end || bookingStart > bookingEnd) {
             throw new IllegalArgumentException("Los valores de inicio deben ser menores o iguales a los de fin");
         }
@@ -159,7 +154,7 @@ public class ControllerImplementation implements  IController{
         return availableRooms;
     }
 
-    public boolean reserve(Customer customer, String time, Booking newBooking){
+    public Boolean reserve(Customer customer, String time, Booking newBooking) {
         newBooking.setCustomer(customer);
         try {
             LocalTime arrivalTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm"));
@@ -168,40 +163,27 @@ public class ControllerImplementation implements  IController{
             System.out.println("Formato de hora inválido: " + e.getMessage());
             return false;
         }
-        bookings.add(newBooking);
-        return true;
+        Boolean added = bookings.add(newBooking);
+        return added && newBooking.getCustomer() != null && newBooking.getCustomer().equals(customer);
     }
 
-    /**
-    public boolean isValidUser(String email, String birthDate){
-        int index = 0;
-        for(Map<String, String> user: users){
-            if(user.get("email").equals(email)){
-                if(user.get("birthDate").equals(birthDate)){
-                    userIndex = index;
-                    return true;
-                }
-                return false;
+
+    public ArrayList<Booking> validateUser(String email, String birthDate){
+        ArrayList<Booking> validBookings = new ArrayList<>();
+        for(Booking booking: bookings){
+            if(booking.getCustomer().validateCustomer(email, LocalDate.parse(birthDate))){
+                validBookings.add(booking);
             }
-            index++;
         }
-        return false;
+        return validBookings;
     }
 
-    public Map<String, Object> getBooking(String email){
-        int index = 0;
-        for(Map<String, Object> booking: bookings){
-            if(booking.get("userEmail").equals(email) ){
-                bookingIndex = index;
-                return booking;
-            }
-            index++;
-        }
-        return null;
-    }
- **/
+
     public ArrayList<Accommodation> getSelectedAccommodations() {
         return selectedAccommodations;
     }
 
+    public ArrayList<Booking> getBookings() {
+        return bookings;
+    }
 }

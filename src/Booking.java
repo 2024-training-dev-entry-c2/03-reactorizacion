@@ -24,6 +24,21 @@ public class Booking {
         this.city = city;
     }
 
+    @Override
+    public String toString() {
+        String message = "Ciudad: " + city + '\n' +
+                "Alojamiento: " + accommodation + '\n' +
+                "Inicio: " + start + '\n' +
+                "Fin: " + end + '\n' +
+                "Hora de llegada: " + arrivalTime + '\n';
+        if(roomModel!=null){
+            message+="Habitación: " + roomModel.toString() + '\n'+
+                    "Cantidad Habitaciones: " + roomQuantity + '\n';
+        }
+        message+="Precio final: " + finalPrice;
+        return message;
+    }
+
     public Customer getCustomer() {
         return customer;
     }
@@ -58,10 +73,6 @@ public class Booking {
 
     public String getType() {
         return type;
-    }
-
-    public Double getFinalPrice() {
-        return finalPrice;
     }
 
     public String getCity() {
