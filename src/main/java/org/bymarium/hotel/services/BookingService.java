@@ -24,8 +24,7 @@ public class BookingService implements IBookingService {
           menuService.makeBooking();
           break;
         case 2:
-          // TODO: Ver reservas
-          System.out.println("Ver reservas (opción en desarrollo)");
+          menuService.getBookings();
           break;
         case 3:
           // TODO: Modificar reserva

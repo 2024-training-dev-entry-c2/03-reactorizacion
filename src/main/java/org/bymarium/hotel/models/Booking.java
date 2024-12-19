@@ -11,6 +11,16 @@ public class Booking {
         this.details = details;
     }
 
+    public Booking() {
+    }
+
+    public String printBooking() {
+    return "============ INFORMACIÓN DE LA RESERVA ============\n" +
+          accommodation.printAccommodation() + "\n" +
+          client.printClient() + "\n" +
+          details.printDetails() + "\n";
+    }
+
     public Accommodation getAccommodation() {
         return accommodation;
     }

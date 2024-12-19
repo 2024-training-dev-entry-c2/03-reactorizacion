@@ -12,6 +12,15 @@ public enum AccommodationType {
         this.spanishName = spanishName;
     }
 
+    public static AccommodationType getAccommodationTypeByName(String accommodationType) {
+        for (AccommodationType type : AccommodationType.values()) {
+            if (type.getSpanishName().equalsIgnoreCase(accommodationType)) {
+                return type;
+            }
+        }
+        return null;
+    }
+
     public String getSpanishName() {
         return this.spanishName;
     }

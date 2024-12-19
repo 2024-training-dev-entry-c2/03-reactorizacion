@@ -14,7 +14,8 @@ public class Main {
     IValidatorService validatorService = new ValidatorService(scanner);
     AccommodationService accommodationService = new AccommodationService(database, validatorService);
     RoomService roomService = new RoomService(database, validatorService);
-    IMenuService menuService = new MenuService(validatorService, accommodationService, roomService);
+    BookingCreationService bookingCreationService = new BookingCreationService(database, validatorService);
+    IMenuService menuService = new MenuService(validatorService, accommodationService, roomService, bookingCreationService);
 
     BookingService bookingService = new BookingService(database, menuService);
     bookingService.start();

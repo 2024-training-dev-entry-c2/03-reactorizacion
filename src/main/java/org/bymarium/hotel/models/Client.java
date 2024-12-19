@@ -26,6 +26,17 @@ public class Client {
         this.email = email;
     }
 
+    public Client() {
+    }
+
+    public String printClient() {
+    return "============= DETALLES DEL CLIENTE =============\n" +
+                "Nombre: " + firstName + " " + lastName + "\n" +
+                "Email: " + email + "\n" +
+                "Nacionalidad: " + nationality + "\n" +
+                "Teléfono: " + phoneNumber + "\n";
+    }
+
     public String getFirstName() {
         return firstName;
     }

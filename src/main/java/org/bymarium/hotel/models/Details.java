@@ -22,6 +22,18 @@ public class Details {
         this.city = city;
     }
 
+    public Details() {
+    }
+
+    public String printDetails() {
+        return "============= DETALLES DE LA RESERVA =============\n" +
+                "Fecha: " + startDate + "\n" +
+                "Tipo: " + accommodationType + "\n" +
+                "Niños: " + childrenQuantity + "\n" +
+                "Adultos: " + adultsQuantity + "\n" +
+                "Ciudad: " + city + "\n";
+    }
+
     public LocalDate getStartDate() {
         return startDate;
     }
