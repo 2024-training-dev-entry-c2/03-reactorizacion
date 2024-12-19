@@ -2,21 +2,19 @@ package modelos;
 
 import java.time.LocalDate;
 
-public class ReservaData <T extends Alojamiento> {
+public class ReservaData {
 
-    private T alojamientos;
+    private Alojamiento alojamiento;
     private ClienteData cliente;
     private String horaLlegadaUsuario;
-    private String nacimientoUsuario;
     private String[] habitacionesSeleccionadas;
     private LocalDate inicioEstadia;
     private LocalDate finEstadia;
 
-    public ReservaData(T alojamientos, ClienteData cliente, String horaLlegadaUsuario, String nacimientoUsuario, String[] habitacionesSeleccionadas, LocalDate inicioEstadia, LocalDate finEstadia) {
-        this.alojamientos = alojamientos;
+    public ReservaData(Alojamiento alojamiento, ClienteData cliente, String horaLlegadaUsuario, String[] habitacionesSeleccionadas, LocalDate inicioEstadia, LocalDate finEstadia) {
+        this.alojamiento = alojamiento;
         this.cliente = cliente;
         this.horaLlegadaUsuario = horaLlegadaUsuario;
-        this.nacimientoUsuario = nacimientoUsuario;
         this.habitacionesSeleccionadas = habitacionesSeleccionadas;
         this.inicioEstadia = inicioEstadia;
         this.finEstadia = finEstadia;
@@ -42,20 +40,12 @@ public class ReservaData <T extends Alojamiento> {
         this.horaLlegadaUsuario = horaLlegadaUsuario;
     }
 
-    public String getNacimientoUsuario() {
-        return nacimientoUsuario;
+    public Alojamiento getAlojamiento() {
+        return alojamiento;
     }
 
-    public void setNacimientoUsuario(String nacimientoUsuario) {
-        this.nacimientoUsuario = nacimientoUsuario;
-    }
-
-    public T getAlojamientos() {
-        return alojamientos;
-    }
-
-    public void setAlojamientos(T alojamientos) {
-        this.alojamientos = alojamientos;
+    public void setAlojamiento(Alojamiento alojamiento) {
+        this.alojamiento = alojamiento;
     }
 
     public String[] getHabitacionesSeleccionadas() {

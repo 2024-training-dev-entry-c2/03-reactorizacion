@@ -6,9 +6,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+
+static boolean continuarBuscandoAlojamiento = true;
+static ArrayList<Alojamiento> alojamientos = new ArrayList<>();
+static ReservaImplementation reservaImplementacion = new ReservaImplementation();
     public static void main(String[] args) {
 
-        ArrayList<Alojamiento> alojamientos = new ArrayList<>();
         ArrayList<Habitacion> habitacionesAlojamiento1 = new ArrayList<>();
         ArrayList<Habitacion> habitacionesAlojamiento2 = new ArrayList<>();
         ArrayList<Habitacion> habitacionesAlojamiento3 = new ArrayList<>();
@@ -52,17 +55,22 @@ public class Main {
         Finca finca1 = new Finca("Blue Moon", "Porto", 2, 4, 4.7, habitacionesAlojamiento3, diaDeSol1);
         Hotel hotel2 = new Hotel("Dark Sun Hotel", "Munich", 2, 4, 4.0, habitacionesAlojamiento4, diaDeSol1, true);
         Hotel hotel3 = new Hotel("Andromeda Hotel", "Cartagena", 2, 4, 3.8, habitacionesAlojamiento5, diaDeSol1, false);
-        
+
         alojamientos.add(hotel1);
         alojamientos.add(apartamento1);
         alojamientos.add(finca1);
         alojamientos.add(hotel2);
         alojamientos.add(hotel3);
 
+        ingresarBusqueda();
+    }
+
+    public static void ingresarBusqueda(){
         System.out.println("¡Bienvenido a Starlight Booking!");
         System.out.println("--- * --- * --- * --- * --- * ---");
-
         Scanner scanner = new Scanner(System.in);
+
+        do {
         System.out.println("Ingrese la ciudad destino:");
         String ciudad = scanner.nextLine();
 
@@ -85,10 +93,70 @@ public class Main {
 
         System.out.println("Ingrese la cantidad de habitaciones que desea:");
         int habitaciones = scanner.nextInt();
-
         scanner.nextLine();
 
+        boolean alojamientoDisponible =  modelos.FiltroAlojamiento.buscarAlojamiento(alojamientos, ciudad, tipo, inicioEstadia, finEstadia, adultos, ninos, habitaciones);
+        Alojamiento alojamientoElegido = modelos.FiltroAlojamiento.elegirAlojamiento(alojamientos, alojamientoDisponible);
+        if (alojamientoElegido != null) {
+            modelos.FiltroHabitacion.verificarCantidadHabitaciones(alojamientoElegido, habitaciones);
+            String[] habitacionesElegidas = modelos.FiltroHabitacion.seleccionarHabitaciones(alojamientoElegido, habitaciones);
+            ClienteData cliente = pedirDatosCliente();
+            System.out.println("Ingrese la hora de llegada (HH:mm):");
+            String horaLlegadaUsuario = scanner.nextLine();
+            ReservaData reservaData = new ReservaData(alojamientoElegido, cliente, horaLlegadaUsuario, habitacionesElegidas, inicioEstadia, finEstadia);
+            reservaImplementacion.crearReserva(reservaData);
+            menuBooking(reservaData);
+        }
+        } while(continuarBuscandoAlojamiento);
         scanner.close();
-
     }
+
+    public static ClienteData pedirDatosCliente() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Ingrese su nombre:");
+        String nombreUsuario = scanner.nextLine();
+
+        System.out.println("Ingrese su apellido:");
+        String apellidoUsuario = scanner.nextLine();
+
+        System.out.println("Ingrese su correo:");
+        String correoUsuario = scanner.nextLine();
+
+        System.out.println("Ingrese su fecha de nacimiento con el formatio AAAA-MM-DD:");
+        String nacimientoUsuario = scanner.nextLine();
+
+        System.out.println("Ingrese su nacionalidad:");
+        String nacionalidadUsuario = scanner.nextLine();
+
+        System.out.println("Ingrese su teléfono:");
+        String telefonoUsuario = scanner.nextLine();
+
+        ClienteData cliente = new ClienteData(nombreUsuario, apellidoUsuario, correoUsuario, nacionalidadUsuario, telefonoUsuario, nacimientoUsuario);
+        return cliente;
+    }
+
+    public static void menuBooking(ReservaData reservaData) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Elija una de las siguientes opciones: \n1. Crear una nueva reservar" +
+                "\n2. Actualizar habitaciones en la reserva \n3. Actualizar alojamiento en la reserva \n4. salir de Starlight Booking");
+        String respuestaActualizar = scanner.nextLine();
+
+        if (respuestaActualizar.equalsIgnoreCase("1")) {
+            continuarBuscandoAlojamiento = true;
+        } else if (respuestaActualizar.equalsIgnoreCase("2")) {
+            System.out.println("Estas seguro que quieres actualizar la reserva?");
+            reservaData.getAlojamiento().mostrarInfo(reservaData.getInicioEstadia(), reservaData.getFinEstadia());
+            reservaImplementacion.actualizarReserva(reservaData);
+            menuBooking(reservaData);
+        } else if (respuestaActualizar.equalsIgnoreCase("3")){
+            reservaImplementacion.eliminarReserva(reservaData);
+            continuarBuscandoAlojamiento = true;
+        } else {
+            System.out.println("¡Gracias por reservar con Starlight Booking!");
+            continuarBuscandoAlojamiento = false;
+        }
+    }
+
 }

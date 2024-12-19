@@ -1,12 +1,14 @@
 package modelos;
 
+import java.time.LocalDate;
+
 public interface IReserva {
 
-    public void crearReserva();
+    public void crearReserva(ReservaData reserva);
 
-    public void actualizarReserva();
+    public void actualizarReserva(ReservaData reserva);
 
-    public void eliminarReserva();
+    public void eliminarReserva(ReservaData reserva);
 
-    public String mostrarReserva();
+    public String mostrarReserva(ReservaData reserva);
 }
