@@ -1,12 +1,21 @@
+import LogicaDeNegocios.FiltroAlojamiento;
+import LogicaDeNegocios.FiltroReservas;
 import alojamientos.*;
+import clientes.ClienteData;
 import habitaciones.Habitacion;
+import reservas.ReservaData;
+import reservas.ReservaImplementation;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
     static ArrayList<Alojamiento> alojamientos = new ArrayList<>();
+    static ReservaImplementation reserva = new ReservaImplementation();
+    static FiltroReservas filtroReservas = new FiltroReservas();
 
     public static void inicializarDatos() {
 
@@ -61,7 +70,7 @@ public class Main {
         habitaciones.add(new Habitacion("deluxe", "Habitación amplia con balcón", 3, 5, 150000.0));
         habitaciones.add(new Habitacion("suite", "Habitación de lujo con jacuzzi", 4, 2, 300000.0));
         habitaciones.add(new Habitacion("familiar", "Habitación con capacidad para toda la familia", 6, 3, 250000.0));
-        habitaciones.add(new Habitacion("económica", "Habitación pequeña a buen precio", 1, 15, 80000.0));
+        habitaciones.add(new Habitacion("economica", "Habitación pequeña a buen precio", 1, 15, 80000.0));
 
         return habitaciones;
     }
@@ -70,7 +79,7 @@ public class Main {
         inicializarDatos();
         menu();
     }
-    
+
     public static void menu() {
         Scanner scanner = new Scanner(System.in);
         int opcion;
@@ -191,6 +200,8 @@ public class Main {
     public static void formularioReserva() {
         Scanner scanner = new Scanner(System.in);
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
         System.out.println("=== Formulario de Reserva ===");
         System.out.print("Ingrese su nombre: ");
         String nombre = scanner.nextLine();
@@ -207,21 +218,14 @@ public class Main {
         System.out.print("Ingrese su número de teléfono: ");
         String telefono = scanner.nextLine();
 
-        System.out.print("Ingrese el mes de inicio del hospedaje: ");
-        int mesInicio = scanner.nextInt();
-        scanner.nextLine(); // Limpia el buffer de nueva línea
+        System.out.print("Introduce la fecha de inicio (dd-MM-yyyy): ");
+        String fechaInicioStr = scanner.nextLine();
+        LocalDate fechaInicio = LocalDate.parse(fechaInicioStr,formatter);
 
-        System.out.print("Ingrese el dia de inicio del hospedaje: ");
-        int diaInicio = scanner.nextInt();
-        scanner.nextLine(); // Limpia el buffer de nueva línea
 
-        System.out.print("Ingrese el mes de finalizacion del hospedaje: ");
-        int mesfinalizacion = scanner.nextInt();
-        scanner.nextLine(); // Limpia el buffer de nueva línea
-
-        System.out.print("Ingrese el dia de finalización del hospedaje : ");
-        int diaFinalizacion = scanner.nextInt();
-        scanner.nextLine();
+        System.out.print("Introduce la fecha de fin (dd-MM-yyyy): ");
+        String fechaFinStr = scanner.nextLine();
+        LocalDate fechaFin = LocalDate.parse(fechaFinStr,formatter);
 
         System.out.print("Ingrese su hora aproximada de llegada: ");
         String horaLlegada = scanner.nextLine();
@@ -233,28 +237,49 @@ public class Main {
         String fechaNacimiento = scanner.nextLine();
 
         int tipoHabitacion = 0;
-        System.out.print("Ingrese el tipo de habitacion que busca (sencilla[0], doble[1], gold[2], premium[3], suite presidencial[4]/penthouse[4]/suite[4]/vip[4]): ");
+        System.out.print("Ingrese el tipo de habitacion que busca (estandar[0], deluxe[1], suite2], familiar[3], economical[4]: ");
         tipoHabitacion = scanner.nextInt();
-        scanner.nextLine(); // Limpia el buffer de nueva línea
+        scanner.nextLine();
 
         System.out.print("Ingrese la cantidad de habitaciones: ");
         int cantidadHabitaciones = scanner.nextInt();
-        scanner.nextLine(); // Limpia el buffer de nueva línea
+        scanner.nextLine();
 
-        //reservarHabitacion(nombre, apellido, email, nacionalidad, telefono, mesInicio, diaInicio, mesfinalizacion, diaFinalizacion, horaLlegada,fechaNacimiento ,alojamiento, tipoHabitacion, cantidadHabitaciones);
-
+        ClienteData cliente = new ClienteData(nombre,apellido,fechaNacimiento,telefono,email, nacionalidad);
+        Alojamiento AlojamientoTemporal=filtroReservas.encontrarAlojamiento(alojamientos,alojamiento);
+        ReservaData reservaData = new ReservaData(AlojamientoTemporal,cliente,fechaInicio,fechaFin,horaLlegada,alojamientos.get(0).getHabitaciones().get(0),cantidadHabitaciones);
+        reserva.agregarReserva(reservaData);
     }
 
     public static void actualizarReserva() {
         Scanner scanner = new Scanner(System.in);
 
-        // Solicitar los datos para identificar la reserva
         System.out.print("Ingrese su email: ");
         String email = scanner.nextLine();
 
-        System.out.print("Ingrese su fecha de nacimiento (dd/mm/yyyy): ");
+        System.out.print("Ingrese su fecha de nacimiento: ");
         String fechaNacimiento = scanner.nextLine();
 
+        reserva.mostrarReserva(email,fechaNacimiento);
+
+        System.out.print("Quiere un cambio de habitacion[0] o de alojamiento[1]: ");
+        int cambioReserva = scanner.nextInt();
+        scanner.nextLine();
+
+        if(cambioReserva==1){
+            reserva.eliminarReserva(reserva.getReservas().get(reserva.getIndice()));
+            formularioReserva();
+        }else if(cambioReserva==0){
+            
+        }
+
+        //filtroReservas.modificarReserva();
+
+
+//        ClienteData cliente = new ClienteData(nombre,apellido,fechaNacimiento,telefono,email, nacionalidad);
+//        Alojamiento AlojamientoTemporal = reserva.encontrarReserva(email,fechaNacimiento);
+//        ReservaData reservaData = new ReservaData(AlojamientoTemporal,cliente,fechaInicio,fechaFin,horaLlegada,alojamientos.get(0).getHabitaciones().get(0),cantidadHabitaciones);
+//        reserva.agregarReserva(reservaData);
 
 
     }

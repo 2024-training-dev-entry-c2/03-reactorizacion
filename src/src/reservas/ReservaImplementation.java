@@ -1,5 +1,7 @@
 package reservas;
 
+import alojamientos.Alojamiento;
+
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 
@@ -9,11 +11,13 @@ public class ReservaImplementation implements IReserva {
     private Integer indice;
 
     public ReservaImplementation() {
+        reservas = new ArrayList<>();
     }
 
     @Override
     public void agregarReserva(ReservaData reserva) {
         this.reservas.add(reserva);
+        System.out.println("Se ha realizado la reserva con éxito");
     }
 
     @Override
@@ -23,31 +27,31 @@ public class ReservaImplementation implements IReserva {
 
     @Override
     public void actualizarReserva(ReservaData reserva) {
-        if(encontrarReserva(reserva)){
-            this.reservas.set(this.indice,reserva);
-        }
+//        if(encontrarReserva(reserva)){
+//            this.reservas.set(this.indice,reserva);
+//        }
     }
 
     @Override
-    public void mostrarReserva(ReservaData reserva) {
-        if(encontrarReserva(reserva)){
+    public void mostrarReserva(String correo, String fechaNacimiento) {
+        if(encontrarReserva(correo,fechaNacimiento)){
             System.out.println("****Reserva Encontrada****");
-            System.out.println("Alojamiento: "+reserva.getAlojamiento().getNombre());
-            System.out.println("Cliente: "+reserva.getCliente().getNombre()+" "+reserva.getCliente().getApellido());
-            System.out.println("Habitacion:"+ reserva.getHabitacion());
-            System.out.println("Cantidad de habitaciones:"+reserva.getCantidadHabitaciones());
-            System.out.println("Fecha inicio:"+reserva.getFechaInicio());
-            System.out.println("Fecha Fin:"+reserva.getFechaFin());
-            System.out.println("Hora llegada:"+reserva.getHoraLLegada());
+            System.out.println("Alojamiento: "+reservas.get(indice).getAlojamiento().getNombre());
+            System.out.println("Cliente: "+reservas.get(indice).getCliente().getNombre()+" "+reservas.get(indice).getCliente().getApellido());
+            System.out.println("Habitacion:"+ reservas.get(indice).getHabitacion().getTipo());
+            System.out.println("Cantidad de habitaciones:"+reservas.get(indice).getCantidadHabitaciones());
+            System.out.println("Fecha inicio:"+reservas.get(indice).getFechaInicio());
+            System.out.println("Fecha Fin:"+reservas.get(indice).getFechaFin());
+            System.out.println("Hora llegada:"+reservas.get(indice).getHoraLLegada());
         }else{
             System.out.println("Reserva no encontrada");
         }
     }
 
-    public Boolean encontrarReserva(ReservaData reserva){
+    public Boolean encontrarReserva(String correo, String fechaNacimiento){
         for (int i = 0; i < this.reservas.size(); i++) {
-            String correoRecibido = reserva.getCliente().getCorreo();
-            String fechaCumpleañosRecibida = reserva.getCliente().getFechaNacimiento();
+            String correoRecibido = correo;
+            String fechaCumpleañosRecibida = fechaNacimiento;
             if (reservas.get(i).getCliente().getCorreo().equals(correoRecibido) && reservas.get(i).getCliente().getFechaNacimiento().equals(fechaCumpleañosRecibida)) {
                 this.indice=i;
                 return true;
@@ -56,4 +60,21 @@ public class ReservaImplementation implements IReserva {
         return false;
     }
 
+//    public Alojamiento encontrarReserva(String correo, String fechaNacimiento){
+//        for (int i = 0; i < this.reservas.size(); i++) {
+//            if (reservas.get(i).getCliente().getCorreo().equals(correo) && reservas.get(i).getCliente().getFechaNacimiento().equals(fechaNacimiento)) {
+//                this.indice=i;
+//                return reservas.get(i).getAlojamiento();
+//            }
+//        }
+//        return null;
+//    }
+
+    public Integer getIndice() {
+        return indice;
+    }
+
+    public ArrayList<ReservaData> getReservas() {
+        return reservas;
+    }
 }

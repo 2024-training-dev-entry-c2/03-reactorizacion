@@ -27,6 +27,17 @@ public class ReservaData <T extends Alojamiento> {
         this.cantidadHabitaciones=cantidadHabitaciones;
     }
 
+//    public ReservaData(T alojamiento, ClienteData cliente, LocalDate fechaInicio, LocalDate fechaFin, String horaLLegada, Habitacion habitacion,Integer cantidadHabitaciones) {
+//        this.alojamiento = alojamiento;
+//        this.cliente = cliente;
+//        this.fechaInicio = fechaInicio;
+//        this.fechaFin = fechaFin;
+//        this.horaLLegada = horaLLegada;
+//        this.habitacion = habitacion;
+//        this.cantidadHabitaciones=cantidadHabitaciones;
+//    }
+
+
     public T getAlojamiento() {
         return alojamiento;
     }

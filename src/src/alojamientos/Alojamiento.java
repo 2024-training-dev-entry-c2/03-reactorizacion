@@ -10,7 +10,6 @@ public abstract class Alojamiento {
     protected String ciudad;
     protected Double calificacion;
     protected String descripcion;
-
     protected ArrayList <Habitacion> habitaciones;
 
 
@@ -86,22 +85,6 @@ public abstract class Alojamiento {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-    /*public Integer getMaximoAdultos() {
-        return maximoAdultos;
-    }*/
-
-//    public void setMaximoAdultos(Integer maximoAdultos) {
-//        this.maximoAdultos = maximoAdultos;
-//    }
-//
-//    public Integer getMaximoNinos() {
-//        return maximoNinos;
-//    }
-
-//    public void setMaximoNinos(Integer maximoNinos) {
-//        this.maximoNinos = maximoNinos;
-//    }
 
     public ArrayList<Habitacion> getHabitaciones() {
         return habitaciones;
