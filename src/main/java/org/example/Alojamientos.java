@@ -6,7 +6,7 @@ public abstract class Alojamientos {
     private String nombre;
     private String ciudad;
     private String tipo;
-    private double calificacion;
+    private Double calificacion;
     private List<Habitacion> habitaciones;
 
     public Alojamientos(String nombre, String ciudad, String tipo, double calificacion, List<Habitacion> habitacion) {

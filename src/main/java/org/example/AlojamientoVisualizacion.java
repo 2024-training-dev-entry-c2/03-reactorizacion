@@ -58,10 +58,10 @@ public class AlojamientoVisualizacion {
 
         alojamientos.add(new Hotel("Resort Brisa Marina", "Cartagena", "Día de Sol", 3.9,
                 Arrays.asList(new Habitacion("Piscina", "Acceso a piscina y deportes acuáticos", 120000, 10, 10),
-                        new Habitacion("Picnic", "Piscina/Toboganes y zona de picnic", 90000, 10, 10)), new DiaSol(20000,"Piscina, Picninc, actividades varias")));
+                        new Habitacion("Picnic", "Piscina/Toboganes y zona de picnic", 90000, 10, 10)), new DiaSol(20000, "Piscina, Picninc, actividades varias")));
         alojamientos.add(new Hotel("Resort ", "Cartagena", "Día de Sol", 3.9,
                 Arrays.asList(new Habitacion("Piscina", "Acceso a piscina y deportes acuáticos", 120000, 10, 10),
-                        new Habitacion("Picnic", "Piscina/Toboganes y zona de picnic", 90000, 10, 10)), new DiaSol(20000,"Piscina, Picninc, actividades varias")));
+                        new Habitacion("Picnic", "Piscina/Toboganes y zona de picnic", 90000, 10, 10)), new DiaSol(20000, "Piscina, Picninc, actividades varias")));
 
     }
 

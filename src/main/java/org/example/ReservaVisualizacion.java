@@ -49,7 +49,7 @@ public class ReservaVisualizacion {
                 System.out.println("1. Cambiar habitación");
                 System.out.println("2. Cancelar reserva");
 
-                int opcion = obtenerEntradaValida(scanner, 2);
+                int opcion = MenuHelper.obtenerEntradaValida(scanner, 2);
                 System.out.println(opcion);
 
                 switch (opcion) {
@@ -83,28 +83,9 @@ public class ReservaVisualizacion {
             System.out.println((i + 1) + ". " + opciones.get(i));
         }
         System.out.println((opciones.size() + 1) + ". Volver");
-        return obtenerEntradaValida(scanner, opciones.size());
+        return MenuHelper.obtenerEntradaValida(scanner, opciones.size());
     }
 
-    static private int obtenerEntradaValida(Scanner scanner, int maxOption) {
-        int opcion;
-        while (true) {
-            System.out.print("Ingrese un número: ");
-            try {
-                opcion = scanner.nextInt();
-                if (opcion >= 1 && opcion <= maxOption) {
-                    return opcion ;
-                } else if (opcion == maxOption + 1) {
-                    return -1;
-                } else {
-                    System.out.println("Por favor, ingrese un número válido.");
-                }
-            } catch (Exception e) {
-                System.out.println("Entrada no válida. Por favor, ingrese un número.");
-                scanner.next();
-            }
-        }
-    }
 
 
 }

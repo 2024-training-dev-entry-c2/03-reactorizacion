@@ -1,16 +1,17 @@
 package org.example;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Locale;
 
 public class Habitacion {
     private String tipo;
     private String descripcion;
-    private double precio;
+    private Double precio;
     private Integer capacidadMaxPersonas;
     private List<ReservaData<?>> reservas;
-    private int numeroHabitaciones;
+    private Integer numeroHabitaciones;
 
     public Habitacion(String tipo, String descripcion, double precio, Integer capacidadMaxPersonas, int numeroHabitaciones) {
         this.tipo = tipo;
@@ -31,9 +32,47 @@ public class Habitacion {
 
     public Habitacion() {
     }
-    public void cancelado(){
+
+    public void cancelado() {
         capacidadMaxPersonas++;
     }
+
+    public void mostrarHabitacion(int cantidadHabitaciones, LocalDate diaInicio, LocalDate diaFinal) {
+        System.out.println("Habitaciones en " + getTipo() + ":");
+        System.out.println("*********************************************************");
+        System.out.println("Tipo: " + getTipo());
+        System.out.println("Descripción: " + getTipo());
+        double precio = calcularPrecio(diaInicio, diaFinal, cantidadHabitaciones, getPrecio());
+
+    }
+
+    public double calcularPrecio(LocalDate diaInicio, LocalDate diaFin, int cantidadHabitaciones, double precioHabitacion) {
+        long noches = ChronoUnit.DAYS.between(diaInicio, diaFin) + 1; // Calcula las noches
+        double precioTotal = precioHabitacion * noches * cantidadHabitaciones;
+
+        double aumentoDesc = obtenerAumentoDesc(diaInicio, diaFin);
+        double precioFinal = precioTotal * (1 + aumentoDesc);
+
+        System.out.println("Precio total: $" + precioTotal);
+        System.out.println("Aumento/Descuento aplicado: " + (aumentoDesc * 100) + "%");
+        System.out.println("Precio final: $" + precioFinal);
+        return precioFinal;
+    }
+
+    private static double obtenerAumentoDesc(LocalDate diaInicio, LocalDate diaFin) {
+        int diaFinMes = diaFin.getDayOfMonth(); // Obtener el día del mes
+        int diaInicioMes = diaInicio.getDayOfMonth();
+
+        if (diaFinMes >= 25) {
+            return 0.15; // Aumento del 15%
+        } else if (diaInicioMes >= 10 && diaFinMes <= 15) {
+            return 0.10; // Aumento del 10%
+        } else if (diaInicioMes >= 5 && diaFinMes <= 10) {
+            return -0.08; // Descuento del 8%
+        }
+        return 0.0;
+    }
+
 
     public boolean estaDisponible(LocalDate fechaIngreso, LocalDate fechaSalida) {
 //        for (ReservaData<?> reserva : reservas) {

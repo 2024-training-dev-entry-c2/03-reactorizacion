@@ -2,6 +2,7 @@ package org.example;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Objects;
@@ -19,6 +20,7 @@ public class MenuHelper {
     }
 
     static int seleccionarOpcion(Scanner scanner, String mensaje, List<String> opciones) {
+        System.out.println("___________________________________________________________");
         System.out.println(mensaje);
         for (int i = 0; i < opciones.size(); i++) {
             System.out.println((i + 1) + ". " + opciones.get(i));
@@ -31,7 +33,6 @@ public class MenuHelper {
         mostrarOpcionesMenu(mensaje, opciones);
         return obtenerEntradaValida(scanner, opciones.length);
     }
-
 
     public static int obtenerEntradaValida(Scanner scanner, int maxOption) {
         int opcion;
@@ -47,6 +48,23 @@ public class MenuHelper {
                     System.out.println("Por favor, ingrese un número válido.");
                 }
             } catch (Exception e) {
+                System.out.println("Entrada no válida. Por favor, ingrese un número.");
+                scanner.next();
+            }
+        }
+    }
+
+    public static int obtenerEntradaValida(Scanner scanner, String mensaje) {
+        int opcion;
+        while (true) {
+            System.out.print(mensaje);
+            try {
+                opcion = scanner.nextInt();
+                if (opcion >= 0) {
+                    return opcion;
+                }
+                System.out.println("La cantidad no puede ser negativa.");
+            } catch (InputMismatchException e) {
                 System.out.println("Entrada no válida. Por favor, ingrese un número.");
                 scanner.next();
             }
@@ -83,7 +101,7 @@ public class MenuHelper {
                 }
                 opcion = LocalDate.parse(input, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 return opcion;
-            } catch (Exception e) {
+            } catch (DateTimeParseException e) {
                 System.out.println("Entrada no válida. Por favor, ingrese una fecha válida.");
             }
         }

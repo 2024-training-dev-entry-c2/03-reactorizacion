@@ -1,7 +1,7 @@
 package org.example;
 
 public class DiaSol {
-    private double precio;
+    private Double precio;
     private String actividades;
 
     public DiaSol(double precio, String actividades) {
