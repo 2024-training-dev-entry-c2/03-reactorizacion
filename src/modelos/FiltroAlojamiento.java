@@ -8,21 +8,14 @@ public class FiltroAlojamiento {
 
     public static boolean buscarAlojamiento(ArrayList<Alojamiento> alojamientos, String ciudad, String tipo, LocalDate inicioEstadia, LocalDate finEstadia, int adultos, int ninos, int habitaciones) {
         boolean alojamientoEncontrado = false;
-
         long diferenciaEnDias = finEstadia.toEpochDay() - inicioEstadia.toEpochDay();
 
-        if (diferenciaEnDias <= 0) {
-            System.out.println("Debe alojarse como minimo un dia");
-            return false;
-        }
+        if (diferenciaEnDias <= 0) {System.out.println("Debe alojarse como minimo un dia"); return false; }
 
         for (int i = 0; i < alojamientos.size(); i++) {
             Alojamiento alojamiento = alojamientos.get(i);
-
             int totalHabitacionesDisponibles = 0;
-
             ArrayList<Habitacion> habitacionesDispo = alojamiento.getHabitacion();
-
             for (int j = 0; j < habitacionesDispo.size(); j++) {
                 Habitacion habitacion = habitacionesDispo.get(j);
                 totalHabitacionesDisponibles += habitacion.getHabitacionesDisponibles();
@@ -33,19 +26,14 @@ public class FiltroAlojamiento {
                 diaDeSol = diaDeSolHotel.tenerDiaDeSol();
             } else if (alojamiento instanceof Finca) {
                 Finca diaDeSolFinca = (Finca) alojamiento;
-                // Verificar si la finca ofrece "Día de Sol"
                 diaDeSol = diaDeSolFinca.tenerDiaDeSol();
             }
-
-            if (((tipo.equalsIgnoreCase("Dia de Sol") &&
-                    diaDeSol) || alojamiento.getClass().getSimpleName().equalsIgnoreCase(tipo)) &&
-                    alojamiento.getCiudadDestino().equalsIgnoreCase(ciudad) &&
-                    alojamiento.getMaxAdultos() >= adultos &&
-                    alojamiento.getMaxNinos() >= ninos &&
-                    totalHabitacionesDisponibles >= habitaciones) {
+            if (((tipo.equalsIgnoreCase("Dia de Sol") && diaDeSol) || alojamiento.getClass().getSimpleName().equalsIgnoreCase(tipo)) &&
+                    alojamiento.getCiudadDestino().equalsIgnoreCase(ciudad) && alojamiento.getMaxAdultos() >= adultos &&
+                    alojamiento.getMaxNinos() >= ninos && totalHabitacionesDisponibles >= habitaciones) {
                 alojamientoEncontrado = true;
                 alojamiento.mostrarInfo(inicioEstadia, finEstadia, habitaciones, adultos, ninos);
-                System.out.println("--------------------------");
+                System.out.println("---------------------------------");
             }
         }
         return alojamientoEncontrado;

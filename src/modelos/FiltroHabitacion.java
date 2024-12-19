@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class FiltroHabitacion {
 
     public static void verificarCantidadHabitaciones(Alojamiento alojamientoElegido, int habitacionesSolicitadas) {
-
         int totalHabitacionesDisponibles = 0;
         for (int j = 0; j < alojamientoElegido.getHabitacion().size(); j++) {
             totalHabitacionesDisponibles += alojamientoElegido.getHabitacion().get(j).getHabitacionesDisponibles();
@@ -32,7 +31,6 @@ public class FiltroHabitacion {
             for (int i = 0; i < alojamientoElegido.getHabitacion().size(); i++) {
                 System.out.println((i + 1) + ". " + alojamientoElegido.getHabitacion().get(i).getTiposDeHabitaciones());
             }
-
             for (int i = 0; i < cantidadHabitaciones; i++) {
                 System.out.println("Seleccione el tipo de habitación #" + (i + 1) + ":");
                 int habitacionSeleccionada = scanner.nextInt();
@@ -44,7 +42,6 @@ public class FiltroHabitacion {
                     continue;
                 }
                 habitacionesSeleccionadas[i] = alojamientoElegido.getHabitacion().get( habitacionSeleccionada - 1).getTiposDeHabitaciones();
-
                 int habitacionesDisponibles = alojamientoElegido.getHabitacion().get( habitacionSeleccionada - 1).getHabitacionesDisponibles();
 
                 alojamientoElegido.getHabitacion().get( habitacionSeleccionada - 1).setHabitacionesDisponibles(habitacionesDisponibles - 1);;
