@@ -4,6 +4,7 @@ public abstract class Accommodation {
     private String name;
     private String city;
     private Float rating;
+    private PriceDetail priceDetail= new PriceDetail();
 
     public Accommodation(String name, String city, Float rating) {
         this.name = name;
@@ -25,5 +26,9 @@ public abstract class Accommodation {
 
     public Float getRating() {
         return rating;
+    }
+
+    public PriceDetail getPriceDetail() {
+        return priceDetail;
     }
 }

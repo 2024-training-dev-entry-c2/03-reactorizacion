@@ -28,4 +28,8 @@ public class SunnyDay {
     public Double getPricePerson() {
         return pricePerson;
     }
+
+    public Integer getPeopleQuantity() {
+        return peopleQuantity;
+    }
 }

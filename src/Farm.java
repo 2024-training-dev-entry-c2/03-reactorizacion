@@ -5,23 +5,21 @@ public class Farm extends Accommodation {
     private Double pricePerNight;
     private String description;
     private Integer roomQuantity;
-    private PriceDetail priceDetail= new PriceDetail();
     private SunnyDay sunnyDay;
 
-    public Farm(String name, String city, Float rating, Double pricePerNight, String description, Integer roomQuantity, PriceDetail priceDetail) {
+    public Farm(String name, String city, Float rating, Double pricePerNight, String description, Integer roomQuantity) {
         super(name, city, rating);
         this.pricePerNight = pricePerNight;
         this.description = description;
         this.roomQuantity = roomQuantity;
-        this.priceDetail = priceDetail;
+
     }
 
-    public Farm(String name, String city, Float rating, Double pricePerNight, String description, Integer roomQuantity, PriceDetail priceDetail, SunnyDay sunnyDay) {
+    public Farm(String name, String city, Float rating, Double pricePerNight, String description, Integer roomQuantity, SunnyDay sunnyDay) {
         super(name, city, rating);
         this.pricePerNight = pricePerNight;
         this.description = description;
         this.roomQuantity = roomQuantity;
-        this.priceDetail = priceDetail;
         this.sunnyDay = sunnyDay;
     }
 
@@ -36,10 +34,10 @@ public class Farm extends Accommodation {
         }
         else{
             end = booking.getEnd();
-            Integer nights = start - end;
+            Integer nights = end - start;
             totalBasePrice = this.pricePerNight * nights;
         }
-        priceDetail.calculatePrice(totalBasePrice, start, end);
+        getPriceDetail().calculatePrice(totalBasePrice, start, end);
     }
 
     @Override
@@ -54,10 +52,14 @@ public class Farm extends Accommodation {
                     "Calificación: " + this.getRating() + '\n' +
                     "Precio por noche: " + this.pricePerNight + '\n';
         }
-        return message + priceDetail.toString();
+        return message + getPriceDetail().toString();
     }
 
     public int getRoomQuantity() {
         return roomQuantity;
+    }
+
+    public SunnyDay getSunnyDay() {
+        return sunnyDay;
     }
 }

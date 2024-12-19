@@ -5,21 +5,19 @@ import java.util.ArrayList;
 public class Hotel extends Accommodation {
     private ArrayList<RoomModel> roomModels;
     private Integer roomModelIndex;
-    private PriceDetail priceDetail= new PriceDetail();
     private SunnyDay sunnyDay;
 
-    public Hotel(String name, String city, Float rating, ArrayList<RoomModel> roomModels, Integer roomModelIndex, PriceDetail priceDetail) {
+    public Hotel(String name, String city, Float rating, ArrayList<RoomModel> roomModels, Integer roomModelIndex) {
         super(name, city, rating);
         this.roomModels = roomModels;
         this.roomModelIndex = roomModelIndex;
-        this.priceDetail = priceDetail;
+
     }
 
-    public Hotel(String name, String city, Float rating, ArrayList<RoomModel> roomModels, Integer roomModelIndex, PriceDetail priceDetail, SunnyDay sunnyDay) {
+    public Hotel(String name, String city, Float rating, ArrayList<RoomModel> roomModels, Integer roomModelIndex, SunnyDay sunnyDay) {
         super(name, city, rating);
         this.roomModels = roomModels;
         this.roomModelIndex = roomModelIndex;
-        this.priceDetail = priceDetail;
         this.sunnyDay = sunnyDay;
     }
 
@@ -34,10 +32,10 @@ public class Hotel extends Accommodation {
         }
         else{
             end = booking.getEnd();
-            Integer nights = start - end;
+            Integer nights = end - start;
             totalBasePrice = this.roomModels.get(this.roomModelIndex).getPricePerNight() * booking.getRoomQuantity() * nights;
         }
-        priceDetail.calculatePrice(totalBasePrice, start, end);
+        getPriceDetail().calculatePrice(totalBasePrice, start, end);
     }
 
 
@@ -53,10 +51,14 @@ public class Hotel extends Accommodation {
                     "Precio por noche: " + this.roomModels.get(this.roomModelIndex).getPricePerNight() + '\n';
         }
 
-        return message + priceDetail.toString();
+        return message + getPriceDetail().toString();
     }
 
     public void setRoomModelIndex(Integer roomModelIndex) {
         this.roomModelIndex = roomModelIndex;
+    }
+
+    public SunnyDay getSunnyDay() {
+        return sunnyDay;
     }
 }

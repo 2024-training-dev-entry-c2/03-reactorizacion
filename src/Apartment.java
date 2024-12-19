@@ -3,7 +3,6 @@ public class Apartment extends Accommodation {
     private Double pricePerNight;
     private String description;
     private Integer roomQuantity;
-    private PriceDetail priceDetail= new PriceDetail();
 
     public Apartment(String name, String city, Float rating, Double pricePerNight, String description, Integer roomQuantity) {
         super(name, city, rating);
@@ -16,7 +15,7 @@ public class Apartment extends Accommodation {
     public void calculateStayPrice(Booking booking) {
         Integer nights = booking.getEnd() - booking.getStart();
         Double totalBasePrice = this.pricePerNight * nights;
-        priceDetail.calculatePrice(totalBasePrice,booking.getStart(),booking.getEnd());
+        getPriceDetail().calculatePrice(totalBasePrice,booking.getStart(),booking.getEnd());
     }
 
     @Override
@@ -24,7 +23,7 @@ public class Apartment extends Accommodation {
         calculateStayPrice(booking);
         return "Características: " + this.description + '\n' +
                 "Calificación: " + this.getRating() + '\n' +
-                "Precio por noche: " + this.pricePerNight + '\n'+ priceDetail.toString();
+                "Precio por noche: " + this.pricePerNight + '\n'+ getPriceDetail().toString();
     }
 
     public int getRoomQuantity() {

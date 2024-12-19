@@ -5,11 +5,12 @@ public class Booking {
     private Integer adultsQuantity;
     private Integer childrenQuantity;
     private Integer roomQuantity;
+    private String accommodation;
     private RoomModel roomModel;
     private String type;
     private String city;
     private String arrivalTime;
-    private Double totalPrice;
+    private Double finalPrice;
 
     public Booking(Integer start, Integer end, Integer adultsQuantity, Integer childrenQuantity, Integer roomQuantity, String type, String city) {
         this.start = start;
@@ -53,7 +54,23 @@ public class Booking {
         return type;
     }
 
-    public Double getTotalPrice() {
-        return totalPrice;
+    public Double getFinalPrice() {
+        return finalPrice;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getAccommodation() {
+        return accommodation;
+    }
+
+    public void setFinalPrice(Double finalPrice) {
+        this.finalPrice = finalPrice;
+    }
+
+    public void setAccommodation(String accommodation) {
+        this.accommodation = accommodation;
     }
 }
