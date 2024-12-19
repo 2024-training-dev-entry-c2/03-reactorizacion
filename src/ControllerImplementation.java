@@ -1,4 +1,7 @@
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 
 public class ControllerImplementation implements  IController{
@@ -155,36 +158,21 @@ public class ControllerImplementation implements  IController{
         }
         return availableRooms;
     }
-    /**
-    public boolean reserve(String firstName, String lastName, String email, String nationality, String phone, String birthDate, String hour){
 
-        for(Map<String, String> user : users){
-            if(user.get("email").equals(email)){
-                return false;
-            }
+    public boolean reserve(Customer customer, String time, Booking newBooking){
+        newBooking.setCustomer(customer);
+        try {
+            LocalTime arrivalTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm"));
+            newBooking.setArrivalTime(arrivalTime);
+        } catch (DateTimeParseException e) {
+            System.out.println("Formato de hora inválido: " + e.getMessage());
+            return false;
         }
-
-        users.add(new HashMap<>(Map.of(
-                "firstName", firstName,
-                "lastName", lastName,
-                "email", email,
-                "nationality", nationality,
-                "phone", phone,
-                "birthDate", birthDate,
-                "hour", hour
-        )));
-
-        newBooking.put("userEmail", email);
-        Map<String, Object> bookingCopy = new HashMap<>();
-        for (Map.Entry<String, Object> entry : newBooking.entrySet()) {
-            Object valor = entry.getValue();
-            bookingCopy.put(entry.getKey(), valor);
-        }
-        bookings.add(bookingCopy);
-        canReserve = false;
+        bookings.add(newBooking);
         return true;
     }
 
+    /**
     public boolean isValidUser(String email, String birthDate){
         int index = 0;
         for(Map<String, String> user: users){

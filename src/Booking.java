@@ -1,3 +1,5 @@
+import java.time.LocalTime;
+
 public class Booking {
     private Customer customer;
     private Integer start;
@@ -9,7 +11,7 @@ public class Booking {
     private RoomModel roomModel;
     private String type;
     private String city;
-    private String arrivalTime;
+    private LocalTime arrivalTime;
     private Double finalPrice;
 
     public Booking(Integer start, Integer end, Integer adultsQuantity, Integer childrenQuantity, Integer roomQuantity, String type, String city) {
@@ -76,5 +78,13 @@ public class Booking {
 
     public void setAccommodation(String accommodation) {
         this.accommodation = accommodation;
+    }
+
+    public void setArrivalTime(LocalTime arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.*;
 
 public class BookingSystem {
@@ -86,6 +87,39 @@ public class BookingSystem {
         }
     }
 
+    public static void reserveAccommodation(Scanner scanner){
+        if(canReserve){
+            System.out.print("Nombre: ");
+            String firstName = scanner.nextLine();
+            System.out.print("Apellido: ");
+            String lastName = scanner.nextLine();
+            System.out.print("Email: ");
+            String email = scanner.nextLine();
+            System.out.print("Nacionalidad: ");
+            String nationality = scanner.nextLine();
+            System.out.print("Teléfono: ");
+            String phone = scanner.nextLine();
+            System.out.print("Fecha de nacimiento (YYYY-MM-DD): ");
+            String birthDate = scanner.nextLine();
+            System.out.print("Hora aproximada de llegada (HH:mm): ");
+            String time = scanner.nextLine();
+
+            Customer customer = new Customer(firstName,lastName,email,nationality,phone, LocalDate.parse(birthDate));
+            boolean reserved = controller.reserve(customer, time, newBooking);
+            if(reserved){
+                System.out.println("Se ha realizado la reserva con éxito.");
+            }
+            else{
+                System.out.println("Error al intentar reservar.");
+            }
+            canReserve = false;
+            newBooking = null;
+        }
+        else{
+            System.out.println("No es posible reservar.");
+        }
+    }
+
     public static void main(String[] args) {
         controller.loadData();
         Scanner scanner = new Scanner(System.in);
@@ -144,6 +178,9 @@ public class BookingSystem {
                     else{
                         System.out.println("No es posible confirmar habitaciones de hotel.");
                     }
+                }
+                case 3 ->{
+                    reserveAccommodation(scanner);
                 }
 
                 case 0 -> {
