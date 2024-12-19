@@ -36,12 +36,22 @@ public class Finca extends Alojamiento implements IDiaDeSol{
 
     @Override
     public Boolean tieneDiaDeSol() {
-        return true;
+        if(diaDeSol!=null){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public void mostrarInfoDiaDeSol() {
-
+        System.out.println("***********");
+        if(tieneDiaDeSol()){
+            System.out.println("--Info dia de sol--");
+            System.out.println("Actividades: "+diaDeSol.getActividades());
+            System.out.println("Incluye: "+ diaDeSol.getExtras());
+            System.out.println("precio por servicio de dia de sol"+ diaDeSol.getPrecio());
+        }
     }
 
     @Override

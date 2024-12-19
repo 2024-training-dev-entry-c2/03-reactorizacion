@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class DiaDeSolData {
 
    private String actividades;
-   private ArrayList<String> extras;
+   private String extras;
    private Double precio;
 
-    public DiaDeSolData(String actividades, ArrayList<String> extras, Double precio) {
+    public DiaDeSolData(String actividades, String extras, Double precio) {
         this.actividades = actividades;
         this.extras = extras;
         this.precio = precio;
@@ -22,11 +22,11 @@ public class DiaDeSolData {
         this.actividades = actividades;
     }
 
-    public ArrayList<String> getExtras() {
+    public String getExtras() {
         return extras;
     }
 
-    public void setExtras(ArrayList<String> extras) {
+    public void setExtras(String extras) {
         this.extras = extras;
     }
 

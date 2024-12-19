@@ -55,7 +55,10 @@ public class Hotel extends Alojamiento implements IDiaDeSol{
     public void mostrarInfoDiaDeSol() {
         System.out.println("***********");
         if(tieneDiaDeSol()){
-
+            System.out.println("--Info dia de sol--");
+            System.out.println("Actividades: "+diaDeSol.getActividades());
+            System.out.println("Incluye: "+ diaDeSol.getExtras());
+            System.out.println("precio por servicio de dia de sol"+ diaDeSol.getPrecio());
         }
     }
 
