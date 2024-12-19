@@ -11,7 +11,7 @@ public abstract class Alojamiento {
     protected Double calificacion;
     protected String descripcion;
     protected ArrayList <Habitacion> habitaciones;
-
+    protected String tipo;
 
 
 //    public abstract Double calcularPrecioBase(int cantHabitaciones);
@@ -94,5 +94,7 @@ public abstract class Alojamiento {
         this.habitaciones = habitaciones;
     }
 
-
+    public String getTipo() {
+        return tipo;
+    }
 }

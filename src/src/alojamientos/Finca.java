@@ -16,6 +16,7 @@ public class Finca extends Alojamiento implements IDiaDeSol{
         this.descripcion=descripcion;
         habitaciones=new ArrayList<Habitacion>();
         this.diaDeSol = diaDeSol;
+        this.tipo="finca";
     }
 
     public Finca(String nombre, String ciudad, Double calificacion, String descripcion) {
@@ -24,6 +25,7 @@ public class Finca extends Alojamiento implements IDiaDeSol{
         this.calificacion=calificacion;
         this.descripcion=descripcion;
         habitaciones=new ArrayList<Habitacion>();
+        this.tipo="finca";
     }
 
 
@@ -32,7 +34,7 @@ public class Finca extends Alojamiento implements IDiaDeSol{
         System.out.println("Alojamiento: " + this.nombre);
         System.out.println("Calificación: " + this.calificacion);
         System.out.println("precio: " + calcularPrecioBase(numHabitaciones));
-        System.out.println("+precioBase" + calcularAjustePrecio(calcularPrecioBase(numHabitaciones),diaInicio,diaFinalizacion));
+        System.out.println("precioBase: " + calcularAjustePrecio(calcularPrecioBase(numHabitaciones),diaInicio,diaFinalizacion));
         if(tieneDiaDeSol()){
             this.mostrarInfoDiaDeSol();
         }
@@ -58,11 +60,6 @@ public class Finca extends Alojamiento implements IDiaDeSol{
             System.out.println("Incluye: "+ diaDeSol.getExtras());
             System.out.println("precio por servicio de dia de sol"+ diaDeSol.getPrecio());
         }
-    }
-
-    @Override
-    public double calcularPrecioBaseDiaSol() {
-        return 0;
     }
 
     public DiaDeSolData getDiaDeSol() {

@@ -16,7 +16,7 @@ public class Main {
     static ArrayList<Alojamiento> alojamientos = new ArrayList<>();
     static ReservaImplementation reserva = new ReservaImplementation();
     static FiltroReservas filtroReservas = new FiltroReservas();
-
+    static FiltroAlojamiento filtroAlojamiento = new FiltroAlojamiento();
     public static void inicializarDatos() {
 
         DiaDeSolData diaDeSol1 = new DiaDeSolData("Yoga al aire libre, Piscina", "Refrigerio, Almuerzo", 50000.0);
@@ -124,19 +124,19 @@ public class Main {
         String ciudad = scanner.nextLine();
 
         System.out.print("Que tipo de alojamiento busca? (hotel, apartamento, finca, dia de sol): ");
-        String alojamiento = scanner.nextLine();
+        String tipoAlojamiento = scanner.nextLine();
 
         System.out.print("Ingrese el mes de inicio del hospedaje: ");
         int mesInicio = scanner.nextInt();
-        scanner.nextLine(); // Limpia el buffer de nueva línea
+        scanner.nextLine();
 
         System.out.print("Ingrese el dia de inicio del hospedaje: ");
         int diaInicio = scanner.nextInt();
-        scanner.nextLine(); // Limpia el buffer de nueva línea
+        scanner.nextLine();
 
         System.out.print("Ingrese el mes de finalizacion del hospedaje: ");
         int mesfinalizacion = scanner.nextInt();
-        scanner.nextLine(); // Limpia el buffer de nueva línea
+        scanner.nextLine();
 
         System.out.print("Ingrese el dia de finalización del hospedaje : ");
         int diaFinalizacion = scanner.nextInt();
@@ -156,7 +156,7 @@ public class Main {
 
         System.out.println("-------------------");
 
-        //buscarHoteles(ciudad, alojamiento, mesInicio, diaInicio, mesfinalizacion, diaFinalizacion, cantAdultos, cantNinos,numHabitaciones);
+        filtroAlojamiento.buscarHoteles(ciudad, tipoAlojamiento, mesInicio, diaInicio, mesfinalizacion, diaFinalizacion, cantAdultos, cantNinos,numHabitaciones,alojamientos);
     }
 
     public static void formularioConfirmacionHabitaciones() {
@@ -167,15 +167,15 @@ public class Main {
 
         System.out.print("Ingrese el mes de inicio del hospedaje: ");
         int mesInicio = scanner.nextInt();
-        scanner.nextLine(); // Limpia el buffer de nueva línea
+        scanner.nextLine();
 
         System.out.print("Ingrese el dia de inicio del hospedaje: ");
         int diaInicio = scanner.nextInt();
-        scanner.nextLine(); // Limpia el buffer de nueva línea
+        scanner.nextLine();
 
         System.out.print("Ingrese el mes de finalizacion del hospedaje: ");
         int mesfinalizacion = scanner.nextInt();
-        scanner.nextLine(); // Limpia el buffer de nueva línea
+        scanner.nextLine();
 
         System.out.print("Ingrese el dia de finalización del hospedaje : ");
         int diaFinalizacion = scanner.nextInt();
@@ -270,7 +270,7 @@ public class Main {
             reserva.eliminarReserva(reserva.getReservas().get(reserva.getIndice()));
             formularioReserva();
         }else if(cambioReserva==0){
-            
+
         }
 
         //filtroReservas.modificarReserva();

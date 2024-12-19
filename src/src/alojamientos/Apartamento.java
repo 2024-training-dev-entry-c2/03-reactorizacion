@@ -17,6 +17,7 @@ public class Apartamento extends Alojamiento{
         habitaciones=new ArrayList<Habitacion>();
         this.piso = piso;
         this.numeroApartamento = numeroApartamento;
+        this.tipo="apartamento";
     }
 
 
@@ -27,7 +28,7 @@ public class Apartamento extends Alojamiento{
         System.out.println("Piso: "+ this.piso);
         System.out.println("numeroApartamento: "+ this.numeroApartamento);
         System.out.println("precio: " + calcularPrecioBase(numHabitaciones));
-        System.out.println("+precioBase" + calcularAjustePrecio(calcularPrecioBase(numHabitaciones),diaInicio,diaFinalizacion));
+        System.out.println("precioBase: " + calcularAjustePrecio(calcularPrecioBase(numHabitaciones),diaInicio,diaFinalizacion));
         System.out.println("-------------------");
     }
 

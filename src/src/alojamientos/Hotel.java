@@ -17,6 +17,7 @@ public class Hotel extends Alojamiento implements IDiaDeSol{
         this.diaDeSol = diaDeSol;
         this.servicioHabitacion = servicioHabitacion;
         habitaciones=new ArrayList<Habitacion>();
+        this.tipo="hotel";
     }
 
     public Hotel(String nombre, String ciudad, Double calificacion, String descripcion) {
@@ -25,6 +26,7 @@ public class Hotel extends Alojamiento implements IDiaDeSol{
         this.calificacion=calificacion;
         this.descripcion=descripcion;
         habitaciones=new ArrayList<Habitacion>();
+        this.tipo="hotel";
     }
 
 
@@ -36,7 +38,7 @@ public class Hotel extends Alojamiento implements IDiaDeSol{
             System.out.println("Cuenta con servicio a la habitacion");
         }
         System.out.println("precio: " + calcularPrecioBase(numHabitaciones));
-        System.out.println("+precioBase" + calcularAjustePrecio(calcularPrecioBase(numHabitaciones),diaInicio,diaFinalizacion));
+        System.out.println("precioBase: " + calcularAjustePrecio(calcularPrecioBase(numHabitaciones),diaInicio,diaFinalizacion));
         if(tieneDiaDeSol()){
             this.mostrarInfoDiaDeSol();
         }
@@ -64,14 +66,10 @@ public class Hotel extends Alojamiento implements IDiaDeSol{
             System.out.println("--Info dia de sol--");
             System.out.println("Actividades: "+diaDeSol.getActividades());
             System.out.println("Incluye: "+ diaDeSol.getExtras());
-            System.out.println("precio por servicio de dia de sol"+ diaDeSol.getPrecio());
+            System.out.println("precio por servicio de dia de sol: "+ diaDeSol.getPrecio());
         }
     }
 
-    @Override
-    public double calcularPrecioBaseDiaSol() {
-        return 0;
-    }
 
     public DiaDeSolData getDiaDeSol() {
         return diaDeSol;
