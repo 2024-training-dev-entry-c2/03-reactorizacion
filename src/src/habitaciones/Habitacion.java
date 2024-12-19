@@ -19,8 +19,13 @@ public class Habitacion {
 
 
     public void mostrarDetalles(){
-
+        System.out.println("=== Habitación " + this.tipo + " ===");
+        System.out.println("Características: " + this.descripcion);
+        System.out.println("capacidad: " + this.capacidad+"personas");
+        System.out.println("Precio: $" + this.precioPorNoche);
+        System.out.println("--------------------------------");
     }
+
     public boolean estaDisponible(){
         return  true;
     }

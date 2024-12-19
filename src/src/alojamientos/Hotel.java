@@ -1,9 +1,31 @@
 package alojamientos;
 
+import habitaciones.Habitacion;
+
+import java.util.ArrayList;
+
 public class Hotel extends Alojamiento implements IDiaDeSol{
 
     private DiaDeSolData diaDeSol;
     private Boolean servicioHabitacion;
+
+    public Hotel(String nombre, String ciudad, Double calificacion, String descripcion, ArrayList<Habitacion> habitaciones,DiaDeSolData diaDeSol, Boolean servicioHabitacion) {
+        this.nombre=nombre;
+        this.ciudad=ciudad;
+        this.calificacion=calificacion;
+        this.descripcion=descripcion;
+        this.habitaciones=habitaciones;
+        this.diaDeSol = diaDeSol;
+        this.servicioHabitacion = servicioHabitacion;
+    }
+
+    public Hotel(String nombre, String ciudad, Double calificacion, String descripcion, ArrayList<Habitacion> habitaciones) {
+        this.nombre=nombre;
+        this.ciudad=ciudad;
+        this.calificacion=calificacion;
+        this.descripcion=descripcion;
+        this.habitaciones=habitaciones;
+    }
 
     @Override
     public Double calcularPrecioBase() {
@@ -22,12 +44,19 @@ public class Hotel extends Alojamiento implements IDiaDeSol{
 
     @Override
     public Boolean tieneDiaDeSol() {
-        return true;
+        if(diaDeSol!=null){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public void mostrarInfoDiaDeSol() {
+        System.out.println("***********");
+        if(tieneDiaDeSol()){
 
+        }
     }
 
     @Override

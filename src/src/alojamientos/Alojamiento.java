@@ -10,16 +10,23 @@ public abstract class Alojamiento {
     protected String ciudad;
     protected Double calificacion;
     protected String descripcion;
-    protected Integer maximoAdultos;
-    protected Integer maximoNinos;
+    //protected Integer maximoAdultos;
+    //protected Integer maximoNinos;
     protected ArrayList <Habitacion> habitaciones;
+
 
 
     public abstract Double calcularPrecioBase();
     public abstract void mostrarInformacion();
     public abstract Boolean estaDisponible(); //para verificar si está disponible por las fechas y la habitacion, para apartamento
 
-    public void mostrarDetallesHabitaciones(){}
+    public void mostrarDetallesHabitaciones(){
+        System.out.println("====HABITACIONES====");
+        for (int i = 0; i < habitaciones.size(); i++) {
+            habitaciones.get(i).mostrarDetalles();
+        }
+    }
+
     public Double calcularPrecioTotal(){
         return 0.0;
     }
@@ -59,21 +66,21 @@ public abstract class Alojamiento {
         this.descripcion = descripcion;
     }
 
-    public Integer getMaximoAdultos() {
+    /*public Integer getMaximoAdultos() {
         return maximoAdultos;
-    }
+    }*/
 
-    public void setMaximoAdultos(Integer maximoAdultos) {
-        this.maximoAdultos = maximoAdultos;
-    }
+//    public void setMaximoAdultos(Integer maximoAdultos) {
+//        this.maximoAdultos = maximoAdultos;
+//    }
+//
+//    public Integer getMaximoNinos() {
+//        return maximoNinos;
+//    }
 
-    public Integer getMaximoNinos() {
-        return maximoNinos;
-    }
-
-    public void setMaximoNinos(Integer maximoNinos) {
-        this.maximoNinos = maximoNinos;
-    }
+//    public void setMaximoNinos(Integer maximoNinos) {
+//        this.maximoNinos = maximoNinos;
+//    }
 
     public ArrayList<Habitacion> getHabitaciones() {
         return habitaciones;
@@ -83,6 +90,5 @@ public abstract class Alojamiento {
         this.habitaciones = habitaciones;
     }
 
-    public static interface IDiaDeSol {
-    }
+
 }

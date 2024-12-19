@@ -1,9 +1,28 @@
 package alojamientos;
 
+import habitaciones.Habitacion;
+
+import java.util.ArrayList;
+
 public class Apartamento extends Alojamiento implements IDiaDeSol{
 
     private Integer piso;
     private String numeroApartamento;
+
+    public Apartamento(Integer piso, String numeroApartamento) {
+        this.piso = piso;
+        this.numeroApartamento = numeroApartamento;
+    }
+
+    public Apartamento(String nombre, String ciudad, Double calificacion, String descripcion, ArrayList<Habitacion> habitaciones) {
+        this.nombre=nombre;
+        this.ciudad=ciudad;
+        this.calificacion=calificacion;
+        this.descripcion=descripcion;
+        this.habitaciones=habitaciones;
+    }
+
+
 
     @Override
     public Double calcularPrecioBase() {
