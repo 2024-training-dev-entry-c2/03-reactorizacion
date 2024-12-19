@@ -1,11 +1,76 @@
+import alojamientos.*;
+import habitaciones.Habitacion;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
-        menu();
+    static ArrayList<Alojamiento> alojamientos = new ArrayList<>();
+
+    public static void inicializarDatos() {
+
+        DiaDeSolData diaDeSol1 = new DiaDeSolData("Yoga al aire libre, Piscina", "Refrigerio, Almuerzo", 50000.0);
+        DiaDeSolData diaDeSol2 = new DiaDeSolData("Clases de surf, Bicicletas disponibles", "Desayuno, Almuerzot", 80000.0);
+        DiaDeSolData diaDeSol3 = new DiaDeSolData("Senderismo, Paseos a caballo", "Desayuno incluido", 80.0);
+        DiaDeSolData diaDeSol4 = new DiaDeSolData("Piscina natural, Yoga matutino", "Almuerzo orgánico", 120.0);
+
+        Hotel hotel1 = new Hotel("hotel sol radiante", "cartagena", 4.5, "Un hotel con vistas al mar", diaDeSol1, true);
+        Hotel hotel2 = new Hotel("cielo esplendido", "cartagena", 4.8, "Un refugio en las montañas", diaDeSol2, false);
+        Hotel hotel3 = new Hotel("ciudad moderna", "santa marta", 4.2, "Un hotel en el corazón de la ciudad");
+
+        Finca finca1 = new Finca("Finca La Esperanza", "santa marta", 4.7, "Un lugar para relajarse en la naturaleza", diaDeSol3);
+        Finca finca2 = new Finca("Finca Las Flores", "cartagena", 4.9, "Una finca con hermosos paisajes", diaDeSol4);
+        Finca finca3 = new Finca("Finca El Refugio", "santa marta", 4.5, "Una finca para disfrutar del campo colombiano");
+
+        Apartamento apartamento1 = new Apartamento("apartamento vista al mar", "cartagena", 4.6, "Apartamento con balcón y vista al mar", 10, "1001");
+        Apartamento apartamento2 = new Apartamento("apartamento moderno", "cartagena", 4.8, "Moderno apartamento en el centro", 5, "502");
+        Apartamento apartamento3 = new Apartamento("apartamento familiar", "santa marta", 4.3, "Ideal para familias, cerca del metro", 2, "201");
+
+        ArrayList<Habitacion> habitacionesHotel = crearHabitaciones("Hotel");
+        hotel1.setHabitaciones(habitacionesHotel);
+        hotel2.setHabitaciones(habitacionesHotel);
+        hotel3.setHabitaciones(habitacionesHotel);
+
+        ArrayList<Habitacion> habitacionesFinca = crearHabitaciones("Finca");
+        finca1.setHabitaciones(habitacionesFinca);
+        finca2.setHabitaciones(habitacionesFinca);
+        finca3.setHabitaciones(habitacionesFinca);
+
+        ArrayList<Habitacion> habitacionesApartamento = crearHabitaciones("Apartamento");
+        apartamento1.setHabitaciones(habitacionesApartamento);
+        apartamento2.setHabitaciones(habitacionesApartamento);
+        apartamento3.setHabitaciones(habitacionesApartamento);
+
+        alojamientos.add(hotel1);
+        alojamientos.add(hotel2);
+        alojamientos.add(hotel3);
+        alojamientos.add(finca1);
+        alojamientos.add(finca2);
+        alojamientos.add(finca3);
+        alojamientos.add(apartamento1);
+        alojamientos.add(apartamento2);
+        alojamientos.add(apartamento3);
     }
 
+
+    public static ArrayList<Habitacion> crearHabitaciones(String tipoAlojamiento) {
+        ArrayList<Habitacion> habitaciones = new ArrayList<>();
+
+        habitaciones.add(new Habitacion("estandar", "Habitación básica con baño privado", 2, 10, 100000.0));
+        habitaciones.add(new Habitacion("deluxe", "Habitación amplia con balcón", 3, 5, 150000.0));
+        habitaciones.add(new Habitacion("suite", "Habitación de lujo con jacuzzi", 4, 2, 300000.0));
+        habitaciones.add(new Habitacion("familiar", "Habitación con capacidad para toda la familia", 6, 3, 250000.0));
+        habitaciones.add(new Habitacion("económica", "Habitación pequeña a buen precio", 1, 15, 80000.0));
+
+        return habitaciones;
+    }
+
+    public static void main(String[] args) {
+        inicializarDatos();
+        menu();
+    }
+    
     public static void menu() {
         Scanner scanner = new Scanner(System.in);
         int opcion;
@@ -189,6 +254,8 @@ public class Main {
 
         System.out.print("Ingrese su fecha de nacimiento (dd/mm/yyyy): ");
         String fechaNacimiento = scanner.nextLine();
+
+
 
     }
 

@@ -9,22 +9,22 @@ public class Hotel extends Alojamiento implements IDiaDeSol{
     private DiaDeSolData diaDeSol;
     private Boolean servicioHabitacion;
 
-    public Hotel(String nombre, String ciudad, Double calificacion, String descripcion, ArrayList<Habitacion> habitaciones,DiaDeSolData diaDeSol, Boolean servicioHabitacion) {
+    public Hotel(String nombre, String ciudad, Double calificacion, String descripcion ,DiaDeSolData diaDeSol, Boolean servicioHabitacion) {
         this.nombre=nombre;
         this.ciudad=ciudad;
         this.calificacion=calificacion;
         this.descripcion=descripcion;
-        this.habitaciones=habitaciones;
         this.diaDeSol = diaDeSol;
         this.servicioHabitacion = servicioHabitacion;
+        habitaciones=new ArrayList<Habitacion>();
     }
 
-    public Hotel(String nombre, String ciudad, Double calificacion, String descripcion, ArrayList<Habitacion> habitaciones) {
+    public Hotel(String nombre, String ciudad, Double calificacion, String descripcion) {
         this.nombre=nombre;
         this.ciudad=ciudad;
         this.calificacion=calificacion;
         this.descripcion=descripcion;
-        this.habitaciones=habitaciones;
+        habitaciones=new ArrayList<Habitacion>();
     }
 
 

@@ -10,8 +10,7 @@ public abstract class Alojamiento {
     protected String ciudad;
     protected Double calificacion;
     protected String descripcion;
-    //protected Integer maximoAdultos;
-    //protected Integer maximoNinos;
+
     protected ArrayList <Habitacion> habitaciones;
 
 

@@ -12,9 +12,9 @@ public class Habitacion {
     public Habitacion(String tipo, String descripcion, Integer capacidad, Integer habitacionesDisponibles, Double precioPorNoche) {
         this.tipo = tipo;
         this.descripcion = descripcion;
-        this.capacidad = capacidad;
+        this.capacidad = capacidad; //numero de personas
         HabitacionesDisponibles = habitacionesDisponibles;
-        this.precioPorNoche = precioPorNoche;
+        this.precioPorNoche = precioPorNoche; //en pesos colombianos
     }
 
 

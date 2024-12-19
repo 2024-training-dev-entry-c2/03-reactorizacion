@@ -8,16 +8,22 @@ public class Finca extends Alojamiento implements IDiaDeSol{
 
     private DiaDeSolData diaDeSol;
 
-    public Finca(DiaDeSolData diaDeSol) {
-        this.diaDeSol = diaDeSol;
-    }
 
-    public Finca(String nombre, String ciudad, Double calificacion, String descripcion, ArrayList<Habitacion> habitaciones) {
+    public Finca(String nombre, String ciudad, Double calificacion, String descripcion,DiaDeSolData diaDeSol) {
         this.nombre=nombre;
         this.ciudad=ciudad;
         this.calificacion=calificacion;
         this.descripcion=descripcion;
-        this.habitaciones=habitaciones;
+        habitaciones=new ArrayList<Habitacion>();
+        this.diaDeSol = diaDeSol;
+    }
+
+    public Finca(String nombre, String ciudad, Double calificacion, String descripcion) {
+        this.nombre=nombre;
+        this.ciudad=ciudad;
+        this.calificacion=calificacion;
+        this.descripcion=descripcion;
+        habitaciones=new ArrayList<Habitacion>();
     }
 
 

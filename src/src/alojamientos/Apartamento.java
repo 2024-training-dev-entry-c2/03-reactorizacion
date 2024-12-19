@@ -9,12 +9,12 @@ public class Apartamento extends Alojamiento{
     private Integer piso;
     private String numeroApartamento;
 
-    public Apartamento(String nombre, String ciudad, Double calificacion, String descripcion, ArrayList<Habitacion> habitaciones,Integer piso, String numeroApartamento) {
+    public Apartamento(String nombre, String ciudad, Double calificacion, String descripcion,Integer piso, String numeroApartamento) {
         this.nombre=nombre;
         this.ciudad=ciudad;
         this.calificacion=calificacion;
         this.descripcion=descripcion;
-        this.habitaciones=habitaciones;
+        habitaciones=new ArrayList<Habitacion>();
         this.piso = piso;
         this.numeroApartamento = numeroApartamento;
     }
