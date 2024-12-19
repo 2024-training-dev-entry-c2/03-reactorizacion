@@ -20,19 +20,27 @@ public class Stay extends Accommodation {
         this.type = type;
     }
 
+    @Override
+    public void describe() {
+        System.out.println(
+                "Stay: " + this.getName() +
+                        "\nRate: " + this.getRate() +
+                        "\nCity: " + this.getCity() +
+                        "\nDescription: " + this.getDescription() +
+                        "\nPrecio base: " + this.getBasePrice() +
+                        "\nType: " + this.getType() +
+                        "\nHabitaciones:"
+        );
+        for (Service service : this.getServices()) {
+            System.out.println("  - " + service.getName() + ": " + service.getDescription());
+        }
+    }
+
     public Float getBasePrice() {
         return basePrice;
     }
 
-    public void setBasePrice(Float basePrice) {
-        this.basePrice = basePrice;
-    }
-
     public AccommodationType getType() {
         return type;
-    }
-
-    public void setType(AccommodationType type) {
-        this.type = type;
     }
 }

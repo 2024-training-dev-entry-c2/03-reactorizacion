@@ -15,7 +15,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         IValidatorService validatorService = new ValidatorService(scanner);
         IMenuService menuService = new MenuService(validatorService);
-        BookingService bookingService = new BookingService(dataBase, menuService, validatorService);
+        BookingService bookingService = new BookingService(dataBase, menuService);
 
         bookingService.start();
     }

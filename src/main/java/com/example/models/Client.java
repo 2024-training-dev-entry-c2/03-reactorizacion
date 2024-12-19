@@ -1,5 +1,6 @@
 package com.example.models;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Client {
@@ -9,6 +10,7 @@ public class Client {
     private String nationality;
     private LocalTime arrivalTime;
     private String email;
+    private LocalDate birthDate;
 
     public Client(
             String firstName,
@@ -25,6 +27,10 @@ public class Client {
 
         this.arrivalTime = arrivalTime;
         this.email = email;
+    }
+
+    public boolean authenticateUser(String email, LocalDate birthDate) {
+        return (email.equals(this.email) && birthDate.equals(this.birthDate));
     }
 
     public String getFirstName() {

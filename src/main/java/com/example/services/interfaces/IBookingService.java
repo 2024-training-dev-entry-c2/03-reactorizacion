@@ -3,5 +3,6 @@ package com.example.services.interfaces;
 public interface IBookingService {
 
     void start();
-    void askForDetails();
+    void askForCity();
+    void askForType();
 }

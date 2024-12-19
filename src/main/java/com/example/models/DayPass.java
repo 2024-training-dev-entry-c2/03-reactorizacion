@@ -17,6 +17,21 @@ public class DayPass extends Accommodation {
         this.personPrice = personPrice;
     }
 
+    @Override
+    public void describe() {
+        System.out.println(
+                "Stay: " + this.getName() +
+                        "\nRate: " + this.getRate() +
+                        "\nCity: " + this.getCity() +
+                        "\nDescription: " + this.getDescription() +
+                        "\nPrecio por persona: " + this.getPersonPrice() +
+                        "\nServicios incluídos:"
+        );
+        for (Service service : this.getServices()) {
+            System.out.println("  - " + service.getName() + ": " + service.getDescription());
+        }
+    }
+
     public Float getPersonPrice() {
         return personPrice;
     }

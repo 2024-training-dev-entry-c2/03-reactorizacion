@@ -26,7 +26,7 @@ public class ValidatorService implements IValidatorService {
                 input = Integer.parseInt(scanner.nextLine());
                 return input;
             } catch (NumberFormatException e) {
-                System.out.println("Entrada inválida. Por favor ingrese un número entero.");
+                System.err.println("Entrada inválida. Por favor ingrese un número entero.");
             }
         }
     }
@@ -39,7 +39,7 @@ public class ValidatorService implements IValidatorService {
                 input = Float.parseFloat(scanner.nextLine());
                 return input;
             } catch (NumberFormatException e) {
-                System.out.println("Entrada inválida. Por favor ingrese un número decimal.");
+                System.err.println("Entrada inválida. Por favor ingrese un número decimal.");
             }
         }
     }
@@ -52,7 +52,7 @@ public class ValidatorService implements IValidatorService {
                 date = LocalDate.parse(scanner.nextLine());
                 return date;
             } catch (Exception e) {
-                System.out.println("Fecha inválida. El formato debe ser: yyyy-MM-dd");
+                System.err.println("Fecha inválida. El formato debe ser: yyyy-MM-dd");
             }
         }
     }
@@ -65,7 +65,7 @@ public class ValidatorService implements IValidatorService {
                 time = LocalTime.parse(scanner.nextLine());
                 return time;
             } catch (Exception e) {
-                System.out.println("Hora inválida. El formato debe ser: HH:mm");
+                System.err.println("Hora inválida. El formato debe ser: HH:mm");
             }
         }
     }
