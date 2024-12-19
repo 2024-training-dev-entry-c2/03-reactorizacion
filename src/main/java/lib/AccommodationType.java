@@ -6,7 +6,7 @@ public enum AccommodationType {
     LAND,
     SUNNYDAY;
 
-    public static AccommodationType getAccomodationType(int choice) {
+    public static AccommodationType getAccomodationType(Integer choice) {
         return switch (choice) {
             case 1 -> HOTEL;
             case 2 -> APARTMENT;

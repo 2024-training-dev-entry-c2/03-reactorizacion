@@ -7,7 +7,7 @@ public class Land extends Accommodation {
     private boolean hasFarmAnimals;
     private String outdoorActivities;
 
-    public Land(String city, String accommodationType, List<Room> rooms,List<Reservation>reservations, float rating, String name) {
+    public Land(String city, String accommodationType, List<Room> rooms,List<Reservation>reservations, Float rating, String name) {
         super(city, accommodationType, rooms, rating, name, reservations);
     }
 
@@ -19,8 +19,4 @@ public class Land extends Accommodation {
         System.out.println("Calificación: " + getRating() + " estrellas");
     }
 
-    @Override
-    public void updateReservations() {
-        System.out.println("Updating reservations for Finca: " + getName());
-    }
 }

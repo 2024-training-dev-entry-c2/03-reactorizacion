@@ -12,10 +12,10 @@ public abstract class Accommodation {
     private String accommodationType;
     protected List<Room> rooms;
     protected List<Reservation> reservations;
-    private float rating;
+    private Float rating;
     private String name;
 
-    public Accommodation(String city, String accommodationType, List<Room> rooms, float rating, String name, List<Reservation> reservations) {
+    public Accommodation(String city, String accommodationType, List<Room> rooms, Float rating, String name, List<Reservation> reservations) {
         this.city = city;
         this.accommodationType = accommodationType;
         this.rooms = rooms;
@@ -34,49 +34,41 @@ public abstract class Accommodation {
         return null;
     }
 
-    public int getCapacityAdults() {
-        return getSimplestRoom(rooms).getCapacityAdults();
-    }
-
-    public int getCapacityChildren() {
-        return getSimplestRoom(rooms).getCapacityMinors();
-    }
-
     public Room calculateBasePrice() {
-        return  getSimplestRoom(rooms);
+        return getSimplestRoom(rooms);
     }
 
-    public double calculateTotalPrice(LocalDate startDay, LocalDate endDay, int numberOfRooms) {
+    private Double applyLastFiveDaysIncrease(Double totalPrice) {
+        return totalPrice * 0.15;
+    }
 
-        double simpleRoomPrice = calculateBasePrice().getBasePrice();
+    private Double applyMidMonthIncrease(Double totalPrice) {
+        return totalPrice * 0.10;
+    }
 
-        double totalPrice = simpleRoomPrice * numberOfRooms *(endDay.getDayOfMonth() - startDay.getDayOfMonth());
+    private Double applyEarlyMonthDiscount(Double totalPrice) {
+        return totalPrice * 0.08;
+    }
+
+    public Double calculateTotalPrice(LocalDate startDay, LocalDate endDay, Integer numberOfRooms) {
+        Double totalPrice = calculateBasePrice().getBasePrice() * numberOfRooms *
+                (endDay.getDayOfMonth() - startDay.getDayOfMonth());
 
         if (isLastFiveDaysOfMonth(endDay)) {
-            double discountOrIncrease = totalPrice * 0.15; // 15% increase
-            totalPrice += discountOrIncrease;
+            totalPrice += applyLastFiveDaysIncrease(totalPrice);
         } else if (isWithinRange(startDay, endDay, 10, 15)) {
-            double discountOrIncrease = totalPrice * 0.10; // 10% increase
-            totalPrice += discountOrIncrease;
+            totalPrice += applyMidMonthIncrease(totalPrice);
         } else if (isWithinRange(startDay, endDay, 5, 10)) {
-            double discountOrIncrease = totalPrice * 0.08; // 8% discount
-            totalPrice -= discountOrIncrease;
+            totalPrice -= applyEarlyMonthDiscount(totalPrice);
         }
 
         return totalPrice;
     }
 
-    public Reservation getReserveByClient(String email, LocalDate birthDate) {
-        for (Reservation reserve : reservations) {
-            if (reserve.getClient().getEmail().equals(email) &&
-                    reserve.getClient().getBirthDate().equals(birthDate)) {
-                return reserve;
-            }
-        }
-        return null;
-    }
-
     public void eliminarReserva(Reservation reserva) {
+        if (!reservations.contains(reserva)) {
+            throw new IllegalArgumentException("La reserva no existe.");
+        }
         reservations.remove(reserva);
     }
 
@@ -101,7 +93,17 @@ public abstract class Accommodation {
         return name;
     }
 
+    public Integer getCapacityAdults() {
+        return getSimplestRoom(rooms).getCapacityAdults();
+    }
+
+    public Integer getCapacityChildren() {
+        return getSimplestRoom(rooms).getCapacityMinors();
+    }
+
     public abstract void showInformation();
 
-    public abstract void updateReservations();
+    public void updateReservations() {
+        reservations.removeIf(reservation -> reservation.getEndDate().isBefore(LocalDate.now()));
+    }
 }

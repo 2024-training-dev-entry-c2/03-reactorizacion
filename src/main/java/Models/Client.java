@@ -20,12 +20,9 @@ public class Client {
         this.birthDate = birthDate;
     }
 
-    public void showInformation() {
-        System.out.println("Name: " + firstName + " " + lastName);
-        System.out.println("Email: " + email);
-        System.out.println("Phone Number: " + phoneNumber);
-        System.out.println("Nationality: " + nationality);
-        System.out.println("Date of Birth: " + birthDate);
+    public String getInformation() {
+        return String.format("Name: %s %s%nEmail: %s%nPhone Number: %s%nNationality: %s%nDate of Birth: %s",
+                firstName, lastName, email, phoneNumber, nationality, birthDate);
     }
 
     public String getEmail() {
@@ -35,6 +32,5 @@ public class Client {
     public LocalDate getBirthDate() {
         return birthDate;
     }
-
 
 }

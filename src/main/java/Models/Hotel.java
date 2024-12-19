@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Hotel extends Accommodation {
 
-    public Hotel(String city, String accommodationType, List<Room> rooms , List<Reservation> reservations, float rating, String name) {
+    public Hotel(String city, String accommodationType, List<Room> rooms , List<Reservation> reservations, Float rating, String name) {
         super(city, accommodationType, rooms , rating, name, reservations);
     }
 
@@ -16,8 +16,4 @@ public class Hotel extends Accommodation {
         System.out.println("Calificación: " + getRating() + " estrellas");
     }
 
-    @Override
-    public void updateReservations() {
-        System.out.println("Updating reservations for " + getName());
-    }
 }

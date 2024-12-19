@@ -9,12 +9,12 @@ public class DateUtils {
         return date.getDayOfMonth() > lastDayOfMonth - 5;
     }
 
-    public static boolean isWithinRange(LocalDate start, LocalDate end, int fromDay, int toDay) {
+    public static boolean isWithinRange(LocalDate start, LocalDate end, Integer fromDay, Integer toDay) {
         return (start.getDayOfMonth() >= fromDay && start.getDayOfMonth() <= toDay) &&
                 (end.getDayOfMonth() >= fromDay && end.getDayOfMonth() <= toDay);
     }
 
-    public static boolean isWithinDayRange(LocalDate day, int fromDay, int toDay) {
+    public static boolean isWithinDayRange(LocalDate day, Integer fromDay, Integer toDay) {
         Integer dayOfMonth = day.getDayOfMonth();
         return dayOfMonth >= fromDay && dayOfMonth <= toDay;
     }

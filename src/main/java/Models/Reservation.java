@@ -7,14 +7,13 @@ public class Reservation<T> {
 
     private Client client;
     private T accommodation;
-    private int numberOfRooms;
+    private Integer numberOfRooms;
     private Room room;
     private LocalDate startDate;
     private LocalDate endDate;
     private LocalTime checkInTime;
 
-
-    public Reservation(Client client, T accommodation, int numberOfRooms, Room room, LocalDate startDate, LocalDate endDate, LocalTime checkInTime) {
+    public Reservation(Client client, T accommodation, Integer numberOfRooms, Room room, LocalDate startDate, LocalDate endDate, LocalTime checkInTime) {
         this.client = client;
         this.accommodation = accommodation;
         this.numberOfRooms = numberOfRooms;
@@ -36,16 +35,8 @@ public class Reservation<T> {
         return accommodation;
     }
 
-    public void setAccommodation(T accommodation) {
-        this.accommodation = accommodation;
-    }
-
-    public int getNumberOfRooms() {
+    public Integer getNumberOfRooms() {
         return numberOfRooms;
-    }
-
-    public void setNumberOfRooms(int numberOfRooms) {
-        this.numberOfRooms = numberOfRooms;
     }
 
     public Room getRoom() {
@@ -60,23 +51,11 @@ public class Reservation<T> {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
     public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
     public LocalTime getCheckInTime() {
         return checkInTime;
-    }
-
-    public void setCheckInTime(LocalTime checkInTime) {
-        this.checkInTime = checkInTime;
     }
 }

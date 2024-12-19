@@ -7,7 +7,7 @@ public enum MenuOptionEnum {
     MODIFY_RESERVATION,
     EXIT;
 
-    public static MenuOptionEnum getMenuOption(int choice) {
+    public static MenuOptionEnum getMenuOption(Integer choice) {
         return switch (choice) {
             case 1 -> SEARCH_ACCOMMODATION;
             case 2 -> SEARCH_ROOMS;

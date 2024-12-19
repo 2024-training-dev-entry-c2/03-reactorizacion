@@ -2,7 +2,6 @@ package Services;
 import Models.*;
 import Data.Data;
 import Interface.IBooking;
-import Models.Accommodation;
 import lib.AccommodationType;
 
 import java.time.LocalDate;
@@ -34,7 +33,7 @@ public class BookingServices implements IBooking {
 
             System.out.println("Seleccione una opcion (1-Hotel, 2-Apartamento, 3-Finca, 4-Día de Sol): ");
 
-            int type= Integer.parseInt(scanner.nextLine());
+            Integer type= Integer.parseInt(scanner.nextLine());
 
             AccommodationType accommodationType = getAccomodationType(type);
 
@@ -53,13 +52,13 @@ public class BookingServices implements IBooking {
             }
 
             System.out.print("Número de Adultos: ");
-            int adults = scanner.nextInt();
+            Integer adults = scanner.nextInt();
 
             System.out.print("Número de Menores: ");
-            int children = scanner.nextInt();
+            Integer children = scanner.nextInt();
 
             System.out.print("Números de reservas: ");
-            int rooms = scanner.nextInt();
+            Integer rooms = scanner.nextInt();
 
             List<Accommodation> accommodations = List.of();
 
@@ -98,9 +97,9 @@ public class BookingServices implements IBooking {
             String city,
             LocalDate startDate,
             LocalDate endDate,
-            int adults,
-            int children,
-            int rooms
+            Integer adults,
+            Integer children,
+            Integer rooms
     ) {
         List<Accommodation> results = new ArrayList<>();
 
@@ -140,15 +139,15 @@ public class BookingServices implements IBooking {
 
 
             System.out.print("Ingrese la cantidad de adultos: ");
-            int adults = Integer.parseInt(scanner.nextLine());
+            Integer adults = Integer.parseInt(scanner.nextLine());
 
 
             System.out.print("Ingrese la cantidad de niños: ");
-            int children = Integer.parseInt(scanner.nextLine());
+            Integer children = Integer.parseInt(scanner.nextLine());
 
 
             System.out.print("Ingrese la cantidad de habitaciones requeridas: ");
-            int roomsRequired = Integer.parseInt(scanner.nextLine());
+            Integer roomsRequired = Integer.parseInt(scanner.nextLine());
 
 
             List<Room> availableRooms = confirmRooms(hotelName, startDate, endDate, adults, children, roomsRequired);
@@ -171,9 +170,9 @@ public class BookingServices implements IBooking {
             String hotelName,
             LocalDate startDate,
             LocalDate endDate,
-            int adults,
-            int children,
-            int roomsRequired
+            Integer adults,
+            Integer children,
+            Integer roomsRequired
     ) {
         Accommodation selectedHotel = hotels.stream()
                 .filter(hotel -> hotel.getName().equalsIgnoreCase(hotelName))
@@ -244,7 +243,7 @@ public class BookingServices implements IBooking {
             String roomType = scanner.nextLine();
 
             System.out.print("Ingrese la cantidad de habitaciones: ");
-            int roomsToReserve = Integer.parseInt(scanner.nextLine());
+            Integer roomsToReserve = Integer.parseInt(scanner.nextLine());
 
             Accommodation selectedHotel = findAccommodationByName(hotelName);
             if (selectedHotel == null) {
@@ -359,7 +358,7 @@ public class BookingServices implements IBooking {
                 System.out.println("¿Qué desea hacer?");
                 System.out.println("1. Cambiar habitación");
                 System.out.println("2. Cambiar alojamiento");
-                int opcion = scanner.nextInt();
+                Integer opcion = scanner.nextInt();
                 scanner.nextLine();
 
                 if (opcion == 1) {

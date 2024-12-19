@@ -12,7 +12,7 @@ public class SunnyDay extends Accommodation {
     private boolean includesLunch;
     private boolean includesSnack;
 
-    public SunnyDay(String city, String accommodationType, List<Room> rooms , List<Reservation> reservations, float rating, String name, boolean includesLunch, boolean includesSnack) {
+    public SunnyDay(String city, String accommodationType, List<Room> rooms , List<Reservation> reservations, Float rating, String name, boolean includesLunch, boolean includesSnack) {
         super(city, accommodationType, rooms, rating, name, reservations);
         this.includesLunch = includesLunch;
         this.includesSnack = includesSnack;
@@ -28,22 +28,17 @@ public class SunnyDay extends Accommodation {
         System.out.println("Incluye Refrigerio: " + (includesSnack ? "Sí" : "No"));
     }
 
-    @Override
-    public void updateReservations() {
-        System.out.println("Updating reservations for SunnyDay: " + getName());
-    }
-
-    public double calculateTotalPrice(LocalDate day) {
-        double totalPrice = calculateBasePrice().getBasePrice();
+    public Double calculateTotalPrice(LocalDate day) {
+        Double totalPrice = calculateBasePrice().getBasePrice();
 
         if (isLastFiveDaysOfMonth(day)) {
-            double discountOrIncrease = totalPrice * 0.15; // 15% increase
+            Double discountOrIncrease = totalPrice * 0.15; // 15% increase
             totalPrice += discountOrIncrease;
         } else if (isWithinDayRange(day, 10, 15)) {
-            double discountOrIncrease = totalPrice * 0.10; // 10% increase
+            Double discountOrIncrease = totalPrice * 0.10; // 10% increase
             totalPrice += discountOrIncrease;
         } else if (isWithinDayRange(day, 5, 10)) {
-            double discountOrIncrease = totalPrice * 0.08; // 8% discount
+            Double discountOrIncrease = totalPrice * 0.08; // 8% discount
             totalPrice -= discountOrIncrease;
         }
         return totalPrice;
