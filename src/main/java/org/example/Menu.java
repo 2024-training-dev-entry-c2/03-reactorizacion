@@ -21,34 +21,27 @@ public class Menu {
         String tipo = seleccionarOpcionDeLista(scanner, "Selecciona un tipo de alojamiento:", alojamientosView.obtenerTipos());
         if (tipo == null) return;
         //paso3
-//        LocalDate fechaInicio = MenuHelper.obtenerEntradaValidaFecha(scanner, "Ingrese el día de inicio del hospedaje: ");
-//        LocalDate fechaFin = MenuHelper.obtenerEntradaValidaFecha(scanner, "Ingrese el día de finalización del hospedaje: ");
-//        Integer cantidadAdultos = MenuHelper.obtenerEntradaValida(scanner, "Ingrese la cantidad de adultos: ");
-//        Integer cantidadNinos = MenuHelper.obtenerEntradaValida(scanner, "Ingrese la cantidad de niños: ");
-//        Integer cantidadHabitaciones = MenuHelper.obtenerEntradaValida(scanner, "Ingrese la cantidad de habitaciones: ");
-        LocalDate fechaInicio =LocalDate.parse("2024-12-25");// obtenerEntradaValidaFecha(scanner, "Ingrese el día de inicio del hospedaje: ");
-        LocalDate fechaFin = LocalDate.parse("2024-12-29");//obtenerEntradaValidaFecha(scanner, "Ingrese el día de finalización del hospedaje: ");
-        Integer cantidadAdultos =2;// obtenerEntradaValida(scanner, "Ingrese la cantidad de adultos: ");
-        Integer cantidadNinos = 1;//obtenerEntradaValida(scanner, "Ingrese la cantidad de niños: ");
-        Integer cantidadHabitaciones =1;// obtenerEntradaValida(scanner, "Ingrese la cantidad de habitaciones: ");
-
+        DatosConsulta datosConsulta = obtenerDatosReserva(scanner);
+        if (datosConsulta == null) return;
         //paso4
         List<Alojamientos> alojamientosFiltrados = alojamientosView.filtrar(ciudad, tipo);
         Alojamientos alojamientoSeleccionado = seleccionarAlojamiento(scanner, alojamientosFiltrados);
         if (alojamientoSeleccionado == null) return;
         alojamientoSeleccionado.mostrarAlojamiento();
         //paso5
-
-        Habitacion habitacionSeleccionada = seleccionarHabitacion(scanner, alojamientoSeleccionado, cantidadHabitaciones, fechaInicio, fechaFin);
+        Habitacion habitacionSeleccionada = seleccionarHabitacion(scanner, alojamientoSeleccionado, datosConsulta);
         if (habitacionSeleccionada == null) return;
-        System.out.println("Habitación seleccionada: " + habitacionSeleccionada.getTipo());
+
+        if (!habitacionSeleccionada.maxPersonas(datosConsulta.getCantidadAdultos(), datosConsulta.getCantidadNinos())) {
+            System.out.println("No hay espacio, se aplicarán cargos adicionales.");
+        }
 
         //paso6
         Integer opcionAutenticar = MenuHelper.seleccionarOpcionMenu(scanner, "Proceso a seguir:", new String[]{"Hacer Reserva"});
         if (opcionAutenticar == -1) return;
 
         //paso 7
-        confirmarReserva(scanner, alojamientoSeleccionado, habitacionSeleccionada, fechaInicio, fechaFin);
+        confirmarReserva(scanner, alojamientoSeleccionado, habitacionSeleccionada, datosConsulta);
 
     }
 
@@ -69,6 +62,20 @@ public class Menu {
         return (index == -1) ? null : opciones.get(index);
     }
 
+    private DatosConsulta obtenerDatosReserva(Scanner scanner) {
+        try {
+            LocalDate fechaInicio = MenuHelper.obtenerEntradaValidaFecha(scanner, "Ingrese el día de inicio del hospedaje: ");
+            LocalDate fechaFin = MenuHelper.obtenerEntradaValidaFecha(scanner, "Ingrese el día de finalización del hospedaje: ");
+            Integer cantidadAdultos = MenuHelper.obtenerEntradaValida(scanner, "Ingrese la cantidad de adultos: ");
+            Integer cantidadNinos = MenuHelper.obtenerEntradaValida(scanner, "Ingrese la cantidad de niños: ");
+            Integer cantidadHabitaciones = MenuHelper.obtenerEntradaValida(scanner, "Ingrese la cantidad de habitaciones: ");
+
+            return new DatosConsulta(fechaInicio, fechaFin, cantidadAdultos, cantidadNinos, cantidadHabitaciones);
+        } catch (Exception e) {
+            System.out.println("Error al obtener los datos de la reserva. Inténtelo nuevamente.");
+            return null;
+        }
+    }
 
     private Alojamientos seleccionarAlojamiento(Scanner scanner, List<Alojamientos> alojamientos) {
         alojamientos.forEach(Alojamientos::mostrarAlojamiento);
@@ -76,32 +83,28 @@ public class Menu {
         return (index == -1) ? null : alojamientos.get(index);
     }
 
-    private Habitacion seleccionarHabitacion(Scanner scanner, Alojamientos alojamiento, Integer cantidadHabitaciones, LocalDate fechaInicio, LocalDate FechaFin) {
-        alojamiento.mostrarAlojamiento();
+    private Habitacion seleccionarHabitacion(Scanner scanner, Alojamientos alojamiento, DatosConsulta datosConsulta) {
+//        alojamiento.mostrarAlojamiento();
         List<Habitacion> habitaciones = alojamiento.getHabitaciones();
-        habitaciones.forEach(h -> h.mostrarHabitacion(cantidadHabitaciones, fechaInicio, FechaFin));
-        Integer index = MenuHelper.seleccionarOpcion(scanner, "Selecciona la habitación a reservar:", habitaciones.stream().map(Habitacion::getTipo).toList());
+        habitaciones.forEach(h -> h.mostrarHabitacion(datosConsulta.getCantidadHabitaciones(),
+                datosConsulta.getFechaInicio(), datosConsulta.getFechaFin()));
+        Integer index = MenuHelper.seleccionarOpcion(scanner, "Selecciona la habitación a reservar:",
+                habitaciones.stream().map(Habitacion::getTipo).toList());
         return (index == -1) ? null : habitaciones.get(index);
     }
 
-    private void confirmarReserva(Scanner scanner, Alojamientos alojamiento, Habitacion habitacion, LocalDate fechaInicio, LocalDate fechaFin) {
-//        String nombre = MenuHelper.obtenerEntradaValidaTexto(scanner, "Escriba su nombre:");
-//        String apellido = MenuHelper.obtenerEntradaValidaTexto(scanner, "Escriba su apellido:");
-//        LocalDate fechaNacimiento = MenuHelper.obtenerEntradaValidaFecha(scanner, "Escriba su fecha de nacimiento (yyyy-MM-dd):");
-//        String nacionalidad = MenuHelper.obtenerEntradaValidaTexto(scanner, "Escriba su nacionalidad:");
-//        String email = MenuHelper.obtenerEntradaValidaTexto(scanner, "Escriba su email:");
-//        Float telefono = MenuHelper.obtenerEntradaValida(scanner, "Escriba su teléfono:");
-        String nombre ="Martin";// obtenerEntradaValidaTexto(scanner, "Escriba su nombre: ");
+    private void confirmarReserva(Scanner scanner, Alojamientos alojamiento, Habitacion habitacion, DatosConsulta datosConsulta) {
+        String nombre = "Martin";// obtenerEntradaValidaTexto(scanner, "Escriba su nombre: ");
         String apellido = "Parada";//obtenerEntradaValidaTexto(scanner, "Escriba su apellido: ");
         LocalDate fechaNacimiento = LocalDate.parse("2000-05-23");// obtenerEntradaValidaFecha(scanner, "Escriba su Fecha de Nacimiento dd/MM/yyyy : ");
         String nacionalidad = "COl";//obtenerEntradaValidaTexto(scanner, "Escriba su Nacionalidad: ");
         String email = "m@gmail.com";//obtenerEntradaValidaTexto(scanner, "Escriba su email: ");
-        Integer telefono =123123123; //obtenerEntradaValida(scanner, "Escriba su telefono: ");
+        Integer telefono = 123123123; //obtenerEntradaValida(scanner, "Escriba su telefono: ");
         Integer hora = 5;//obtenerEntradaValida(scanner, "Escriba la hora de llegada: ");
-        Cliente cliente = new Cliente(nombre,apellido,nacionalidad,telefono,email,fechaNacimiento);
-        Boolean reservaExitosa = reservasView.crearReserva( cliente , alojamiento, habitacion, fechaInicio, fechaFin);
+        Cliente cliente = new Cliente(nombre, apellido, nacionalidad, telefono, email, fechaNacimiento);
+        Boolean reservaExitosa = reservasView.crearReserva(cliente, alojamiento, habitacion, datosConsulta.getFechaInicio(), datosConsulta.getFechaFin(), datosConsulta.getCantidadHabitaciones());
         if (reservaExitosa) {
-            System.out.println("¡Felicidades! Reserva realizada exitosamente!!!!"+"\n Alojamiento seleccionado: "+alojamiento.getNombre()+"\n Habitación seleccionada: "+habitacion.getTipo());
+            System.out.println("¡Felicidades! Reserva realizada exitosamente!!!!" + "\n Alojamiento seleccionado: " + alojamiento.getNombre() + "\n Habitación seleccionada: " + habitacion.getTipo());
         } else {
             System.out.println("Hubo un problema al realizar la reserva. Intente nuevamente.");
         }

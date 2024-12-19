@@ -4,7 +4,7 @@ public class DiaSol {
     private Double precio;
     private String actividades;
 
-    public DiaSol(double precio, String actividades) {
+    public DiaSol(Double precio, String actividades) {
         this.precio = precio;
         this.actividades = actividades;
     }
@@ -21,7 +21,7 @@ public class DiaSol {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 

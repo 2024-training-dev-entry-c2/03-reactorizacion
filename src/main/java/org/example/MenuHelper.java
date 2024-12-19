@@ -34,7 +34,7 @@ public class MenuHelper {
         return obtenerEntradaValida(scanner, opciones.length);
     }
 
-    public static Integer obtenerEntradaValida(Scanner scanner, int maxOption) {
+    public static Integer obtenerEntradaValida(Scanner scanner, Integer maxOption) {
         Integer opcion;
         while (true) {
             System.out.print("Ingrese un número: ");

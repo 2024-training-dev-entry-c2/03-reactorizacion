@@ -13,25 +13,26 @@ public class ReservaImplementation implements IReserva {
 
     public ReservaImplementation() {
     }
+
     @Override
-    public Boolean reservar(Cliente cliente, Alojamientos alojamientos, Habitacion habitacion, LocalDate fechaIngreso, LocalDate fechaSalida) {
-        if (fechaIngreso == null || fechaSalida == null || fechaIngreso.isAfter(fechaSalida) || fechaIngreso.isBefore(LocalDate.now())) {
+    public Boolean reservar(Cliente cliente, Alojamientos alojamientos, Habitacion habitacion, LocalDate fechaIngreso, LocalDate fechaSalida, Integer cantidadHabitaciones) {
+        if ((fechaIngreso == null || fechaSalida == null || fechaIngreso.isAfter(fechaSalida) || fechaIngreso.isBefore(LocalDate.now()))
+                && habitacion.estaDisponible(fechaIngreso, fechaSalida, cantidadHabitaciones)) {
             System.out.println("Las fechas de ingreso y salida son inválidas o están en el pasado.");
             return false;
         }
-
         if (reservaData == null) {
             reservaData = new ReservaData(cliente, fechaIngreso, fechaSalida, habitacion, alojamientos);
         }
-
         reservaData.setCliente(cliente);
         reservaData.setFechaIngreso(fechaIngreso);
         reservaData.setFechaSalida(fechaSalida);
         reservaData.setHabitacion(habitacion);
         reservaData.setAlojamiento(alojamientos);
+        habitacion.agregarReserva(reservaData, cantidadHabitaciones);
 
         System.out.println("Reserva realizada con éxito para el cliente: " + cliente.getNombre());
-//        habitacion.agregarReserva(reservaData);
+
         return true;
     }
 
@@ -55,13 +56,13 @@ public class ReservaImplementation implements IReserva {
 
     @Override
     public Boolean actualizarReserva(Habitacion habitacion) {
-        if (habitacion.getTipo().isBlank()){
+        if (habitacion.getTipo().isBlank()) {
             System.out.println("Habitacion no encontrada");
         }
 
         reservaData.setHabitacion(habitacion);
-        habitacion.cancelado();//devuelve las habitaciones usadas o eso espero
-        //->>>>>>>>>>>>>>>>>>>>>Actualizar capacidad<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        habitacion.cancelado();
+
 
         return false;
     }

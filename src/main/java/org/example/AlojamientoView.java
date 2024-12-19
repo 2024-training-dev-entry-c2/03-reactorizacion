@@ -9,59 +9,59 @@ public class AlojamientoView {
 
     public void inicializarDatos() {
         alojamientos.add(new Hotel("Hotel Paraíso", "Cartagena", "Hotel", 5.0, Arrays.asList(
-                new Habitacion("Sencilla", "1 cama sencilla, TV, baño privado", 150000, 10, 4),
-                new Habitacion("Duo", "2 camas sencillas, TV, baño privado", 200000, 5, 6)
+                new Habitacion("Sencilla", "1 cama sencilla, TV, baño privado", 150000.0, 10, 4),
+                new Habitacion("Duo", "2 camas sencillas, TV, baño privado", 200000.0, 5, 6)
         )));
 
         alojamientos.add(new Hotel("Hotel Paraíso", "Cartagena", "Hotel", 5.0,
-                Arrays.asList(new Habitacion("Sencilla", "1 cama sencilla, TV, baño privado", 150000, 10, 4),
-                        new Habitacion("Duo", "2 camas sencillas, TV, baño privado", 200000, 5, 6),
-                        new Habitacion("Triple", "4 cama sencilla, TV, baño privado", 150000, 10, 4),
-                        new Habitacion("Lujo", "2 cama sencilla, TV, baño privado, servicio al cuarto", 150000, 10, 4),
-                        new Habitacion("Presidencial", "2 cama sencilla, TV, baño privado, Jacuzzi", 150000, 10, 4))));
+                Arrays.asList(new Habitacion("Sencilla", "1 cama sencilla, TV, baño privado", 150000.0, 10, 4),
+                        new Habitacion("Duo", "2 camas sencillas, TV, baño privado", 200000.0, 5, 6),
+                        new Habitacion("Triple", "4 cama sencilla, TV, baño privado", 150000.0, 10, 4),
+                        new Habitacion("Lujo", "2 cama sencilla, TV, baño privado, servicio al cuarto", 150000.0, 10, 4),
+                        new Habitacion("Presidencial", "2 cama sencilla, TV, baño privado, Jacuzzi", 150000.0, 10, 4))));
 
         alojamientos.add(new Hotel("Hotel Real", "Bogotá", "Hotel", 5.0,
-                Arrays.asList(new Habitacion("Sencilla", "1 cama sencilla, TV, baño privado", 150000, 10, 4),
-                        new Habitacion("Duo", "3 camas sencillas, TV, baño privado", 200000, 5, 6),
-                        new Habitacion("Triple", "4 cama sencilla, TV, baño privado", 150000, 10, 4),
-                        new Habitacion("Lujo", "2 cama sencilla, TV, baño privado, servicio al cuarto", 150000, 10, 4),
-                        new Habitacion("Presidencial", "2 cama sencilla, TV, baño privado, Jacuzzi", 150000, 10, 4)
+                Arrays.asList(new Habitacion("Sencilla", "1 cama sencilla, TV, baño privado", 150000.0, 10, 4),
+                        new Habitacion("Duo", "3 camas sencillas, TV, baño privado", 200000.0, 5, 6),
+                        new Habitacion("Triple", "4 cama sencilla, TV, baño privado", 150000.0, 10, 4),
+                        new Habitacion("Lujo", "2 cama sencilla, TV, baño privado, servicio al cuarto", 150000.0, 10, 4),
+                        new Habitacion("Presidencial", "2 cama sencilla, TV, baño privado, Jacuzzi", 150000.0, 10, 4)
                 )));
         alojamientos.add(new Hotel("Hotel Real", "Medellín", "Hotel", 5.0,
-                Arrays.asList(new Habitacion("Sencilla", "1 cama sencilla, TV, baño privado", 150000, 10, 4),
-                        new Habitacion("Duo", "3 camas sencillas, TV, baño privado", 200000, 5, 6),
-                        new Habitacion("Triple", "4 cama sencilla, TV, baño privado", 150000, 10, 4),
-                        new Habitacion("Lujo", "2 cama sencilla, TV, baño privado, servicio al cuarto", 150000, 10, 4),
-                        new Habitacion("Presidencial", "2 cama sencilla, TV, baño privado, Jacuzzi", 150000, 10, 4)
+                Arrays.asList(new Habitacion("Sencilla", "1 cama sencilla, TV, baño privado", 150000.0, 10, 4),
+                        new Habitacion("Duo", "3 camas sencillas, TV, baño privado", 200000.0, 5, 6),
+                        new Habitacion("Triple", "4 cama sencilla, TV, baño privado", 150000.0, 10, 4),
+                        new Habitacion("Lujo", "2 cama sencilla, TV, baño privado, servicio al cuarto", 150000.0, 10, 4),
+                        new Habitacion("Presidencial", "2 cama sencilla, TV, baño privado, Jacuzzi", 150000.0, 10, 4)
                 )));
         alojamientos.add(new Apartamento("Apartamento Luna", "Bogotá", "Apartamento", 4.4,
-                Arrays.asList(new Habitacion("Suite", "1 cama king, cocina equipada, balcón", 300000, 5, 3),
-                        new Habitacion("Familiar", "2 camas dobles, sala comedor, cocina", 250000, 2, 5))));
+                Arrays.asList(new Habitacion("Suite", "1 cama king, cocina equipada, balcón", 300000.0, 5, 3),
+                        new Habitacion("Familiar", "2 camas dobles, sala comedor, cocina", 250000.0, 2, 5))));
         alojamientos.add(new Apartamento("Apartamento sol", "Medellín", "Apartamento", 4.4,
-                Arrays.asList(new Habitacion("Suite", "1 cama king, cocina equipada, balcón", 300000, 5, 3),
-                        new Habitacion("Familiar", "2 camas dobles, sala comedor, cocina", 250000, 2, 5))));
+                Arrays.asList(new Habitacion("Suite", "1 cama king, cocina equipada, balcón", 300000.0, 5, 3),
+                        new Habitacion("Familiar", "2 camas dobles, sala comedor, cocina", 250000.0, 2, 5))));
 
         alojamientos.add(new Finca("Finca El Encanto", "Medellín", "Finca", 3.8,
-                Arrays.asList(new Habitacion("Cabaña", "2 camas dobles, cocina, chimenea", 300000, 4, 4),
-                        new Habitacion("Habitación Campestre", "1 cama king, terraza privada", 280000, 3, 3))));
+                Arrays.asList(new Habitacion("Cabaña", "2 camas dobles, cocina, chimenea", 300000.0, 4, 4),
+                        new Habitacion("Habitación Campestre", "1 cama king, terraza privada", 280000.0, 3, 3))));
 
         alojamientos.add(new Finca("Finca El Capo", "Medellín", "Finca", 3.8,
-                Arrays.asList(new Habitacion("Cabaña", "2 camas dobles, cocina, chimenea", 300000, 4, 4),
-                        new Habitacion("Habitación Campestre", "1 cama king, terraza privada", 280000, 3, 3))));
+                Arrays.asList(new Habitacion("Cabaña", "2 camas dobles, cocina, chimenea", 300000.0, 4, 4),
+                        new Habitacion("Habitación Campestre", "1 cama king, terraza privada", 280000.0, 3, 3))));
         alojamientos.add(new Finca("Finca El Encanto Carta", "Cartagena", "Finca", 3.8,
-                Arrays.asList(new Habitacion("Cabaña", "2 camas dobles, cocina, chimenea", 300000, 4, 4),
-                        new Habitacion("Habitación Campestre", "1 cama king, terraza privada", 280000, 3, 3))));
+                Arrays.asList(new Habitacion("Cabaña", "2 camas dobles, cocina, chimenea", 300000.0, 4, 4),
+                        new Habitacion("Habitación Campestre", "1 cama king, terraza privada", 280000.0, 3, 3))));
 
         alojamientos.add(new Finca("Finca La mojarra", "Cartagena", "Finca", 3.8,
-                Arrays.asList(new Habitacion("Cabaña", "2 camas dobles, cocina, chimenea", 300000, 4, 4),
-                        new Habitacion("Habitación Campestre", "1 cama king, terraza privada", 280000, 3, 3))));
+                Arrays.asList(new Habitacion("Cabaña", "2 camas dobles, cocina, chimenea", 300000.0, 4, 4),
+                        new Habitacion("Habitación Campestre", "1 cama king, terraza privada", 280000.0, 3, 3))));
 
         alojamientos.add(new Hotel("Resort Brisa Marina", "Cartagena", "Día de Sol", 3.9,
-                Arrays.asList(new Habitacion("Piscina", "Acceso a piscina y deportes acuáticos", 120000, 10, 10),
-                        new Habitacion("Picnic", "Piscina/Toboganes y zona de picnic", 90000, 10, 10)), new DiaSol(20000, "Piscina, Picninc, actividades varias")));
+                Arrays.asList(new Habitacion("Piscina", "Acceso a piscina y deportes acuáticos", 120000.0, 10, 10),
+                        new Habitacion("Picnic", "Piscina/Toboganes y zona de picnic", 90000.0, 10, 10)), new DiaSol(20000.0, "Piscina, Picninc, actividades varias")));
         alojamientos.add(new Hotel("Resort ", "Cartagena", "Día de Sol", 3.9,
-                Arrays.asList(new Habitacion("Piscina", "Acceso a piscina y deportes acuáticos", 120000, 10, 10),
-                        new Habitacion("Picnic", "Piscina/Toboganes y zona de picnic", 90000, 10, 10)), new DiaSol(20000, "Piscina, Picninc, actividades varias")));
+                Arrays.asList(new Habitacion("Piscina", "Acceso a piscina y deportes acuáticos", 120000.0, 10, 10),
+                        new Habitacion("Picnic", "Piscina/Toboganes y zona de picnic", 90000.0, 10, 10)), new DiaSol(20000.0, "Piscina, Picninc, actividades varias")));
 
     }
 
