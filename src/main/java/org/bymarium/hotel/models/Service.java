@@ -9,6 +9,14 @@ public class Service {
         this.description = description;
     }
 
+    public Service() {
+    }
+
+    public String printService() {
+        return "Nombre: " + name + "\n" +
+                "Descripción: " + description + "\n";
+    }
+
     public String getName() {
         return name;
     }

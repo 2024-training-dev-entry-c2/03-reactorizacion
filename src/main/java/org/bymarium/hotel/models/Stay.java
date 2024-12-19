@@ -20,6 +20,37 @@ public class Stay extends Accommodation {
         this.type = type;
     }
 
+    public Stay(Float basePrice, AccommodationType type) {
+        this.basePrice = basePrice;
+        this.type = type;
+    }
+
+    public Stay() {
+    }
+
+    @Override
+    public String printAccommodation() {
+        String result = "\n********** ALOJAMIENTO **********\n";
+
+        result += "Ciudad: " + getCity() + "\n";
+        result += "Tipo de alojamiento: Dia de Sol\n";
+        result += "Nombre: " + getName() + "\n";
+        result += "Descripción: " + getDescription() + "\n";
+        result += "Calificación: " + getRate() + "\n";
+        result += "Precio por noche: " + getBasePrice() + "\n";
+
+    result += "\n********** HABITACIONES **********\n";
+        int index = 1;
+        for (Service service : getServices()) {
+            result += "Habitación " + index + ". \n";
+            result += service.printService();
+            result += "----\n";
+            index++;
+        }
+
+        return result;
+    }
+
     public Float getBasePrice() {
         return basePrice;
     }

@@ -21,8 +21,7 @@ public class BookingService implements IBookingService {
 
       switch (option) {
         case 1:
-          // TODO: Reservar alojamiento
-          System.out.println("Reservar alojamiento (opción en desarrollo)");
+          menuService.makeBooking();
           break;
         case 2:
           // TODO: Ver reservas

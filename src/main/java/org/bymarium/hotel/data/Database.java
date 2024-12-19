@@ -69,7 +69,7 @@ public class Database {
         new Room("Deluxe", "Habitación exclusiva con vista panorámica, minibar y desayuno buffet.", 2, "Deluxe", 450.0f)),
         300.0f, AccommodationType.HOTEL),
 
-      new Stay("Finca El Paraíso", 4.8f, "Armenia", "Hermosa finca cafetera rodeada de montañas y paisajes espectaculares", Arrays.asList(
+      new Stay("Finca El Paraíso", 4.8f, "Santa Marta", "Hermosa finca cafetera rodeada de montañas y paisajes espectaculares", Arrays.asList(
         new Room("Suite", "Suite con jacuzzi privado y terraza con vista al cafetal, incluye desayuno típico", 4, "Suite", 300.0f),
         new Room("Familiar", "Habitación amplia con dos camas dobles y balcón al jardín, incluye hamaca", 6, "Familiar", 250.0f),
         new Room("Individual", "Habitación sencilla con cama individual y baño privado, incluye conexión Wi-Fi", 5, "Individual", 120.0f),
@@ -77,7 +77,7 @@ public class Database {
         new Room("Deluxe", "Habitación de lujo con piscina privada y chimenea, incluye minibar y vistas panorámicas", 2, "Deluxe", 450.0f)),
         250.0f, AccommodationType.FARM),
 
-      new Stay("Finca Los Alpes", 4.7f, "Manizales", "Finca tradicional con acceso a senderos ecológicos y cascadas", Arrays.asList(
+      new Stay("Finca Los Alpes", 4.7f, "Pereira", "Finca tradicional con acceso a senderos ecológicos y cascadas", Arrays.asList(
         new Room("Suite", "Suite con jacuzzi y sala de estar, incluye desayuno y tour por la finca", 3, "Suite", 320.0f),
         new Room("Familiar", "Habitación para familias con capacidad para 5 personas, incluye área de juegos", 5, "Familiar", 260.0f),
         new Room("Individual", "Habitación económica para viajeros, incluye cama sencilla y baño privado", 6, "Individual", 100.0f),
@@ -93,7 +93,7 @@ public class Database {
         new Room("Deluxe", "Habitación premium con piscina privada y terraza con vista panorámica", 2, "Deluxe", 450.0f)),
         240.0f, AccommodationType.FARM),
 
-      new Stay("Finca El Bosque", 4.6f, "San Gil", "Finca ecológica rodeada de bosques tropicales y actividades de aventura", Arrays.asList(
+      new Stay("Finca El Bosque", 4.6f, "Medellín", "Finca ecológica rodeada de bosques tropicales y actividades de aventura", Arrays.asList(
         new Room("Suite", "Suite con jacuzzi y terraza, incluye acceso a senderos ecológicos y actividades de aventura", 3, "Suite", 300.0f),
         new Room("Familiar", "Habitación espaciosa con dos camas dobles y área para niños, incluye desayuno", 5, "Familiar", 260.0f),
         new Room("Individual", "Habitación cómoda para viajeros solitarios, incluye cama sencilla y baño privado", 4, "Individual", 100.0f),
@@ -141,13 +141,26 @@ public class Database {
         new Room("Deluxe", "Apartamento exclusivo con terraza y jacuzzi privado, incluye desayuno incluido", 2, "Deluxe", 550.0f)),
         300.0f, AccommodationType.APARTMENT),
 
-      new Stay("Apartamento Brisa Marina", 4.8f, "Santa Marta", "Apartamento moderno con vista al mar y acceso a áreas sociales", Arrays.asList(
+      new Stay("Apartamento Brisa Marina", 4.8f, "Medellin", "Apartamento moderno con vista al mar y acceso a áreas sociales", Arrays.asList(
         new Room("Suite", "Suite frente al mar con cocina completa y balcón privado", 2, "Suite", 450.0f),
         new Room("Familiar", "Apartamento amplio con tres habitaciones y sala de estar", 6, "Familiar", 380.0f),
         new Room("Individual", "Apartamento tipo estudio con baño privado y aire acondicionado", 4, "Individual", 200.0f),
         new Room("Doble", "Habitación doble con cama king size, incluye Wi-Fi y Smart TV", 5, "Doble", 260.0f),
         new Room("Deluxe", "Apartamento de lujo con terraza y piscina privada, incluye vistas panorámicas", 2, "Deluxe", 600.0f)),
         400.0f, AccommodationType.APARTMENT)
+    );
+  }
+
+  public List<String> createCities() {
+    return Arrays.asList("Medellín", "Cartagena", "Barranquilla", "Bogotá", "Santa Marta", "Pereira", "Guatapé", "Cali");
+  }
+
+  public List<String> createHostingTypes() {
+    return Arrays.asList(
+      AccommodationType.HOTEL.getSpanishName(),
+      AccommodationType.APARTMENT.getSpanishName(),
+      AccommodationType.FARM.getSpanishName(),
+      AccommodationType.DAYPASS.getSpanishName()
     );
   }
 }

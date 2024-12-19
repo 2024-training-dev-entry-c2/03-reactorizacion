@@ -1,38 +1,55 @@
 package org.bymarium.hotel.models;
 
 public class Room extends Service {
-    private Integer stock;
-    private String type;
-    private Float price;
+  private Integer stock;
+  private String type;
+  private Float price;
 
-    public Room(String name, String description, Integer stock, String type, Float price) {
-        super(name, description);
-        this.stock = stock;
-        this.type = type;
-        this.price = price;
-    }
+  public Room(String name, String description, Integer stock, String type, Float price) {
+    super(name, description);
+    this.stock = stock;
+    this.type = type;
+    this.price = price;
+  }
 
-    public Integer getStock() {
-        return stock;
-    }
+  public Room(Integer stock, String type, Float price) {
+    this.stock = stock;
+    this.type = type;
+    this.price = price;
+  }
 
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
+  public Room() {
+  }
 
-    public String getType() {
-        return type;
-    }
+  public String printRoom() {
+    return "Nombre: " + getName() + "\n" +
+      "Descripción: " + getDescription() + "\n" +
+      "Tipo: " + getType() + "\n" +
+      "Precio: " + getPrice() + "\n" +
+      "Stock: " + getStock() + "\n";
+  }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+  public Integer getStock() {
+    return stock;
+  }
 
-    public Float getPrice() {
-        return price;
-    }
+  public void setStock(Integer stock) {
+    this.stock = stock;
+  }
 
-    public void setPrice(Float price) {
-        this.price = price;
-    }
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
+  public Float getPrice() {
+    return price;
+  }
+
+  public void setPrice(Float price) {
+    this.price = price;
+  }
 }

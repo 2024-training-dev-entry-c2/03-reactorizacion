@@ -17,6 +17,11 @@ public abstract class Accommodation {
     this.services = services;
   }
 
+  public Accommodation() {
+  }
+
+  public abstract String printAccommodation();
+
   public String getName() {
     return name;
   }

@@ -1,5 +1,6 @@
 package org.bymarium.hotel.services;
 
+import org.bymarium.hotel.models.Accommodation;
 import org.bymarium.hotel.services.interfaces.IMenuService;
 import org.bymarium.hotel.services.interfaces.IValidatorService;
 
@@ -8,9 +9,11 @@ import java.util.List;
 
 public class MenuService implements IMenuService {
   private final IValidatorService validatorService;
+  private final AccommodationService accommodationService;
 
-  public MenuService(IValidatorService validatorService) {
+  public MenuService(IValidatorService validatorService, AccommodationService accommodationService) {
     this.validatorService = validatorService;
+    this.accommodationService = accommodationService;
   }
 
   @Override
@@ -69,5 +72,22 @@ public class MenuService implements IMenuService {
     } while (!validOptions.contains(option));
 
     return option;
+  }
+
+  @Override
+  public void makeBooking() {
+    System.out.println(
+      "\n============================================================\n" +
+      "                  RESERVA DE ALOJAMIENTO                    \n" +
+      "============================================================\n"
+    );
+
+    String city = accommodationService.getCity();
+    String accommodationType = accommodationService.getAccommodationType();
+    Accommodation accommodation = accommodationService.getSelectedAccommodation(city, accommodationType);
+
+    System.out.println(city);
+    System.out.println(accommodationType);
+    System.out.println(accommodation.printAccommodation());
   }
 }
