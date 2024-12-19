@@ -5,11 +5,11 @@ import java.util.List;
 public class Hotel extends Alojamientos {
     private DiaSol diaSol;
 
-    public Hotel(String nombre, String ciudad, String tipo, double calificacion, List<Habitacion> habitacion) {
+    public Hotel(String nombre, String ciudad, String tipo, Double calificacion, List<Habitacion> habitacion) {
         super(nombre, ciudad, tipo, calificacion, habitacion);
     }
 
-    public Hotel(String nombre, String ciudad, String tipo, double calificacion, List<Habitacion> habitacion, DiaSol diaSol) {
+    public Hotel(String nombre, String ciudad, String tipo, Double calificacion, List<Habitacion> habitacion, DiaSol diaSol) {
         super(nombre, ciudad, tipo, calificacion, habitacion);
         this.diaSol = diaSol;
     }

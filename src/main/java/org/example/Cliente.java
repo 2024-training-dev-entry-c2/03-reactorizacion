@@ -8,11 +8,11 @@ public class Cliente {
     private String nombre;
     private String apellido;
     private String nacionalidad;
-    private Float telefono;
+    private Integer telefono;
     private String email;
     private LocalDate fechaNacimiento;
 
-    public Cliente(String nombre, String apellido, String nacionalidad, Float telefono, String email, LocalDate fechaNacimiento) {
+    public Cliente(String nombre, String apellido, String nacionalidad, Integer telefono, String email, LocalDate fechaNacimiento) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.nacionalidad = nacionalidad;
@@ -23,6 +23,7 @@ public class Cliente {
 
     public Cliente() {
     }
+
     public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
@@ -39,11 +40,11 @@ public class Cliente {
         this.email = email;
     }
 
-    public Float getTelefono() {
+    public Integer getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Float telefono) {
+    public void setTelefono(Integer telefono) {
         this.telefono = telefono;
     }
 

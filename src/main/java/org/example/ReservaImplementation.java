@@ -13,9 +13,8 @@ public class ReservaImplementation implements IReserva {
 
     public ReservaImplementation() {
     }
-
     @Override
-    public boolean reservar(Cliente cliente, Alojamientos alojamientos, Habitacion habitacion, LocalDate fechaIngreso, LocalDate fechaSalida) {
+    public Boolean reservar(Cliente cliente, Alojamientos alojamientos, Habitacion habitacion, LocalDate fechaIngreso, LocalDate fechaSalida) {
         if (fechaIngreso == null || fechaSalida == null || fechaIngreso.isAfter(fechaSalida) || fechaIngreso.isBefore(LocalDate.now())) {
             System.out.println("Las fechas de ingreso y salida son inválidas o están en el pasado.");
             return false;
@@ -37,7 +36,7 @@ public class ReservaImplementation implements IReserva {
     }
 
     @Override
-    public boolean cancelarReserva(Habitacion habitacion) {
+    public Boolean cancelarReserva(Habitacion habitacion) {
         habitacion.cancelado();
         if (reservaData != null && reservaData.getHabitacion().equals(habitacion)) {
             // Limpiar los datos de la reserva
@@ -55,7 +54,7 @@ public class ReservaImplementation implements IReserva {
     }
 
     @Override
-    public boolean actualizarReserva(Habitacion habitacion) {
+    public Boolean actualizarReserva(Habitacion habitacion) {
         if (habitacion.getTipo().isBlank()){
             System.out.println("Habitacion no encontrada");
         }

@@ -13,7 +13,7 @@ public class Habitacion {
     private List<ReservaData<?>> reservas;
     private Integer numeroHabitaciones;
 
-    public Habitacion(String tipo, String descripcion, double precio, Integer capacidadMaxPersonas, int numeroHabitaciones) {
+    public Habitacion(String tipo, String descripcion, double precio, Integer capacidadMaxPersonas, Integer numeroHabitaciones) {
         this.tipo = tipo;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -21,7 +21,7 @@ public class Habitacion {
         this.numeroHabitaciones = numeroHabitaciones;
     }
 
-    public Habitacion(String tipo, String descripcion, double precio, List<ReservaData<?>> reservas, Integer capacidadMaxPersonas, int numeroHabitaciones) {
+    public Habitacion(String tipo, String descripcion, double precio, List<ReservaData<?>> reservas, Integer capacidadMaxPersonas, Integer numeroHabitaciones) {
         this.tipo = tipo;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -37,16 +37,16 @@ public class Habitacion {
         capacidadMaxPersonas++;
     }
 
-    public void mostrarHabitacion(int cantidadHabitaciones, LocalDate diaInicio, LocalDate diaFinal) {
+    public void mostrarHabitacion(Integer cantidadHabitaciones, LocalDate diaInicio, LocalDate diaFinal) {
         System.out.println("Habitaciones en " + getTipo() + ":");
         System.out.println("*********************************************************");
         System.out.println("Tipo: " + getTipo());
         System.out.println("Descripción: " + getTipo());
-        double precio = calcularPrecio(diaInicio, diaFinal, cantidadHabitaciones, getPrecio());
-
+        Double precio = calcularPrecio(diaInicio, diaFinal, cantidadHabitaciones, getPrecio());
+        setPrecio(precio);
     }
 
-    public double calcularPrecio(LocalDate diaInicio, LocalDate diaFin, int cantidadHabitaciones, double precioHabitacion) {
+    public Double calcularPrecio(LocalDate diaInicio, LocalDate diaFin, int cantidadHabitaciones, double precioHabitacion) {
         long noches = ChronoUnit.DAYS.between(diaInicio, diaFin) + 1; // Calcula las noches
         double precioTotal = precioHabitacion * noches * cantidadHabitaciones;
 
@@ -59,7 +59,7 @@ public class Habitacion {
         return precioFinal;
     }
 
-    private static double obtenerAumentoDesc(LocalDate diaInicio, LocalDate diaFin) {
+    private static Double obtenerAumentoDesc(LocalDate diaInicio, LocalDate diaFin) {
         int diaFinMes = diaFin.getDayOfMonth(); // Obtener el día del mes
         int diaInicioMes = diaInicio.getDayOfMonth();
 
@@ -74,7 +74,7 @@ public class Habitacion {
     }
 
 
-    public boolean estaDisponible(LocalDate fechaIngreso, LocalDate fechaSalida) {
+    public Boolean estaDisponible(LocalDate fechaIngreso, LocalDate fechaSalida) {
 //        for (ReservaData<?> reserva : reservas) {
 //            if (!(fechaSalida.isBefore(reserva.getFechaIngreso()) || fechaIngreso.isAfter(reserva.getFechaSalida()))) {
 //                return false;
@@ -83,7 +83,7 @@ public class Habitacion {
         return false;
     }
 
-    public void agregarReserva(ReservaData<?> reserva) {
+    public void agregarReserva(ReservaData reserva) {
         reservas.add(reserva);
     }
 

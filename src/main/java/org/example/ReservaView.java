@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class ReservaVisualizacion {
+public class ReservaView {
     private List<ReservaImplementation> reservas = new ArrayList<>();
 
-    public boolean crearReserva(String nombre, String apellido, String nacionalidad, String email, LocalDate fechaNacimiento, Alojamientos alojamiento, Habitacion habitacion, float telefono, LocalDate fechaInicio, LocalDate fechaSalida) {
-        Cliente cliente = new Cliente(nombre, apellido, nacionalidad, telefono, email, fechaNacimiento);
+    public Boolean crearReserva( Cliente cliente,Alojamientos alojamiento, Habitacion habitacion, LocalDate fechaInicio, LocalDate fechaSalida) {
+
         ReservaImplementation reservacion = new ReservaImplementation();
         boolean reservaExitosa = reservacion.reservar(cliente, alojamiento, habitacion, fechaInicio, fechaSalida);
         if (reservaExitosa) {
@@ -51,7 +51,7 @@ public class ReservaVisualizacion {
             if (reserva.getReservaData().getCliente().getEmail().equalsIgnoreCase(email) &&
                     reserva.getReservaData().getCliente().getFechaNacimiento().equals(fechaNacimiento)) {
 
-                mostrarReserva(reserva.getReservaData());
+                mostrarReservaAutenticada(reserva.getReservaData());
                 System.out.println("1. Cambiar habitación");
                 System.out.println("2. Cancelar reserva");
 
@@ -86,8 +86,7 @@ public class ReservaVisualizacion {
         reserva.actualizarReserva(nuevaHabitacion);
     }
 
-
-    private void mostrarReserva(ReservaData reservaData) {
+    private void mostrarReservaAutenticada(ReservaData reservaData) {
         System.out.println("-----------------------------------------------------");
         System.out.println("Datos de la reserva:");
         System.out.println("Nombre: " + reservaData.getCliente().getNombre() + " ");

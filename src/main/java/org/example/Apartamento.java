@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Apartamento extends Alojamientos{
 
-    public Apartamento(String nombre, String ciudad, String tipo, double calificacion, List<Habitacion> habitacion) {
+    public Apartamento(String nombre, String ciudad, String tipo, Double calificacion, List<Habitacion> habitacion) {
         super(nombre, ciudad, tipo, calificacion, habitacion);
     }
 

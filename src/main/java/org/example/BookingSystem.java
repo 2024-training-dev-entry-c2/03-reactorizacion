@@ -3,12 +3,12 @@ package org.example;
 import java.util.Scanner;
 
 public class BookingSystem {
-    private final AlojamientoVisualizacion alojamientoService;
-    private final ReservaVisualizacion reservaService;
+    private final AlojamientoView alojamientoService;
+    private final ReservaView reservaService;
     private final Menu menuService;
     public BookingSystem() {
-        alojamientoService = new AlojamientoVisualizacion();
-        reservaService = new ReservaVisualizacion();
+        alojamientoService = new AlojamientoView();
+        reservaService = new ReservaView();
         menuService = new Menu(alojamientoService,reservaService);
         alojamientoService.inicializarDatos();
     }

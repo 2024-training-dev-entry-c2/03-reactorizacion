@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AlojamientoVisualizacion {
+public class AlojamientoView {
     private final List<Alojamientos> alojamientos = new ArrayList<>();
 
     public void inicializarDatos() {

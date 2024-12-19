@@ -9,7 +9,7 @@ public abstract class Alojamientos {
     private Double calificacion;
     private List<Habitacion> habitaciones;
 
-    public Alojamientos(String nombre, String ciudad, String tipo, double calificacion, List<Habitacion> habitacion) {
+    public Alojamientos(String nombre, String ciudad, String tipo, Double calificacion, List<Habitacion> habitacion) {
         this.nombre = nombre;
         this.ciudad = ciudad;
         this.tipo = tipo;
@@ -17,7 +17,7 @@ public abstract class Alojamientos {
         this.habitaciones = habitacion;
     }
 
-    public Alojamientos(String nombre, String ciudad, String tipo, double calificacion) {
+    public Alojamientos(String nombre, String ciudad, String tipo, Double calificacion) {
         this.nombre = nombre;
         this.ciudad = ciudad;
         this.tipo = tipo;

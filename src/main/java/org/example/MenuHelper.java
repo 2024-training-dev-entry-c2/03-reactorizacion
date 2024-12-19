@@ -19,7 +19,7 @@ public class MenuHelper {
         System.out.println((opciones.length + 1) + ". Volver");
     }
 
-    static int seleccionarOpcion(Scanner scanner, String mensaje, List<String> opciones) {
+    static Integer seleccionarOpcion(Scanner scanner, String mensaje, List<String> opciones) {
         System.out.println("___________________________________________________________");
         System.out.println(mensaje);
         for (int i = 0; i < opciones.size(); i++) {
@@ -29,13 +29,13 @@ public class MenuHelper {
         return obtenerEntradaValida(scanner, opciones.size());
     }
 
-    public static int seleccionarOpcionMenu(Scanner scanner, String mensaje, String[] opciones) {
+    public static Integer seleccionarOpcionMenu(Scanner scanner, String mensaje, String[] opciones) {
         mostrarOpcionesMenu(mensaje, opciones);
         return obtenerEntradaValida(scanner, opciones.length);
     }
 
-    public static int obtenerEntradaValida(Scanner scanner, int maxOption) {
-        int opcion;
+    public static Integer obtenerEntradaValida(Scanner scanner, int maxOption) {
+        Integer opcion;
         while (true) {
             System.out.print("Ingrese un número: ");
             try {
@@ -54,8 +54,8 @@ public class MenuHelper {
         }
     }
 
-    public static int obtenerEntradaValida(Scanner scanner, String mensaje) {
-        int opcion;
+    public static Integer obtenerEntradaValida(Scanner scanner, String mensaje) {
+        Integer opcion;
         while (true) {
             System.out.print(mensaje);
             try {
