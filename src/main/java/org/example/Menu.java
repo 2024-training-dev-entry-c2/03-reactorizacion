@@ -1,8 +1,10 @@
 package org.example;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Menu {
@@ -15,35 +17,75 @@ public class Menu {
     }
 
     public void procesarReserva(Scanner scanner) {
+        //paso 1
         List<String> ciudades = alojamientos.obtenerCiudades();
         int ciudadIndex = seleccionarOpcion(scanner, "Selecciona una ciudad:", ciudades);
         if (ciudadIndex == -1) return;
-
+        //paso 2
         List<String> tipos = alojamientos.obtenerTipos();
         int tipoIndex = seleccionarOpcion(scanner, "Selecciona un tipo de alojamiento:", tipos);
         if (tipoIndex == -1) return;
-
+        //paso3
+        LocalDate fechaInicio =LocalDate.parse("2024-12-25");// obtenerEntradaValidaFecha(scanner, "Ingrese el día de inicio del hospedaje: ");
+        LocalDate fechaFin = LocalDate.parse("2024-12-29");//obtenerEntradaValidaFecha(scanner, "Ingrese el día de finalización del hospedaje: ");
+        Integer cantidadAdultos =2;// obtenerEntradaValida(scanner, "Ingrese la cantidad de adultos: ");
+        Integer cantidadNinos = 1;//obtenerEntradaValida(scanner, "Ingrese la cantidad de niños: ");
+        Integer cantidadHabitaciones =1;// obtenerEntradaValida(scanner, "Ingrese la cantidad de habitaciones: ");
+        //paso3
         String ciudad = ciudades.get(ciudadIndex);
         String tipo = tipos.get(tipoIndex);
         List<Alojamientos> filtrados = alojamientos.filtrar(ciudad, tipo);
-
-        LocalDate fechaInicio = obtenerEntradaValidaFecha(scanner, "Ingrese el día de inicio del hospedaje: ");
-        LocalDate fechaFin = obtenerEntradaValidaFecha(scanner, "Ingrese el día de finalización del hospedaje: ");
-        Integer cantidadAdultos = obtenerEntradaValida(scanner, "Ingrese la cantidad de adultos: ");
-        Integer cantidadNinos = obtenerEntradaValida(scanner, "Ingrese la cantidad de niños: ");
-        Integer cantidadHabitaciones = obtenerEntradaValida(scanner, "Ingrese la cantidad de habitaciones: ");
-
-
         int alojamientoIndex = seleccionarOpcion(scanner, "Selecciona un alojamiento:", filtrados.stream().map(Alojamientos::getNombre).toList());
         if (alojamientoIndex == -1) return;
+        System.out.println("_____________/////_________//////______________");
 
-        // continuar con la reserva :c
+
+        Alojamientos alojamientoSeleccionado = filtrados.get(alojamientoIndex);
+        List<Habitacion> habitaciones = alojamientoSeleccionado.getHabitaciones();
+        int habitacionIndex = seleccionarOpcion(scanner, "Selecciona la habitación a reservar:",
+                habitaciones.stream().map(Habitacion::getTipo).toList());
+
+        alojamientoSeleccionado.mostrarAlojamiento();
+
+        Habitacion habitacionSeleccionada = habitaciones.get(habitacionIndex);
+        System.out.println("Habitación seleccionada: " + habitacionSeleccionada.getTipo());
+
+        //paso4
+        int opcionAutenticar = seleccionarOpcionMenu(scanner, "Proceso a seguir:", new String[]{"Hacer Reserva"});
+        if (opcionAutenticar == -1) return;
+
+
+        //paso 5
+        String nombre ="Martin";// obtenerEntradaValidaTexto(scanner, "Escriba su nombre: ");
+        String apellido = "Parada";//obtenerEntradaValidaTexto(scanner, "Escriba su apellido: ");
+        LocalDate fechaNacimiento = LocalDate.parse("2000-05-23");// obtenerEntradaValidaFecha(scanner, "Escriba su Fecha de Nacimiento dd/MM/yyyy : ");
+        String nacionalidad = "COl";//obtenerEntradaValidaTexto(scanner, "Escriba su Nacionalidad: ");
+        String email = "m@gmail.com";//obtenerEntradaValidaTexto(scanner, "Escriba su email: ");
+        float telefono =123123123; //obtenerEntradaValida(scanner, "Escriba su telefono: ");
+        int hora = 5;//obtenerEntradaValida(scanner, "Escriba la hora de llegada: ");
+
+        //paso 6
+        if (reservas.crearReserva(nombre, apellido, nacionalidad, email, fechaNacimiento, alojamientoSeleccionado, habitacionSeleccionada, telefono, fechaInicio, fechaFin)) {
+
+            System.out.println("Felicidades!!!!!!!!!!!!!");
+
+        }System.out.println("mal!!!!!!!!!!!!!");
+
+        //paso 7
+        System.out.println("Alojamiento seleccionado: " + habitacionSeleccionada.getTipo());
+        System.out.println("Alojamiento seleccionado: " + alojamientoSeleccionado.getNombre());
+        System.out.println("tipoindex:" + tipoIndex + "   Ciudad:" + ciudadIndex + "   alojamiento" + alojamientoIndex);
+
+
     }
 
     public void gestionReserva(Scanner scanner) {
+        String email = scanner.next();
+        System.out.println("Ingrese su fecha de nacimiento (dd/MM/yyyy):");
+        String fechaNacimiento = scanner.next();
+
 
     }
-
 
     private int seleccionarOpcion(Scanner scanner, String mensaje, List<String> opciones) {
         System.out.println(mensaje);
@@ -113,9 +155,14 @@ public class Menu {
     public LocalDate obtenerEntradaValidaFecha(Scanner scanner, String mensaje) {
         LocalDate opcion;
         while (true) {
-            System.out.print(mensaje);
+            System.out.print(mensaje + "yyyy-MM-dd");
             try {
-                opcion = LocalDate.ofEpochDay(scanner.nextInt());
+                String input = scanner.nextLine();
+                if (input == null || input.trim().isEmpty()) {
+                    System.out.println("La entrada no puede estar vacía. Intente de nuevo.");
+                    continue;
+                }
+                opcion = LocalDate.parse(input, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 if (opcion != null) {
                     return opcion;
                 }
@@ -123,6 +170,23 @@ public class Menu {
             } catch (InputMismatchException e) {
                 System.out.println("Entrada no válida. Por favor, ingrese un número.");
                 scanner.next();
+            }
+        }
+    }
+
+    public static String obtenerEntradaValidaTexto(Scanner scanner, String mensaje) {
+        String opcion;
+        while (true) {
+            System.out.print(mensaje);
+            try {
+                opcion = scanner.nextLine();
+                if (!Objects.equals(opcion, "")) {
+                    return opcion;  // Aceptamos solo valores no negativos
+                }
+                System.out.println(opcion);
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada no válida. Por favor, ingrese un texto.");
+                scanner.next(); // Limpiar el buffer
             }
         }
     }

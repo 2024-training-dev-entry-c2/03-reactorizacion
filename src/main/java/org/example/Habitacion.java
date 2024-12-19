@@ -31,14 +31,17 @@ public class Habitacion {
 
     public Habitacion() {
     }
+    public void cancelado(){
+        capacidadMaxPersonas++;
+    }
 
     public boolean estaDisponible(LocalDate fechaIngreso, LocalDate fechaSalida) {
-        for (ReservaData<?> reserva : reservas) {
-            if (!(fechaSalida.isBefore(reserva.getFechaIngreso()) || fechaIngreso.isAfter(reserva.getFechaSalida()))) {
-                return false;
-            }
-        }
-        return true;
+//        for (ReservaData<?> reserva : reservas) {
+//            if (!(fechaSalida.isBefore(reserva.getFechaIngreso()) || fechaIngreso.isAfter(reserva.getFechaSalida()))) {
+//                return false;
+//            }
+//        }
+        return false;
     }
 
     public void agregarReserva(ReservaData<?> reserva) {
