@@ -156,7 +156,7 @@ public class Main {
 
         System.out.println("-------------------");
 
-        filtroAlojamiento.buscarHoteles(ciudad, tipoAlojamiento, mesInicio, diaInicio, mesfinalizacion, diaFinalizacion, cantAdultos, cantNinos,numHabitaciones,alojamientos);
+        filtroAlojamiento.buscarAlojamientos(ciudad, tipoAlojamiento, mesInicio, diaInicio, mesfinalizacion, diaFinalizacion, cantAdultos, cantNinos,numHabitaciones,alojamientos);
     }
 
     public static void formularioConfirmacionHabitaciones() {
