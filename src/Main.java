@@ -1,9 +1,7 @@
 import modelos.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -71,39 +69,41 @@ static ReservaImplementation reservaImplementacion = new ReservaImplementation()
         Scanner scanner = new Scanner(System.in);
 
         do {
-        System.out.println("Ingrese la ciudad destino:");
-        String ciudad = scanner.nextLine();
+            Map<String, Object> params = new HashMap<>();
 
-        System.out.println("Ingrese el tipo de alojamiento que desea (Ejemplo: Hotel, Apartamento, Finca, Dia de Sol):");
-        String tipo = scanner.nextLine();
+            System.out.println("Ingrese la ciudad destino:");
+            params.put("ciudad", scanner.nextLine());
 
-        System.out.println("Ingrese la fecha de inicio de la estadia (en formato AAAA-MM-DD):");
-        String fechaInicioString = scanner.nextLine();
-        LocalDate inicioEstadia = LocalDate.parse(fechaInicioString);
+            System.out.println("Ingrese el tipo de alojamiento que desea (Ejemplo: Hotel, Apartamento, Finca, Dia de Sol):");
+            params.put("tipo", scanner.nextLine());
 
-        System.out.println("Ingrese la fecha de fin de la estadia (en formato AAAA-MM-DD):");
-        String fechaFinString = scanner.nextLine();
-        LocalDate finEstadia = LocalDate.parse(fechaFinString);
+            System.out.println("Ingrese la fecha de inicio de la estadia (en formato AAAA-MM-DD):");
+            String fechaInicioString = scanner.nextLine();
+            params.put("inicioEstadia", LocalDate.parse(fechaInicioString));
 
-        System.out.println("Ingrese la cantidad de adultos que se van a hospedar:");
-        int adultos = scanner.nextInt();
+            System.out.println("Ingrese la fecha de fin de la estadia (en formato AAAA-MM-DD):");
+            String fechaFinString = scanner.nextLine();
+            params.put("finEstadia", LocalDate.parse(fechaFinString));
 
-        System.out.println("Ingrese la cantidad de ninos que se van a hospedar:");
-        int ninos = scanner.nextInt();
+            System.out.println("Ingrese la cantidad de adultos que se van a hospedar:");
+            params.put("adultos", scanner.nextInt());
 
-        System.out.println("Ingrese la cantidad de habitaciones que desea:");
-        int habitaciones = scanner.nextInt();
-        scanner.nextLine();
+            System.out.println("Ingrese la cantidad de niños que se van a hospedar:");
+            params.put("ninos", scanner.nextInt());
 
-        boolean alojamientoDisponible =  modelos.FiltroAlojamiento.buscarAlojamiento(alojamientos, ciudad, tipo, inicioEstadia, finEstadia, adultos, ninos, habitaciones);
+            System.out.println("Ingrese la cantidad de habitaciones que desea:");
+            params.put("habitaciones", scanner.nextInt());
+            scanner.nextLine();
+
+        boolean alojamientoDisponible =  modelos.FiltroAlojamiento.buscarAlojamiento(alojamientos, params);
         Alojamiento alojamientoElegido = modelos.FiltroAlojamiento.elegirAlojamiento(alojamientos, alojamientoDisponible);
         if (alojamientoElegido != null) {
-            modelos.FiltroHabitacion.verificarCantidadHabitaciones(alojamientoElegido, habitaciones);
-            String[] habitacionesElegidas = modelos.FiltroHabitacion.seleccionarHabitaciones(alojamientoElegido, habitaciones);
+            modelos.FiltroHabitacion.verificarCantidadHabitaciones(alojamientoElegido, (Integer) params.get("habitaciones"));
+            String[] habitacionesElegidas = modelos.FiltroHabitacion.seleccionarHabitaciones(alojamientoElegido, (Integer) params.get("habitaciones"));
             ClienteData cliente = pedirDatosCliente();
             System.out.println("Ingrese la hora de llegada (HH:mm):");
             String horaLlegadaUsuario = scanner.nextLine();
-            ReservaData reservaData = new ReservaData(alojamientoElegido, cliente, horaLlegadaUsuario, habitacionesElegidas, inicioEstadia, finEstadia);
+            ReservaData reservaData = new ReservaData(alojamientoElegido, cliente, horaLlegadaUsuario, habitacionesElegidas, (LocalDate) params.get("inicioEstadia"), (LocalDate) params.get("finEstadia"));
             reservaImplementacion.crearReserva(reservaData);
             menuBooking(reservaData);
         }
