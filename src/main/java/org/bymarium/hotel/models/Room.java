@@ -29,6 +29,14 @@ public class Room extends Service {
       "Stock: " + getStock() + "\n";
   }
 
+  public String printRoom(Integer quantity) {
+    return "Nombre: " + getName() + "\n" +
+      "Descripción: " + getDescription() + "\n" +
+      "Tipo: " + getType() + "\n" +
+      "Precio por habitacion: " + getPrice() + "\n" +
+      "Cantidad: " + quantity + "\n";
+  }
+
   public Integer getStock() {
     return stock;
   }

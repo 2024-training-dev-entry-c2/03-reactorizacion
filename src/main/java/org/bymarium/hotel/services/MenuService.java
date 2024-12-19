@@ -1,19 +1,22 @@
 package org.bymarium.hotel.services;
 
-import org.bymarium.hotel.models.Accommodation;
+import org.bymarium.hotel.models.*;
 import org.bymarium.hotel.services.interfaces.IMenuService;
 import org.bymarium.hotel.services.interfaces.IValidatorService;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
 public class MenuService implements IMenuService {
   private final IValidatorService validatorService;
   private final AccommodationService accommodationService;
+  private final RoomService roomService;
 
-  public MenuService(IValidatorService validatorService, AccommodationService accommodationService) {
+  public MenuService(IValidatorService validatorService, AccommodationService accommodationService, RoomService roomService) {
     this.validatorService = validatorService;
     this.accommodationService = accommodationService;
+    this.roomService = roomService;
   }
 
   @Override
@@ -86,8 +89,20 @@ public class MenuService implements IMenuService {
     String accommodationType = accommodationService.getAccommodationType();
     Accommodation accommodation = accommodationService.getSelectedAccommodation(city, accommodationType);
 
+    if (accommodation instanceof Stay stay) {
+      if (stay.getType().equals(AccommodationType.HOTEL)) {
+        List<Room> rooms = roomService.selectRooms(accommodation, new DetailsStay(LocalDate.now(), LocalDate.now(), 1, 1, 1, AccommodationType.HOTEL, city));
+        System.out.println(rooms.size());
+        for (Room room : rooms) {
+          System.out.println(room.printRoom());
+        }
+        return;
+      }
+    }
+
     System.out.println(city);
     System.out.println(accommodationType);
     System.out.println(accommodation.printAccommodation());
+
   }
 }

@@ -8,12 +8,12 @@ public class DetailsStay extends Details {
 
     public DetailsStay(
         LocalDate startDate,
-        AccommodationType accommodationType,
-        Integer childrenQuantity,
-        Integer adultsQuantity,
-        String city,
         LocalDate endDate,
-        Integer roomsQuantity
+        Integer adultsQuantity,
+        Integer childrenQuantity,
+        Integer roomsQuantity,
+        AccommodationType accommodationType,
+        String city
     ) {
         super(startDate, accommodationType, childrenQuantity, adultsQuantity, city);
         this.endDate = endDate;

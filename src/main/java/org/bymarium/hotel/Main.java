@@ -1,10 +1,7 @@
 package org.bymarium.hotel;
 
 import org.bymarium.hotel.data.Database;
-import org.bymarium.hotel.services.AccommodationService;
-import org.bymarium.hotel.services.BookingService;
-import org.bymarium.hotel.services.MenuService;
-import org.bymarium.hotel.services.ValidatorService;
+import org.bymarium.hotel.services.*;
 import org.bymarium.hotel.services.interfaces.IMenuService;
 import org.bymarium.hotel.services.interfaces.IValidatorService;
 
@@ -16,7 +13,8 @@ public class Main {
     Scanner scanner = new Scanner(System.in);
     IValidatorService validatorService = new ValidatorService(scanner);
     AccommodationService accommodationService = new AccommodationService(database, validatorService);
-    IMenuService menuService = new MenuService(validatorService, accommodationService);
+    RoomService roomService = new RoomService(database, validatorService);
+    IMenuService menuService = new MenuService(validatorService, accommodationService, roomService);
 
     BookingService bookingService = new BookingService(database, menuService);
     bookingService.start();
