@@ -15,14 +15,18 @@ public class MenuService implements IMenuService {
   private final AccommodationService accommodationService;
   private final RoomService roomService;
   private final BookingCreationService bookingCreationService;
+  private final BookingUpdateService bookingUpdateService;
+  private final BookingEliminationService bookingEliminationService;
 
   private List<Booking> bookings = new ArrayList<>();
 
-  public MenuService(IValidatorService validatorService, AccommodationService accommodationService, RoomService roomService, BookingCreationService bookingCreationService) {
+  public MenuService(IValidatorService validatorService, AccommodationService accommodationService, RoomService roomService, BookingCreationService bookingCreationService, BookingUpdateService bookingUpdateService, BookingEliminationService bookingEliminationService) {
     this.validatorService = validatorService;
     this.accommodationService = accommodationService;
     this.roomService = roomService;
     this.bookingCreationService = bookingCreationService;
+    this.bookingUpdateService = bookingUpdateService;
+    this.bookingEliminationService = bookingEliminationService;
   }
 
   @Override
@@ -108,7 +112,6 @@ public class MenuService implements IMenuService {
 
     int numberOfAdults = validatorService.readInt("Ingrese el número de adultos: ");
     int numberOfChildren = validatorService.readInt("Ingrese el número de niños: ");
-    int numberOfRooms = validatorService.readInt("Ingrese el número de habitaciones: ");
 
     Accommodation accommodation = accommodationService.getSelectedAccommodation(city, accommodationType);
 
@@ -122,6 +125,8 @@ public class MenuService implements IMenuService {
       }
     }
 
+    int numberOfRooms = stay.getServices().size();
+
     Client client = createClient();
 
     DetailsStay details = new DetailsStay(startDate, endDate, numberOfAdults, numberOfChildren, numberOfRooms, AccommodationType.getAccommodationTypeByName(accommodationType), city);
@@ -129,6 +134,38 @@ public class MenuService implements IMenuService {
     Booking booking = bookingCreationService.createBooking(stay, client, details);
     bookingCreationService.addReservations(bookings, booking);
     System.out.println(booking.printBooking());
+  }
+
+  @Override
+  public Booking modifyBooking() {
+    System.out.println("\n============================================================");
+    System.out.println("                     MODIFICAR RESERVA                      ");
+    System.out.println("============================================================");
+
+    String email = validatorService.readString("\nIngrese el email para buscar la reserva: ");
+
+    Booking booking = bookingUpdateService.selectedReservation(bookings, email);
+    booking.printBooking();
+    return booking;
+  }
+
+  @Override
+  public void modifyRoom() {
+    System.out.println("\n============================================================");
+    System.out.println("                   MODIFICAR HABITACIÓN(ES)                 ");
+    System.out.println("============================================================");
+
+  }
+
+  @Override
+  public void modifyAccommodation(Booking booking) {
+    System.out.println("\n============================================================");
+    System.out.println("                   MODIFICAR ALOJAMIENTO                   ");
+    System.out.println("============================================================");
+
+    bookingEliminationService.removeBooking(bookings, booking);
+    getBookings();
+    makeBooking();
   }
 
   private Client createClient() {

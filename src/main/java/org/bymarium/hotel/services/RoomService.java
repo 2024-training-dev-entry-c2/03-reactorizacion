@@ -9,11 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RoomService implements IRoomService {
-  private final Database database;
   private final IValidatorService validatorService;
 
-  public RoomService(Database database, IValidatorService validatorService) {
-    this.database = database;
+  public RoomService(IValidatorService validatorService) {
     this.validatorService = validatorService;
   }
 
