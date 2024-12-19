@@ -27,20 +27,16 @@ public class Hotel extends Alojamiento implements IDiaDeSol{
         this.habitaciones=habitaciones;
     }
 
-    @Override
-    public Double calcularPrecioBase() {
-        return 0.0;
-    }
 
     @Override
-    public void mostrarInformacion() {
+    public void mostrarInformacion(int numHabitaciones,int diaInicio,int diaFinalizacion) {
         System.out.println("Alojamiento: " + this.nombre);
         System.out.println("Calificación: " + this.calificacion);
         if(getServicioHabitacion()){
             System.out.println("Cuenta con servicio a la habitacion");
         }
-        //System.out.println("precio: " + calcularPrecioBase(numHabitaciones));
-        //System.out.println("Precio Total: " + calcularDescuentoOAumento(diaInicio,diaFinalizacion));
+        System.out.println("precio: " + calcularPrecioBase(numHabitaciones));
+        System.out.println("+precioBase" + calcularAjustePrecio(calcularPrecioBase(numHabitaciones),diaInicio,diaFinalizacion));
         if(tieneDiaDeSol()){
             this.mostrarInfoDiaDeSol();
         }

@@ -4,7 +4,7 @@ import habitaciones.Habitacion;
 
 import java.util.ArrayList;
 
-public class Apartamento extends Alojamiento implements IDiaDeSol{
+public class Apartamento extends Alojamiento{
 
     private Integer piso;
     private String numeroApartamento;
@@ -21,39 +21,19 @@ public class Apartamento extends Alojamiento implements IDiaDeSol{
 
 
     @Override
-    public Double calcularPrecioBase() {
-        return 0.0;
-    }
-
-    @Override
-    public void mostrarInformacion() {
+    public void mostrarInformacion(int numHabitaciones, int diaInicio, int diaFinalizacion) {
         System.out.println("Alojamiento: " + this.nombre);
         System.out.println("Calificación: " + this.calificacion);
         System.out.println("Piso: "+ this.piso);
         System.out.println("numeroApartamento: "+ this.numeroApartamento);
-        //System.out.println("precio: " + calcularPrecioBase(numHabitaciones));
-        //System.out.println("Precio Total: " + calcularDescuentoOAumento(diaInicio,diaFinalizacion));
+        System.out.println("precio: " + calcularPrecioBase(numHabitaciones));
+        System.out.println("+precioBase" + calcularAjustePrecio(calcularPrecioBase(numHabitaciones),diaInicio,diaFinalizacion));
         System.out.println("-------------------");
     }
 
     @Override
     public Boolean estaDisponible() {
         return true;
-    }
-
-    @Override
-    public Boolean tieneDiaDeSol() {
-        return true;
-    }
-
-    @Override
-    public void mostrarInfoDiaDeSol() {
-
-    }
-
-    @Override
-    public double calcularPrecioBaseDiaSol() {
-        return 0;
     }
 
     public Integer getPiso() {
