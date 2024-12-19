@@ -12,8 +12,8 @@ public class SunnyDay extends Accommodation {
     private boolean includesLunch;
     private boolean includesSnack;
 
-    public SunnyDay(String city, String accommodationType, List<Room> rooms, float rating, String name, boolean includesLunch, boolean includesSnack) {
-        super(city, accommodationType, rooms, rating, name);
+    public SunnyDay(String city, String accommodationType, List<Room> rooms , List<Reservation> reservations, float rating, String name, boolean includesLunch, boolean includesSnack) {
+        super(city, accommodationType, rooms, rating, name, reservations);
         this.includesLunch = includesLunch;
         this.includesSnack = includesSnack;
     }

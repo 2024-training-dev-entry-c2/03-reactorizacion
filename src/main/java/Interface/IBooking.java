@@ -4,8 +4,6 @@ public interface IBooking {
 
     void confirmReservation();
 
-    void showInformation();
-
     void cancelReservation();
 
     void modifyRoom();

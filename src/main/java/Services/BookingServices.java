@@ -6,6 +6,7 @@ import Models.Accommodation;
 import lib.AccommodationType;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,11 @@ public class BookingServices implements IBooking {
     public static List<Accommodation>apartments=Data.addApartment();
     public static List<Accommodation>lands=Data.addLands();
     public static List<Accommodation>sunnyDays=Data.addSunnyDay();
+    public static Scanner scanner = new Scanner(System.in);
+    private final List<Reservation<Accommodation>> reservations = new ArrayList<>();
+
+    Hotel hotel ;
+    Reservation reservation;
 
     public static void searchAccommodation(Scanner scanner) {
         scanner.nextLine();
@@ -118,7 +124,6 @@ public class BookingServices implements IBooking {
     }
 
     public static void searchAndConfirmRoom() {
-        Scanner scanner = new Scanner(System.in);
 
         try {
 
@@ -197,16 +202,135 @@ public class BookingServices implements IBooking {
         return availableRooms;
     }
 
-
-
     @Override
     public void confirmReservation() {
 
+
+        try {
+            // Recolectar datos del cliente
+            System.out.print("Ingrese nombre: ");
+            String firstName = scanner.nextLine();
+
+            System.out.print("Ingrese apellido: ");
+            String lastName = scanner.nextLine();
+
+            System.out.print("Ingrese email: ");
+            String email = scanner.nextLine();
+
+            System.out.print("Ingrese número de teléfono: ");
+            String phoneNumber = scanner.nextLine();
+
+            System.out.print("Ingrese nacionalidad: ");
+            String nationality = scanner.nextLine();
+
+            System.out.print("Ingrese fecha de nacimiento (yyyy-mm-dd): ");
+            LocalDate birthDate = LocalDate.parse(scanner.nextLine());
+
+            Client client = new Client(firstName, lastName, email, phoneNumber, nationality, birthDate);
+
+            System.out.print("Ingrese nombre del hotel: ");
+            String hotelName = scanner.nextLine();
+
+            System.out.print("Ingrese fecha de inicio (yyyy-mm-dd): ");
+            LocalDate startDate = LocalDate.parse(scanner.nextLine());
+
+            System.out.print("Ingrese fecha de fin (yyyy-mm-dd): ");
+            LocalDate endDate = LocalDate.parse(scanner.nextLine());
+
+            System.out.print("Ingrese la hora de llegada (HH:mm): ");
+            LocalTime checkInTime = LocalTime.parse(scanner.nextLine());
+
+            System.out.print("Ingrese el tipo de habitación: ");
+            String roomType = scanner.nextLine();
+
+            System.out.print("Ingrese la cantidad de habitaciones: ");
+            int roomsToReserve = Integer.parseInt(scanner.nextLine());
+
+            Accommodation selectedHotel = findAccommodationByName(hotelName);
+            if (selectedHotel == null) {
+                System.out.println("El alojamiento no fue encontrado.");
+                return;
+            }
+
+            Room selectedRoom = findRoomByType(selectedHotel, roomType);
+            if (selectedRoom == null || selectedRoom.getAmountRooms() < roomsToReserve) {
+                System.out.println("No hay habitaciones disponibles del tipo especificado.");
+                return;
+            }
+
+            Reservation<Accommodation> reservation = new Reservation<>(
+                    client, selectedHotel, roomsToReserve, selectedRoom, startDate, endDate, checkInTime
+            );
+            reservations.add(reservation);
+
+            selectedRoom.setAmountRooms(selectedRoom.getAmountRooms() - roomsToReserve);
+
+            System.out.println("Se ha realizado la reserva con éxito.");
+        } catch (Exception e) {
+            System.out.println("Error durante el proceso de reserva: " + e.getMessage());
+        }
     }
 
-    @Override
-    public void showInformation() {
+    private Accommodation findAccommodationByName(String name) {
+        List<Accommodation> allAccommodations = new ArrayList<>();
+        allAccommodations.addAll(BookingServices.hotels);
+        allAccommodations.addAll(BookingServices.apartments);
+        allAccommodations.addAll(BookingServices.lands);
+        allAccommodations.addAll(BookingServices.sunnyDays);
 
+        return allAccommodations.stream()
+                .filter(accommodation -> accommodation.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
+    }
+
+    private Room findRoomByType(Accommodation accommodation, String roomType) {
+        return accommodation.getRooms().stream()
+                .filter(room -> room.getRoomType().equalsIgnoreCase(roomType))
+                .findFirst()
+                .orElse(null);
+    }
+
+
+
+    private void changeAccommodation(Reservation reserve) {
+        hotel.eliminarReserva(reserve);
+        System.out.println("Reserva eliminada.");
+
+        System.out.println("Redirigiendo a la creación de una nueva reserva...");
+        confirmReservation();
+    }
+
+    private Room findRoom(String tipo) {
+        for (Room habitacion : hotel.getRooms()) {
+            if (habitacion.getRoomType().equals(tipo)) {
+                return habitacion;
+            }
+        }
+        return null;
+    }
+
+    private void changeRoom(Reservation reservation) {
+        Room currentRoom = reservation.getRoom();
+
+        System.out.println("Habitación actual: " + currentRoom.getRoomType());
+
+        System.out.println("Habitaciones disponibles:");
+        for (Room habitacion : hotel.getRooms()) {
+            if (habitacion.getAvailability()) {
+                System.out.println("Tipo: " + habitacion.getRoomType());
+            }
+        }
+        System.out.println("Seleccione la nueva habitación:");
+        String nuevaHabitacion = scanner.nextLine();
+
+        Room nuevaHabitacionObj = findRoom(nuevaHabitacion);
+        if (nuevaHabitacionObj != null) {
+            reservation.setRoom(nuevaHabitacionObj);
+            System.out.println("Habitación actualizada a: " + nuevaHabitacion);
+        } else {
+            System.out.println("Habitación no válida.");
+        }
     }
 
     @Override
@@ -216,6 +340,41 @@ public class BookingServices implements IBooking {
 
     @Override
     public void modifyRoom() {
+
+            System.out.println("Ingrese su correo electrónico:");
+            String correo = scanner.nextLine();
+            System.out.println("Ingrese su fecha de nacimiento (YYYY-MM-DD):");
+            LocalDate birthDate = LocalDate.parse(scanner.nextLine());
+
+            Reservation reservation = hotel.getReservationByClient(correo, birthDate);
+
+            if (reservation != null) {
+
+                System.out.println("Reserva actual:");
+                System.out.println("Cliente: " + reservation.getClient().getEmail());
+                System.out.println("Habitación: " + reservation.getRoom().getRoomType());
+                System.out.println("Fecha de entrada: " + reservation.getStartDate());
+                System.out.println("Fecha de salida: " + reservation.getEndDate());
+
+                System.out.println("¿Qué desea hacer?");
+                System.out.println("1. Cambiar habitación");
+                System.out.println("2. Cambiar alojamiento");
+                int opcion = scanner.nextInt();
+                scanner.nextLine();
+
+                if (opcion == 1) {
+                    changeRoom(reservation);
+                } else if (opcion == 2) {
+                    changeAccommodation(reservation);
+                } else {
+                    System.out.println("Opción no válida.");
+                }
+            } else {
+                System.out.println("No se encontró ninguna reserva con esos datos.");
+
+        }
+
+
 
     }
 

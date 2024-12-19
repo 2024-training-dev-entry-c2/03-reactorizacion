@@ -1,4 +1,5 @@
 
+import Services.BookingServices;
 import lib.MenuOptionEnum;
 
 
@@ -6,6 +7,7 @@ import java.util.*;
 
 import static Services.BookingServices.searchAccommodation;
 import static Services.BookingServices.searchAndConfirmRoom;
+import Services.BookingServices.*;
 
 import static lib.MenuOptionEnum.getMenuOption;
 
@@ -13,8 +15,6 @@ import static lib.MenuOptionEnum.getMenuOption;
 public class Main {
 
     private static final Scanner scanner = new Scanner(System.in);
-
-
 
     public static void main(String[] args) {
 
@@ -44,18 +44,19 @@ public class Main {
             else if (option.equals(MenuOptionEnum.SEARCH_ROOMS)) {
                 searchAndConfirmRoom();
             }
-//            else if (option.equals(MenuOptionEnum.RESERVE)) {
-//                reserve();
-//            }
-//            else if (option.equals(MenuOptionEnum.MODIFY_RESERVATION)) {
-//                modifyReservation();
-//            }
+            else if (option.equals(MenuOptionEnum.RESERVE)) {
+                BookingServices bookingServices = new BookingServices();
+                bookingServices.confirmReservation();
+            }
+            else if (option.equals(MenuOptionEnum.MODIFY_RESERVATION)) {
+                BookingServices bookingServices = new BookingServices();
+//                bookingServices.modifyReservation();
+            }
             else if (choice == 5) {
                 break;
             }
             else {
                 System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
-                continue;
             }
         }
     }

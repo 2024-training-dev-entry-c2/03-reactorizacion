@@ -7,8 +7,8 @@ public class Land extends Accommodation {
     private boolean hasFarmAnimals;
     private String outdoorActivities;
 
-    public Land(String city, String accommodationType, List<Room> rooms, float rating, String name) {
-        super(city, accommodationType, rooms, rating, name);
+    public Land(String city, String accommodationType, List<Room> rooms,List<Reservation>reservations, float rating, String name) {
+        super(city, accommodationType, rooms, rating, name, reservations);
     }
 
     @Override

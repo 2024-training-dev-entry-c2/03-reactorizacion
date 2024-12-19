@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class DateUtils {
 
     public static boolean isLastFiveDaysOfMonth(LocalDate date) {
-        int lastDayOfMonth = date.lengthOfMonth();
+        Integer lastDayOfMonth = date.lengthOfMonth();
         return date.getDayOfMonth() > lastDayOfMonth - 5;
     }
 
@@ -15,7 +15,7 @@ public class DateUtils {
     }
 
     public static boolean isWithinDayRange(LocalDate day, int fromDay, int toDay) {
-        int dayOfMonth = day.getDayOfMonth();
+        Integer dayOfMonth = day.getDayOfMonth();
         return dayOfMonth >= fromDay && dayOfMonth <= toDay;
     }
 }

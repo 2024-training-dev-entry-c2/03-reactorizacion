@@ -11,15 +11,27 @@ public abstract class Accommodation {
     private String city;
     private String accommodationType;
     protected List<Room> rooms;
+    protected List<Reservation> reservations;
     private float rating;
     private String name;
 
-    public Accommodation(String city, String accommodationType, List<Room> rooms, float rating, String name) {
+    public Accommodation(String city, String accommodationType, List<Room> rooms, float rating, String name, List<Reservation> reservations) {
         this.city = city;
         this.accommodationType = accommodationType;
         this.rooms = rooms;
         this.rating = rating;
+        this.reservations = reservations;
         this.name = name;
+    }
+
+    public Reservation getReservationByClient(String email, LocalDate birthDate) {
+        for (Reservation reservation : reservations) {
+            if (reservation.getClient().getEmail().equals(email) &&
+                    reservation.getClient().getBirthDate().equals(birthDate)) {
+                return reservation;
+            }
+        }
+        return null;
     }
 
     public int getCapacityAdults() {
@@ -52,6 +64,20 @@ public abstract class Accommodation {
         }
 
         return totalPrice;
+    }
+
+    public Reservation getReserveByClient(String email, LocalDate birthDate) {
+        for (Reservation reserve : reservations) {
+            if (reserve.getClient().getEmail().equals(email) &&
+                    reserve.getClient().getBirthDate().equals(birthDate)) {
+                return reserve;
+            }
+        }
+        return null;
+    }
+
+    public void eliminarReserva(Reservation reserva) {
+        reservations.remove(reserva);
     }
 
 

@@ -49,15 +49,15 @@ public class Room {
     }
 
 
-    public int getCapacityMinors() {
+    public Integer getCapacityMinors() {
         return capacityMinors;
     }
 
-    public int getCapacityAdults() {
+    public Integer getCapacityAdults() {
         return capacityAdults;
     }
 
-    public int getAmountRooms() {
+    public Integer getAmountRooms() {
         return amountRooms;
     }
 

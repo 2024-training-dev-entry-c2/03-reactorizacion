@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Hotel extends Accommodation {
 
-    public Hotel(String city, String accommodationType, List<Room> rooms, float rating, String name, float basePrice) {
-        super(city, accommodationType, rooms, rating, name);
+    public Hotel(String city, String accommodationType, List<Room> rooms , List<Reservation> reservations, float rating, String name) {
+        super(city, accommodationType, rooms , rating, name, reservations);
     }
 
     @Override
