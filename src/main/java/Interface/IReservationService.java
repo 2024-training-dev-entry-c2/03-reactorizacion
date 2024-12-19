@@ -7,11 +7,11 @@ import Models.Room;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Scanner;
 
 public interface IReservationService {
     Reservation createReservation(Client client, Accommodation accommodation, int roomCount, Room room, LocalDate startDate, LocalDate endDate, LocalTime checkInTime);
-    void cancelReservation(Reservation reservation);
-    void confirmReservation();
-    void modifyReservation(Reservation reservation, Room newRoom);
+    void modifyReservation(Reservation reservation, Room newRoom, Scanner scanner);
+
 }
 

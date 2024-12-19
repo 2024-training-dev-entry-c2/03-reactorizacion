@@ -22,14 +22,14 @@ public class Reservation<T> {
         this.endDate = endDate;
         this.checkInTime = checkInTime;
     }
+    public boolean remove(Reservation reservation) {
+        return true;
+    }
 
     public Client getClient() {
         return client;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
 
     public T getAccommodation() {
         return accommodation;
@@ -55,7 +55,5 @@ public class Reservation<T> {
         return endDate;
     }
 
-    public LocalTime getCheckInTime() {
-        return checkInTime;
-    }
+
 }

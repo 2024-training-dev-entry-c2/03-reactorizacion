@@ -49,7 +49,7 @@ public class Main {
                 case SEARCH_ACCOMMODATION -> bookingServices.searchAccommodation();
                 case SEARCH_ROOMS -> bookingServices.searchAndConfirmRoom(scanner);
                 case RESERVE -> bookingServices.confirmReservation();
-//                case MODIFY_RESERVATION -> bookingServices.modifyAccommodation(scanner);
+                case MODIFY_RESERVATION -> bookingServices.changeReservation();
                 case EXIT -> {
                     System.out.println("Saliendo del sistema. ¡Gracias por usar el sistema de reservas!");
                     return false;
