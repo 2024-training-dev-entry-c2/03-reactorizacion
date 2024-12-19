@@ -1,4 +1,4 @@
-package com.example.models;
+package org.bymarium.hotel.models;
 
 import java.time.LocalDate;
 
@@ -11,10 +11,11 @@ public class DetailsStay extends Details {
         AccommodationType accommodationType,
         Integer childrenQuantity,
         Integer adultsQuantity,
+        String city,
         LocalDate endDate,
         Integer roomsQuantity
     ) {
-        super(startDate, accommodationType, childrenQuantity, adultsQuantity);
+        super(startDate, accommodationType, childrenQuantity, adultsQuantity, city);
         this.endDate = endDate;
         this.roomsQuantity = roomsQuantity;
     }

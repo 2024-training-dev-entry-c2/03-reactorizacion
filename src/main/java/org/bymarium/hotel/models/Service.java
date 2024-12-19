@@ -1,4 +1,4 @@
-package com.example.models;
+package org.bymarium.hotel.models;
 
 public class Service {
     private String name;

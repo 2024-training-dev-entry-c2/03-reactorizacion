@@ -1,5 +1,4 @@
-package com.example.models;
-
+package org.bymarium.hotel.models;
 import java.time.LocalDate;
 
 public class Details {
@@ -7,17 +6,20 @@ public class Details {
     private AccommodationType accommodationType;
     private Integer childrenQuantity;
     private Integer adultsQuantity;
+    private String city;
 
     public Details(
         LocalDate startDate,
         AccommodationType accommodationType,
         Integer childrenQuantity,
-        Integer adultsQuantity
+        Integer adultsQuantity,
+        String city
     ) {
         this.startDate = startDate;
         this.accommodationType = accommodationType;
         this.childrenQuantity = childrenQuantity;
         this.adultsQuantity = adultsQuantity;
+        this.city = city;
     }
 
     public LocalDate getStartDate() {
@@ -50,5 +52,13 @@ public class Details {
 
     public void setAdultsQuantity(Integer adultsQuantity) {
         this.adultsQuantity = adultsQuantity;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }
