@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 public class ReservaVisualizacion {
     private List<ReservaImplementation> reservas = new ArrayList<>();
-    ;
 
     public boolean crearReserva(String nombre, String apellido, String nacionalidad, String email, LocalDate fechaNacimiento, Alojamientos alojamiento, Habitacion habitacion, float telefono, LocalDate fechaInicio, LocalDate fechaSalida) {
         Cliente cliente = new Cliente(nombre, apellido, nacionalidad, telefono, email, fechaNacimiento);
@@ -42,28 +41,42 @@ public class ReservaVisualizacion {
 
     }
 
-
-    public ReservaImplementation autenticarReserva(String email, LocalDate fechaNacimiento) {
-        Scanner scanner = new Scanner(System.in);
+    public ReservaImplementation autenticarReserva(Scanner scanner, String email, LocalDate fechaNacimiento) {
         for (ReservaImplementation reserva : reservas) {
             if (reserva.getReservaData().getCliente().getEmail().equalsIgnoreCase(email) &&
                     reserva.getReservaData().getCliente().getFechaNacimiento().equals(fechaNacimiento)) {
 
-                Alojamientos alojamientoActual = (Alojamientos) reserva.getReservaData().getAlojamiento();
-                List<Habitacion> habitaciones = alojamientoActual.getHabitaciones();
-                int habitacionIndex = seleccionarOpcion(, "Selecciona una nueva habitación:",
-                        habitaciones.stream().map(Habitacion::getNombre).toList());
+                System.out.println("1. Cambiar habitación");
+                System.out.println("2. Cancelar reserva");
 
+                int opcion = obtenerEntradaValida(scanner, 2);
+                System.out.println(opcion);
 
-//                    reserva.actualizarReserva();
-
+                switch (opcion) {
+                    case 1 -> cambiarHabitacion(scanner, reserva);
+                    case 2 -> cancelarReserva(reserva);
+                    default -> System.out.println("Opción inválida.");
+                }
             }
         }
         return null;
     }
 
-    public void cancelarReserva() {
+    public void cancelarReserva(ReservaImplementation reserva) {
+        reservas.remove(reserva);
+        reserva.cancelarReserva(reserva.getReservaData().getHabitacion());
+
     }
+
+    public void cambiarHabitacion(Scanner scanner, ReservaImplementation reserva) {
+        Alojamientos alojamientoActual = (Alojamientos) reserva.getReservaData().getAlojamiento();
+        List<Habitacion> habitaciones = alojamientoActual.getHabitaciones();
+        int habitacionIndex = seleccionarOpcion(scanner, "Selecciona una nueva habitación:",
+                habitaciones.stream().map(Habitacion::getTipo).toList());
+        Habitacion nuevaHabitacion = habitaciones.get(habitacionIndex);
+        reserva.actualizarReserva(nuevaHabitacion);
+    }
+
     private int seleccionarOpcion(Scanner scanner, String mensaje, List<String> opciones) {
         System.out.println(mensaje);
         for (int i = 0; i < opciones.size(); i++) {
@@ -72,6 +85,7 @@ public class ReservaVisualizacion {
         System.out.println((opciones.size() + 1) + ". Volver");
         return obtenerEntradaValida(scanner, opciones.size());
     }
+
     static private int obtenerEntradaValida(Scanner scanner, int maxOption) {
         int opcion;
         while (true) {
@@ -79,7 +93,7 @@ public class ReservaVisualizacion {
             try {
                 opcion = scanner.nextInt();
                 if (opcion >= 1 && opcion <= maxOption) {
-                    return opcion - 1;
+                    return opcion ;
                 } else if (opcion == maxOption + 1) {
                     return -1;
                 } else {

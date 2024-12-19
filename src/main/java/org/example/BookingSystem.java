@@ -20,9 +20,9 @@ public class BookingSystem {
             if (opcion == 1) {
                 menuService.procesarReserva(scanner);
             } else if (opcion == 2) {
-
+                menuService.gestionReserva(scanner);
             } else {
-                System.out.println("¡Gracias por usar el sistema de reservas!");
+                System.out.println("¡Gracias por usar el sistema de reservas!"+opcion);
                 break;
             }
         }

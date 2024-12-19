@@ -37,8 +37,21 @@ public class ReservaImplementation implements IReserva {
     }
 
     @Override
-    public boolean cancelarReserva(int idReserva) {
-        return false;
+    public boolean cancelarReserva(Habitacion habitacion) {
+        habitacion.cancelado();
+        if (reservaData != null && reservaData.getHabitacion().equals(habitacion)) {
+            // Limpiar los datos de la reserva
+            reservaData.setCliente(null);
+            reservaData.setFechaIngreso(null);
+            reservaData.setFechaSalida(null);
+            reservaData.setHabitacion(null);
+            reservaData.setAlojamiento(null);
+            System.out.println("La reserva ha sido cancelada y los datos han sido eliminados.");
+            return true;
+        } else {
+            System.out.println("No se puede cancelar la reserva, la habitación no está asociada.");
+            return false;
+        }
     }
 
     @Override
