@@ -42,7 +42,7 @@ public class Database {
         new Room("Doble", "Habitación doble con balcón", 6, "Doble", 120.0f),
         new Room("Individual", "Habitación económica y cómoda", 5, "Individual", 90.0f),
         new Room("Suite", "Habitación con sala de estar y vistas al mar", 4, "Suite", 220.0f),
-        new Room("Penthouse", "Ático de lujo con terraza privada", 3, "Penthouse", 300.0f)),
+        new Room("Penthouse", "Atico de lujo con terraza privada", 3, "Penthouse", 300.0f)),
         150.0f, AccommodationType.FARM),
 
       new Stay("Villa del Mar", 4.0f, "Valencia", "Exclusiva villa con vistas al mar", Arrays.asList(
