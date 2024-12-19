@@ -137,21 +137,96 @@ public class BookingSystem {
         booking.setFinalPrice(hotel.getPriceDetail().getFinalPrice());
     }
 
+    public static void selectRoom(Booking booking, Scanner scanner, Boolean isUpdate){
+        Hotel hotel = controller.getHotel(booking.getAccommodation());
+        ArrayList<Integer> availableRooms = controller.confirmRooms(hotel, booking);
+        showRoomOptions(booking,hotel,availableRooms);
+        if(isUpdate){
+            System.out.println("Tiene habitaciones: "+ booking.getRoomModel().getTitle());
+        }
+        System.out.print("Seleccione una opción: ");
+        int roomOption = scanner.nextInt();
+        if(roomOption > 0 && roomOption <= availableRooms.size()){
+            if(availableRooms.get(roomOption-1) >= booking.getRoomQuantity() ){
+                setBooking(hotel,roomOption, booking);
+                if(!isUpdate){
+                    canConfirm = false;
+                    canReserve = true;
+                }
+            }
+            else{
+                System.out.println("La cantidad de habitaciones para el tipo elegido es insuficiente.");
+            }
+        }
+        else{
+            if(!isUpdate){
+                booking = null;
+                canConfirm = false;
+            }
+            System.out.println("Opción inválida. Intente de nuevo.");
+        }
+        hotel.setRoomModelIndex(0);
+    }
+
+    public static void updateAccommodation(Scanner scanner){
+        System.out.print("Email: ");
+        String email = scanner.nextLine();
+        System.out.print("Fecha de nacimiento: ");
+        String birthDate = scanner.nextLine();
+
+        ArrayList<Booking> validBookings = controller.validateUser(email,birthDate);
+
+        if(!validBookings.isEmpty()){
+            Integer number = 1;
+            for(Booking booking:validBookings){
+                System.out.println(number+". "+booking+"\n");
+                number++;
+            }
+            System.out.print("Seleccione una opción: ");
+            int bookingOption = scanner.nextInt();
+            Booking selecteBooking = validBookings.get(bookingOption-1);
+
+            if(selecteBooking.getType().equals("Hotel")){
+                System.out.println("1. Cambio de alojameinto");
+                System.out.println("2. Cambio de habitación");
+            }
+            else{
+                System.out.println("1. Cambio de alojamiento");
+            }
+            System.out.print("Seleccione una opción: ");
+            int changeOption = scanner.nextInt();
+            if(changeOption == 1){
+                controller.getBookings().remove(selecteBooking);
+                System.out.print("Escoja un nuevo alojamiento.");
+            } else if (changeOption == 2) {
+                selectRoom(selecteBooking,scanner, true);
+            }
+        }
+        else {
+            System.out.println("Usuario inválido");
+        }
+    }
+
+    public static Integer mainMenu(Scanner scanner){
+        System.out.println("\nSistema de Reservas");
+        System.out.println("1. Buscar alojamiento");
+        System.out.println("2. Confirmar habitaciones (hoteles)");
+        System.out.println("3. Realizar reserva");
+        System.out.println("4. Actualizar reserva");
+        System.out.println("0. Salir\n");
+        System.out.print("Seleccione una opción: ");
+        Integer opcion = scanner.nextInt();
+        scanner.nextLine();
+        return opcion;
+    }
+
     public static void main(String[] args) {
         controller.loadData();
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
 
         while (!exit) {
-            System.out.println("\nSistema de Reservas");
-            System.out.println("1. Buscar alojamiento");
-            System.out.println("2. Confirmar habitaciones (hoteles)");
-            System.out.println("3. Realizar reserva");
-            System.out.println("4. Actualizar reserva");
-            System.out.println("0. Salir\n");
-            System.out.print("Seleccione una opción: ");
-            int opcion = scanner.nextInt();
-            scanner.nextLine();
+            Integer opcion =  mainMenu(scanner);
             switch (opcion) {
                 case 1 -> {
                     String type = setAccommodationFilteringData(scanner);
@@ -159,27 +234,7 @@ public class BookingSystem {
                 }
                 case 2 ->{
                     if(canConfirm){
-                        Hotel hotel = controller.getHotel(newBooking.getAccommodation());
-                        ArrayList<Integer> availableRooms = controller.confirmRooms(hotel, newBooking);
-                        showRoomOptions(newBooking,hotel,availableRooms);
-                        System.out.print("Seleccione una opción: ");
-                        int roomOption = scanner.nextInt();
-                        if(roomOption > 0 && roomOption <= availableRooms.size()){
-                            if(availableRooms.get(roomOption-1) >= newBooking.getRoomQuantity() ){
-                                setBooking(hotel,roomOption, newBooking);
-                                canConfirm = false;
-                                canReserve = true;
-                            }
-                            else{
-                                System.out.println("La cantidad de habitaciones para el tipo elegido es insuficiente.");
-                            }
-                        }
-                        else{
-                            newBooking = null;
-                            canConfirm = false;
-                            System.out.println("Opción inválida. Intente de nuevo.");
-                        }
-                        hotel.setRoomModelIndex(0);
+                        selectRoom(newBooking,scanner, false);
                     }
                     else{
                         System.out.println("No es posible confirmar habitaciones de hotel.");
@@ -189,60 +244,7 @@ public class BookingSystem {
                     reserveAccommodation(scanner);
                 }
                 case 4 ->{
-                    System.out.print("Email: ");
-                    String email = scanner.nextLine();
-                    System.out.print("Fecha de nacimiento: ");
-                    String birthDate = scanner.nextLine();
-
-                    ArrayList<Booking> validBookings = controller.validateUser(email,birthDate);
-
-                    if(!validBookings.isEmpty()){
-                        Integer number = 1;
-                        for(Booking booking:validBookings){
-                            System.out.println(number+". "+booking+"\n");
-                            number++;
-                        }
-                        System.out.print("Seleccione una opción: ");
-                        int bookingOption = scanner.nextInt();
-                        Booking selecteBooking = validBookings.get(bookingOption-1);
-
-                        if(selecteBooking.getType().equals("Hotel")){
-                            System.out.println("1. Cambio de alojameinto");
-                            System.out.println("2. Cambio de habitación");
-                        }
-                        else{
-                            System.out.println("1. Cambio de alojamiento");
-                        }
-                        System.out.print("Seleccione una opción: ");
-                        int changeOption = scanner.nextInt();
-                        if(changeOption == 1){
-                            controller.getBookings().remove(selecteBooking);
-                            System.out.print("Escoja un nuevo alojamiento.");
-                        } else if (changeOption == 2) {
-                            Hotel hotel = controller.getHotel(selecteBooking.getAccommodation());
-                            ArrayList<Integer> availableRooms = controller.confirmRooms(hotel, selecteBooking);
-                            showRoomOptions(selecteBooking,hotel,availableRooms);
-                            System.out.println("Tiene habitaciones: "+ selecteBooking.getRoomModel().getTitle());
-
-                            System.out.print("Seleccione otra opción: ");
-                            int roomOption = scanner.nextInt();
-                            if(roomOption > 0 && roomOption <= availableRooms.size()){
-                                if(availableRooms.get(roomOption-1) >= selecteBooking.getRoomQuantity() ){
-                                    setBooking(hotel,roomOption, selecteBooking);
-                                }
-                                else{
-                                    System.out.println("La cantidad de habitaciones para el tipo elegido es insuficiente.");
-                                }
-                            }
-                            else{
-                                System.out.println("Opción inválida. Intente de nuevo.");
-                            }
-                        }
-
-                    }
-                    else {
-                        System.out.println("Usuario inválido");
-                    }
+                    updateAccommodation(scanner);
                 }
                 case 0 -> {
                     System.out.println("Gracias por usar el sistema. Adiós!");

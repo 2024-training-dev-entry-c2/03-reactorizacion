@@ -48,43 +48,49 @@ public class ControllerImplementation implements  IController{
         apartments.add(apto2);
     }
 
+    private List<Accommodation> getAllAccomodations() {
+        List<Accommodation> all = new ArrayList<>();
+        all.addAll(apartments);
+        all.addAll(farms);
+        all.addAll(hotels);
+        return all;
+    }
+
     public void filterAccommodations(Booking booking){
-        selectedAccommodations = new ArrayList<>();
-        if(booking.getType().equals("Apartment")){
-            for(Apartment apto:apartments){
-                if(booking.getCity().equals(apto.getCity()) && booking.getRoomQuantity() == apto.getRoomQuantity() && thereIsAccommodationAvailable( apto.getName(), booking.getStart(), booking.getEnd()) ){
-                    selectedAccommodations.add(apto);
-                }
-            }
-        }
-        else if(booking.getType().equals("Farm")){
-            for(Farm farm:farms){
-                if(booking.getCity().equals(farm.getCity()) && booking.getRoomQuantity() == farm.getRoomQuantity() && thereIsAccommodationAvailable( farm.getName(), booking.getStart(), booking.getEnd()) ){
-                    selectedAccommodations.add(farm);
-                }
-            }
-        }
-        else if (booking.getType().equals("Hotel")) {
-            for(Hotel hotel:hotels){
-                if(booking.getCity().equals(hotel.getCity())){
-                    selectedAccommodations.add(hotel);
-                }
-            }
-        }
-        else if (booking.getType().equals("Sunny Day")) {
-            Integer bookingPeople = booking.getAdultsQuantity() + booking.getChildrenQuantity();
-            for(Hotel hotel:hotels){
-                if(booking.getCity().equals(hotel.getCity())  && hotel.getSunnyDay()!= null && thereIsSunnyDayAvailable(bookingPeople, hotel, booking.getStart()) ){
-                    selectedAccommodations.add(hotel);
-                }
-            }
-            for(Farm farm:farms){
-                if(booking.getCity().equals(farm.getCity()) && farm.getSunnyDay()!= null && thereIsSunnyDayAvailable(bookingPeople, farm, booking.getStart()) ){
-                    selectedAccommodations.add(farm);
+        for(Accommodation acc:getAllAccomodations()){
+            if(booking.getCity().equals(acc.getCity())){
+                if (booking.getType().equals("Hotel") && acc instanceof Hotel){
+                    selectedAccommodations.add(acc);
+                } else if (booking.getType().equals("Farm") && acc instanceof Farm) {
+                    Farm farm = (Farm) acc;
+                    if(booking.getRoomQuantity() == farm.getRoomQuantity() && thereIsAccommodationAvailable( farm.getName(), booking.getStart(), booking.getEnd())){
+                        selectedAccommodations.add(farm);
+                    }
+                }else if (booking.getType().equals("Apartment") && acc instanceof Apartment) {
+                    Apartment apto = (Apartment) acc;
+                    if(booking.getRoomQuantity() == apto.getRoomQuantity() && thereIsAccommodationAvailable( apto.getName(), booking.getStart(), booking.getEnd())){
+                        selectedAccommodations.add(apto);
+                    }
+                }else if (booking.getType().equals("Sunny Day")){
+                    Integer bookingPeople = booking.getAdultsQuantity() + booking.getChildrenQuantity();
+                    if(acc instanceof Hotel){
+                        Hotel hotel = (Hotel) acc;
+                        if(hotel.getSunnyDay()!= null && thereIsSunnyDayAvailable(bookingPeople, hotel, booking.getStart())){
+                            selectedAccommodations.add(hotel);
+                        }
+                    }
+                    else if(acc instanceof Farm){
+                        Farm farm = (Farm) acc;
+                        if(farm.getSunnyDay()!= null && thereIsSunnyDayAvailable(bookingPeople, farm, booking.getStart()){
+                            selectedAccommodations.add(farm);
+                        }
+                    }
+
                 }
             }
         }
     }
+
 
     public boolean thereIsAccommodationAvailable(String name , Integer start, Integer end){
         for (Booking booking : bookings){
