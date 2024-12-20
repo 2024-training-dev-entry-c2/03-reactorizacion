@@ -1,21 +1,23 @@
-package com.bookinghotels.modelos;
+package com.bookinghotels.model.data;
 
+import com.bookinghotels.model.alojamiento.Habitacion;
+import com.bookinghotels.model.data.HuespedData;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
 public class ReservaData<T> {
     private T alojamiento;
-    private ClienteData cliente;
+    private HuespedData huesped;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private LocalTime horaLlegada;
     private List<Habitacion> habitacionesReservadas;
 
     // Constructor
-    public ReservaData(T alojamiento, ClienteData cliente, LocalDate fechaInicio, LocalDate fechaFin, LocalTime horaLlegada, List<Habitacion> habitacionesReservadas) {
+    public ReservaData(T alojamiento, HuespedData huesped, LocalDate fechaInicio, LocalDate fechaFin, LocalTime horaLlegada, List<Habitacion> habitacionesReservadas) {
         this.alojamiento = alojamiento;
-        this.cliente = cliente;
+        this.huesped = huesped;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.horaLlegada = horaLlegada;
@@ -31,8 +33,8 @@ public class ReservaData<T> {
         this.alojamiento = alojamiento;
     }
 
-    public ClienteData getCliente() {
-        return cliente;
+    public HuespedData getHuesped() {
+        return huesped;
     }
 
     public LocalDate getFechaInicio() {

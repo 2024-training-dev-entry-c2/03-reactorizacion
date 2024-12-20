@@ -18,7 +18,7 @@ public class FormularioHelper {
 
     private static final Scanner teclado = new Scanner(System.in);
     private static List<Alojamiento> alojamientos = Main.getAlojamientos();
-    private static ReservaImplementation reservaImplementation = Main.getReservaImplementation();
+    private static ReservaImplementation reservaImplementation = GestorReserva.getReservaImplementation();
 
     public static ParametrosBusqueda formularioBuscarAlojamientos() {
         ParametrosBusqueda parametrosBusqueda = new ParametrosBusqueda();

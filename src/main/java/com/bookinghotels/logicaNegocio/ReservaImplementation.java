@@ -58,22 +58,26 @@ public class ReservaImplementation implements IReserva {
         for(ReservaData reserva : reservasData){
             if(reserva.getCliente().getCorreo().equalsIgnoreCase(correo)
                     && reserva.getCliente().getFechaNacimiento().isEqual(fechaNacimiento)){
-                System.out.println("\n+-------------- Datos de la reserva --------------+");
-                System.out.println("Cliente: " + reserva.getCliente().getNombre() + " " + reserva.getCliente().getApellido());
-                Alojamiento alojamiento = (Alojamiento) reserva.getAlojamiento();
-                System.out.println("Alojamiento: " + alojamiento.getNombre());
-                System.out.println("Categoría: " + alojamiento.getCategoria());
-                System.out.println("Hora de llegada: " + reserva.getHoraLlegada());
-                if(!reserva.getHabitacionesReservadas().isEmpty()){
-                    System.out.println("Habitaciones: ");
-                    List<Habitacion> habitacionesReservadas =  reserva.getHabitacionesReservadas();
-                    for(Habitacion habitacion : habitacionesReservadas){
-                        System.out.println("- " + habitacion.getTipo());
-                    }
-                }
-                System.out.println("+-------------------------------------------------+\n");
+                mostrarDatosReserva(reserva);
             }
         }
+    }
+
+    public void mostrarDatosReserva(ReservaData reserva){
+        System.out.println("\n+-------------- Datos de la reserva --------------+");
+        System.out.println("Cliente: " + reserva.getCliente().getNombre() + " " + reserva.getCliente().getApellido());
+        Alojamiento alojamiento = (Alojamiento) reserva.getAlojamiento();
+        System.out.println("Alojamiento: " + alojamiento.getNombre());
+        System.out.println("Categoría: " + alojamiento.getCategoria());
+        System.out.println("Hora de llegada: " + reserva.getHoraLlegada());
+        if(!reserva.getHabitacionesReservadas().isEmpty()){
+            System.out.println("Habitaciones: ");
+            List<Habitacion> habitacionesReservadas =  reserva.getHabitacionesReservadas();
+            for(Habitacion habitacion : habitacionesReservadas){
+                System.out.println("- " + habitacion.getTipo());
+            }
+        }
+        System.out.println("+-------------------------------------------------+\n");
     }
 
     public ReservaData obtenerReserva(String correo, LocalDate fechaNacimiento) {

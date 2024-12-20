@@ -7,7 +7,6 @@ import com.bookinghotels.modelos.ReservaData;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class FiltroDeHabitacion {
     public List<Habitacion> confirmarAlojamiento(List<Alojamiento> alojamientos, String nombreAlojamiento, LocalDate fechaInicio, LocalDate fechaFin, List<ReservaData> reservas){

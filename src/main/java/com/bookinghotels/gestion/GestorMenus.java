@@ -32,9 +32,9 @@ public class GestorMenus {
             int opcion = teclado.nextInt();
             switch (opcion) {
                 case 0 -> salir = true;
-                case 1 -> Main.gestionarOpcionBuscarYReservar();
-                case 2 -> Main.gestionarOpcionConsultarReserva();
-                case 3 -> Main.gestionarOpcionModificarReserva();
+                case 1 -> GestorReserva.gestionarOpcionBuscarYReservar();
+                case 2 -> GestorReserva.gestionarOpcionConsultarReserva();
+                case 3 -> GestorReserva.gestionarOpcionModificarReserva();
                 default -> System.out.println("\nOpción no válida, intenta nuevamente.");
             }
         }
