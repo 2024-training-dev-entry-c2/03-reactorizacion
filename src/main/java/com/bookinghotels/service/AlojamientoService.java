@@ -1,8 +1,12 @@
 package com.bookinghotels.service;
 
 import com.bookinghotels.model.alojamiento.Alojamiento;
+import com.bookinghotels.model.alojamiento.Habitacion;
+import com.bookinghotels.model.data.ReservaData;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AlojamientoService {
     private List<Alojamiento> alojamientos;
@@ -17,17 +21,15 @@ public class AlojamientoService {
         return alojamientos;
     }
 
-    public Alojamiento buscarPorNombre(String nombre) {
-        return alojamientos.stream()
-                .filter(a -> a.getNombre().equalsIgnoreCase(nombre))
-                .findFirst()
-                .orElse(null);
-    }
-
-    public Alojamiento buscarPorCategoria(String categoria) {
+    public List<Alojamiento> buscarAlojamientos(String categoria, String ciudad, LocalDate fechaInicio, LocalDate fechaFin, Integer cantPersonas, List<ReservaData<?>> reservas) {
         return alojamientos.stream()
                 .filter(a -> a.getCategoria().equalsIgnoreCase(categoria))
-                .findFirst()
-                .orElse(null);
+                .filter(a -> a.getCiudad().equalsIgnoreCase(ciudad))
+                .filter(a -> a.estaDisponible(fechaInicio, fechaFin, cantPersonas, 1, reservas))
+                .collect(Collectors.toList());
+    }
+
+    public List<Habitacion> obtenerHabitacionesDisponibles(Alojamiento alojamiento, LocalDate fechaInicio, LocalDate fechaFin, List<ReservaData<?>> reservas) {
+        return alojamiento.obtenerHabitacionesDisponibles(fechaInicio, fechaFin, reservas);
     }
 }

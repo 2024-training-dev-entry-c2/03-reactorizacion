@@ -1,7 +1,6 @@
 package com.bookinghotels.model.data;
 
 import com.bookinghotels.model.alojamiento.Habitacion;
-import com.bookinghotels.model.data.HuespedData;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;

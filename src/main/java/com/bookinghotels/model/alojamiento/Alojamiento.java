@@ -4,6 +4,7 @@ import com.bookinghotels.model.data.ReservaData;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class Alojamiento {
     protected String nombre;
@@ -41,6 +42,11 @@ public abstract class Alojamiento {
         );
     }
 
+    public List<Habitacion> obtenerHabitacionesDisponibles(LocalDate fechaInicio, LocalDate fechaFin, List<ReservaData<?>> reservas) {
+        return habitaciones.stream()
+                .filter(habitacion -> habitacion.estaDisponible(fechaInicio, fechaFin, reservas))
+                .collect(Collectors.toList());
+    }
     //Getters y Setters
     public void getDetallesBasicos(){
         System.out.println(this.nombre);

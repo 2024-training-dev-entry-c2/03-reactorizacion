@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6553db53-e3fe-47a3-a420-6c14b605080a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/controller/AlojamientoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/service/AlojamientoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/controller/ReservaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/service/ReservaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/gestion/FormularioHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/gestion/FormularioHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/gestion/GestorReserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/gestion/GestorReserva.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/inicializacion/InicializadorDeDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/repository/AlojamientoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/logicaNegocio/FiltroDeAlojamientos.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/logicaNegocio/FiltroDeHabitacion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/logicaNegocio/ReservaImplementation.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/alojamiento/Alojamiento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/alojamiento/Alojamiento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/alojamiento/Hotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/alojamiento/Hotel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/utilidades/InputUtilidades.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/utils/InputUtilidades.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/data/ReservaData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/data/ReservaData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/service/AlojamientoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/service/AlojamientoService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
