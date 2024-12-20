@@ -18,7 +18,7 @@ import java.util.Map;
 
 import static com.bookinghotels.gestion.FormularioHelper.*;
 import static com.bookinghotels.gestion.FormularioHelper.formularioValidarDatos;
-import static com.bookinghotels.utilidades.InputUtilidades.parseFecha;
+import static com.bookinghotels.utils.InputUtilidades.parseFecha;
 
 public class GestorReserva {
     private static ReservaImplementation reservaImplementation = new ReservaImplementation();

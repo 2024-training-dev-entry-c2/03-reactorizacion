@@ -3,7 +3,7 @@ package com.bookinghotels.gestion;
 import java.time.LocalDate;
 import java.util.*;
 
-import static com.bookinghotels.utilidades.InputUtilidades.*;
+import static com.bookinghotels.utils.InputUtilidades.*;
 
 import com.bookinghotels.Main;
 import com.bookinghotels.logicaNegocio.FiltroDeHabitacion;

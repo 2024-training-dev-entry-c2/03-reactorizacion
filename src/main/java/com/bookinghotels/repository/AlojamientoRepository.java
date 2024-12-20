@@ -1,11 +1,11 @@
-package com.bookinghotels.inicializacion;
+package com.bookinghotels.repository;
 
-import com.bookinghotels.modelos.*;
+import com.bookinghotels.model.alojamiento.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class InicializadorDeDatos {
+public class AlojamientoRepository {
     public static List<Alojamiento> cargarDatosIniciales() {
         List<Alojamiento> alojamientos = new ArrayList<>();
         // Hoteles

@@ -26,7 +26,11 @@ public abstract class Alojamiento {
     public abstract  boolean estaDisponible(LocalDate fechaInicio, LocalDate fechaFin, Integer cantPersonas, Integer cantHabitaciones, List<ReservaData<?>> reservas);
     public abstract void getDetalles();
 
-    // Métodos concretos
+    // Métodos concretos}
+    public void agregarHabitacion (Habitacion habitacion){
+        habitaciones.add(habitacion);
+    }
+
     public boolean cumpleCapacidad(Integer cantPersonas) {
         return cantPersonas <= this.maxPersonas;
     }

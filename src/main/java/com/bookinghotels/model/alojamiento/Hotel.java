@@ -8,13 +8,13 @@ import java.util.List;
 
 public class Hotel extends Alojamiento{
     private DiaDeSol diaDeSol;
-    private Boolean servicioHabitaicon;
+    private Boolean servicioHabitacion;
 
     // Constructor
-    public Hotel(String nombre, String ciudad, String categoria, Float calificacion, Integer maxPersonas, DiaDeSol diaDeSol, Boolean servicioHabitaicon) {
+    public Hotel(String nombre, String ciudad, String categoria, Float calificacion, Integer maxPersonas, DiaDeSol diaDeSol, Boolean servicioHabitacion) {
         super(nombre, ciudad, categoria, calificacion, maxPersonas);
         this.diaDeSol = diaDeSol;
-        this.servicioHabitaicon = servicioHabitaicon;
+        this.servicioHabitacion = servicioHabitacion;
     }
 
     // Métodos
@@ -26,7 +26,7 @@ public class Hotel extends Alojamiento{
     @Override
     public void getDetalles() {
         getDetallesBasicos();
-        String servicio = this.servicioHabitaicon == true ? "Incluido" : "No tiene";
+        String servicio = this.servicioHabitacion == true ? "Incluido" : "No tiene";
         System.out.println("Servicio a la habitación: " + servicio);
     }
 
@@ -39,11 +39,11 @@ public class Hotel extends Alojamiento{
         this.diaDeSol = diaDeSol;
     }
 
-    public Boolean getServicioHabitaicon() {
-        return servicioHabitaicon;
+    public Boolean getServicioHabitacion() {
+        return servicioHabitacion;
     }
 
-    public void setServicioHabitaicon(Boolean servicioHabitaicon) {
-        this.servicioHabitaicon = servicioHabitaicon;
+    public void setServicioHabitacion(Boolean servicioHabitaicon) {
+        this.servicioHabitacion = servicioHabitaicon;
     }
 }

@@ -4,7 +4,7 @@ import com.bookinghotels.gestion.GestorMenus;
 
 import com.bookinghotels.modelos.*;
 
-import com.bookinghotels.inicializacion.InicializadorDeDatos;
+import com.bookinghotels.repository.AlojamientoRepository;
 
 import java.util.*;
 
@@ -18,7 +18,7 @@ public class Main {
     }
 
     public static void inicializarDatos(){
-        alojamientos = InicializadorDeDatos.cargarDatosIniciales();
+        alojamientos = AlojamientoRepository.cargarDatosIniciales();
     }
 
     public static void gestionarMenu(){
