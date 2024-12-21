@@ -15,11 +15,18 @@ public class SunnyDay extends Accommodation {
 
     @Override
     public void showInformation() {
-        System.out.println("Nombre del Alojamiento: " + getName());
-        System.out.println("Ciudad: " + getCity());
-        System.out.println("Tipo de Alojamiento: " + getAccommodationType());
-        System.out.println("Calificación: " + getRating() + " estrellas");
-        System.out.println("Incluye Almuerzo: " + (includesLunch ? "Sí" : "No"));
-        System.out.println("Incluye Refrigerio: " + (includesSnack ? "Sí" : "No"));
+      String info = "Nombre del Alojamiento: " + getName() + "\n" +
+        "Ciudad: " + getCity() + "\n" +
+        "Tipo de Alojamiento: " + getAccommodationType() + "\n" +
+        "Calificación: " + getRating() + " estrellas\n" +
+        "Incluye Almuerzo: " + formatBoolean(includesLunch) + "\n" +
+        "Incluye Refrigerio: " + formatBoolean(includesSnack) + "\n";
+
+        System.out.println(info);
     }
+
+    private String formatBoolean(boolean value) {
+        return value ? "Sí" : "No";
+    }
+
 }

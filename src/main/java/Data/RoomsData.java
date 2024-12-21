@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-public class Rooms {
+public class RoomsData {
   protected static Room createRoom(String description, String roomType, Double basePrice, Integer capacityMinors, Integer capacityAdults, Integer amountRooms, LocalDate... dates) {
     return new Room(description, roomType, basePrice, capacityMinors, capacityAdults, amountRooms, new HashSet<>(Arrays.asList(dates)));
   }

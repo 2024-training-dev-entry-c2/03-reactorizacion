@@ -1,9 +1,10 @@
 package Models;
 
+import lib.PricingStrategy;
+
 import java.time.LocalDate;
 import java.util.List;
 
-import static lib.DateUtils.*;
 import static lib.RoomUtils.getSimplestRoom;
 
 public abstract class Accommodation {
@@ -28,33 +29,10 @@ public abstract class Accommodation {
         return getSimplestRoom(rooms);
     }
 
-    private Double applyLastFiveDaysIncrease(Double totalPrice) {
-        return totalPrice * 0.15;
-    }
-
-    private Double applyMidMonthIncrease(Double totalPrice) {
-        return totalPrice * 0.10;
-    }
-
-    private Double applyEarlyMonthDiscount(Double totalPrice) {
-        return totalPrice * 0.08;
-    }
-
     public Double calculateTotalPrice(LocalDate startDay, LocalDate endDay, Integer numberOfRooms) {
-        Double totalPrice = calculateBasePrice().getBasePrice() * numberOfRooms *
-                (endDay.getDayOfMonth() - startDay.getDayOfMonth());
-
-        if (isLastFiveDaysOfMonth(endDay)) {
-            totalPrice += applyLastFiveDaysIncrease(totalPrice);
-        } else if (isWithinRange(startDay, endDay, 10, 15)) {
-            totalPrice += applyMidMonthIncrease(totalPrice);
-        } else if (isWithinRange(startDay, endDay, 5, 10)) {
-            totalPrice -= applyEarlyMonthDiscount(totalPrice);
-        }
-
-        return totalPrice;
+        Double basePrice = calculateBasePrice().getBasePrice();
+        return PricingStrategy.calculateTotalPrice(basePrice, startDay, endDay, numberOfRooms);
     }
-
 
     public String getCity() {
         return city;
