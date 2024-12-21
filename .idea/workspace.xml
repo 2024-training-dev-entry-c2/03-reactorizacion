@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2199b9c9-6633-4428-808a-9d4023a40095" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Models/InvalidReservationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Models/ReservationDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Models/SearchCriteria.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lib/InputUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lib/MainUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lib/ReservationUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/validators/ReservationValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" afterDir="false" />
@@ -20,54 +15,19 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Data/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Data/Data.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Interface/IAccommodationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Interface/IAccommodationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Main$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Data/LandData.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Data/LandData.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Models/Accommodation.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Models/Accommodation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Models/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Models/Room.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Models/SunnyDay.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Models/SunnyDay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Services/AccommodationService$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Services/AccommodationService$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Services/AccommodationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Services/AccommodationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Services/BookingServices$ReservationDetails.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Services/BookingServices$SearchCriteria.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/Services/BookingServices.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Services/BookingServices.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/Services/ReservationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Services/ReservationService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/lib/AccommodationType.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/lib/AccommodationType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/lib/DateUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/lib/DateUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/lib/MenuOptionEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/lib/MenuOptionEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/lib/RoomUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/lib/RoomUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Accommodation.class.uniqueId15" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/AccommodationService$1.class.uniqueId12" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/AccommodationService.class.uniqueId16" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Apartment.class.uniqueId14" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/BookingServices$ReservationDetails.class.uniqueId11" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/BookingServices$SearchCriteria.class.uniqueId13" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/BookingServices.class.uniqueId1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Data.class.uniqueId0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Hotel.class.uniqueId6" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/IAccommodationService.class.uniqueId5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/IReservationService.class.uniqueId8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Land.class.uniqueId4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Reservation.class.uniqueId7" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/ReservationService.class.uniqueId9" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Room.class.uniqueId3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/RoomUtils.class.uniqueId10" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/SunnyDay.class.uniqueId2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/lib/AccommodationTypeUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/lib/AccommodationTypeUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/AccommodationTypeUtil.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/BookingServices.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/BookingServices.class.uniqueId0" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Data/ApartmentData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Data/ApartmentData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Data/HotelData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Data/HotelData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Data/LandData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Data/LandData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/IAccommodationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/IAccommodationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/IReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/IReservationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Services/AccommodationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/AccommodationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/SearchCriteria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/SearchCriteria.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Services/BookingServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/BookingServices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Services/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/ReservationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lib/AccommodationType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lib/AccommodationType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lib/AccommodationTypeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lib/AccommodationTypeUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lib/AccommodationUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lib/AccommodationUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lib/DateUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lib/DateUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lib/ReservationUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lib/ReservationUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,25 +77,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Coverage",
-    "Gradle.03-refactorizacion::Users:sergiofernandez:Documents:Informática:Trabajos:Sofka:SofkaU:Proyectos:03-refactorizacion [:Main.main()].executor": "Run",
-    "Gradle.Build 03-refactorizacion.executor": "Run",
-    "Gradle.C2-ENTRY-POO::Users:sergiofernandez:Documents:Informática:Trabajos:Sofka:SofkaU:Proyectos:C2-ENTRY-POO [:Main.main()].executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.codeium.enabled": "true",
-    "git-widget-placeholder": "development",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/sergiofernandez/Documents/Informática/Trabajos/Sofka/SofkaU/Proyectos/03-refactorizacion",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Coverage&quot;,
+    &quot;Gradle.03-refactorizacion::Users:sergiofernandez:Documents:Informática:Trabajos:Sofka:SofkaU:Proyectos:03-refactorizacion [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build 03-refactorizacion.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.C2-ENTRY-POO::Users:sergiofernandez:Documents:Informática:Trabajos:Sofka:SofkaU:Proyectos:C2-ENTRY-POO [:Main.main()].executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;development&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/sergiofernandez/Documents/Informática/Trabajos/Sofka/SofkaU/Proyectos/03-refactorizacion&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="C2-ENTRY-POO.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="C2-ENTRY-POO" />
       <method v="2">
@@ -181,6 +148,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -194,6 +166,6 @@
     <servers />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/03_refactorizacion$Main.ic" NAME="Main Coverage Results" MODIFIED="1734816361351" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/03_refactorizacion$Main.ic" NAME="Main Coverage Results" MODIFIED="1734819014550" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>

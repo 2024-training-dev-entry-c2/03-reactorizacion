@@ -67,7 +67,6 @@ public class ReservationUtil {
       System.out.println("La habitación seleccionada no está disponible.");
       return;
     }
-
     updateRoomAvailability(oldRoom, newRoomSelection, reservation);
     System.out.println("La reserva ha sido modificada con éxito.");
   }

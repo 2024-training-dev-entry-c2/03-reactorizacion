@@ -12,7 +12,7 @@ import static lib.MainUtils.printMenu;
 public class Main {
 
     private static final Scanner scanner = new Scanner(System.in);
-    private static final BookingServices bookingServices = new BookingServices();
+    private static final BookingServices bookingServices = new BookingServices(scanner);
     private static final Map<MenuOptionEnum, Consumer<BookingServices>> menuActions = new HashMap<>();
 
     static {
@@ -48,7 +48,8 @@ public class Main {
         }
     }
 
-    private static boolean handleMenuOption(int choice) {
+    private static boolean handleMenuOption(Integer choice) {
+        scanner.nextLine();
         MenuOptionEnum option = MenuOptionEnum.getMenuOption(choice);
 
         if (option == null) {

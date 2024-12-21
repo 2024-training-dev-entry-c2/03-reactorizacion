@@ -9,11 +9,11 @@ public class SearchCriteria {
   private AccommodationType type;
   private LocalDate startDate;
   private LocalDate endDate;
-  private int adults;
-  private int children;
-  private int rooms;
+  private Integer adults;
+  private Integer children;
+  private Integer rooms;
 
-  public SearchCriteria(String city, AccommodationType type, LocalDate startDate, LocalDate endDate, int adults, int children, int rooms) {
+  public SearchCriteria(String city, AccommodationType type, LocalDate startDate, LocalDate endDate, Integer adults, Integer children, Integer rooms) {
     this.city = city;
     this.type = type;
     this.startDate = startDate;
