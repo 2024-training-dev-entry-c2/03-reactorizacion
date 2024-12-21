@@ -1,9 +1,13 @@
 package Services;
 
 import Interface.IAccommodationService;
-import Models.*;
 import Interface.IReservationService;
+import Models.Accommodation;
+import Models.Client;
+import Models.Reservation;
+import Models.Room;
 import lib.AccommodationType;
+import lib.AccommodationTypeUtil;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -56,7 +60,7 @@ public class BookingServices {
         System.out.print("Ingrese ciudad: ");
         String city = scanner.nextLine();
         System.out.println("Seleccione una opcion (1-Hotel, 2-Apartamento, 3-Finca, 4-Día de Sol): ");
-        AccommodationType type = AccommodationType.getAccomodationType(Integer.parseInt(scanner.nextLine()));
+        AccommodationType type = AccommodationTypeUtil.fromInt(Integer.parseInt(scanner.nextLine()));
         System.out.print("Fecha de inicio (yyyy-mm-dd): ");
         LocalDate startDate = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ISO_DATE);
         LocalDate endDate = getEndDate(type, startDate);

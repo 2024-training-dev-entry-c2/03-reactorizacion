@@ -1,15 +1,22 @@
 package Services;
 
+import Data.Data;
 import Interface.IAccommodationService;
 import Models.Accommodation;
 import Models.Room;
-import Data.Data;
 import lib.AccommodationType;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static lib.AccommodationUtils.hasSufficientAdultCapacity;
+import static lib.AccommodationUtils.hasSufficientChildrenCapacity;
+import static lib.AccommodationUtils.isInCity;
+import static lib.RoomUtils.hasSufficientCapacity;
+import static lib.RoomUtils.isRoomAvailableForDates;
+import static lib.RoomUtils.isRoomStatusAvailable;
 
 public class AccommodationService implements IAccommodationService {
     private final List<Accommodation> hotels;
@@ -25,13 +32,12 @@ public class AccommodationService implements IAccommodationService {
     }
 
     @Override
-    public List<Accommodation> searchAccommodations(String city, AccommodationType type, LocalDate startDate, LocalDate endDate, int adults, int children, int rooms) {
-        List<Accommodation> accommodations = getAccommodationsByType(type);
-        return accommodations.stream()
-                .filter(a -> a.getCity().equalsIgnoreCase(city)
-                        && a.getCapacityAdults() >= adults
-                        && a.getCapacityChildren() >= children)
-                .collect(Collectors.toList());
+    public List<Accommodation> searchAccommodations(String city, AccommodationType type, LocalDate startDate, LocalDate endDate, Integer adults, Integer children, Integer rooms) {
+        return getAccommodationsByType(type).stream()
+          .filter(a -> isInCity(a, city))
+          .filter(a -> hasSufficientAdultCapacity(a, adults))
+          .filter(a -> hasSufficientChildrenCapacity(a, children))
+          .collect(Collectors.toList());
     }
 
     @Override
@@ -57,28 +63,26 @@ public class AccommodationService implements IAccommodationService {
     }
 
     @Override
-    public List<Room> searchAvailableRooms(String hotelName, LocalDate startDate, LocalDate endDate, int adults, int children, int requiredRooms) {
+    public List<Room> searchAvailableRooms(String hotelName, LocalDate startDate, LocalDate endDate, Integer adults, Integer children, Integer requiredRooms) {
         Accommodation hotel = findAccommodationByName(hotelName);
         if (hotel == null) {
             return new ArrayList<>();
         }
 
+        return filterAvailableRooms(hotel, startDate, endDate, adults, children, requiredRooms);
+    }
+
+    private List<Room> filterAvailableRooms(Accommodation hotel, LocalDate startDate, LocalDate endDate, Integer adults, Integer children, Integer requiredRooms) {
         return hotel.getRooms().stream()
-                .filter(room -> isRoomAvailable(room, startDate, endDate, adults, children, requiredRooms))
-                .collect(Collectors.toList());
+          .filter(room -> isRoomAvailable(room, startDate, endDate, adults, children, requiredRooms))
+          .collect(Collectors.toList());
     }
 
     @Override
-    public Boolean isRoomAvailable(Room room, LocalDate startDate, LocalDate endDate, int adults, int children, int requiredRooms) {
-        return room.isAvailable() &&
-                room.getCapacityAdults() >= adults &&
-                room.getCapacityMinors() >= children &&
-                room.getAmountRooms() >= requiredRooms &&
-                isRoomAvailableForDates(room, startDate, endDate);
-    }
-
-    private Boolean isRoomAvailableForDates(Room room, LocalDate startDate, LocalDate endDate) {
-        return true;
+    public Boolean isRoomAvailable(Room room, LocalDate startDate, LocalDate endDate, Integer adults, Integer children, Integer requiredRooms) {
+        return isRoomStatusAvailable(room) &&
+          hasSufficientCapacity(room, adults, children, requiredRooms) &&
+          isRoomAvailableForDates(room, startDate, endDate);
     }
 
     private List<Accommodation> getAccommodationsByType(AccommodationType type) {
