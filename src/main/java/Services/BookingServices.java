@@ -4,10 +4,13 @@ import Interface.IAccommodationService;
 import Interface.IReservationService;
 import Models.Accommodation;
 import Models.Client;
-import Models.Reservation;
+import Models.InvalidReservationException;
+import Models.ReservationDetails;
 import Models.Room;
+import Models.SearchCriteria;
 import lib.AccommodationType;
 import lib.AccommodationTypeUtil;
+import lib.InputUtil;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -15,10 +18,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
+import static lib.AccommodationUtils.createAndConfirmReservation;
+
 public class BookingServices {
     private final IAccommodationService accommodationService;
     private final IReservationService reservationService;
     private final Scanner scanner;
+    private AccommodationService accommodationServices;
 
     public BookingServices() {
         this.accommodationService = new AccommodationService();
@@ -29,8 +35,8 @@ public class BookingServices {
     public void searchAccommodation() {
         SearchCriteria criteria = getSearchCriteria();
         List<Accommodation> matchingAccommodations = accommodationService.searchAccommodations(
-                criteria.city, criteria.type, criteria.startDate, criteria.endDate,
-                criteria.adults, criteria.children, criteria.rooms
+          criteria.getCity(), criteria.getType(), criteria.getStartDate(), criteria.getEndDate(),
+          criteria.getAdults(), criteria.getChildren(), criteria.getRooms()
         );
 
         displayMatchingAccommodations(matchingAccommodations, criteria);
@@ -49,9 +55,9 @@ public class BookingServices {
                         Precio por noche: $%.2f
                         Precio total ajustado: $%.2f
                         \n""",
-                        accommodation.getName(), accommodation.getRating(),
-                        accommodation.calculateBasePrice().getBasePrice(),
-                        accommodation.calculateTotalPrice(criteria.startDate, criteria.endDate, criteria.rooms));
+                  accommodation.getName(), accommodation.getRating(),
+                  accommodation.calculateBasePrice().getBasePrice(),
+                  accommodation.calculateTotalPrice(criteria.getStartDate(), criteria.getEndDate(), criteria.getRooms()));
             }
         }
     }
@@ -82,148 +88,141 @@ public class BookingServices {
         return startDate;
     }
 
-    public void searchAndConfirmRoom(Scanner scanner) {
-        String hotelName = getHotelName();
-        LocalDate startDate = getDate("Ingrese la fecha de inicio (yyyy-mm-dd): ");
-        LocalDate endDate = getDate("Ingrese la fecha de fin (yyyy-mm-dd): ");
-        int adults = getIntInput("Ingrese la cantidad de adultos: ");
-        int children = getIntInput("Ingrese la cantidad de niños: ");
-        int requiredRooms = getIntInput("Ingrese la cantidad de habitaciones requeridas: ");
+    public void searchAndConfirmRoom() {
+        String hotelName = InputUtil.getStringInput(scanner, "Ingrese el nombre del hotel: ");
+        LocalDate startDate = InputUtil.getDateInput(scanner, "Ingrese la fecha de inicio (yyyy-mm-dd): ");
+        LocalDate endDate = InputUtil.getDateInput(scanner, "Ingrese la fecha de fin (yyyy-mm-dd): ");
+        int adults = InputUtil.getIntInput(scanner, "Ingrese la cantidad de adultos: ");
+        int children = InputUtil.getIntInput(scanner, "Ingrese la cantidad de niños: ");
+        int requiredRooms = InputUtil.getIntInput(scanner, "Ingrese la cantidad de habitaciones requeridas: ");
 
         List<Room> availableRooms = accommodationService.searchAvailableRooms(hotelName, startDate, endDate, adults, children, requiredRooms);
         displayAvailableRooms(availableRooms);
     }
 
-    private String getHotelName() {
-        System.out.print("Ingrese el nombre del hotel: ");
-        return scanner.nextLine();
-    }
-
-    private LocalDate getDate(String prompt) {
-        System.out.print(prompt);
-        return LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ISO_DATE);
-    }
-
-    private int getIntInput(String prompt) {
-        System.out.print(prompt);
-        return Integer.parseInt(scanner.nextLine());
-    }
-
     private void displayAvailableRooms(List<Room> availableRooms) {
         if (availableRooms.isEmpty()) {
-            System.out.println("No se encontraron habitaciones disponibles para los criterios especificados.");
+            displayNoRoomsMessage();
         } else {
-            System.out.println("Habitaciones disponibles:");
-            for (Room room : availableRooms) {
-                System.out.println("\nTipo de habitación: " + room.getRoomType());
-                System.out.println("Características: " + room.getDescription());
-                System.out.println("Precio por noche: $" + room.getBasePrice());
-                System.out.println("Capacidad: " + room.getCapacityAdults() + " adultos, " + room.getCapacityMinors() + " niños");
-                System.out.println("Habitaciones disponibles: " + room.getAmountRooms());
-            }
+            displayRoomsList(availableRooms);
         }
     }
+
+    private void displayNoRoomsMessage() {
+        System.out.println("No se encontraron habitaciones disponibles para los criterios especificados.");
+    }
+
+    private void displayRoomsList(List<Room> rooms) {
+        System.out.println("Habitaciones disponibles:");
+        rooms.forEach(this::displayRoomDetails);
+    }
+
+    private void displayRoomDetails(Room room) {
+        System.out.println("\nTipo de habitación: " + room.getRoomType());
+        System.out.println("Características: " + room.getDescription());
+        System.out.println("Precio por noche: $" + room.getBasePrice());
+        System.out.println("Capacidad: " + room.getCapacityAdults() + " adultos, " + room.getCapacityMinors() + " niños");
+        System.out.println("Habitaciones disponibles: " + room.getAmountRooms());
+    }
+
 
     public void confirmReservation() {
         try {
             Client client = getClientInfo();
             ReservationDetails details = getReservationDetails();
 
-            Accommodation accommodation = accommodationService.findAccommodationByName(details.accommodationName);
-            if (accommodation == null) {
-                System.out.println("El alojamiento especificado no fue encontrado.");
-                return;
-            }
-            Room room = accommodationService.findRoomByType(accommodation, details.roomType);
-            if (room == null) {
-                System.out.println("El tipo de habitación especificado no está disponible en este alojamiento.");
-                return;
-            }
-            if (!accommodationService.isRoomAvailable(room, details.startDate, details.endDate, accommodation.getCapacityAdults(), accommodation.getCapacityChildren(), details.roomCount)) {
-                System.out.println("No hay suficientes habitaciones disponibles para las fechas especificadas.");
-                return;
-            }
-            Reservation<Accommodation> reservation = reservationService.createReservation(client, accommodation, details.roomCount, room, details.startDate, details.endDate, details.checkInTime);
-            if (reservation != null) {
-                System.out.println("Se ha realizado la reserva con éxito.");
-            } else {
-                System.out.println("No se pudo completar la reserva. Por favor, intente nuevamente.");
-            }
+            Accommodation accommodation = validateAndGetAccommodation(details);
+            Room room = validateAndGetRoom(accommodation, details);
+
+            validateRoomAvailability(accommodation, room, details);
+
+            createAndConfirmReservation(client, accommodation, room, details);
+        } catch (InvalidReservationException e) {
+            System.out.println(e.getMessage());
         } catch (Exception e) {
-            System.out.println("Error durante el proceso de reserva: " + e.getMessage());
+            handleUnexpectedError(e);
         }
     }
 
+    private Accommodation validateAndGetAccommodation(ReservationDetails details) throws InvalidReservationException {
+        Accommodation accommodation = accommodationServices.findAccommodation(details.getAccommodationName());
+        if (accommodation == null) {
+            throw new InvalidReservationException("El alojamiento especificado no se encontró.");
+        }
+        return accommodation;
+    }
+
+    private Room validateAndGetRoom(Accommodation accommodation, ReservationDetails details) throws InvalidReservationException {
+        Room room = accommodationServices.findRoom(accommodation, details.getRoomType());
+        if (room == null) {
+            throw new InvalidReservationException("El tipo de habitación especificado no se encontró.");
+        }
+        return room;
+    }
+
+    private void validateRoomAvailability(Accommodation accommodation, Room room, ReservationDetails details) throws InvalidReservationException {
+        if (!accommodationServices.isRoomAvailable(accommodation, room, details)) {
+            throw new InvalidReservationException("No hay disponibilidad para la habitación seleccionada.");
+        }
+    }
+
+    private void handleUnexpectedError(Exception e) {
+        System.out.println("Error inesperado durante el proceso de reserva: " + e.getMessage());
+    }
+
+
+    private Accommodation findAccommodation(ReservationDetails details) {
+        Accommodation accommodation = accommodationServices.findAccommodation(details.getAccommodationName());
+        if (accommodation == null) {
+            System.out.println("El alojamiento especificado no se encontró.");
+        }
+        return accommodation;
+    }
+
+    private Room findRoom(Accommodation accommodation, ReservationDetails details) {
+        Room room = accommodationServices.findRoom(accommodation, details.getRoomType());
+        if (room == null) {
+            System.out.println("El tipo de habitación especificado no se encontró.");
+        }
+        return room;
+    }
+
+    private boolean isRoomAvailable(Accommodation accommodation, Room room, ReservationDetails details) {
+        if (!accommodationServices.isRoomAvailable(accommodation, room, details)) {
+            System.out.println("No hay disponibilidad para la habitación seleccionada.");
+            return false;
+        }
+        return true;
+    }
+
+    private void handleReservationError(Exception e) {
+        System.out.println("Error durante el proceso de reserva: " + e.getMessage());
+    }
+
+
     private Client getClientInfo() {
-        System.out.print("Ingrese nombre: ");
-        String firstName = scanner.nextLine();
-        System.out.print("Ingrese apellido: ");
-        String lastName = scanner.nextLine();
-        System.out.print("Ingrese email: ");
-        String email = scanner.nextLine();
-        System.out.print("Ingrese número de teléfono: ");
-        String phoneNumber = scanner.nextLine();
-        System.out.print("Ingrese nacionalidad: ");
-        String nationality = scanner.nextLine();
-        System.out.print("Ingrese fecha de nacimiento (yyyy-mm-dd): ");
-        LocalDate birthDate = LocalDate.parse(scanner.nextLine());
+        String firstName = InputUtil.getStringInput(scanner, "Ingrese nombre: ");
+        String lastName = InputUtil.getStringInput(scanner, "Ingrese apellido: ");
+        String email = InputUtil.getStringInput(scanner, "Ingrese email: ");
+        String phoneNumber = InputUtil.getStringInput(scanner, "Ingrese número de teléfono: ");
+        String nationality = InputUtil.getStringInput(scanner, "Ingrese nacionalidad: ");
+        LocalDate birthDate = InputUtil.getDateInput(scanner, "Ingrese fecha de nacimiento (yyyy-mm-dd): ");
 
         return new Client(firstName, lastName, email, phoneNumber, nationality, birthDate);
     }
 
     private ReservationDetails getReservationDetails() {
-        System.out.print("Ingrese nombre del hotel: ");
-        String accommodationName = scanner.nextLine();
-        LocalDate startDate = getDate("Ingrese fecha de inicio (yyyy-mm-dd): ");
-        LocalDate endDate = getDate("Ingrese fecha de fin (yyyy-mm-dd): ");
-        System.out.print("Ingrese la hora de llegada (HH:mm): ");
-        LocalTime checkInTime = LocalTime.parse(scanner.nextLine());
-        System.out.print("Ingrese el tipo de habitación: ");
-        String roomType = scanner.nextLine();
-        int roomCount = getIntInput("Ingrese la cantidad de habitaciones: ");
+        String accommodationName = InputUtil.getStringInput(scanner, "Ingrese nombre del hotel: ");
+        LocalDate startDate = InputUtil.getDateInput(scanner, "Ingrese fecha de inicio (yyyy-mm-dd): ");
+        LocalDate endDate = InputUtil.getDateInput(scanner, "Ingrese fecha de fin (yyyy-mm-dd): ");
+        LocalTime checkInTime = InputUtil.getTimeInput(scanner, "Ingrese la hora de llegada (HH:mm): ");
+        String roomType = InputUtil.getStringInput(scanner, "Ingrese el tipo de habitación: ");
+        int roomCount = InputUtil.getIntInput(scanner, "Ingrese la cantidad de habitaciones: ");
 
         return new ReservationDetails(accommodationName, startDate, endDate, checkInTime, roomType, roomCount);
     }
 
     public void changeReservation() {
         // reservationService.modifyReservation();
-    }
-
-    private static class SearchCriteria {
-        String city;
-        AccommodationType type;
-        LocalDate startDate;
-        LocalDate endDate;
-        int adults;
-        int children;
-        int rooms;
-
-        SearchCriteria(String city, AccommodationType type, LocalDate startDate, LocalDate endDate, int adults, int children, int rooms) {
-            this.city = city;
-            this.type = type;
-            this.startDate = startDate;
-            this.endDate = endDate;
-            this.adults = adults;
-            this.children = children;
-            this.rooms = rooms;
-        }
-    }
-
-    private static class ReservationDetails {
-        String accommodationName;
-        LocalDate startDate;
-        LocalDate endDate;
-        LocalTime checkInTime;
-        String roomType;
-        int roomCount;
-
-        ReservationDetails(String accommodationName, LocalDate startDate, LocalDate endDate, LocalTime checkInTime, String roomType, int roomCount) {
-            this.accommodationName = accommodationName;
-            this.startDate = startDate;
-            this.endDate = endDate;
-            this.checkInTime = checkInTime;
-            this.roomType = roomType;
-            this.roomCount = roomCount;
-        }
     }
 }

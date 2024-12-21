@@ -13,11 +13,14 @@ public class AccommodationTypeUtil {
     ACCOMMODATION_TYPE_MAP.put(4, AccommodationType.SUNNYDAY);
   }
 
-  public static AccommodationType fromInt(int index) {
-    return ACCOMMODATION_TYPE_MAP.getOrDefault(index, throwInvalidIndexException(index));
+  public static AccommodationType fromInt(Integer index) {
+    if (!ACCOMMODATION_TYPE_MAP.containsKey(index)) {
+      throwInvalidIndexException(index);
+    }
+    return ACCOMMODATION_TYPE_MAP.get(index);
   }
 
-  private static AccommodationType throwInvalidIndexException(int index) {
+  private static void throwInvalidIndexException(Integer index) {
     throw new IllegalArgumentException("Invalid index for AccommodationType: " + index);
   }
 }

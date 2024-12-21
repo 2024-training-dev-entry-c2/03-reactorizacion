@@ -16,8 +16,7 @@ public class DateUtils {
     }
 
     private static Boolean isDayWithinRange(LocalDate date, Integer fromDay, Integer toDay) {
-        int dayOfMonth = date.getDayOfMonth();
+        Integer dayOfMonth = date.getDayOfMonth();
         return dayOfMonth >= fromDay && dayOfMonth <= toDay;
     }
-
 }

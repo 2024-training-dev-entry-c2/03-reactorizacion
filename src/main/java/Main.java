@@ -1,24 +1,34 @@
 import Services.BookingServices;
 import lib.MenuOptionEnum;
 
+import java.util.HashMap;
 import java.util.InputMismatchException;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.function.Consumer;
 
-import static lib.MenuOptionEnum.getMenuOption;
+import static lib.MainUtils.printMenu;
 
 public class Main {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static final BookingServices bookingServices = new BookingServices();
+    private static final Map<MenuOptionEnum, Consumer<BookingServices>> menuActions = new HashMap<>();
+
+    static {
+        menuActions.put(MenuOptionEnum.SEARCH_ACCOMMODATION, BookingServices::searchAccommodation);
+        menuActions.put(MenuOptionEnum.SEARCH_ROOMS, BookingServices::searchAndConfirmRoom);
+        menuActions.put(MenuOptionEnum.RESERVE, BookingServices::confirmReservation);
+        menuActions.put(MenuOptionEnum.MODIFY_RESERVATION, BookingServices::changeReservation);
+    }
 
     public static void main(String[] args) {
         Boolean running = true;
 
         while (running) {
             printMenu();
-
             try {
-                int choice = getUserChoice();
+                Integer choice = getUserChoice();
                 running = handleMenuOption(choice);
             } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida. Por favor, ingresa un número.");
@@ -27,36 +37,30 @@ public class Main {
         }
     }
 
-    private static void printMenu() {
-        System.out.println("----- Sistema de Reservas -----");
-        System.out.println("1. Buscar Alojamientos");
-        System.out.println("2. Buscar Habitaciones");
-        System.out.println("3. Reservar");
-        System.out.println("4. Modificar Reserva");
-        System.out.println("5. Salir");
-        System.out.print("Ingresa una opción: ");
-    }
-
-    private static int getUserChoice() {
-        return scanner.nextInt();
-    }
-
-    private static Boolean handleMenuOption(int choice) {
-        MenuOptionEnum option = getMenuOption(choice);
-
-        if (option != null) {
-            switch (option) {
-                case SEARCH_ACCOMMODATION -> bookingServices.searchAccommodation();
-                case SEARCH_ROOMS -> bookingServices.searchAndConfirmRoom(scanner);
-                case RESERVE -> bookingServices.confirmReservation();
-                case MODIFY_RESERVATION -> bookingServices.changeReservation();
-                case EXIT -> {
-                    System.out.println("Saliendo del sistema. ¡Gracias por usar el sistema de reservas!");
-                    return false;
-                }
-                default -> System.out.println("Opción inválida. Por favor, selecciona una opción válida.");
+    private static Integer getUserChoice() {
+        while (true) {
+            try {
+                return scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada inválida. Por favor, ingresa un número.");
+                scanner.nextLine();
             }
         }
-        return true;
     }
+
+    private static boolean handleMenuOption(int choice) {
+        MenuOptionEnum option = MenuOptionEnum.getMenuOption(choice);
+
+        if (option == null) {
+            System.out.println("Opción inválida. Por favor, selecciona una opción válida.");
+            return true;
+        }
+
+        menuActions.getOrDefault(option, services ->
+          System.out.println("Acción no implementada para esta opción.")
+        ).accept(bookingServices);
+
+        return option != MenuOptionEnum.EXIT;
+    }
+
 }

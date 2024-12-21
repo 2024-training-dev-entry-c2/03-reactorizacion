@@ -3,6 +3,7 @@ package Services;
 import Data.Data;
 import Interface.IAccommodationService;
 import Models.Accommodation;
+import Models.ReservationDetails;
 import Models.Room;
 import lib.AccommodationType;
 
@@ -29,6 +30,31 @@ public class AccommodationService implements IAccommodationService {
         this.apartments = Data.addApartment();
         this.lands = Data.addLands();
         this.sunnyDays = Data.addSunnyDay();
+    }
+
+    public Accommodation findAccommodation(String accommodationName) {
+        Accommodation accommodation = findAccommodationByName(accommodationName);
+        if (accommodation == null) {
+            System.out.println("El alojamiento especificado no fue encontrado.");
+        }
+        return accommodation;
+    }
+
+    public  Room findRoom(Accommodation accommodation, String roomType) {
+        Room room = findRoomByType(accommodation, roomType);
+        if (room == null) {
+            System.out.println("El tipo de habitación especificado no está disponible en este alojamiento.");
+        }
+        return room;
+    }
+
+    public  boolean isRoomAvailable(Accommodation accommodation, Room room, ReservationDetails details) {
+        boolean available = isRoomAvailable(room, details.getStartDate(), details.getEndDate(),
+          accommodation.getCapacityAdults(), accommodation.getCapacityChildren(), details.getRoomCount());
+        if (!available) {
+            System.out.println("No hay suficientes habitaciones disponibles para las fechas especificadas.");
+        }
+        return available;
     }
 
     @Override
@@ -94,4 +120,3 @@ public class AccommodationService implements IAccommodationService {
         };
     }
 }
-
