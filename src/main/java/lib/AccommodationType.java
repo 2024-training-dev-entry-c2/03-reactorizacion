@@ -1,18 +1,18 @@
 package lib;
 
 public enum AccommodationType {
-    HOTEL,
-    APARTMENT,
-    LAND,
-    SUNNYDAY;
+    HOTEL("Hotel"),
+    APARTMENT("Apartamento"),
+    LAND("Finca"),
+    SUNNYDAY("Día de Sol");
 
-    public static AccommodationType getAccomodationType(Integer choice) {
-        return switch (choice) {
-            case 1 -> HOTEL;
-            case 2 -> APARTMENT;
-            case 3 -> LAND;
-            case 4 -> SUNNYDAY;
-            default -> null;
-        };
-    }
+    private final String type;
+
+  AccommodationType(String type) {
+    this.type = type;
+  }
+
+  public String getType() {
+    return type;
+  }
 }
