@@ -5,35 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6553db53-e3fe-47a3-a420-6c14b605080a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/constants/Categoria.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/interfaces/ICommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/repositories/AlojamientoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/repositories/ReservaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/service/alojamiento/BuscarAlojamientoCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/service/alojamiento/ObtenerHabitacionesCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/service/reserva/CrearReservaCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/service/reserva/EliminarReservaCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/service/reserva/ModificarReservaCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/controller/HuespedController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/repositories/HuespedRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/service/huesped/AgregarHuespedCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/service/huesped/BuscarHuespedCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/controller/AlojamientoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/controller/AlojamientoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/controller/ReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/controller/ReservaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/gestion/FormularioHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/gestion/FormularioHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/gestion/GestorMenus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/gestion/GestorMenus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/gestion/GestorReserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/gestion/GestorReserva.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/interfaces/IReserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/interfaces/IReserva.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/alojamiento/Alojamiento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/alojamiento/Alojamiento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/alojamiento/Apartamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/alojamiento/Apartamento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/alojamiento/DiaDeSol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/alojamiento/DiaDeSol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/alojamiento/Finca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/alojamiento/Finca.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/alojamiento/Habitacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/alojamiento/Habitacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/alojamiento/Hotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/alojamiento/Hotel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/data/HuespedData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/data/HuespedData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/data/ReservaData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/model/data/ReservaData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/repository/AlojamientoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/service/AlojamientoService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/service/ReservaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/service/ReservaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/utils/InputUtilidades.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/utils/ConsolaUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/service/reserva/EliminarReservaCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/service/reserva/EliminarReservaCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookinghotels/service/reserva/ModificarReservaCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookinghotels/service/reserva/ModificarReservaCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
