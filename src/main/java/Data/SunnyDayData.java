@@ -7,8 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SunnyDayData {
+  private static SunnyDayData instance;
 
-  public static List<Accommodation> getSunnyDays() {
+  public static SunnyDayData getInstance() {
+    if (instance == null) {
+      instance = new SunnyDayData();
+    }
+    return instance;
+  }
+
+  public List<Accommodation> getSunnyDays() {
     List<Accommodation> sunnyDays = new ArrayList<>();
 
     sunnyDays.add(new SunnyDay("Cabo Polonio", "Día de Sol", List.of(RoomsData.createRoom("Habitación Frente al Mar", "Individual", 120.0, 1, 1, 12)), new ArrayList<>(), 5.0f, "Cabo Polonio Experience", true, true));

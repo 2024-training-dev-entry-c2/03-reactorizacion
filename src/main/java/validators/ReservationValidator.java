@@ -8,6 +8,14 @@ import Services.AccommodationService;
 
 public class ReservationValidator {
   private final AccommodationService accommodationService;
+  private static ReservationValidator instance;
+
+  public static ReservationValidator getInstance(AccommodationService accommodationService) {
+    if (instance == null) {
+      instance = new ReservationValidator(accommodationService);
+    }
+    return instance;
+  }
 
   public ReservationValidator(AccommodationService accommodationService) {
     this.accommodationService = accommodationService;

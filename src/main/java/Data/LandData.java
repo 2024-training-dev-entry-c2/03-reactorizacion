@@ -8,11 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LandData {
+  private static LandData instance;
+  private static List<Room> rooms = RoomsData.getInstance().createCommonRooms();
 
-  public static List<Accommodation> getLands() {
+  public static LandData getInstance() {
+    if (instance == null) {
+      instance = new LandData();
+    }
+    return instance;
+  }
+
+  public List<Accommodation> getLands() {
     List<Accommodation> lands = new ArrayList<>();
 
-    List<Room> rooms = RoomsData.createCommonRooms();
     lands.add(new Land("Colonia", "Finca", rooms, new ArrayList<>(), 4.0f, "Finca Colonia"));
     lands.add(new Land("Pinar del Río", "Finca", rooms, new ArrayList<>(), 4.2f, "Finca Pinar del Río"));
     lands.add(new Land("Cienfuegos", "Finca", rooms, new ArrayList<>(), 4.1f, "Finca Cienfuegos"));

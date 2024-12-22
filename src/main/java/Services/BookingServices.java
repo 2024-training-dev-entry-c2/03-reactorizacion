@@ -1,11 +1,9 @@
 package Services;
 
-import Interface.IAccommodationService;
-import Interface.IReservationService;
 import Models.Accommodation;
 import Models.Client;
-import Models.Reservation;
 import Models.InvalidReservationException;
+import Models.Reservation;
 import Models.ReservationDetails;
 import Models.Room;
 import Models.SearchCriteria;
@@ -23,8 +21,8 @@ import java.util.Scanner;
 import static lib.AccommodationUtils.createAndConfirmReservation;
 
 public class BookingServices {
-    private final IAccommodationService accommodationService;
-    private final IReservationService reservationService;
+    private final AccommodationService accommodationService;
+    private final ReservationService reservationService;
     private final Scanner scanner;
     private final ReservationValidator reservationValidator;
     private static BookingServices instance;
@@ -33,8 +31,8 @@ public class BookingServices {
         this.accommodationService = AccommodationService.getInstance();
         this.reservationService = ReservationService.getInstance();
         this.scanner = scanner;
-        this.reservationValidator = new ReservationValidator((AccommodationService) accommodationService);
-        AccommodationUtils.reservationService= (ReservationService) this.reservationService;
+        this.reservationValidator = ReservationValidator.getInstance(accommodationService);
+        AccommodationUtils.reservationService=this.reservationService;
     }
 
     public static BookingServices getInstance(Scanner scanner) {
@@ -173,7 +171,7 @@ public class BookingServices {
     public void changeReservation() {
         String email = InputUtil.getStringInput(scanner, "Ingrese su email: ");
         String birthDate = InputUtil.getStringInput(scanner, "Ingrese su fecha de nacimiento: ");
-        Reservation reservation = ReservationService.getReservation(email, birthDate);
+        Reservation reservation = reservationService.getReservation(email, birthDate);
         if (reservation == null) {
             System.out.println("No se encontró ninguna reserva con los datos proporcionados.");
             return;

@@ -77,14 +77,14 @@ public class ReservationService implements IReservationService {
         System.out.println("Reserva eliminada. Por favor, realice una nueva reserva.");
     }
 
-    public static Reservation getReservation(String email, String birthDate) {
+    public Reservation getReservation(String email, String birthDate) {
         return reservations.stream()
           .filter(reservation -> matchesClient(reservation, email, birthDate))
           .findFirst()
           .orElse(null);
     }
 
-    private static Boolean matchesClient(Reservation reservation, String email, String birthDate) {
+    private Boolean matchesClient(Reservation reservation, String email, String birthDate) {
         return reservation.getClient().getEmail().equals(email) &&
           reservation.getClient().getBirthDate().equals(LocalDate.parse(birthDate));
     }

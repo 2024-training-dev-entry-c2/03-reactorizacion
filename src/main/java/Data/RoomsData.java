@@ -2,16 +2,23 @@ package Data;
 
 import Models.Room;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class RoomsData {
+  private static RoomsData instance;
+
   protected static Room createRoom(String description, String roomType, Double basePrice, Integer capacityMinors, Integer capacityAdults, Integer amountRooms) {
     return new Room(description, roomType, basePrice, capacityMinors, capacityAdults, amountRooms);
   }
 
-  protected static List<Room> createCommonRooms() {
-    LocalDate today = LocalDate.now();
+  public static RoomsData getInstance() {
+    if (instance == null) {
+      instance = new RoomsData();
+    }
+    return instance;
+  }
+
+  protected List<Room> createCommonRooms() {
     return List.of(
       createRoom("Habitación Estándar", "Individual", 100.0, 1, 2, 10),
       createRoom("Habitación Deluxe", "Doble", 150.0, 2, 3, 10),

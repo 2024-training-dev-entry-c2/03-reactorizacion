@@ -28,5 +28,4 @@ public class SunnyDay extends Accommodation {
     private String formatBoolean(Boolean value) {
         return value ? "Sí" : "No";
     }
-
 }

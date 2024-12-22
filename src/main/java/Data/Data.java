@@ -6,6 +6,10 @@ import java.util.List;
 
 public class Data {
     private static Data instance;
+    private static HotelData hotelData = HotelData.getInstance();
+    private static LandData landData = LandData.getInstance();
+    private static ApartmentData appartamentData = ApartmentData.getInstance();
+    private static SunnyDayData sunnyDayData = SunnyDayData.getInstance();
 
     public static Data getInstance() {
         if (instance == null) {
@@ -15,19 +19,19 @@ public class Data {
     }
 
     public List<Accommodation> addHotels() {
-        return HotelData.getHotels();
+        return hotelData.getHotels();
     }
 
     public List<Accommodation> addLands() {
-        return LandData.getLands();
+        return landData.getLands();
     }
 
     public List<Accommodation> addApartment() {
-        return ApartmentData.getApartments();
+        return appartamentData.getApartments();
     }
 
     public List<Accommodation> addSunnyDay() {
-        return SunnyDayData.getSunnyDays();
+        return sunnyDayData.getSunnyDays();
     }
 }
 

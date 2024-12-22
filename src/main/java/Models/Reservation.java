@@ -11,7 +11,6 @@ public class Reservation {
     private LocalDate startDate;
     private LocalDate endDate;
 
-
     public Reservation(Client client,Accommodation  accommodation, Integer numberOfRooms, Room room, LocalDate startDate, LocalDate endDate) {
         this.client = client;
         this.accommodation = accommodation;
