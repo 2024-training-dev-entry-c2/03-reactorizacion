@@ -1,7 +1,7 @@
-package com.example.data;
+package com.example.repositories;
 
 import com.example.models.Accommodation;
-import com.example.models.AccommodationType;
+import com.example.constants.AccommodationType;
 import com.example.models.DayPass;
 import com.example.models.Room;
 import com.example.models.Service;
@@ -11,19 +11,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class DataBase {
-    private static DataBase instance;
+public class AccommodationRepository {
+    private static AccommodationRepository instance;
     private List<Accommodation> accommodations;
     private List<String> cities;
 
-    private DataBase() {
+    private AccommodationRepository() {
         cities = new ArrayList<String>();
         initialize();
     }
 
-    public static DataBase getInstance() {
+    public static AccommodationRepository getInstance() {
         if (instance == null) {
-            instance = new DataBase();
+            instance = new AccommodationRepository();
         }
         return instance;
     }
@@ -148,8 +148,8 @@ public class DataBase {
         return stays;
     }
 
-    public static void setInstance(DataBase instance) {
-        DataBase.instance = instance;
+    public static void setInstance(AccommodationRepository instance) {
+        AccommodationRepository.instance = instance;
     }
 
     public List<String> getCities() {
