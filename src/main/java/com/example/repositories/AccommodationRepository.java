@@ -138,6 +138,16 @@ public class AccommodationRepository {
         return dayPasses;
     }
 
+    public List<DayPass> getDayPassesByCity(String city) {
+        List<DayPass> accommodationsByCity = new ArrayList<>();
+        for (DayPass accommodation : getDayPasses()) {
+            if (accommodation.getCity().equalsIgnoreCase(city)) {
+                accommodationsByCity.add(accommodation);
+            }
+        }
+        return accommodationsByCity;
+    }
+
     public List<Stay> getStays() {
         List<Stay> stays = new ArrayList<>();
         for (Accommodation accommodation : accommodations) {
@@ -146,6 +156,16 @@ public class AccommodationRepository {
             }
         }
         return stays;
+    }
+
+    public List<Stay> getStaysByCityAndType(String city, AccommodationType type) {
+        List<Stay> accommodationsByCity = new ArrayList<>();
+        for (Stay accommodation : getStays()) {
+            if (accommodation.getCity().equalsIgnoreCase(city) && accommodation.getType().equals(type)) {
+                accommodationsByCity.add(accommodation);
+            }
+        }
+        return accommodationsByCity;
     }
 
     public static void setInstance(AccommodationRepository instance) {
