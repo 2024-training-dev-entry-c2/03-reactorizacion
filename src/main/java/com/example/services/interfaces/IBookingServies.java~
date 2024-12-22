@@ -1,0 +1,7 @@
+package com.example.services.interfaces;
+
+public interface IBookingServies {
+    public class BookingServec implements IBookingServies {
+    }
+    void start();
+}
