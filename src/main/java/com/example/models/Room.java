@@ -35,4 +35,15 @@ public class Room extends Service {
     public void setPrice(Float price) {
         this.price = price;
     }
+
+    @Override
+    public void describe() {
+        System.out.println(
+                "Habitación: " + this.getName() +
+                        "\n Descripcion: " + this.getDescription() +
+                        "\n Disponibles: " + this.getStock() +
+                        "\n Tipo de haabitación: " + this.getType() +
+                        "\n Precio por noche: " + this.getPrice()
+        );
+    }
 }

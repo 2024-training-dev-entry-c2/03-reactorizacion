@@ -16,4 +16,8 @@ public class Service {
     public String getDescription() {
         return description;
     }
+
+    public void describe() {
+        System.out.println("  - " + this.getName() + ": " + this.getDescription());
+    }
 }
