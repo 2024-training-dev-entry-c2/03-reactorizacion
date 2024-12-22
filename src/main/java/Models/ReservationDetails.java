@@ -9,9 +9,9 @@ public class ReservationDetails {
   private LocalDate endDate;
   private LocalTime checkInTime;
   private String roomType;
-  private int roomCount;
+  private Integer roomCount;
 
-  public ReservationDetails(String accommodationName, LocalDate startDate, LocalDate endDate, LocalTime checkInTime, String roomType, int roomCount) {
+  public ReservationDetails(String accommodationName, LocalDate startDate, LocalDate endDate, LocalTime checkInTime, String roomType, Integer roomCount) {
     this.accommodationName = accommodationName;
     this.startDate = startDate;
     this.endDate = endDate;
@@ -40,7 +40,7 @@ public class ReservationDetails {
     return roomType;
   }
 
-  public int getRoomCount() {
+  public Integer getRoomCount() {
     return roomCount;
   }
 }

@@ -9,7 +9,7 @@ import Models.InvalidReservationException;
 import Models.ReservationDetails;
 import Models.Room;
 import Models.SearchCriteria;
-import lib.AccommodationType;
+import constants.AccommodationType;
 import lib.AccommodationTypeUtil;
 import lib.AccommodationUtils;
 import lib.InputUtil;

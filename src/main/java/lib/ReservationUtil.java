@@ -28,10 +28,8 @@ public class ReservationUtil {
   public static void changeRoom(Reservation reservation, Scanner scanner) {
     Room oldRoom = reservation.getRoom();
     displayCurrentRoom(oldRoom);
-
     Accommodation accommodation = reservation.getAccommodation();
     displayAvailableRooms(accommodation, reservation);
-
     Room newRoomSelection = getNewRoomSelection(accommodation, scanner);
     if (newRoomSelection == null) {
       System.out.println("La habitación seleccionada no está disponible.");

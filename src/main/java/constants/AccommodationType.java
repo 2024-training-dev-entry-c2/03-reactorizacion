@@ -1,4 +1,4 @@
-package lib;
+package constants;
 
 public enum AccommodationType {
     HOTEL,

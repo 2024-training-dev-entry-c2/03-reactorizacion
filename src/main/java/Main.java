@@ -1,5 +1,5 @@
 import Services.BookingServices;
-import lib.MenuOptionEnum;
+import constants.MenuOptionEnum;
 
 import java.util.HashMap;
 import java.util.InputMismatchException;
@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.function.Consumer;
 
+import static lib.MainUtils.getUserChoice;
 import static lib.MainUtils.printMenu;
 
 public class Main {
@@ -29,7 +30,7 @@ public class Main {
         while (running) {
             printMenu();
             try {
-                Integer choice = getUserChoice();
+                Integer choice = getUserChoice(scanner);
                 running = handleMenuOption(choice);
             } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida. Por favor, ingresa un número.");
@@ -38,23 +39,11 @@ public class Main {
         }
     }
 
-    private static Integer getUserChoice() {
-        while (true) {
-            try {
-                return scanner.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Entrada inválida. Por favor, ingresa un número.");
-                scanner.nextLine();
-            }
-        }
-    }
-
-    private static boolean handleMenuOption(Integer choice) {
+    private static Boolean handleMenuOption(Integer choice) {
         scanner.nextLine();
         MenuOptionEnum option = getValidatedMenuOption(choice);
 
         executeMenuAction(option);
-
         return !isExitOption(option);
     }
 
@@ -74,7 +63,7 @@ public class Main {
         ).accept(bookingServices);
     }
 
-    private static boolean isExitOption(MenuOptionEnum option) {
+    private static Boolean isExitOption(MenuOptionEnum option) {
         return option == MenuOptionEnum.EXIT;
     }
 }

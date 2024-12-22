@@ -5,7 +5,7 @@ import Interface.IAccommodationService;
 import Models.Accommodation;
 import Models.ReservationDetails;
 import Models.Room;
-import lib.AccommodationType;
+import constants.AccommodationType;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -48,8 +48,8 @@ public class AccommodationService implements IAccommodationService {
         return room;
     }
 
-    public  boolean isRoomAvailable(Accommodation accommodation, Room room, ReservationDetails details) {
-        boolean available = isRoomAvailable(room, details.getStartDate(), details.getEndDate(),
+    public  Boolean isRoomAvailable(Accommodation accommodation, Room room, ReservationDetails details) {
+        Boolean available = isRoomAvailable(room, details.getStartDate(), details.getEndDate(),
           accommodation.getCapacityAdults(), accommodation.getCapacityChildren(), details.getRoomCount());
         if (!available) {
             System.out.println("No hay suficientes habitaciones disponibles para las fechas especificadas.");

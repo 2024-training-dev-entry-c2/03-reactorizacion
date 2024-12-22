@@ -57,7 +57,7 @@ public class PricingStrategy {
     return totalDays == 0 ? 1 : totalDays;
   }
 
-  private static double calculateBaseTotalPrice(Double basePrice, Integer totalDays, Integer numberOfRooms) {
+  private static Double calculateBaseTotalPrice(Double basePrice, Integer totalDays, Integer numberOfRooms) {
     return basePrice * numberOfRooms * totalDays;
   }
 

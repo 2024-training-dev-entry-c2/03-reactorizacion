@@ -10,15 +10,15 @@ import Services.ReservationService;
 public class AccommodationUtils {
   public static ReservationService reservationService;
 
-  public static boolean isInCity(Accommodation accommodation, String city) {
+  public static Boolean isInCity(Accommodation accommodation, String city) {
     return accommodation.getCity().equalsIgnoreCase(city);
   }
 
-  public static boolean hasSufficientAdultCapacity(Accommodation accommodation, Integer adults) {
+  public static Boolean hasSufficientAdultCapacity(Accommodation accommodation, Integer adults) {
     return accommodation.getCapacityAdults() >= adults;
   }
 
-  public static boolean hasSufficientChildrenCapacity(Accommodation accommodation, Integer children) {
+  public static Boolean hasSufficientChildrenCapacity(Accommodation accommodation, Integer children) {
     return accommodation.getCapacityChildren() >= children;
   }
 

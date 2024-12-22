@@ -39,9 +39,7 @@ public class ReservationService implements IReservationService {
         resetRoomAvailability(reservation);
 
         try {
-
             displayReservationDetails(reservation);
-
             Integer option = getModificationOption(scanner);
             handleModificationOption(option, reservation, scanner);
 
@@ -78,7 +76,7 @@ public class ReservationService implements IReservationService {
           .orElse(null);
     }
 
-    private static boolean matchesClient(Reservation reservation, String email, String birthDate) {
+    private static Boolean matchesClient(Reservation reservation, String email, String birthDate) {
         return reservation.getClient().getEmail().equals(email) &&
           reservation.getClient().getBirthDate().equals(LocalDate.parse(birthDate));
     }

@@ -1,6 +1,6 @@
 package Models;
 
-import lib.AccommodationType;
+import constants.AccommodationType;
 
 import java.time.LocalDate;
 
@@ -39,15 +39,15 @@ public class SearchCriteria {
     return endDate;
   }
 
-  public int getAdults() {
+  public Integer getAdults() {
     return adults;
   }
 
-  public int getChildren() {
+  public Integer getChildren() {
     return children;
   }
 
-  public int getRooms() {
+  public Integer getRooms() {
     return rooms;
   }
 }

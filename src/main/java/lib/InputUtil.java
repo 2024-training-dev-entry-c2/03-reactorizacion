@@ -11,7 +11,7 @@ public class InputUtil {
     return scanner.nextLine();
   }
 
-  public static int getIntInput(Scanner scanner, String prompt) {
+  public static Integer getIntInput(Scanner scanner, String prompt) {
     System.out.print(prompt);
     return Integer.parseInt(scanner.nextLine());
   }

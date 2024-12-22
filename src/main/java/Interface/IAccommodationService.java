@@ -2,7 +2,7 @@ package Interface;
 
 import Models.Accommodation;
 import Models.Room;
-import lib.AccommodationType;
+import constants.AccommodationType;
 
 import java.time.LocalDate;
 import java.util.List;

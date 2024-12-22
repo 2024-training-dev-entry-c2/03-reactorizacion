@@ -1,5 +1,7 @@
 package lib;
 
+import constants.AccommodationType;
+
 import java.util.HashMap;
 import java.util.Map;
 
