@@ -19,6 +19,7 @@ public class ReservationUtil {
   }
 
   public static void displayReservationDetails(Reservation reservation) {
+    System.out.println("Datos personales" + reservation.getClient().getInformation());
     System.out.println("Reserva actual:");
     System.out.println("Alojamiento: " + reservation.getAccommodation().getName());
     System.out.println("Tipo de habitación: " + reservation.getRoom().getRoomType());
