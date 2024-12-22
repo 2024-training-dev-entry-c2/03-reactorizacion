@@ -1,22 +1,18 @@
 package com.example.services;
 
 import com.example.data.DataBase;
-import com.example.models.Accommodation;
-import com.example.models.DayPass;
 import com.example.models.Stay;
 import com.example.services.interfaces.IBookingService;
 import com.example.services.interfaces.IMenuService;
-import com.example.services.interfaces.IValidatorService;
-
-import java.util.Scanner;
+import com.example.services.interfaces.IInputValidatorService;
 
 public class BookingService implements IBookingService {
 
     private final DataBase dataBase;
     private final IMenuService menuService;
-    private final IValidatorService validatorService;
+    private final IInputValidatorService validatorService;
 
-    public BookingService(DataBase dataBase, IMenuService menuService, IValidatorService validatorService) {
+    public BookingService(DataBase dataBase, IMenuService menuService, IInputValidatorService validatorService) {
         this.dataBase = dataBase;
         this.menuService = menuService;
         this.validatorService = validatorService;

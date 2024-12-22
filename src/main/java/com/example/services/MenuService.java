@@ -2,14 +2,14 @@ package com.example.services;
 
 import com.example.models.DayPass;
 import com.example.services.interfaces.IMenuService;
-import com.example.services.interfaces.IValidatorService;
+import com.example.services.interfaces.IInputValidatorService;
 
 import java.util.List;
 
 public class MenuService implements IMenuService {
-    private final IValidatorService validatorService;
+    private final IInputValidatorService validatorService;
 
-    public MenuService(IValidatorService validatorService) {
+    public MenuService(IInputValidatorService validatorService) {
         this.validatorService = validatorService;
     }
 
