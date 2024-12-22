@@ -31,6 +31,4 @@ public class AccommodationUtils {
       System.out.println("No se pudo completar la reserva. Por favor, intente nuevamente.");
     }
   }
-
-
 }

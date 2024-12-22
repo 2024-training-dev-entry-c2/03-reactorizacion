@@ -23,6 +23,11 @@ public class PricingStrategy {
 
   public static Double calculateTotalPrice(Double basePrice, LocalDate startDay, LocalDate endDay, Integer numberOfRooms) {
     Integer totalDays = endDay.getDayOfMonth() - startDay.getDayOfMonth();
+    if (totalDays <0) {
+      throw new IllegalArgumentException("Debe seleccionar una fecha de inicio y fin válida");
+    }else if (totalDays == 0) {
+      totalDays = 1;
+    }
     Double totalPrice = basePrice * numberOfRooms * totalDays;
     Double adjustment = getAdjustmentFactor(startDay, endDay, totalPrice);
     return totalPrice + adjustment;
