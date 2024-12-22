@@ -5,21 +5,29 @@ import Models.Accommodation;
 import java.util.List;
 
 public class Data {
+    private static Data instance;
 
-    public static List<Accommodation> addHotels() {
+    public List<Accommodation> addHotels() {
         return HotelData.getHotels();
     }
 
-    public static List<Accommodation> addLands() {
+    public List<Accommodation> addLands() {
         return LandData.getLands();
     }
 
-    public static List<Accommodation> addApartment() {
+    public List<Accommodation> addApartment() {
         return ApartmentData.getApartments();
     }
 
-    public static List<Accommodation> addSunnyDay() {
+    public List<Accommodation> addSunnyDay() {
         return SunnyDayData.getSunnyDays();
+    }
+
+    public static Data getInstance() {
+        if (instance == null) {
+            instance = new Data();
+        }
+        return instance;
     }
 }
 

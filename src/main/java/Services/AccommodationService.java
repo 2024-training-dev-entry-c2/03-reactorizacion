@@ -24,12 +24,14 @@ public class AccommodationService implements IAccommodationService {
     private final List<Accommodation> apartments;
     private final List<Accommodation> lands;
     private final List<Accommodation> sunnyDays;
+    private final Data data;
 
     public AccommodationService() {
-        this.hotels = Data.addHotels();
-        this.apartments = Data.addApartment();
-        this.lands = Data.addLands();
-        this.sunnyDays = Data.addSunnyDay();
+        this.data = Data.getInstance();
+        this.hotels = data.addHotels();
+        this.apartments = data.addApartment();
+        this.lands = data.addLands();
+        this.sunnyDays = data.addSunnyDay();
     }
 
     public Accommodation findAccommodation(String accommodationName) {
