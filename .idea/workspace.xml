@@ -10,14 +10,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/Data/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Data/Data.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Data/HotelData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Data/HotelData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Data/LandData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Data/LandData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Data/RoomsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Data/RoomsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Data/SunnyDayData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Data/SunnyDayData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Reservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Models/SunnyDay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/SunnyDay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Services/BookingServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/BookingServices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Services/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/ReservationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/validators/ReservationValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/validators/ReservationValidator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

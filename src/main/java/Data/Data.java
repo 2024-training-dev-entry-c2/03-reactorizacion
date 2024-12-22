@@ -1,14 +1,16 @@
 package Data;
 
 import Models.Accommodation;
+import Models.Room;
 
 import java.util.List;
 
 public class Data {
     private static Data instance;
-    private static HotelData hotelData = HotelData.getInstance();
-    private static LandData landData = LandData.getInstance();
-    private static ApartmentData appartamentData = ApartmentData.getInstance();
+    private static List<Room> rooms = RoomsData.getInstance().createCommonRooms();
+    private static HotelData hotelData = HotelData.getInstance(rooms);
+    private static LandData landData = LandData.getInstance(rooms);
+    private static ApartmentData appartamentData = ApartmentData.getInstance(rooms);
     private static SunnyDayData sunnyDayData = SunnyDayData.getInstance();
 
     public static Data getInstance() {

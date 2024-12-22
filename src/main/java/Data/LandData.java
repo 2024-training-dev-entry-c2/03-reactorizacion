@@ -9,11 +9,15 @@ import java.util.List;
 
 public class LandData {
   private static LandData instance;
-  private static List<Room> rooms = RoomsData.getInstance().createCommonRooms();
+  private List<Room> rooms;
 
-  public static LandData getInstance() {
+  private LandData(List<Room> rooms) {
+    this.rooms=rooms;
+  }
+
+  public static LandData getInstance(List<Room> rooms) {
     if (instance == null) {
-      instance = new LandData();
+      instance = new LandData(rooms);
     }
     return instance;
   }

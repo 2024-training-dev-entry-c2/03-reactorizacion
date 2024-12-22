@@ -9,11 +9,15 @@ import java.util.List;
 
 public class ApartmentData {
   private static ApartmentData instance;
-  private List<Room> rooms = RoomsData.getInstance().createCommonRooms();
+  private List<Room> rooms ;
 
-  public static ApartmentData getInstance() {
+  private ApartmentData(List<Room>rooms){
+    this.rooms = rooms;
+  }
+
+  public static ApartmentData getInstance(List<Room> rooms) {
     if (instance == null) {
-      instance = new ApartmentData();
+      instance = new ApartmentData(rooms);
     }
     return instance;
   }
