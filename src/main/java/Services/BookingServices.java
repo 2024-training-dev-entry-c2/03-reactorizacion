@@ -10,6 +10,7 @@ import Models.Room;
 import Models.SearchCriteria;
 import lib.AccommodationType;
 import lib.AccommodationTypeUtil;
+import lib.AccommodationUtils;
 import lib.InputUtil;
 import validators.ReservationValidator;
 
@@ -31,6 +32,7 @@ public class BookingServices {
         this.reservationService = new ReservationService();
         this.scanner = scanner;
         this.reservationValidator = new ReservationValidator((AccommodationService) accommodationService);
+        AccommodationUtils.reservationService= (ReservationService) this.reservationService;
     }
 
     public void searchAccommodation() {
@@ -154,6 +156,10 @@ public class BookingServices {
         Integer roomCount = InputUtil.getIntInput(scanner, "Ingrese la cantidad de habitaciones: ");
 
         return new ReservationDetails(accommodationName, startDate, endDate, checkInTime, roomType, roomCount);
+    }
+    
+    public void handleExitOption() {
+        System.out.println("Saliendo del sistema. ¡Gracias por usar el sistema de reservas!");
     }
 
     public void changeReservation() {

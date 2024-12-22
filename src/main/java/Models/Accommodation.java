@@ -63,5 +63,4 @@ public abstract class Accommodation {
     }
 
     public abstract void showInformation();
-
 }

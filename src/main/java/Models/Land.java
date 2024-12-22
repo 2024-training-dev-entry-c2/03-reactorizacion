@@ -16,5 +16,4 @@ public class Land extends Accommodation {
         System.out.println("Tipo de Instalación: " + getAccommodationType());
         System.out.println("Calificación: " + getRating() + " estrellas");
     }
-
 }

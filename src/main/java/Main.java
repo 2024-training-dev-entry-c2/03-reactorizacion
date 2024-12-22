@@ -20,6 +20,7 @@ public class Main {
         menuActions.put(MenuOptionEnum.SEARCH_ROOMS, BookingServices::searchAndConfirmRoom);
         menuActions.put(MenuOptionEnum.RESERVE, BookingServices::confirmReservation);
         menuActions.put(MenuOptionEnum.MODIFY_RESERVATION, BookingServices::changeReservation);
+        menuActions.put(MenuOptionEnum.EXIT, BookingServices::handleExitOption);
     }
 
     public static void main(String[] args) {

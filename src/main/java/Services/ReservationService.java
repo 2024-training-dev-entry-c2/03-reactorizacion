@@ -73,7 +73,6 @@ public class ReservationService implements IReservationService {
         reservations.remove(reservation);
         Room room = reservation.getRoom();
         room.setAmountRooms(room.getAmountRooms() + reservation.getNumberOfRooms());
-
         System.out.println("Reserva eliminada. Por favor, realice una nueva reserva.");
     }
 }

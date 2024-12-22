@@ -3,7 +3,6 @@ package lib;
 import Models.Accommodation;
 import Models.Reservation;
 import Models.Room;
-
 import java.time.LocalDate;
 import java.util.Scanner;
 

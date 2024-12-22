@@ -11,8 +11,4 @@ public class MainUtils {
     System.out.println("5. Salir");
     System.out.print("Ingresa una opción: ");
   }
-
-  public static void handleExitOption() {
-    System.out.println("Saliendo del sistema. ¡Gracias por usar el sistema de reservas!");
-  }
 }
