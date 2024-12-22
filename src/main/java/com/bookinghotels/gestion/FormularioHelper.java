@@ -1,9 +1,10 @@
+/*
 package com.bookinghotels.gestion;
 
 import java.time.LocalDate;
 import java.util.*;
 
-import static com.bookinghotels.utils.InputUtilidades.*;
+import static com.bookinghotels.utils.ConsolaUtils.*;
 
 import com.bookinghotels.Main;
 import com.bookinghotels.logicaNegocio.FiltroDeHabitacion;
@@ -161,3 +162,4 @@ public class FormularioHelper {
         return respuesta.equalsIgnoreCase("Si");
     }
 }
+*/

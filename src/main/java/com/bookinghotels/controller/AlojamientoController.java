@@ -1,3 +1,4 @@
+/*
 package com.bookinghotels.controller;
 
 import com.bookinghotels.model.alojamiento.Alojamiento;
@@ -15,3 +16,4 @@ public class AlojamientoController {
 
     // Métodos
 }
+*/

@@ -1,9 +1,5 @@
 package com.bookinghotels.gestion;
 
-import com.bookinghotels.Main;
-
-import java.util.Scanner;
-
 public class GestorMenus {
     public void mostrarMenu() {
         System.out.println("\n*----------------------- Menú -----------------------*");
@@ -22,7 +18,7 @@ public class GestorMenus {
         System.out.println("               |     |     |     |     |          \n");
     }
 
-    public void gestionarOpciones() {
+    /*public void gestionarOpciones() {
         mostrarLogo();
         Scanner teclado = new Scanner(System.in);
         boolean salir = false;
@@ -38,5 +34,5 @@ public class GestorMenus {
                 default -> System.out.println("\nOpción no válida, intenta nuevamente.");
             }
         }
-    }
+    }*/
 }

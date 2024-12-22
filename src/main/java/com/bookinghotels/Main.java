@@ -1,33 +1,30 @@
 package com.bookinghotels;
 
-import com.bookinghotels.gestion.GestorMenus;
-
-import com.bookinghotels.modelos.*;
-
-import com.bookinghotels.repository.AlojamientoRepository;
-
-import java.util.*;
+import com.bookinghotels.repositories.AlojamientoRepository;
+import com.bookinghotels.service.alojamiento.BuscarAlojamientoCommand;
+import com.bookinghotels.service.alojamiento.ObtenerHabitacionesCommand;
+import com.bookinghotels.utils.ConsolaUtils;
 
 
 public class Main {
-    private static List<Alojamiento> alojamientos = new ArrayList<>();
 
     public static void main(String[] args) {
-        inicializarDatos();
-        gestionarMenu();
+        ConsolaUtils consolaUtils = new ConsolaUtils();
+        AlojamientoRepository alojamientoRepository = AlojamientoRepository.getInstance();
+
+        mostrarLogo();
+
+        BuscarAlojamientoCommand buscarAlojamientoCommand = new BuscarAlojamientoCommand(alojamientoRepository, consolaUtils);
+        buscarAlojamientoCommand.execute();
+        ObtenerHabitacionesCommand obtenerHabitacionesCommand = new ObtenerHabitacionesCommand(alojamientoRepository, consolaUtils);
+        obtenerHabitacionesCommand.execute();
     }
 
-    public static void inicializarDatos(){
-        alojamientos = AlojamientoRepository.cargarDatosIniciales();
+    public static void  mostrarLogo(){
+        System.out.println("\n         ___|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|___    ");
+        System.out.println("        |                                     |    ");
+        System.out.println("        |      Bienvenido(a) a Book Stay      |    ");
+        System.out.println("        |_____________________________________|    ");
+        System.out.println("               |     |     |     |     |          \n");
     }
-
-    public static void gestionarMenu(){
-        new GestorMenus().gestionarOpciones();
-    }
-
-    //Getters
-    public static List<Alojamiento> getAlojamientos() {
-        return new ArrayList<>(alojamientos);
-    }
-
 }

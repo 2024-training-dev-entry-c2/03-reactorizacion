@@ -4,17 +4,19 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
 
-public class InputUtilidades {
-    public static String obtenerEntrada(String mensaje, Scanner teclado) {
+public class ConsolaUtils {
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static String obtenerEntrada(String mensaje) {
         System.out.println(mensaje);
-        return teclado.nextLine();
+        return scanner.nextLine();
     }
 
-    public static int obtenerEntero(String mensaje, Scanner teclado) {
+    public static int obtenerEntero(String mensaje) {
         while (true) {
             try {
                 System.out.println(mensaje);
-                return Integer.parseInt(teclado.nextLine());
+                return Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
                 System.out.println("Por favor, introduce un número válido.");
             }

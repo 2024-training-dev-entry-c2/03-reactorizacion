@@ -17,7 +17,7 @@ public class ReservaService {
         this.reservas = reservas;
     }
 
-    //Métodos
+    // Métodos
     public boolean crearReserva(Alojamiento alojamiento, HuespedData huesped, LocalDate fechaInicio, LocalDate fechaFin, List<Habitacion> habitacionesReservadas) {
         boolean disponible = alojamiento.estaDisponible(fechaInicio, fechaFin, habitacionesReservadas.size(), habitacionesReservadas.size(), reservas);
 

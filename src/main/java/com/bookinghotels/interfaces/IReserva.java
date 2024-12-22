@@ -1,7 +1,8 @@
 package com.bookinghotels.interfaces;
 
-import com.bookinghotels.modelos.Habitacion;
-import com.bookinghotels.modelos.ReservaData;
+
+import com.bookinghotels.model.alojamiento.Habitacion;
+import com.bookinghotels.model.data.ReservaData;
 
 import java.time.LocalDate;
 

@@ -1,3 +1,4 @@
+/*
 package com.bookinghotels.gestion;
 
 import com.bookinghotels.Main;
@@ -18,7 +19,7 @@ import java.util.Map;
 
 import static com.bookinghotels.gestion.FormularioHelper.*;
 import static com.bookinghotels.gestion.FormularioHelper.formularioValidarDatos;
-import static com.bookinghotels.utils.InputUtilidades.parseFecha;
+import static com.bookinghotels.utils.ConsolaUtils.parseFecha;
 
 public class GestorReserva {
     private static ReservaImplementation reservaImplementation = new ReservaImplementation();
@@ -125,3 +126,4 @@ public class GestorReserva {
         return reservaImplementation;
     }
 }
+*/
