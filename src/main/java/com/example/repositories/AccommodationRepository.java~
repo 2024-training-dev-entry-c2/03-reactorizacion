@@ -168,15 +168,6 @@ public class AccommodationRepository {
         return accommodationsByCity;
     }
 
-    public Accommodation getAccommodationByName(String name) {
-        for (Accommodation accommodation : accommodations) {
-            if (accommodation.getName().equalsIgnoreCase(name)) {
-                return accommodation;
-            }
-        }
-        return null;
-    }
-
     public static void setInstance(AccommodationRepository instance) {
         AccommodationRepository.instance = instance;
     }
