@@ -1,5 +1,7 @@
 package com.example.models;
 
+import com.example.constants.AccommodationType;
+
 import java.util.List;
 
 public class Stay extends Accommodation {

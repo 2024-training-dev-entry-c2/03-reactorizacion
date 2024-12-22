@@ -1,6 +1,6 @@
 package com.example;
 
-import com.example.data.DataBase;
+import com.example.repositories.AccommodationRepository;
 import com.example.services.BookingService;
 import com.example.services.MenuService;
 import com.example.services.InputInputValidatorService;
@@ -11,11 +11,11 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        DataBase dataBase = DataBase.getInstance();
+        AccommodationRepository accommodationRepository = AccommodationRepository.getInstance();
         Scanner scanner = new Scanner(System.in);
         IInputValidatorService validatorService = new InputInputValidatorService(scanner);
         IMenuService menuService = new MenuService(validatorService);
-        BookingService bookingService = new BookingService(dataBase, menuService, validatorService);
+        BookingService bookingService = new BookingService(accommodationRepository, menuService, validatorService);
 
         bookingService.start();
     }

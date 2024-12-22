@@ -1,5 +1,7 @@
 package com.example.models;
 
+import com.example.constants.AccommodationType;
+
 import java.time.LocalDate;
 
 public class DetailsStay extends Details {

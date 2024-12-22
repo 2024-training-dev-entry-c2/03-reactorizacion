@@ -1,6 +1,6 @@
 package com.example.services;
 
-import com.example.data.DataBase;
+import com.example.repositories.AccommodationRepository;
 import com.example.models.Stay;
 import com.example.services.interfaces.IBookingService;
 import com.example.services.interfaces.IMenuService;
@@ -8,12 +8,12 @@ import com.example.services.interfaces.IInputValidatorService;
 
 public class BookingService implements IBookingService {
 
-    private final DataBase dataBase;
+    private final AccommodationRepository accommodationRepository;
     private final IMenuService menuService;
     private final IInputValidatorService validatorService;
 
-    public BookingService(DataBase dataBase, IMenuService menuService, IInputValidatorService validatorService) {
-        this.dataBase = dataBase;
+    public BookingService(AccommodationRepository accommodationRepository, IMenuService menuService, IInputValidatorService validatorService) {
+        this.accommodationRepository = accommodationRepository;
         this.menuService = menuService;
         this.validatorService = validatorService;
     }
@@ -63,7 +63,7 @@ public class BookingService implements IBookingService {
     }
 
     public void listCities() {
-        for (String city : dataBase.getCities()) {
+        for (String city : accommodationRepository.getCities()) {
             System.out.print(city + " | ");
         }
         System.out.println();
@@ -71,7 +71,7 @@ public class BookingService implements IBookingService {
 
     public void listStaysByCity(String city) {
         System.out.println("Alojamientos disponibles en " + city + ":");
-        for (Stay stay : dataBase.getStays()) {
+        for (Stay stay : accommodationRepository.getStays()) {
             if (stay.getCity().equalsIgnoreCase(city)) {
                 System.out.println("  * " + stay.getName() + " - desde $" + stay.getBasePrice() + " USD por noche");
             }
@@ -80,18 +80,18 @@ public class BookingService implements IBookingService {
 
     public void listStayByTye(String type, String city) {
         System.out.println("Alojamientos disponibles en " + city + ":");
-        for (Stay stay : dataBase.getStays()) {
+        for (Stay stay : accommodationRepository.getStays()) {
             stay.describe(); //TODO:Metodo descriptivo
         }
     }
 
     private boolean validateCity(String city) {
         String cityUpper = city.toUpperCase();
-        return dataBase.getCities().contains(cityUpper);
+        return accommodationRepository.getCities().contains(cityUpper);
     }
 
     private boolean validateAccommodation(String accommodationName, String city) {
-        return dataBase.getAccommodations().stream()
+        return accommodationRepository.getAccommodations().stream()
                 .anyMatch(a -> a.getName().equalsIgnoreCase(accommodationName) && a.getCity().equalsIgnoreCase(city));
     }
 }
