@@ -11,6 +11,6 @@ import java.util.Scanner;
 
 public interface IReservationService {
     Reservation createReservation(Client client, Accommodation accommodation, int roomCount, Room room, LocalDate startDate, LocalDate endDate, LocalTime checkInTime);
-    void modifyReservation(Reservation reservation, Room newRoom, Scanner scanner);
+    void modifyReservation(Reservation reservation, Scanner scanner);
 }
 

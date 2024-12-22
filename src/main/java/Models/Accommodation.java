@@ -16,6 +16,7 @@ public abstract class Accommodation {
     private Float rating;
     private String name;
 
+
     public Accommodation(String city, String accommodationType, List<Room> rooms, Float rating, String name, List<Reservation> reservations) {
         this.city = city;
         this.accommodationType = accommodationType;

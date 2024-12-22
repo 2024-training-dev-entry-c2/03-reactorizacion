@@ -4,6 +4,7 @@ import Interface.IAccommodationService;
 import Interface.IReservationService;
 import Models.Accommodation;
 import Models.Client;
+import Models.Reservation;
 import Models.InvalidReservationException;
 import Models.ReservationDetails;
 import Models.Room;
@@ -157,12 +158,19 @@ public class BookingServices {
 
         return new ReservationDetails(accommodationName, startDate, endDate, checkInTime, roomType, roomCount);
     }
-    
+
     public void handleExitOption() {
         System.out.println("Saliendo del sistema. ¡Gracias por usar el sistema de reservas!");
     }
 
     public void changeReservation() {
-        // reservationService.modifyReservation();
+        String email = InputUtil.getStringInput(scanner, "Ingrese su email: ");
+        String birthDate = InputUtil.getStringInput(scanner, "Ingrese su fecha de nacimiento: ");
+        Reservation reservation = ReservationService.getReservation(email, birthDate);
+        if (reservation == null) {
+            System.out.println("No se encontró ninguna reserva con los datos proporcionados.");
+            return;
+        }
+        reservationService.modifyReservation(reservation, scanner);
     }
 }

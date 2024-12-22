@@ -13,18 +13,26 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Interface/IReservationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Interface/IReservationService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Models/Accommodation.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Models/Accommodation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Services/AccommodationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Services/AccommodationService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/Services/BookingServices.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Services/BookingServices.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Services/ReservationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Services/ReservationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/lib/ReservationUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/lib/ReservationUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/lib/RoomUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/lib/RoomUtils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/BookingServices.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/BookingServices.class.uniqueId0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Main.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/MainUtils.class.uniqueId2" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/IReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/IReservationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Models/Accommodation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Accommodation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Hotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Hotel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Land.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Land.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Reservation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Services/AccommodationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/AccommodationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Services/BookingServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/BookingServices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Services/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/ReservationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lib/MainUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lib/MainUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/lib/ReservationUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lib/ReservationUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lib/RoomUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lib/RoomUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

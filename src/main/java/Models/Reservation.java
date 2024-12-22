@@ -5,14 +5,14 @@ import java.time.LocalDate;
 public class Reservation<T> {
 
     private Client client;
-    private T accommodation;
+    private Accommodation accommodation;
     private Integer numberOfRooms;
     private Room room;
     private LocalDate startDate;
     private LocalDate endDate;
 
 
-    public Reservation(Client client, T accommodation, Integer numberOfRooms, Room room, LocalDate startDate, LocalDate endDate) {
+    public Reservation(Client client,Accommodation  accommodation, Integer numberOfRooms, Room room, LocalDate startDate, LocalDate endDate) {
         this.client = client;
         this.accommodation = accommodation;
         this.numberOfRooms = numberOfRooms;
@@ -25,7 +25,7 @@ public class Reservation<T> {
         return client;
     }
 
-    public T getAccommodation() {
+    public Accommodation getAccommodation() {
         return accommodation;
     }
 

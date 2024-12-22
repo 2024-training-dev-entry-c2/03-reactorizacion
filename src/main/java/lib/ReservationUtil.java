@@ -3,7 +3,7 @@ package lib;
 import Models.Accommodation;
 import Models.Reservation;
 import Models.Room;
-import java.time.LocalDate;
+
 import java.util.Scanner;
 
 public class ReservationUtil {
@@ -13,42 +13,15 @@ public class ReservationUtil {
     oldRoom.setAmountRooms(oldRoom.getAmountRooms() + reservation.getNumberOfRooms());
   }
 
-  public static boolean authenticateAndValidateReservation(Reservation reservation, Scanner scanner) {
-    if (!authenticateClient(reservation, scanner)) {
-      System.out.println("Autenticación fallida. No se puede modificar la reserva.");
-      return false;
-    }
-    return true;
-  }
-
-  public static void updateRoomAvailability(Reservation reservation, Room newRoom) {
-    reservation.setRoom(newRoom);
-    newRoom.setAmountRooms(newRoom.getAmountRooms() - reservation.getNumberOfRooms());
-  }
-
-
   public static Integer getModificationOption(Scanner scanner) {
     System.out.println("¿Desea cambiar de habitación (1) o de alojamiento (2)?");
     return Integer.parseInt(scanner.nextLine());
   }
 
 
-  public static Boolean authenticateClient(Reservation reservation, Scanner scanner) {
-    String email = reservation.getClient().getEmail();
-    LocalDate birthDate = reservation.getClient().getBirthDate();
-
-    System.out.print("Ingrese su correo: ");
-    String inputEmail = scanner.nextLine();
-
-    System.out.print("Ingrese su fecha de nacimiento (yyyy-MM-dd): ");
-    LocalDate inputBirthDate = LocalDate.parse(scanner.nextLine());
-
-    return inputEmail.equals(email) && inputBirthDate.equals(birthDate);
-  }
-
   public static void displayReservationDetails(Reservation reservation) {
     System.out.println("Reserva actual:");
-    System.out.println("Alojamiento: " + reservation.getAccommodation());
+    System.out.println("Alojamiento: " + reservation.getAccommodation().getName());
     System.out.println("Tipo de habitación: " + reservation.getRoom().getRoomType());
     System.out.println("Fechas: " + reservation.getStartDate() + " a " + reservation.getEndDate());
   }
@@ -58,7 +31,7 @@ public class ReservationUtil {
     Room oldRoom = reservation.getRoom();
     displayCurrentRoom(oldRoom);
 
-    Accommodation accommodation = (Accommodation) reservation.getAccommodation();
+    Accommodation accommodation = reservation.getAccommodation();
     displayAvailableRooms(accommodation, reservation);
 
     Room newRoomSelection = getNewRoomSelection(accommodation, scanner);

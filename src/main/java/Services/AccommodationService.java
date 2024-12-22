@@ -108,7 +108,7 @@ public class AccommodationService implements IAccommodationService {
     public Boolean isRoomAvailable(Room room, LocalDate startDate, LocalDate endDate, Integer adults, Integer children, Integer requiredRooms) {
         return isRoomStatusAvailable(room) &&
           hasSufficientCapacity(room, adults, children, requiredRooms) &&
-          isRoomAvailableForDates(room, startDate, endDate);
+          isRoomAvailableForDates();
     }
 
     private List<Accommodation> getAccommodationsByType(AccommodationType type) {

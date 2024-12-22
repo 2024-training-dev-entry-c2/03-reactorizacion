@@ -2,7 +2,6 @@ package lib;
 
 import Models.Room;
 
-import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 
@@ -41,7 +40,7 @@ public class RoomUtils {
         return room.getAmountRooms() >= requiredRooms;
     }
 
-    public static Boolean isRoomAvailableForDates(Room room, LocalDate startDate, LocalDate endDate) {
+    public static Boolean isRoomAvailableForDates() {
         return true;
     }
 }

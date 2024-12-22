@@ -14,15 +14,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import static lib.ReservationUtil.authenticateAndValidateReservation;
 import static lib.ReservationUtil.changeRoom;
 import static lib.ReservationUtil.displayReservationDetails;
 import static lib.ReservationUtil.getModificationOption;
 import static lib.ReservationUtil.resetRoomAvailability;
-import static lib.ReservationUtil.updateRoomAvailability;
 
 public class ReservationService implements IReservationService {
-    private final List<Reservation<Accommodation>> reservations = new ArrayList<>();
+    private static final List<Reservation<Accommodation>> reservations = new ArrayList<>();
 
     public ReservationService() {
     }
@@ -36,20 +34,17 @@ public class ReservationService implements IReservationService {
     }
 
     @Override
-    public void modifyReservation(Reservation reservation, Room newRoom, Scanner scanner) {
+    public void modifyReservation(Reservation reservation, Scanner scanner) {
+
         resetRoomAvailability(reservation);
 
         try {
-            if (!authenticateAndValidateReservation(reservation, scanner)) {
-                return;
-            }
 
             displayReservationDetails(reservation);
 
             Integer option = getModificationOption(scanner);
             handleModificationOption(option, reservation, scanner);
 
-            updateRoomAvailability(reservation, newRoom);
         } catch (Exception e) {
             System.out.println("Error durante la modificación de la reserva: " + e.getMessage());
         }
@@ -75,4 +70,16 @@ public class ReservationService implements IReservationService {
         room.setAmountRooms(room.getAmountRooms() + reservation.getNumberOfRooms());
         System.out.println("Reserva eliminada. Por favor, realice una nueva reserva.");
     }
+
+    public static Reservation getReservation(String email, String birthDate) {
+
+        for (Reservation reservation : reservations) {
+            if (reservation.getClient().getEmail().equals(email) && reservation.getClient().getBirthDate().equals(LocalDate.parse(birthDate))) {
+                return reservation;
+            }
+        }
+        return null;
+    }
+
+
 }
