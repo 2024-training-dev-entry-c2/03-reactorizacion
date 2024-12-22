@@ -18,6 +18,7 @@ public class Room {
     }
 
     public Room(){
+
     }
 
     public Boolean isAvailable() {
