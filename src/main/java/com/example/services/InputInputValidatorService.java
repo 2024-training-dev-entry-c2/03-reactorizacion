@@ -13,6 +13,11 @@ public class InputInputValidatorService implements IInputValidatorService {
         this.scanner = scanner;
     }
 
+    public String readString(String prompt) {
+        System.out.println(prompt);
+        return scanner.nextLine();
+    }
+
     public Integer readInt(String prompt) {
         int input;
         while (true) {

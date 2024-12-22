@@ -5,11 +5,13 @@ import java.time.LocalTime;
 
 public interface IInputValidatorService {
 
-    Integer readInt(String prompt);
+  String readString(String prompt);
 
-    LocalDate readLocalDate(String prompt);
+  Integer readInt(String prompt);
 
-    LocalTime readLocalTime(String prompt);
+  LocalDate readLocalDate(String prompt);
 
-    void clearBuffer();
+  LocalTime readLocalTime(String prompt);
+
+  void clearBuffer();
 }
