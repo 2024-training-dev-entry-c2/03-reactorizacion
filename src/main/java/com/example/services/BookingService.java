@@ -4,15 +4,15 @@ import com.example.repositories.AccommodationRepository;
 import com.example.models.Stay;
 import com.example.services.interfaces.IBookingService;
 import com.example.services.interfaces.IMenuService;
-import com.example.services.interfaces.IInputValidatorService;
+import com.example.utils.ConsoleUtils;
 
 public class BookingService implements IBookingService {
 
     private final AccommodationRepository accommodationRepository;
     private final IMenuService menuService;
-    private final IInputValidatorService validatorService;
+    private final ConsoleUtils validatorService;
 
-    public BookingService(AccommodationRepository accommodationRepository, IMenuService menuService, IInputValidatorService validatorService) {
+    public BookingService(AccommodationRepository accommodationRepository, IMenuService menuService, ConsoleUtils validatorService) {
         this.accommodationRepository = accommodationRepository;
         this.menuService = menuService;
         this.validatorService = validatorService;
@@ -38,7 +38,7 @@ public class BookingService implements IBookingService {
 
     public void askForCity() {
         listCities();
-        String selectedCity = validatorService.readString("Por favor, seleccione una de las ciudades:");
+        String selectedCity = validatorService.getString("Por favor, seleccione una de las ciudades:");
         if (!validateCity(selectedCity)) {
             System.out.println("La ciudad seleccionada no es válida. Intente de nuevo.");
             return;
@@ -46,17 +46,17 @@ public class BookingService implements IBookingService {
     }
 
     public void askForType() {
-        String this.selectedCity;
-        String selectedType = validatorService.readString("¿Qué tipo de reserva desea hacer? (1.Alojamiento/ 2.Día de sol)");
-        listStaysByCity(selectedCity);
-        String selectedAccommodation = validatorService.readString("Ingrese el nombre del alojamiento:");
+//        String this.selectedCity;
+        String selectedType = validatorService.getString("¿Qué tipo de reserva desea hacer? (1.Alojamiento/ 2.Día de sol)");
+//        listStaysByCity(selectedCity);
+        String selectedAccommodation = validatorService.getString("Ingrese el nombre del alojamiento:");
 
-        int numberOfAdults = validatorService.readInt("Ingrese cantidad de adultos que reservarán:");
-        int numberOfChildren = validatorService.readInt("Ingrese cantidad de niños que reservarán:");
-        String confirmation = validatorService.readString("¿Desea confirmar la reserva? (Sí/No)");
+        int numberOfAdults = validatorService.getInteger("Ingrese cantidad de adultos que reservarán:");
+        int numberOfChildren = validatorService.getInteger("Ingrese cantidad de niños que reservarán:");
+        String confirmation = validatorService.getString("¿Desea confirmar la reserva? (Sí/No)");
 
         if (confirmation.equalsIgnoreCase("Si")) {
-            System.out.println("Reserva realizada con éxito para " + selectedAccommodation + " en " + selectedCity + ".");
+            System.out.println("Reserva realizada con éxito para " + selectedAccommodation + " en " + "ciudad" + ".");
         } else {
             System.out.println("Reserva cancelada.");
         }
