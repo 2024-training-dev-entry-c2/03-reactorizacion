@@ -4,4 +4,5 @@ public enum AccommodationType {
     HOTEL,
     APARTMENT,
     FARM,
+    DAY_PASS,
 }
