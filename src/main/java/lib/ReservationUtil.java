@@ -18,14 +18,12 @@ public class ReservationUtil {
     return Integer.parseInt(scanner.nextLine());
   }
 
-
   public static void displayReservationDetails(Reservation reservation) {
     System.out.println("Reserva actual:");
     System.out.println("Alojamiento: " + reservation.getAccommodation().getName());
     System.out.println("Tipo de habitación: " + reservation.getRoom().getRoomType());
     System.out.println("Fechas: " + reservation.getStartDate() + " a " + reservation.getEndDate());
   }
-
 
   public static void changeRoom(Reservation reservation, Scanner scanner) {
     Room oldRoom = reservation.getRoom();

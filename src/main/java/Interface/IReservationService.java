@@ -10,7 +10,7 @@ import java.time.LocalTime;
 import java.util.Scanner;
 
 public interface IReservationService {
-    Reservation createReservation(Client client, Accommodation accommodation, int roomCount, Room room, LocalDate startDate, LocalDate endDate, LocalTime checkInTime);
+    Reservation createReservation(Client client, Accommodation accommodation, Integer roomCount, Room room, LocalDate startDate, LocalDate endDate, LocalTime checkInTime);
     void modifyReservation(Reservation reservation, Scanner scanner);
 }
 

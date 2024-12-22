@@ -25,7 +25,7 @@ public class SunnyDay extends Accommodation {
         System.out.println(info);
     }
 
-    private String formatBoolean(boolean value) {
+    private String formatBoolean(Boolean value) {
         return value ? "Sí" : "No";
     }
 

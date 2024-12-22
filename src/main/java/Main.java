@@ -51,18 +51,30 @@ public class Main {
 
     private static boolean handleMenuOption(Integer choice) {
         scanner.nextLine();
-        MenuOptionEnum option = MenuOptionEnum.getMenuOption(choice);
+        MenuOptionEnum option = getValidatedMenuOption(choice);
 
+        executeMenuAction(option);
+
+        return !isExitOption(option);
+    }
+
+    private static MenuOptionEnum getValidatedMenuOption(Integer choice) {
+        MenuOptionEnum option = MenuOptionEnum.getMenuOption(choice);
         if (option == null) {
             System.out.println("Opción inválida. Por favor, selecciona una opción válida.");
-            return true;
         }
+        return option;
+    }
+
+    private static void executeMenuAction(MenuOptionEnum option) {
+        if (option == null) return;
 
         menuActions.getOrDefault(option, services ->
           System.out.println("Acción no implementada para esta opción.")
         ).accept(bookingServices);
-
-        return option != MenuOptionEnum.EXIT;
     }
 
+    private static boolean isExitOption(MenuOptionEnum option) {
+        return option == MenuOptionEnum.EXIT;
+    }
 }

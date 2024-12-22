@@ -26,7 +26,7 @@ public class ReservationService implements IReservationService {
     }
 
     @Override
-    public Reservation createReservation(Client client, Accommodation accommodation, int roomCount, Room room, LocalDate startDate, LocalDate endDate, LocalTime checkInTime) {
+    public Reservation createReservation(Client client, Accommodation accommodation, Integer roomCount, Room room, LocalDate startDate, LocalDate endDate, LocalTime checkInTime) {
         Reservation<Accommodation> reservation = new Reservation<>(client, accommodation, roomCount, room, startDate, endDate);
         reservations.add(reservation);
         room.setAmountRooms(room.getAmountRooms() - roomCount);
@@ -72,14 +72,14 @@ public class ReservationService implements IReservationService {
     }
 
     public static Reservation getReservation(String email, String birthDate) {
-
-        for (Reservation reservation : reservations) {
-            if (reservation.getClient().getEmail().equals(email) && reservation.getClient().getBirthDate().equals(LocalDate.parse(birthDate))) {
-                return reservation;
-            }
-        }
-        return null;
+        return reservations.stream()
+          .filter(reservation -> matchesClient(reservation, email, birthDate))
+          .findFirst()
+          .orElse(null);
     }
 
-
+    private static boolean matchesClient(Reservation reservation, String email, String birthDate) {
+        return reservation.getClient().getEmail().equals(email) &&
+          reservation.getClient().getBirthDate().equals(LocalDate.parse(birthDate));
+    }
 }

@@ -1,6 +1,7 @@
 package lib;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiPredicate;
@@ -22,15 +23,42 @@ public class PricingStrategy {
   }
 
   public static Double calculateTotalPrice(Double basePrice, LocalDate startDay, LocalDate endDay, Integer numberOfRooms) {
-    Integer totalDays = endDay.getDayOfMonth() - startDay.getDayOfMonth();
-    if (totalDays <0) {
-      throw new IllegalArgumentException("Debe seleccionar una fecha de inicio y fin válida");
-    }else if (totalDays == 0) {
-      totalDays = 1;
+    validateDates(startDay, endDay);
+    Integer totalDays = calculateTotalDays(startDay, endDay);
+    Double baseTotal = calculateBaseTotalPrice(basePrice, totalDays, numberOfRooms);
+    Double adjustment = getAdjustmentFactor(startDay, endDay, baseTotal);
+    return baseTotal + adjustment;
+  }
+
+  private static void validateDates(LocalDate startDay, LocalDate endDay) {
+    validateNotNullDates(startDay, endDay);
+    validateStartBeforeEnd(startDay, endDay);
+  }
+
+  private static void validateNotNullDates(LocalDate startDay, LocalDate endDay) {
+    validateNotNull(startDay, "La fecha de inicio no puede ser nula");
+    validateNotNull(endDay, "La fecha de fin no puede ser nula");
+  }
+
+  private static void validateNotNull(Object date, String errorMessage) {
+    if (date == null) {
+      throw new IllegalArgumentException(errorMessage);
     }
-    Double totalPrice = basePrice * numberOfRooms * totalDays;
-    Double adjustment = getAdjustmentFactor(startDay, endDay, totalPrice);
-    return totalPrice + adjustment;
+  }
+
+  private static void validateStartBeforeEnd(LocalDate startDay, LocalDate endDay) {
+    if (startDay.isAfter(endDay)) {
+      throw new IllegalArgumentException("La fecha de inicio debe ser anterior o igual a la fecha de fin");
+    }
+  }
+
+  private static int calculateTotalDays(LocalDate startDay, LocalDate endDay) {
+    Integer totalDays = (int) ChronoUnit.DAYS.between(startDay, endDay);
+    return totalDays == 0 ? 1 : totalDays;
+  }
+
+  private static double calculateBaseTotalPrice(Double basePrice, Integer totalDays, Integer numberOfRooms) {
+    return basePrice * numberOfRooms * totalDays;
   }
 
   private static Double getAdjustmentFactor(LocalDate startDay, LocalDate endDay, Double totalPrice) {
