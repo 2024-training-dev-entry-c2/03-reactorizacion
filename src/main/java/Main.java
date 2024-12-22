@@ -13,7 +13,7 @@ import static lib.MainUtils.printMenu;
 public class Main {
 
     private static final Scanner scanner = new Scanner(System.in);
-    private static final BookingServices bookingServices = new BookingServices(scanner);
+    private static final BookingServices bookingServices = BookingServices.getInstance(scanner);
     private static final Map<MenuOptionEnum, Consumer<BookingServices>> menuActions = new HashMap<>();
 
     static {

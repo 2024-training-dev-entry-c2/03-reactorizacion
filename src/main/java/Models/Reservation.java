@@ -2,7 +2,7 @@ package Models;
 
 import java.time.LocalDate;
 
-public class Reservation<T> {
+public class Reservation {
 
     private Client client;
     private Accommodation accommodation;

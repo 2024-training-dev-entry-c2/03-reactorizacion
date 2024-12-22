@@ -25,6 +25,7 @@ public class AccommodationService implements IAccommodationService {
     private final List<Accommodation> lands;
     private final List<Accommodation> sunnyDays;
     private final Data data;
+    private static AccommodationService instance;
 
     public AccommodationService() {
         this.data = Data.getInstance();
@@ -32,6 +33,13 @@ public class AccommodationService implements IAccommodationService {
         this.apartments = data.addApartment();
         this.lands = data.addLands();
         this.sunnyDays = data.addSunnyDay();
+    }
+
+    public static AccommodationService getInstance() {
+        if (instance == null) {
+            instance = new AccommodationService();
+        }
+        return instance;
     }
 
     public Accommodation findAccommodation(String accommodationName) {

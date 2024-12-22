@@ -27,13 +27,21 @@ public class BookingServices {
     private final IReservationService reservationService;
     private final Scanner scanner;
     private final ReservationValidator reservationValidator;
+    private static BookingServices instance;
 
     public BookingServices(Scanner scanner) {
-        this.accommodationService = new AccommodationService();
-        this.reservationService = new ReservationService();
+        this.accommodationService = AccommodationService.getInstance();
+        this.reservationService = ReservationService.getInstance();
         this.scanner = scanner;
         this.reservationValidator = new ReservationValidator((AccommodationService) accommodationService);
         AccommodationUtils.reservationService= (ReservationService) this.reservationService;
+    }
+
+    public static BookingServices getInstance(Scanner scanner) {
+        if (instance == null) {
+            instance = new BookingServices(scanner);
+        }
+        return instance;
     }
 
     public void searchAccommodation() {
@@ -42,7 +50,6 @@ public class BookingServices {
           criteria.getCity(), criteria.getType(), criteria.getStartDate(), criteria.getEndDate(),
           criteria.getAdults(), criteria.getChildren(), criteria.getRooms()
         );
-
         displayMatchingAccommodations(matchingAccommodations, criteria);
     }
 

@@ -20,14 +20,22 @@ import static lib.ReservationUtil.getModificationOption;
 import static lib.ReservationUtil.resetRoomAvailability;
 
 public class ReservationService implements IReservationService {
-    private static final List<Reservation<Accommodation>> reservations = new ArrayList<>();
+    private static final List<Reservation> reservations = new ArrayList<>();
+    private static ReservationService instance;
 
     public ReservationService() {
     }
 
+    public static ReservationService getInstance() {
+        if (instance == null) {
+            instance = new ReservationService();
+        }
+        return instance;
+    }
+
     @Override
     public Reservation createReservation(Client client, Accommodation accommodation, Integer roomCount, Room room, LocalDate startDate, LocalDate endDate, LocalTime checkInTime) {
-        Reservation<Accommodation> reservation = new Reservation<>(client, accommodation, roomCount, room, startDate, endDate);
+        Reservation reservation = new Reservation(client, accommodation, roomCount, room, startDate, endDate);
         reservations.add(reservation);
         room.setAmountRooms(room.getAmountRooms() - roomCount);
         return reservation;

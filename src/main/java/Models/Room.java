@@ -1,8 +1,5 @@
 package Models;
 
-import java.time.LocalDate;
-import java.util.Set;
-
 public class Room {
     private String description;
     private String roomType;
@@ -11,7 +8,7 @@ public class Room {
     private Integer capacityAdults;
     private Integer amountRooms;
 
-    public Room(String description, String roomType, Double basePrice, Integer capacityMinors, Integer capacityAdults, Integer amountRooms, Set<LocalDate> availability) {
+    public Room(String description, String roomType, Double basePrice, Integer capacityMinors, Integer capacityAdults, Integer amountRooms) {
         this.description = description;
         this.roomType = roomType;
         this.basePrice = basePrice;
@@ -21,7 +18,6 @@ public class Room {
     }
 
     public Room(){
-
     }
 
     public Boolean isAvailable() {
