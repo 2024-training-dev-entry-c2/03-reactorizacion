@@ -1,6 +1,7 @@
 package com.bookinghotels.repositories;
 
 import com.bookinghotels.constants.Categoria;
+import com.bookinghotels.interfaces.IDiaDeSol;
 import com.bookinghotels.model.alojamiento.Alojamiento;
 import com.bookinghotels.model.alojamiento.Apartamento;
 import com.bookinghotels.model.alojamiento.DiaDeSol;
@@ -12,6 +13,7 @@ import com.bookinghotels.model.data.ReservaData;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AlojamientoRepository {
   private static AlojamientoRepository instance;
@@ -30,11 +32,7 @@ public class AlojamientoRepository {
     return instance;
   }
 
-  public List<Alojamiento> getAlojamientos(){
-    return alojamientos;
-  }
-
-  public void addAlojamiento(Alojamiento alojamiento){
+  public void addAlojamiento(Alojamiento alojamiento){ // lo mantengo para uso futuro
     alojamientos.add(alojamiento);
   }
 
@@ -53,6 +51,26 @@ public class AlojamientoRepository {
       .findFirst()
       .orElse(null);
   }
+
+  public List<IDiaDeSol> buscarDiaSol(String ciudad, LocalDate fecha, Integer cantPersonas) {
+    return alojamientos.stream()
+      .filter(aloj -> esDiaDeSolYCumpleCriterios(aloj, ciudad, cantPersonas))
+      .map(this::convertirADiaDeSol)
+      .collect(Collectors.toList());
+  }
+
+  private boolean esDiaDeSolYCumpleCriterios(Object aloj, String ciudad, Integer cantPersonas) {
+    if (!(aloj instanceof IDiaDeSol iDiaDeSol)) {
+      return false;
+    }
+    return cumpleCiudad((Alojamiento) iDiaDeSol, ciudad) &&
+      iDiaDeSol.getDiaSol().estaDisponible(cantPersonas);
+  }
+
+  private IDiaDeSol convertirADiaDeSol(Object aloj) {
+    return (IDiaDeSol) aloj;
+  }
+
 
   public List<Habitacion> obtenerHabitacionesDisponibles(Alojamiento alojamiento, LocalDate fechaInicio, LocalDate fechaFin) {
     List<ReservaData<?>> reservas = ReservaRepository.getInstance().getReservas();

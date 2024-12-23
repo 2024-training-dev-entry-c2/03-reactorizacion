@@ -1,5 +1,6 @@
 package com.bookinghotels.model.data;
 
+import com.bookinghotels.model.alojamiento.Alojamiento;
 import com.bookinghotels.model.alojamiento.Habitacion;
 
 import java.time.LocalDate;
@@ -24,6 +25,20 @@ public class ReservaData<T> {
   }
 
   public ReservaData(){
+  }
+
+  public void mostrarDetalles(){
+    Alojamiento alojamiento = (Alojamiento) this.alojamiento;
+    System.out.println("Alojamiento: " + alojamiento.getNombre());
+    System.out.println("Huesped: " + huesped.getNombre() + " " + huesped.getApellido());
+    System.out.println("Hora llegada: " + this.horaLlegada);
+     mostrarHabitaciones(alojamiento);
+  }
+
+  public void mostrarHabitaciones(Alojamiento alojamiento){
+    if(!alojamiento.getHabitaciones().isEmpty()){
+      alojamiento.getHabitaciones().forEach(habitacion -> System.out.println("- " + habitacion.getTipo() + "\n"));
+    }
   }
 
   public T getAlojamiento() {
@@ -54,7 +69,8 @@ public class ReservaData<T> {
     return habitacionesReservadas;
   }
 
-  public LocalTime getHoraLlegada() {
-    return horaLlegada;
+  public void setHabitacionesReservadas(List<Habitacion> habitacionesReservadas) {
+    this.habitacionesReservadas = habitacionesReservadas;
   }
+
 }

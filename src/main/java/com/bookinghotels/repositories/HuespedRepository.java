@@ -21,10 +21,6 @@ public class HuespedRepository {
     return instance;
   }
 
-  public List<HuespedData> getHuespedes(){
-    return huespedes;
-  }
-
   public void addHuesped(HuespedData huesped){
     huespedes.add(huesped);
   }

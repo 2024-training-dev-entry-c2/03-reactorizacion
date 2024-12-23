@@ -1,11 +1,14 @@
 
 package com.bookinghotels.controller;
 
+import com.bookinghotels.constants.Categoria;
+import com.bookinghotels.interfaces.IDiaDeSol;
 import com.bookinghotels.model.alojamiento.Alojamiento;
 import com.bookinghotels.model.alojamiento.Habitacion;
 import com.bookinghotels.repositories.AlojamientoRepository;
 import com.bookinghotels.service.alojamiento.BuscarAlojamientoCommand;
 import com.bookinghotels.service.alojamiento.BuscarAlojamientosCommand;
+import com.bookinghotels.service.alojamiento.BuscarDiaSolCommand;
 import com.bookinghotels.service.alojamiento.ConfirmarHabitacionesCommand;
 import com.bookinghotels.service.alojamiento.ObtenerHabitacionesCommand;
 import com.bookinghotels.utils.ConsolaUtils;
@@ -17,17 +20,22 @@ public class AlojamientoController {
   private AlojamientoRepository repository = AlojamientoRepository.getInstance();
   private ConsolaUtils consolaUtils;
 
-  public AlojamientoController(ConsolaUtils consolaUtils) {
-    this.consolaUtils = consolaUtils;
+  public AlojamientoController() {
+
   }
 
-  public List<Alojamiento> buscarAlojamientos(LocalDate fechaInicio, LocalDate fechaFin, Integer cantPersonas, Integer cantHabitaciones){
-    BuscarAlojamientosCommand buscarCommand =  new BuscarAlojamientosCommand(repository, fechaInicio, fechaFin, cantPersonas, cantHabitaciones, consolaUtils);
+  public List<Alojamiento> buscarAlojamientos(Categoria categoria, LocalDate fechaInicio, LocalDate fechaFin, Integer cantPersonas, Integer cantHabitaciones){
+    BuscarAlojamientosCommand buscarCommand =  new BuscarAlojamientosCommand(repository, categoria, fechaInicio, fechaFin, cantPersonas, cantHabitaciones);
     return buscarCommand.execute();
   }
 
   public Alojamiento buscarAlojamiento(){
-    BuscarAlojamientoCommand buscarCommand = new BuscarAlojamientoCommand(repository,consolaUtils);
+    BuscarAlojamientoCommand buscarCommand = new BuscarAlojamientoCommand(repository);
+    return buscarCommand.execute();
+  }
+
+  public List<IDiaDeSol> buscarDiaSol( LocalDate fecha, Integer cantPersonas){
+    BuscarDiaSolCommand buscarCommand = new BuscarDiaSolCommand(repository,fecha, cantPersonas);
     return buscarCommand.execute();
   }
 
@@ -37,7 +45,7 @@ public class AlojamientoController {
   }
 
   public List<Habitacion> confirmarHabitaciones(List<Habitacion> habitacionesDisponibles, Integer cantHabitaciones){
-     ConfirmarHabitacionesCommand confirmarCommand = new ConfirmarHabitacionesCommand(repository,consolaUtils,habitacionesDisponibles,cantHabitaciones);
+     ConfirmarHabitacionesCommand confirmarCommand = new ConfirmarHabitacionesCommand(habitacionesDisponibles,cantHabitaciones);
      return confirmarCommand.execute();
   }
 

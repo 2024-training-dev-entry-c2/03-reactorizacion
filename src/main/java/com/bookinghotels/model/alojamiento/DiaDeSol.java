@@ -28,35 +28,4 @@ public class DiaDeSol {
     System.out.println("Precio por persona: $" + this.precioPorPersona);
   }
 
-  public String getActividades() {
-    return actividades;
-  }
-
-  public void setActividades(String actividades) {
-    this.actividades = actividades;
-  }
-
-  public List<String> getExtras() {
-    return extras;
-  }
-
-  public void setExtras(List<String> extras) {
-    this.extras = extras;
-  }
-
-  public Float getPrecioPorPersona() {
-    return precioPorPersona;
-  }
-
-  public void setPrecioPorPersona(Float precioPorPersona) {
-    this.precioPorPersona = precioPorPersona;
-  }
-
-  public Integer getMaxCapacidad() {
-    return maxCapacidad;
-  }
-
-  public void setMaxCapacidad(Integer maxCapacidad) {
-    this.maxCapacidad = maxCapacidad;
-  }
 }

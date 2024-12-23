@@ -34,12 +34,15 @@ public class Habitacion {
   }
 
   public boolean estaDisponible(LocalDate fechaInicio, LocalDate fechaFin, List<ReservaData<?>> reservas) {
-    long habitacionesOcupadas = reservas.stream()
+    long habitacionesOcupadas = contarHabitacionesOcupadas(fechaInicio,fechaFin,reservas);
+    return habitacionesOcupadas < habitacionesDisponibles;
+  }
+
+  private long contarHabitacionesOcupadas(LocalDate fechaInicio, LocalDate fechaFin, List<ReservaData<?>> reservas){
+    return reservas.stream()
       .filter(reserva -> tieneHabitacionesOcupadasEnRango(fechaInicio, fechaFin, reserva))
       .flatMap(this::obtenerHabitacionesDeReserva)
-      .filter(this::esHabitacionTipoDeseado)
       .count();
-    return habitacionesOcupadas < habitacionesDisponibles;
   }
 
   private boolean tieneHabitacionesOcupadasEnRango(LocalDate fechaInicio, LocalDate fechaFin, ReservaData<?> reserva) {

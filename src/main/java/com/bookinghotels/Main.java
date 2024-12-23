@@ -1,6 +1,6 @@
 package com.bookinghotels;
 
-import com.bookinghotels.controller.FlowController;
+import com.bookinghotels.controller.flujo.FlowController;
 import com.bookinghotels.utils.ConsolaUtils;
 
 
@@ -8,9 +8,9 @@ public class Main {
 
     public static void main(String[] args) {
         ConsolaUtils consolaUtils = new ConsolaUtils();
-        FlowController flowController = new FlowController(consolaUtils);
+        FlowController flowController = new FlowController();
         mostrarLogo();
-        flowController.iniciarFlujoReserva();
+        flowController.iniciarFlujo();
 
     }
 

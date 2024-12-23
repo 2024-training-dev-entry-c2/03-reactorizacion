@@ -1,6 +1,5 @@
 package com.bookinghotels.service.alojamiento;
 
-import com.bookinghotels.constants.Categoria;
 import com.bookinghotels.interfaces.ICommand;
 import com.bookinghotels.model.alojamiento.Alojamiento;
 import com.bookinghotels.model.alojamiento.Habitacion;
@@ -16,7 +15,6 @@ public class ObtenerHabitacionesCommand implements ICommand {
   private final ConsolaUtils consola;
   private final LocalDate fechaInicio;
   private final LocalDate fechaFin;
-  private final List<String> categorias = List.of(Categoria.values()).stream().map((categoria) -> categoria.getCategoria()).toList();
 
   public ObtenerHabitacionesCommand(AlojamientoRepository repository, Alojamiento alojamiento, LocalDate fechaInicio, LocalDate fechaFin, ConsolaUtils consola) {
     this.repository = repository;

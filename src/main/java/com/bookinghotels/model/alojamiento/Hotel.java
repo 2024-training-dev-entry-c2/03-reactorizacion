@@ -39,9 +39,9 @@ public class Hotel extends Alojamiento implements IDiaDeSol {
   }
 
   @Override
-  public void mostrarInfoDiaDeSol(Integer cantPersonas, LocalDate fechaInicio) {
+  public void mostrarInfoDiaDeSol() {
     getDetallesBasicos();
-    if(tieneDiaDeSol())return;
+    if(!tieneDiaDeSol())return;
     diaDeSol.mostrarDetalles();
   }
 
@@ -53,7 +53,8 @@ public class Hotel extends Alojamiento implements IDiaDeSol {
       .orElse(null);
   }
 
-  public DiaDeSol getDiaDeSol() {
+  @Override
+  public DiaDeSol getDiaSol() {
     return diaDeSol;
   }
 

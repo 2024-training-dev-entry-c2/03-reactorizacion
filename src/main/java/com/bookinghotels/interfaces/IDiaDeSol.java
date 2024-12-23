@@ -1,8 +1,9 @@
 package com.bookinghotels.interfaces;
 
-import java.time.LocalDate;
+import com.bookinghotels.model.alojamiento.DiaDeSol;
 
 public interface IDiaDeSol {
     boolean tieneDiaDeSol();
-    void mostrarInfoDiaDeSol(Integer cantPersonas, LocalDate fechaInicio);
+    DiaDeSol getDiaSol();
+    void mostrarInfoDiaDeSol();
 }

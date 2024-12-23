@@ -38,13 +38,14 @@ public class Finca extends Alojamiento implements IDiaDeSol {
   }
 
   @Override
-  public void mostrarInfoDiaDeSol(Integer cantPersonas, LocalDate fechaInicio) {
+  public void mostrarInfoDiaDeSol() {
     getDetallesBasicos();
-    if(tieneDiaDeSol())return;
+    if(!tieneDiaDeSol())return;
     diaDeSol.mostrarDetalles();
   }
 
-  public DiaDeSol getDiaDeSol() {
+  @Override
+  public DiaDeSol getDiaSol() {
     return diaDeSol;
   }
 

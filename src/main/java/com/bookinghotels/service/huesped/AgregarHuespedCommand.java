@@ -9,21 +9,19 @@ import java.time.LocalDate;
 
 public class AgregarHuespedCommand implements ICommand {
   private HuespedRepository repository;
-  private final ConsolaUtils consola;
 
-  public AgregarHuespedCommand( HuespedRepository repository, ConsolaUtils consola) {
-    this.consola = consola;
+  public AgregarHuespedCommand( HuespedRepository repository) {
     this.repository = repository;
   }
 
   @Override
   public HuespedData execute() {
-    String nombre = consola.obtenerEntrada("Nombre: ");
-    String apellido = consola.obtenerEntrada("Apellido: ");
-    LocalDate fechaNacimiento = consola.parseFecha(consola.obtenerEntrada("Fecha de nacimiento (YYYY-MM-dd): "));
-    String numCelular = consola.obtenerEntrada("Número de celular: ");
-    String correo = consola.obtenerEntrada("Correo electrónico: ");
-    String nacionalidad = consola.obtenerEntrada("Nacionalidad: ");
+    String nombre = ConsolaUtils.obtenerEntrada("Nombre: ");
+    String apellido = ConsolaUtils.obtenerEntrada("Apellido: ");
+    LocalDate fechaNacimiento = ConsolaUtils.parseFecha(ConsolaUtils.obtenerEntrada("Fecha de nacimiento (YYYY-MM-dd): "));
+    String numCelular = ConsolaUtils.obtenerEntrada("Número de celular: ");
+    String correo = ConsolaUtils.obtenerEntrada("Correo electrónico: ");
+    String nacionalidad = ConsolaUtils.obtenerEntrada("Nacionalidad: ");
     HuespedData huespedData = new HuespedData(nombre, apellido, fechaNacimiento, numCelular, correo, nacionalidad);
     repository.addHuesped(huespedData);
     return huespedData;
