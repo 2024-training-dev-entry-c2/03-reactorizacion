@@ -33,21 +33,12 @@ public class MakeBooking implements ICommand<String> {
     String selectedCity = selectCity();
     AccommodationType type = selectAccommodationType();
 
-    // desde aquí se debería seprar el flujo de acuerdo al tipo de alojamiento /hotel/daypass/finca o apartamento
-    LocalDate checkIn = console.getLocalDate("Ingrese la fecha de check-in (yyyy-mm-dd): ");
-    LocalDate checkOut = console.getLocalDate("Ingrese la fecha de finalizacion de la reserva (yyyy-mm-dd): ");
-    Integer adults = console.getInteger("Ingrese la cantidad de adultos: ");
-    Integer children = console.getInteger("Ingrese la cantidad de niños: ");
-    Integer roomCount = console.getInteger("Ingrese la cantidad de habitaciones: ");
-    listAccomodationsByCityAndType(selectedCity, type);
-    Accommodation selectedAccommodation = selectAccommodation();
+    // desde aquí se debería seprar el flujo de acuerdo al tipo de alojamiento /hotel(se le debe seleccionar habitación)/daypass(no tiene fecha de finalizacion de reserva)/finca o apartamento
+
     if (type == AccommodationType.DAY_PASS) {
-      Details details = new Details(checkIn, type, children, adults, selectedCity);
-      bookingRepository.addBooking(new Booking(selectedAccommodation, craeteClient(), details, null));
+      handleDayPassBooking(selectedCity, type);
     } else {
-      DetailsStay details = new DetailsStay(checkIn, type, children, adults, selectedCity, checkOut, roomCount);
-      showServices(selectedAccommodation);
-      bookingRepository.addBooking(new Booking(selectedAccommodation, craeteClient(), details, selectRoom((Stay) selectedAccommodation)));
+      handleStayBooking(selectedCity, type);
     }
     return null;
   }
@@ -63,8 +54,27 @@ public class MakeBooking implements ICommand<String> {
     return AccommodationType.values()[typeOption - 1];
   }
 
-  private void generateBooking(Accommodation accommodation, Client client, Details details, Service service) {
-    bookingRepository.addBooking(new Booking(accommodation, client, details, service));
+  private void handleDayPassBooking(String selectedCity, AccommodationType type) {
+    LocalDate checkIn = console.getLocalDate("Ingrese la fecha de check-in (yyyy-mm-dd): ");
+    Integer adults = console.getInteger("Ingrese la cantidad de adultos: ");
+    Integer children = console.getInteger("Ingrese la cantidad de niños: ");
+    listAccomodationsByCityAndType(selectedCity, type);
+    Accommodation selectedAccommodation = selectAccommodation();
+    Details details = new Details(checkIn, type, children, adults, selectedCity);
+    bookingRepository.addBooking(new Booking(selectedAccommodation, craeteClient(), details, null));
+  }
+
+  private void handleStayBooking(String selectedCity, AccommodationType type) {
+    LocalDate checkIn = console.getLocalDate("Ingrese la fecha de check-in (yyyy-mm-dd): ");
+    LocalDate checkOut = console.getLocalDate("Ingrese la fecha de finalizacion de la reserva (yyyy-mm-dd): ");
+    Integer adults = console.getInteger("Ingrese la cantidad de adultos: ");
+    Integer children = console.getInteger("Ingrese la cantidad de niños: ");
+    Integer roomCount = console.getInteger("Ingrese la cantidad de habitaciones: ");
+    listAccomodationsByCityAndType(selectedCity, type);
+    Accommodation selectedAccommodation = selectAccommodation();
+    DetailsStay details = new DetailsStay(checkIn, type, children, adults, selectedCity, checkOut, roomCount);
+    showServices(selectedAccommodation);
+    bookingRepository.addBooking(new Booking(selectedAccommodation, craeteClient(), details, selectRoom((Stay) selectedAccommodation)));
   }
 
   private Client craeteClient() {
