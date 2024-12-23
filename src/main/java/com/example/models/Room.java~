@@ -39,10 +39,10 @@ public class Room extends Service {
   @Override
   public void describe() {
     System.out.println(
-            "    " + this.getName() + ": " + this.getDescription() +
-                    "\n     Disponibles: " + this.getStock() +
-                    "\n     Tipo de haabitación: " + this.getType() +
-                    "\n     Precio por noche: $" + this.getPrice()
+            "Habitación: " + this.getName() + ": " + this.getDescription() +
+                    "\n Disponibles: " + this.getStock() +
+                    "\n Tipo de haabitación: " + this.getType() +
+                    "\n Precio por noche: " + this.getPrice()
     );
   }
 }
