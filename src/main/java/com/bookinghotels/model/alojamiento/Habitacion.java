@@ -14,7 +14,6 @@ public class Habitacion {
   private Integer habitacionesDisponibles;
   private Integer capacidad;
 
-  // Constructor
   public Habitacion(String tipo, String descripcion, Float precioPorNoche, Integer habitacionesDisponibles, Integer capacidad) {
     this.tipo = tipo;
     this.descripcion = descripcion;
@@ -23,7 +22,9 @@ public class Habitacion {
     this.capacidad = capacidad;
   }
 
-  // Métodos
+  public Habitacion(){
+  }
+
   public void mostrarDetalles() {
     System.out.println("\n+--------- " + tipo + " ---------+");
     System.out.println(descripcion);
@@ -46,53 +47,18 @@ public class Habitacion {
   }
 
   private Stream<Habitacion> obtenerHabitacionesDeReserva(ReservaData<?> reserva) {
-    return reserva.getHabitacionesReservadas().stream()
-      .filter(habitacion -> habitacion instanceof Habitacion)
-      .map(habitacion -> (Habitacion) habitacion);
+    return reserva.getHabitacionesReservadas().stream().filter(this::esHabitacionTipoDeseado);
   }
 
   private boolean esHabitacionTipoDeseado(Habitacion habitacion) {
-    return habitacion.getTipo().equalsIgnoreCase(tipo);
+    return habitacion.getTipo().equalsIgnoreCase(this.tipo);
   }
 
-  // Getters y Setters
   public String getTipo() {
     return tipo;
   }
 
-  public void setTipo(String tipo) {
-    this.tipo = tipo;
-  }
-
-  public String getDescripcion() {
-    return descripcion;
-  }
-
-  public void setDescripcion(String descripcion) {
-    this.descripcion = descripcion;
-  }
-
   public Float getPrecioPorNoche() {
     return precioPorNoche;
-  }
-
-  public void setPrecioPorNoche(Float precioPorNoche) {
-    this.precioPorNoche = precioPorNoche;
-  }
-
-  public Integer getHabitacionesDisponibles() {
-    return habitacionesDisponibles;
-  }
-
-  public void setHabitacionesDisponibles(Integer habitacionesDisponibles) {
-    this.habitacionesDisponibles = habitacionesDisponibles;
-  }
-
-  public Integer getCapacidad() {
-    return capacidad;
-  }
-
-  public void setCapacidad(Integer capacidad) {
-    this.capacidad = capacidad;
   }
 }

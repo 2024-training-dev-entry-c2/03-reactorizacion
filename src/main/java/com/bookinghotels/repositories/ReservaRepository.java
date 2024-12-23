@@ -27,4 +27,8 @@ public class ReservaRepository {
   public void addReserva(ReservaData<?> reserva){
     reservas.add(reserva);
   }
+
+  public void eliminarReserva(ReservaData<?> reserva){
+    reservas.remove(reserva);
+  }
 }

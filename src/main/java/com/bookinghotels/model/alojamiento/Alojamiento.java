@@ -32,6 +32,8 @@ public abstract class Alojamiento {
 
   public abstract void getDetalles();
 
+  public abstract Float getPrecio();
+
   public void agregarHabitacion(Habitacion habitacion) {
     habitaciones.add(habitacion);
   }
@@ -52,7 +54,6 @@ public abstract class Alojamiento {
       .collect(Collectors.toList());
   }
 
-  //Getters y Setters
   public void getDetallesBasicos() {
     System.out.println(this.nombre);
     System.out.println("Calificación: " + this.calificacion);
@@ -62,47 +63,12 @@ public abstract class Alojamiento {
     return nombre;
   }
 
-  public void setNombre(String nombre) {
-    this.nombre = nombre;
-  }
-
   public String getCiudad() {
     return ciudad;
-  }
-
-  public void setCiudad(String ciudad) {
-    this.ciudad = ciudad;
   }
 
   public Categoria getCategoria() {
     return categoria;
   }
 
-  public void setCategoria(Categoria categoria) {
-    this.categoria = categoria;
-  }
-
-  public Float getCalificacion() {
-    return calificacion;
-  }
-
-  public void setCalificacion(Float calificacion) {
-    this.calificacion = calificacion;
-  }
-
-  public Integer getMaxPersonas() {
-    return maxPersonas;
-  }
-
-  public void setMaxPersonas(Integer maxPersonas) {
-    this.maxPersonas = maxPersonas;
-  }
-
-  public List<Habitacion> getHabitaciones() {
-    return habitaciones;
-  }
-
-  public void setHabitaciones(List<Habitacion> habitaciones) {
-    this.habitaciones = habitaciones;
-  }
 }

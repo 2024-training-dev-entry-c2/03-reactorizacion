@@ -20,6 +20,7 @@ public class AlojamientoRepository {
   private AlojamientoRepository() {
     alojamientos = new ArrayList<>();
     cargarDatosIniciales();
+    System.out.println(alojamientos);
   }
 
   public static synchronized AlojamientoRepository getInstance() {
@@ -42,8 +43,7 @@ public class AlojamientoRepository {
 
     return alojamientos.stream()
       .filter(alojamiento -> cumpleDisponibilidad(alojamiento, fechaInicio, fechaFin, cantPersonas, cantHabitaciones, reservas))
-      .filter(alojamiento -> cumpleCategoria(alojamiento, categoria))
-      .filter(alojamiento -> cumpleCiudad(alojamiento, ciudad))
+      .filter(alojamiento -> cumpleCategoriaCiudad(alojamiento, categoria, ciudad))
       .toList();
   }
 
@@ -63,12 +63,16 @@ public class AlojamientoRepository {
     return alojamiento.estaDisponible(fechaInicio, fechaFin, cantPersonas, cantHabitaciones, reservas);
   }
 
+  private boolean cumpleCategoriaCiudad(Alojamiento alojamiento, Categoria categoria, String ciudad){
+    return cumpleCategoria(alojamiento, categoria) && cumpleCiudad(alojamiento,ciudad);
+  }
+
   private boolean cumpleCategoria(Alojamiento alojamiento, Categoria categoria) {
-    return categoria == null || alojamiento.getCategoria().equals(categoria);
+    return alojamiento.getCategoria().equals(categoria);
   }
 
   private boolean cumpleCiudad(Alojamiento alojamiento, String ciudad) {
-    return ciudad == null || alojamiento.getCiudad().equalsIgnoreCase(ciudad);
+    return alojamiento.getCiudad().equalsIgnoreCase(ciudad);
   }
 
   private void cargarDatosIniciales(){

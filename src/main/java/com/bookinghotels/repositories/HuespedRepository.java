@@ -14,7 +14,7 @@ public class HuespedRepository {
     huespedes = new ArrayList<>();
   }
 
-  public synchronized HuespedRepository getInstance(){
+  public static synchronized HuespedRepository getInstance(){
     if(instance == null){
       instance = new HuespedRepository();
     }

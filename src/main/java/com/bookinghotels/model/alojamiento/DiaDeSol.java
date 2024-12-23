@@ -15,11 +15,19 @@ public class DiaDeSol {
     this.maxCapacidad = maxCapacidad;
   }
 
+  public DiaDeSol(){
+  }
+
   public boolean estaDisponible(Integer cantPersonas) {
     return cantPersonas <= maxCapacidad;
   }
 
-  //Getters y Setters
+  public void mostrarDetalles(){
+    System.out.println("Actividades: " + this.actividades);
+    System.out.println("Extras: " + this.extras.toString());
+    System.out.println("Precio por persona: $" + this.precioPorPersona);
+  }
+
   public String getActividades() {
     return actividades;
   }

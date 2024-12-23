@@ -10,7 +10,6 @@ public class HuespedData {
   private String correo;
   private String nacionalidad;
 
-  // Constructor
   public HuespedData(String nombre, String apellido, LocalDate fechaNacimiento, String numeroTel, String correo, String nacionalidad) {
     this.nombre = nombre;
     this.apellido = apellido;
@@ -20,7 +19,9 @@ public class HuespedData {
     this.nacionalidad = nacionalidad;
   }
 
-  // Getters and Setters
+  public HuespedData(){
+  }
+
   public String getNombre() {
     return nombre;
   }

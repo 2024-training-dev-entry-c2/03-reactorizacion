@@ -12,20 +12,22 @@ import java.util.List;
 
 public class ObtenerHabitacionesCommand implements ICommand {
   private final AlojamientoRepository repository;
+  private final Alojamiento alojamiento;
   private final ConsolaUtils consola;
+  private final LocalDate fechaInicio;
+  private final LocalDate fechaFin;
   private final List<String> categorias = List.of(Categoria.values()).stream().map((categoria) -> categoria.getCategoria()).toList();
 
-  public ObtenerHabitacionesCommand(AlojamientoRepository repository, ConsolaUtils consola) {
+  public ObtenerHabitacionesCommand(AlojamientoRepository repository, Alojamiento alojamiento, LocalDate fechaInicio, LocalDate fechaFin, ConsolaUtils consola) {
     this.repository = repository;
+    this.alojamiento = alojamiento;
     this.consola = consola;
+    this.fechaInicio = fechaInicio;
+    this.fechaFin = fechaFin;
   }
 
   @Override
-  public void execute() {
-    String nombre = consola.obtenerEntrada("Ingresa el nombre del alojamiento: ");
-    Alojamiento alojamiento = repository.buscarAlojamiento(nombre);
-    LocalDate fechaInicio = consola.parseFecha(consola.obtenerEntrada("¿Cuál es la fecha inicio?(YYYY-MM-dd): "));
-    LocalDate fechaFin = consola.parseFecha(consola.obtenerEntrada("¿Cuál es la fecha fin?(YYYY-MM-dd): "));
-    repository.obtenerHabitacionesDisponibles(alojamiento, fechaInicio, fechaFin).forEach(Habitacion::mostrarDetalles);
+  public List<Habitacion> execute() {
+    return repository.obtenerHabitacionesDisponibles(alojamiento, fechaInicio, fechaFin);
   }
 }

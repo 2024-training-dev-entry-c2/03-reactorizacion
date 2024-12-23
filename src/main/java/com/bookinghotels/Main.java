@@ -1,8 +1,6 @@
 package com.bookinghotels;
 
-import com.bookinghotels.repositories.AlojamientoRepository;
-import com.bookinghotels.service.alojamiento.BuscarAlojamientoCommand;
-import com.bookinghotels.service.alojamiento.ObtenerHabitacionesCommand;
+import com.bookinghotels.controller.FlowController;
 import com.bookinghotels.utils.ConsolaUtils;
 
 
@@ -10,14 +8,10 @@ public class Main {
 
     public static void main(String[] args) {
         ConsolaUtils consolaUtils = new ConsolaUtils();
-        AlojamientoRepository alojamientoRepository = AlojamientoRepository.getInstance();
-
+        FlowController flowController = new FlowController(consolaUtils);
         mostrarLogo();
+        flowController.iniciarFlujoReserva();
 
-        BuscarAlojamientoCommand buscarAlojamientoCommand = new BuscarAlojamientoCommand(alojamientoRepository, consolaUtils);
-        buscarAlojamientoCommand.execute();
-        ObtenerHabitacionesCommand obtenerHabitacionesCommand = new ObtenerHabitacionesCommand(alojamientoRepository, consolaUtils);
-        obtenerHabitacionesCommand.execute();
     }
 
     public static void  mostrarLogo(){

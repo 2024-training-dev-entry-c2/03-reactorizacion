@@ -11,13 +11,13 @@ public class AgregarHuespedCommand implements ICommand {
   private HuespedRepository repository;
   private final ConsolaUtils consola;
 
-  public AgregarHuespedCommand(ConsolaUtils consola, HuespedRepository repository) {
+  public AgregarHuespedCommand( HuespedRepository repository, ConsolaUtils consola) {
     this.consola = consola;
     this.repository = repository;
   }
 
   @Override
-  public void execute() {
+  public HuespedData execute() {
     String nombre = consola.obtenerEntrada("Nombre: ");
     String apellido = consola.obtenerEntrada("Apellido: ");
     LocalDate fechaNacimiento = consola.parseFecha(consola.obtenerEntrada("Fecha de nacimiento (YYYY-MM-dd): "));
@@ -26,5 +26,6 @@ public class AgregarHuespedCommand implements ICommand {
     String nacionalidad = consola.obtenerEntrada("Nacionalidad: ");
     HuespedData huespedData = new HuespedData(nombre, apellido, fechaNacimiento, numCelular, correo, nacionalidad);
     repository.addHuesped(huespedData);
+    return huespedData;
   }
 }

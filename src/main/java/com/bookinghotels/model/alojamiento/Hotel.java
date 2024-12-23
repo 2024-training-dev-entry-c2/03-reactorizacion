@@ -2,23 +2,25 @@ package com.bookinghotels.model.alojamiento;
 
 
 import com.bookinghotels.constants.Categoria;
+import com.bookinghotels.interfaces.IDiaDeSol;
 import com.bookinghotels.model.data.ReservaData;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class Hotel extends Alojamiento {
+public class Hotel extends Alojamiento implements IDiaDeSol {
   private DiaDeSol diaDeSol;
   private Boolean servicioHabitacion;
 
-  // Constructor
   public Hotel(String nombre, String ciudad , Float calificacion, DiaDeSol diaDeSol, Boolean servicioHabitacion) {
     super(nombre, ciudad, Categoria.HOTEL, calificacion, null);
     this.diaDeSol = diaDeSol;
     this.servicioHabitacion = servicioHabitacion;
   }
 
-  // Métodos
+  public Hotel(){
+  }
+
   @Override
   public boolean estaDisponible(LocalDate fechaInicio, LocalDate fechaFin, Integer cantPersonas, Integer cantHabitaciones, List<ReservaData<?>> reservas) {
     return true;
@@ -31,7 +33,26 @@ public class Hotel extends Alojamiento {
     System.out.println("Servicio a la habitación: " + servicio);
   }
 
-  // Getter y Setters
+  @Override
+  public boolean tieneDiaDeSol() {
+    return diaDeSol != null;
+  }
+
+  @Override
+  public void mostrarInfoDiaDeSol(Integer cantPersonas, LocalDate fechaInicio) {
+    getDetallesBasicos();
+    if(tieneDiaDeSol())return;
+    diaDeSol.mostrarDetalles();
+  }
+
+  @Override
+  public Float getPrecio(){
+    return habitaciones.stream()
+      .map(Habitacion::getPrecioPorNoche)
+      .min(Float::compare)
+      .orElse(null);
+  }
+
   public DiaDeSol getDiaDeSol() {
     return diaDeSol;
   }
@@ -40,11 +61,4 @@ public class Hotel extends Alojamiento {
     this.diaDeSol = diaDeSol;
   }
 
-  public Boolean getServicioHabitacion() {
-    return servicioHabitacion;
-  }
-
-  public void setServicioHabitacion(Boolean servicioHabitaicon) {
-    this.servicioHabitacion = servicioHabitaicon;
-  }
 }

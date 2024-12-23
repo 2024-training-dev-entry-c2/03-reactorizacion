@@ -14,7 +14,6 @@ public class ReservaData<T> {
   private LocalTime horaLlegada;
   private List<Habitacion> habitacionesReservadas;
 
-  // Constructor
   public ReservaData(T alojamiento, HuespedData huesped, LocalDate fechaInicio, LocalDate fechaFin, LocalTime horaLlegada, List<Habitacion> habitacionesReservadas) {
     this.alojamiento = alojamiento;
     this.huesped = huesped;
@@ -24,7 +23,9 @@ public class ReservaData<T> {
     this.habitacionesReservadas = habitacionesReservadas;
   }
 
-  // Getters y Setters
+  public ReservaData(){
+  }
+
   public T getAlojamiento() {
     return alojamiento;
   }
