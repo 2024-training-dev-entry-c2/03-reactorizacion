@@ -8,6 +8,10 @@ import com.bookinghotels.model.data.HuespedData;
 import com.bookinghotels.model.data.ReservaData;
 import com.bookinghotels.utils.ConsolaUtils;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.BiConsumer;
+
 public class ModificarReservaController {
   private final AlojamientoController alojamientoController;
   private final HuespedController huespedController;
@@ -27,7 +31,6 @@ public class ModificarReservaController {
 
   }
 
-
   private void manejarOpciones(ReservaData reserva){
     System.out.println("\n-----------");
     if(reserva.getAlojamiento() instanceof Hotel) System.out.println("1. Cambiar habitaciones. ");
@@ -37,14 +40,18 @@ public class ModificarReservaController {
     ejecutarOpciones(opcion,reserva);
   }
 
-  private void ejecutarOpciones(Integer opcion, ReservaData reserva){
-    if(opcion == 1){
-      reservaController.modificarReserva(alojamientoController,reserva);
-      reserva.mostrarDetalles();
-    }else if(opcion == 2){
-      reservaController.eliminarReserva(reserva);
+  private void ejecutarOpciones(Integer opcion, ReservaData reserva) {
+    Map<Integer, BiConsumer<ReservaData, Void>> opciones = new HashMap<>();
+    opciones.put(1, (reservaData, v) -> {
+      reservaController.modificarReserva(alojamientoController, reservaData);
+      reservaData.mostrarDetalles();
+    });
+    opciones.put(2, (reservaData, v) -> {
+      reservaController.eliminarReserva(reservaData);
       System.out.println("Reserva eliminada. Realiza una nueva reserva.");
-    }
+    });
+
+    opciones.getOrDefault(opcion, (reservaData, v) -> System.out.println("Opción no válida.")).accept(reserva, null);
   }
 
 }
