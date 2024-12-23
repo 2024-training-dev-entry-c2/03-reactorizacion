@@ -26,7 +26,7 @@ public class ShowBookings implements ICommand<String> {
     String accommodationName = console.getString("Ingrese el nombre del alojamiento para ver sus reservas: ");
     repository.getBookings().forEach((booking) -> {
       if (booking.getAccomodation().getName().equalsIgnoreCase(accommodationName)) {
-        System.out.println(booking.toString());
+        booking.describe();
       }
     });
     return "Reservas del alojamiento " + accommodationName;

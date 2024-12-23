@@ -20,7 +20,7 @@ public class MenuService implements IMenuService {
                 "Biernvenido a nuestro sistema de Booking Colombia\n" +
                         "1. Reservar alojamiento\n" +
                         "2. Ver reservas\n" +
-                        "3. Modificar reserva\n" +
+                        "3. Cancelar reserva\n" +
                         "4. Salir\n"
         );
 
