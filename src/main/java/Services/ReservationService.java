@@ -5,7 +5,6 @@ import Models.Accommodation;
 import Models.Client;
 import Models.Reservation;
 import Models.Room;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
 import static lib.ReservationUtil.changeRoom;
 import static lib.ReservationUtil.displayReservationDetails;
 import static lib.ReservationUtil.getModificationOption;
@@ -43,14 +41,11 @@ public class ReservationService implements IReservationService {
 
     @Override
     public void modifyReservation(Reservation reservation, Scanner scanner) {
-
         resetRoomAvailability(reservation);
-
         try {
             displayReservationDetails(reservation);
             Integer option = getModificationOption(scanner);
             handleModificationOption(option, reservation, scanner);
-
         } catch (Exception e) {
             System.out.println("Error durante la modificación de la reserva: " + e.getMessage());
         }
@@ -58,10 +53,8 @@ public class ReservationService implements IReservationService {
 
     private void handleModificationOption(Integer option, Reservation reservation, Scanner scanner) {
         Map<Integer, Runnable> optionActions = new HashMap<>();
-
         optionActions.put(1, () -> changeRoom(reservation, scanner));
         optionActions.put(2, () -> changeAccommodation(reservation));
-
         Runnable action = optionActions.get(option);
         if (action != null) {
             action.run();

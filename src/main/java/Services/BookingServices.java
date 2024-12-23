@@ -12,12 +12,10 @@ import lib.AccommodationTypeUtil;
 import lib.AccommodationUtils;
 import lib.InputUtil;
 import validators.ReservationValidator;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Scanner;
-
 import static lib.AccommodationUtils.createAndConfirmReservation;
 
 public class BookingServices {
@@ -42,14 +40,13 @@ public class BookingServices {
         return instance;
     }
 
-    public BookingServices searchAccommodation() {
+    public void searchAccommodation() {
         SearchCriteria criteria = getSearchCriteria();
         List<Accommodation> matchingAccommodations = accommodationService.searchAccommodations(
           criteria.getCity(), criteria.getType(), criteria.getStartDate(), criteria.getEndDate(),
           criteria.getAdults(), criteria.getChildren(), criteria.getRooms()
         );
         displayMatchingAccommodations(matchingAccommodations, criteria);
-        return null;
     }
 
     private void displayMatchingAccommodations(List<Accommodation> accommodations, SearchCriteria criteria) {
@@ -81,7 +78,6 @@ public class BookingServices {
         Integer adults = InputUtil.getIntInput(scanner, "Número de Adultos: ");
         Integer children = InputUtil.getIntInput(scanner, "Número de Menores: ");
         Integer rooms = InputUtil.getIntInput(scanner, "Números de reservas: ");
-
         return new SearchCriteria(city, type, startDate, endDate, adults, children, rooms);
     }
 
@@ -97,17 +93,15 @@ public class BookingServices {
         return startDate;
     }
 
-    public BookingServices searchAndConfirmRoom() {
+    public void searchAndConfirmRoom() {
         String hotelName = InputUtil.getStringInput(scanner, "Ingrese el nombre del hotel: ");
         LocalDate startDate = InputUtil.getDateInput(scanner, "Ingrese la fecha de inicio (yyyy-mm-dd): ");
         LocalDate endDate = InputUtil.getDateInput(scanner, "Ingrese la fecha de fin (yyyy-mm-dd): ");
         Integer adults = InputUtil.getIntInput(scanner, "Ingrese la cantidad de adultos: ");
         Integer children = InputUtil.getIntInput(scanner, "Ingrese la cantidad de niños: ");
         Integer requiredRooms = InputUtil.getIntInput(scanner, "Ingrese la cantidad de habitaciones requeridas: ");
-
         List<Room> availableRooms = accommodationService.searchAvailableRooms(hotelName, startDate, endDate, adults, children, requiredRooms);
         displayAvailableRooms(availableRooms);
-        return null;
     }
 
     private void displayAvailableRooms(List<Room> availableRooms) {
@@ -126,23 +120,19 @@ public class BookingServices {
         System.out.println("Habitaciones disponibles: " + room.getAmountRooms());
     }
 
-    public BookingServices confirmReservation() {
+    public void confirmReservation() {
         try {
             Client client = getClientInfo();
             ReservationDetails details = getReservationDetails();
-
             Accommodation accommodation = reservationValidator.validateAndGetAccommodation(details);
             Room room = reservationValidator.validateAndGetRoom(accommodation, details);
-
             reservationValidator.validateRoomAvailability(accommodation, room, details);
-
             createAndConfirmReservation(client, accommodation, room, details);
         } catch (InvalidReservationException e) {
             System.out.println(e.getMessage());
         } catch (Exception e) {
             System.out.println("Error inesperado durante el proceso de reserva: " + e.getMessage());
         }
-        return null;
     }
 
     private Client getClientInfo() {
@@ -152,7 +142,6 @@ public class BookingServices {
         String phoneNumber = InputUtil.getStringInput(scanner, "Ingrese número de teléfono: ");
         String nationality = InputUtil.getStringInput(scanner, "Ingrese nacionalidad: ");
         LocalDate birthDate = InputUtil.getDateInput(scanner, "Ingrese fecha de nacimiento (yyyy-mm-dd): ");
-
         return new Client(firstName, lastName, email, phoneNumber, nationality, birthDate);
     }
 
@@ -163,24 +152,21 @@ public class BookingServices {
         LocalTime checkInTime = InputUtil.getTimeInput(scanner, "Ingrese la hora de llegada (HH:mm): ");
         String roomType = InputUtil.getStringInput(scanner, "Ingrese el tipo de habitación: ");
         Integer roomCount = InputUtil.getIntInput(scanner, "Ingrese la cantidad de habitaciones: ");
-
         return new ReservationDetails(accommodationName, startDate, endDate, checkInTime, roomType, roomCount);
     }
 
-    public BookingServices handleExitOption() {
+    public void handleExitOption() {
         System.out.println("Saliendo del sistema. ¡Gracias por usar el sistema de reservas!");
-        return null;
     }
 
-    public BookingServices changeReservation() {
+    public void changeReservation() {
         String email = InputUtil.getStringInput(scanner, "Ingrese su email: ");
         String birthDate = InputUtil.getStringInput(scanner, "Ingrese su fecha de nacimiento: ");
         Reservation reservation = reservationService.getReservation(email, birthDate);
         if (reservation == null) {
             System.out.println("No se encontró ninguna reserva con los datos proporcionados.");
-            return null;
+            return;
         }
         reservationService.modifyReservation(reservation, scanner);
-        return null;
     }
 }

@@ -17,9 +17,7 @@ public class Room {
         this.amountRooms = amountRooms;
     }
 
-    public Room(){
-
-    }
+    public Room(){}
 
     public Boolean isAvailable() {
         return amountRooms>  0;

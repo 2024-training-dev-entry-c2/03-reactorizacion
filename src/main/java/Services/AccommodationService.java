@@ -6,12 +6,10 @@ import Models.Accommodation;
 import Models.ReservationDetails;
 import Models.Room;
 import constants.AccommodationType;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static lib.AccommodationUtils.hasSufficientAdultCapacity;
 import static lib.AccommodationUtils.hasSufficientChildrenCapacity;
 import static lib.AccommodationUtils.isInCity;
@@ -83,7 +81,6 @@ public class AccommodationService implements IAccommodationService {
         allAccommodations.addAll(apartments);
         allAccommodations.addAll(lands);
         allAccommodations.addAll(sunnyDays);
-
         return allAccommodations.stream()
                 .filter(a -> a.getName().equalsIgnoreCase(name))
                 .findFirst()
@@ -104,7 +101,6 @@ public class AccommodationService implements IAccommodationService {
         if (hotel == null) {
             return new ArrayList<>();
         }
-
         return filterAvailableRooms(hotel, startDate, endDate, adults, children, requiredRooms);
     }
 

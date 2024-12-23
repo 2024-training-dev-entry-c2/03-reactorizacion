@@ -1,11 +1,9 @@
 import Services.BookingServices;
 import constants.MenuOptionEnum;
-
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
-
 import static lib.MainUtils.getUserChoice;
 import static lib.MainUtils.printMenu;
 
@@ -25,7 +23,6 @@ public class Main {
 
     public static void main(String[] args) {
         Boolean running = true;
-
         while (running) {
             printMenu();
             try {
@@ -41,7 +38,6 @@ public class Main {
     private static Boolean handleMenuOption(Integer choice) {
         scanner.nextLine();
         MenuOptionEnum option = getValidatedMenuOption(choice);
-
         executeMenuAction(option);
         return !isExitOption(option);
     }
@@ -56,7 +52,6 @@ public class Main {
 
     private static void executeMenuAction(MenuOptionEnum option) {
         if (option == null) return;
-
         menuActions.getOrDefault(option,  ()->
           System.out.println("Acción no implementada para esta opción.")
         ).run();
