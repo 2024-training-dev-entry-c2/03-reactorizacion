@@ -61,7 +61,7 @@ public class MakeBooking implements ICommand<String> {
     listAccomodationsByCityAndType(selectedCity, type);
     Accommodation selectedAccommodation = selectAccommodation();
     Details details = new Details(checkIn, type, children, adults, selectedCity);
-    bookingRepository.addBooking(new Booking(selectedAccommodation, craeteClient(), details, null));
+    bookingRepository.addBooking(new Booking(selectedAccommodation, createClient(), details, null));
   }
 
   private void handleStayBooking(String selectedCity, AccommodationType type) {
@@ -74,10 +74,10 @@ public class MakeBooking implements ICommand<String> {
     Accommodation selectedAccommodation = selectAccommodation();
     DetailsStay details = new DetailsStay(checkIn, type, children, adults, selectedCity, checkOut, roomCount);
     showServices(selectedAccommodation);
-    bookingRepository.addBooking(new Booking(selectedAccommodation, craeteClient(), details, selectRoom((Stay) selectedAccommodation)));
+    bookingRepository.addBooking(new Booking(selectedAccommodation, createClient(), details, selectRoom((Stay) selectedAccommodation)));
   }
 
-  private Client craeteClient() {
+  private Client createClient() {
     String firstName = console.getString("Ingrese su nombre: ");
     String lastName = console.getString("Ingrese su apellido: ");
     String phoneNumber = console.getString("Ingrese su celular: ");
