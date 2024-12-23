@@ -21,24 +21,21 @@ public class CalculadoraPrecio {
   private static Float obtenerPorcentajeAjuste(LocalDate fechaInicio, LocalDate fechaFin) {
     float porcentaje = 0f;
 
-    porcentaje += (esUltimoDelMes(fechaFin) ? 0.15f : 0f) +
-      (esDiezAlQuince(fechaInicio) ? 0.10f : 0f) +
-      (esCincoAlDiez(fechaInicio) ? -0.08f : 0f);
+    porcentaje += obtenerAjuste(fechaFin.getDayOfMonth(), 26, 31, 0.15f);
+    porcentaje += obtenerAjuste(fechaInicio.getDayOfMonth(), 10, 15, 0.10f);
+    porcentaje += obtenerAjuste(fechaInicio.getDayOfMonth(), 5, 9, -0.08f);
 
     return porcentaje;
   }
 
-  private static boolean esUltimoDelMes(LocalDate fechaFin) {
-    return fechaFin.getDayOfMonth() >= 26 && fechaFin.getDayOfMonth() <= 31;
+  private static float obtenerAjuste(int dia, int rangoInicio, int rangoFin, float ajuste) {
+    return estaEnRango(dia,rangoInicio,rangoFin) ? ajuste : 0f;
   }
 
-  private static boolean esDiezAlQuince(LocalDate fechaInicio) {
-    return fechaInicio.getDayOfMonth() >= 10 && fechaInicio.getDayOfMonth() <= 15;
+  private static boolean estaEnRango(int dia, int rangoInicio, int rangoFin){
+    return  dia >= rangoInicio && dia <= rangoFin;
   }
 
-  private static boolean esCincoAlDiez(LocalDate fechaInicio) {
-    return fechaInicio.getDayOfMonth() >= 5 && fechaInicio.getDayOfMonth() <= 9;
-  }
 
   public static void calcularPrecios(Alojamiento alojamiento, LocalDate fechaInicio, LocalDate fechaFin) {
     long diasEstadia = java.time.temporal.ChronoUnit.DAYS.between(fechaInicio, fechaFin);
@@ -46,7 +43,6 @@ public class CalculadoraPrecio {
     Float ajuste = calcularAjuste(precioBase, fechaInicio, fechaFin);
     Float precioTotal = precioBase + ajuste;
     mostrarPrecios(precioBase,precioTotal,obtenerPorcentajeAjuste(fechaInicio,fechaFin)*100);
-
   }
 
   private static void mostrarPrecios(Float precioBase, Float precioTotal, Float porcentAjuste){
