@@ -33,6 +33,10 @@ public class Client {
     return (email.equals(this.email) && birthDate.equals(this.birthDate));
   }
 
+  public LocalDate getBirthDate() {
+    return birthDate;
+  }
+
   public String getFirstName() {
     return firstName;
   }
