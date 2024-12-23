@@ -21,27 +21,8 @@ public class Booking {
   public Booking() {
   }
 
-  public Float basePrice() {
-    Details details = this.getDetails();
-    LocalDate startDate = details.getStartDate();
-
-    return 0f;
-  }
-
   public Accommodation getAccomodation() {
     return accommodation;
-  }
-
-  public void setAccomodation(Accommodation accommodation) {
-    this.accommodation = accommodation;
-  }
-
-  public Client getClient() {
-    return client;
-  }
-
-  public void setClient(Client client) {
-    this.client = client;
   }
 
   public Details getDetails() {
@@ -50,5 +31,32 @@ public class Booking {
 
   public void setDetails(Details details) {
     this.details = details;
+  }
+
+  public Float basePrice() {
+    Details details = this.getDetails();
+    LocalDate startDate = details.getStartDate();
+
+    return 0f;
+  }
+
+  public Client getClient() {
+    return client;
+  }
+
+
+  public Boolean describe() {
+    if (details instanceof DetailsStay) {
+      DetailsStay detailsStay = (DetailsStay) this.getDetails();
+      System.out.println("Reserva en " + this.getAccomodation().getName() + " para " + this.getClient().getFirstName() +
+              " " + this.getClient().getLastName() + " desde " + this.getDetails().getStartDate() + " hasta " + detailsStay.getEndDate() +
+              " para " + this.getDetails().getAdultsQuantity() + " adultos y " + this.getDetails().getChildrenQuantity() + " niños.");
+      return true;
+    } else {
+      System.out.println("Reserva en " + this.getAccomodation().getName() + " para " + this.getClient().getFirstName() +
+              " " + this.getClient().getLastName() + " el día: " + this.getDetails().getStartDate() +
+              " para " + this.getDetails().getAdultsQuantity() + " adultos y " + this.getDetails().getChildrenQuantity() + " niños.");
+      return true;
+    }
   }
 }
