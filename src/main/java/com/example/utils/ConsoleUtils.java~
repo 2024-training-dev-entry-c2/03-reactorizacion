@@ -9,14 +9,13 @@ public class ConsoleUtils {
 
   public String getString(String message) {
     System.out.println(message);
-    return scanner.nextLine();
+    return scanner.next();
   }
 
   public Integer getInteger(String message) {
     try {
       System.out.println(message);
       int value = scanner.nextInt();
-      scanner.nextLine();
 
       if (value < 0) {
         System.out.println("Ingresa un número positivo.");
@@ -26,7 +25,6 @@ public class ConsoleUtils {
       return value;
     } catch (Exception e) {
       System.err.println("Ingresa un número con formato valido.");
-      scanner.nextLine();
       return getInteger(message);
     }
   }
