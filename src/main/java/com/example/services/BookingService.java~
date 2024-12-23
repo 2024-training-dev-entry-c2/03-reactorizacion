@@ -43,10 +43,19 @@ public class BookingService implements IBookingService {
                 case 3 -> {
                     System.out.println("Cancelar reserva");
                     CancelBooking cancelBooking = new CancelBooking(bookingRepository, validatorService);
-                    cancelBooking.execute();
                 }
             }
             option = menuService.mainMenu();
         } while (option != 4);
+    }
+
+    private boolean validateCity(String city) {
+        String cityUpper = city.toUpperCase();
+        return accommodationRepository.getCities().contains(cityUpper);
+    }
+
+    private boolean validateAccommodation(String accommodationName, String city) {
+        return accommodationRepository.getAccommodations().stream()
+                .anyMatch(a -> a.getName().equalsIgnoreCase(accommodationName) && a.getCity().equalsIgnoreCase(city));
     }
 }
