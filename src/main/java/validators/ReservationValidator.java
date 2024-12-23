@@ -10,9 +10,13 @@ public class ReservationValidator {
   private final AccommodationService accommodationService;
   private static ReservationValidator instance;
 
-  public static ReservationValidator getInstance(AccommodationService accommodationService) {
+  private ReservationValidator() {
+    this.accommodationService = AccommodationService.getInstance();
+  }
+
+  public static ReservationValidator getInstance() {
     if (instance == null) {
-      instance = new ReservationValidator(accommodationService);
+      instance = new ReservationValidator();
     }
     return instance;
   }

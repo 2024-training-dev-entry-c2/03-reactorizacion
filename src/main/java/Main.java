@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.function.Consumer;
 
 import static lib.MainUtils.getUserChoice;
 import static lib.MainUtils.printMenu;
@@ -14,14 +13,14 @@ public class Main {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static final BookingServices bookingServices = BookingServices.getInstance(scanner);
-    private static final Map<MenuOptionEnum, Consumer<BookingServices>> menuActions = new HashMap<>();
+    private static final Map<MenuOptionEnum, Runnable> menuActions = new HashMap<>();
 
     static {
-        menuActions.put(MenuOptionEnum.SEARCH_ACCOMMODATION, BookingServices::searchAccommodation);
-        menuActions.put(MenuOptionEnum.SEARCH_ROOMS, BookingServices::searchAndConfirmRoom);
-        menuActions.put(MenuOptionEnum.RESERVE, BookingServices::confirmReservation);
-        menuActions.put(MenuOptionEnum.MODIFY_RESERVATION, BookingServices::changeReservation);
-        menuActions.put(MenuOptionEnum.EXIT, BookingServices::handleExitOption);
+        menuActions.put(MenuOptionEnum.SEARCH_ACCOMMODATION, bookingServices::searchAccommodation);
+        menuActions.put(MenuOptionEnum.SEARCH_ROOMS, bookingServices::searchAndConfirmRoom);
+        menuActions.put(MenuOptionEnum.RESERVE, bookingServices::confirmReservation);
+        menuActions.put(MenuOptionEnum.MODIFY_RESERVATION, bookingServices::changeReservation);
+        menuActions.put(MenuOptionEnum.EXIT, bookingServices::handleExitOption);
     }
 
     public static void main(String[] args) {
@@ -58,9 +57,9 @@ public class Main {
     private static void executeMenuAction(MenuOptionEnum option) {
         if (option == null) return;
 
-        menuActions.getOrDefault(option, services ->
+        menuActions.getOrDefault(option,  ()->
           System.out.println("Acción no implementada para esta opción.")
-        ).accept(bookingServices);
+        ).run();
     }
 
     private static Boolean isExitOption(MenuOptionEnum option) {
