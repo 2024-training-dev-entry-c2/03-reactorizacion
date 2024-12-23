@@ -23,8 +23,9 @@ public class MakeBooking implements ICommand<String> {
   private BookingRepository bookingRepository;
   private final ConsoleUtils console;
 
-  public MakeBooking(AccommodationRepository repository, ConsoleUtils console) {
+  public MakeBooking(AccommodationRepository repository, BookingRepository bookingRepository, ConsoleUtils console) {
     this.repository = repository;
+    this.bookingRepository = bookingRepository;
     this.console = console;
   }
 
