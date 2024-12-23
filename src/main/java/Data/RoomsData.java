@@ -7,7 +7,7 @@ import java.util.List;
 public class RoomsData {
   private static RoomsData instance;
 
-  protected static Room createRoom(String description, String roomType, Double basePrice, Integer capacityMinors, Integer capacityAdults, Integer amountRooms) {
+  protected Room createRoom(String description, String roomType, Double basePrice, Integer capacityMinors, Integer capacityAdults, Integer amountRooms) {
     return new Room(description, roomType, basePrice, capacityMinors, capacityAdults, amountRooms);
   }
 

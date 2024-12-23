@@ -21,10 +21,6 @@ public class ReservationValidator {
     return instance;
   }
 
-  public ReservationValidator(AccommodationService accommodationService) {
-    this.accommodationService = accommodationService;
-  }
-
   public Accommodation validateAndGetAccommodation(ReservationDetails details) throws InvalidReservationException {
     Accommodation accommodation = accommodationService.findAccommodation(details.getAccommodationName());
     if (accommodation == null) {
