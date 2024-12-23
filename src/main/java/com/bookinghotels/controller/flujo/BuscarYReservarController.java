@@ -66,7 +66,16 @@ public class BuscarYReservarController {
     if (alojamientos.isEmpty()) {
       System.out.println("No hay alojamientos disponibles.");
     }
-    alojamientos.forEach(alojamiento -> CalculadoraPrecio.calcularPrecios(alojamiento,fechaInicio,fechaFin));
+    mostrarDatosBusqueda(alojamientos,fechaInicio,fechaFin);
+  }
+
+  private void mostrarDatosBusqueda(List<Alojamiento> alojamientos, LocalDate fechaInicio, LocalDate fechaFin){
+    for(Alojamiento alojamiento : alojamientos){
+      System.out.println("\n----------------------------");
+      alojamiento.getDetalles();
+      CalculadoraPrecio.calcularPrecios(alojamiento,fechaInicio,fechaFin);
+      System.out.println("----------------------------");
+    }
   }
 
   private List<Habitacion> manejoHabitaciones(Alojamiento alojamientoSeleccionado, LocalDate fechaInicio, LocalDate fechaFin){

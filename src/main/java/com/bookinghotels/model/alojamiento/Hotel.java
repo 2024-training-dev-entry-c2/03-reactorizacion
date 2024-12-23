@@ -23,7 +23,7 @@ public class Hotel extends Alojamiento implements IDiaDeSol {
 
   @Override
   public boolean estaDisponible(LocalDate fechaInicio, LocalDate fechaFin, Integer cantPersonas, Integer cantHabitaciones, List<ReservaData<?>> reservas) {
-    return true;
+    return true; // Validar por fechas
   }
 
   @Override
@@ -56,10 +56,6 @@ public class Hotel extends Alojamiento implements IDiaDeSol {
   @Override
   public DiaDeSol getDiaSol() {
     return diaDeSol;
-  }
-
-  public void setDiaDeSol(DiaDeSol diaDeSol) {
-    this.diaDeSol = diaDeSol;
   }
 
 }

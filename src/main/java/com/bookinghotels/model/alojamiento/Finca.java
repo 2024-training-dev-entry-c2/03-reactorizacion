@@ -49,17 +49,10 @@ public class Finca extends Alojamiento implements IDiaDeSol {
     return diaDeSol;
   }
 
-  public void setDiaDeSol(DiaDeSol diaDeSol) {
-    this.diaDeSol = diaDeSol;
-  }
-
   @Override
   public Float getPrecio() {
     return precioPorNoche;
   }
 
-  public void setPrecioPorNoche(Float precioPorNoche) {
-    this.precioPorNoche = precioPorNoche;
-  }
 
 }

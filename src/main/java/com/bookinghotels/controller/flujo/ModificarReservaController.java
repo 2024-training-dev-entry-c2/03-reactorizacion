@@ -20,13 +20,13 @@ public class ModificarReservaController {
   }
 
   public void iniciarFlujo(){
-    ModificarReservaController controller = new ModificarReservaController(alojamientoController,huespedController,reservaController);
     HuespedData huesped = huespedController.buscarHuesped();
     ReservaData reserva = reservaController.obtenerReserva(huesped);
     reserva.mostrarDetalles();
     manejarOpciones(reserva);
 
   }
+
 
   private void manejarOpciones(ReservaData reserva){
     System.out.println("\n-----------");
@@ -43,7 +43,9 @@ public class ModificarReservaController {
       reserva.mostrarDetalles();
     }else if(opcion == 2){
       reservaController.eliminarReserva(reserva);
+      System.out.println("Reserva eliminada. Realiza una nueva reserva.");
     }
   }
 
 }
+

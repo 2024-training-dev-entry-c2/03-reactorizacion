@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,14 +31,18 @@ public class FlowController {
     do {
       System.out.println("\n----- Menú -----\n1. Buscar y reservar alojamiento\n2. Modificar reserva\n3. Salir.\n----------------");
       opcion = ConsolaUtils.obtenerEntero("Ingresa la opción: ");
-      if(opcion != 3) manejoOpciones(opcion);
+      manejoOpciones(opcion);
     }while (opcion != 3);
-
   }
 
   public void manejoOpciones(Integer opcion){
-    if(opcion == 1) obtenerDatosIniciales();
-    if(opcion == 2) obtenerDatosModificar();
+    Map<Integer, Consumer<Void>> opciones = new HashMap<>();
+    opciones.put(1, v -> obtenerDatosIniciales());
+    opciones.put(2, v -> obtenerDatosModificar());
+
+    opciones.getOrDefault(opcion, v -> {
+      System.out.println("Opción no válida.");
+    }).accept(null);
   }
 
   private void obtenerDatosIniciales(){
@@ -58,8 +63,6 @@ public class FlowController {
     ModificarReservaController modificarReservaController = new ModificarReservaController(alojamientoController, huespedController, reservaController);
     modificarReservaController.iniciarFlujo();
   }
-
-
 
   public String getCategorias(){
     return this.categorias.stream().map(categoria -> (categorias.lastIndexOf(categoria) + 1) + ". " + categoria).collect(Collectors.joining("\n"));

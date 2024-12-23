@@ -19,16 +19,13 @@ public class CalculadoraPrecio {
   }
 
   private static Float obtenerPorcentajeAjuste(LocalDate fechaInicio, LocalDate fechaFin) {
-    if (esUltimoDelMes(fechaFin)) {
-      return 0.15f;
-    }
-    if (esDiezAlQuince(fechaInicio)) {
-      return 0.10f;
-    }
-    if (esCincoAlDiez(fechaInicio)) {
-      return -0.08f;
-    }
-    return 0f;
+    float porcentaje = 0f;
+
+    porcentaje += (esUltimoDelMes(fechaFin) ? 0.15f : 0f) +
+      (esDiezAlQuince(fechaInicio) ? 0.10f : 0f) +
+      (esCincoAlDiez(fechaInicio) ? -0.08f : 0f);
+
+    return porcentaje;
   }
 
   private static boolean esUltimoDelMes(LocalDate fechaFin) {
@@ -48,16 +45,12 @@ public class CalculadoraPrecio {
     Float precioBase = alojamiento.getPrecio() * diasEstadia;
     Float ajuste = calcularAjuste(precioBase, fechaInicio, fechaFin);
     Float precioTotal = precioBase + ajuste;
-    mostrarDatos(alojamiento,precioBase,precioTotal,obtenerPorcentajeAjuste(fechaInicio,fechaFin)*100);
+    mostrarPrecios(precioBase,precioTotal,obtenerPorcentajeAjuste(fechaInicio,fechaFin)*100);
 
   }
 
-  private static void mostrarDatos(Alojamiento alojamiento, Float precioBase, Float precioTotal, Float porcentAjuste){
-    System.out.println("\n+--------------------------------------------+");
-    alojamiento.getDetalles();
+  private static void mostrarPrecios(Float precioBase, Float precioTotal, Float porcentAjuste){
     System.out.println("Precio base: " + precioBase);
-
     System.out.println("Precio total: " + precioTotal + "(" + porcentAjuste + "%)");
-    System.out.println("+--------------------------------------------+");
   }
 }

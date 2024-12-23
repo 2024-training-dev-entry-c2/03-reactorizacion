@@ -11,14 +11,12 @@ import com.bookinghotels.service.alojamiento.BuscarAlojamientosCommand;
 import com.bookinghotels.service.alojamiento.BuscarDiaSolCommand;
 import com.bookinghotels.service.alojamiento.ConfirmarHabitacionesCommand;
 import com.bookinghotels.service.alojamiento.ObtenerHabitacionesCommand;
-import com.bookinghotels.utils.ConsolaUtils;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class AlojamientoController {
   private AlojamientoRepository repository = AlojamientoRepository.getInstance();
-  private ConsolaUtils consolaUtils;
 
   public AlojamientoController() {
 
@@ -40,7 +38,7 @@ public class AlojamientoController {
   }
 
   public List<Habitacion> obtenerHabitaciones(Alojamiento alojamiento, LocalDate fechaInicio, LocalDate fechaFin){
-    ObtenerHabitacionesCommand obtenerHabCommand = new ObtenerHabitacionesCommand(repository, alojamiento, fechaInicio, fechaFin, consolaUtils);
+    ObtenerHabitacionesCommand obtenerHabCommand = new ObtenerHabitacionesCommand(repository, alojamiento, fechaInicio, fechaFin);
     return obtenerHabCommand.execute();
   }
 

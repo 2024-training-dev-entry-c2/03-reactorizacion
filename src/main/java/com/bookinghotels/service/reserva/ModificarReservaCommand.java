@@ -23,16 +23,51 @@ public class ModificarReservaCommand implements ICommand {
 
   @Override
   public ReservaData<?> execute() {
-    List<Habitacion> habitacionesActuales = reserva.getHabitacionesReservadas();
+    List<Habitacion> habitacionesActuales = obtenerHabitacionesActuales();
+    Habitacion antiguaHabitacion = obtenerAntiguaHabitacion(habitacionesActuales);
+    List<Habitacion> habitacionesDisponibles = obtenerHabitacionesDisponibles();
+    mostrarHabitacionesDisponibles(habitacionesDisponibles);
+    Habitacion nuevaHabitacion = obtenerNuevaHabitacion(habitacionesDisponibles);
+    actualizarHabitaciones(habitacionesActuales, antiguaHabitacion, nuevaHabitacion);
+    return reserva;
+  }
+
+  private List<Habitacion> obtenerHabitacionesActuales() {
+    return reserva.getHabitacionesReservadas();
+  }
+
+  private Habitacion obtenerAntiguaHabitacion(List<Habitacion> habitacionesActuales) {
     String tipo = ConsolaUtils.obtenerEntrada("Ingresa el nombre de la habitación a cambiar: ");
-    Habitacion antiguaHabitacion =  habitacionesActuales.stream().filter(habitacion -> habitacion.getTipo().equalsIgnoreCase(tipo)).findFirst().orElse(null);
-    alojamientoController.obtenerHabitaciones((Alojamiento) reserva.getAlojamiento(), reserva.getFechaInicio(), reserva.getFechaFin()).forEach(Habitacion::mostrarDetalles);
+    return habitacionesActuales.stream()
+      .filter(habitacion -> habitacion.getTipo().equalsIgnoreCase(tipo))
+      .findFirst()
+      .orElse(null);
+  }
+
+  private List<Habitacion> obtenerHabitacionesDisponibles() {
+    return alojamientoController.obtenerHabitaciones(
+      (Alojamiento) reserva.getAlojamiento(),
+      reserva.getFechaInicio(),
+      reserva.getFechaFin()
+    );
+  }
+
+  private void mostrarHabitacionesDisponibles(List<Habitacion> habitacionesDisponibles) {
+    habitacionesDisponibles.forEach(Habitacion::mostrarDetalles);
+  }
+
+  private Habitacion obtenerNuevaHabitacion(List<Habitacion> habitacionesDisponibles) {
     String tipoNuevo = ConsolaUtils.obtenerEntrada("Ingresa el nombre de la habitación que deseas: ");
-    Habitacion nuevaHabitacion =  habitacionesActuales.stream().filter(habitacion -> habitacion.getTipo().equalsIgnoreCase(tipoNuevo)).findFirst().orElse(null);
+    return habitacionesDisponibles.stream()
+      .filter(habitacion -> habitacion.getTipo().equalsIgnoreCase(tipoNuevo))
+      .findFirst()
+      .orElse(null);
+  }
+
+  private void actualizarHabitaciones(List<Habitacion> habitacionesActuales, Habitacion antiguaHabitacion, Habitacion nuevaHabitacion) {
     habitacionesActuales.remove(antiguaHabitacion);
     habitacionesActuales.add(nuevaHabitacion);
-    repository.modificarHabitaciones(reserva,habitacionesActuales);
-    return reserva;
+    repository.modificarHabitaciones(reserva, habitacionesActuales);
   }
 
 }

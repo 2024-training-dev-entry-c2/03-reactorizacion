@@ -32,12 +32,12 @@ public class ReservaData<T> {
     System.out.println("Alojamiento: " + alojamiento.getNombre());
     System.out.println("Huesped: " + huesped.getNombre() + " " + huesped.getApellido());
     System.out.println("Hora llegada: " + this.horaLlegada);
-     mostrarHabitaciones(alojamiento);
+     mostrarHabitaciones();
   }
 
-  public void mostrarHabitaciones(Alojamiento alojamiento){
-    if(!alojamiento.getHabitaciones().isEmpty()){
-      alojamiento.getHabitaciones().forEach(habitacion -> System.out.println("- " + habitacion.getTipo() + "\n"));
+  public void mostrarHabitaciones(){
+    if(!this.habitacionesReservadas.isEmpty()){
+      this.habitacionesReservadas.forEach(habitacion -> System.out.println("- " + habitacion.getTipo()));
     }
   }
 

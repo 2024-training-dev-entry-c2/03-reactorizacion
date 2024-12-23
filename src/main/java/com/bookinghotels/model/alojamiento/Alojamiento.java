@@ -71,7 +71,4 @@ public abstract class Alojamiento {
     return categoria;
   }
 
-  public List<Habitacion> getHabitaciones() {
-    return habitaciones;
-  }
 }
