@@ -3,8 +3,10 @@ package com.example.models;
 import com.example.constants.AccommodationType;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class DetailsStay extends Details {
+    private List<Service> services;
     private LocalDate endDate;
     private Integer roomsQuantity;
 
